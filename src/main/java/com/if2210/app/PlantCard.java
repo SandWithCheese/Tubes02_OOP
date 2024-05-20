@@ -1,5 +1,6 @@
+package com.if2210.app;
+
 import java.util.ArrayList;
-import ItemCard;
 
 public class PlantCard {
     private String name;
@@ -43,6 +44,7 @@ public class PlantCard {
     public ItemCard getActiveItem() {
         return activeItem;
     }
+
     public void setActiveItem(ItemCard activeItem) {
         this.activeItem = activeItem;
     }

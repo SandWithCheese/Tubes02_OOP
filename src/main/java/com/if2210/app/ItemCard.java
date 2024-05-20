@@ -1,3 +1,5 @@
+package com.if2210.app;
+
 public class ItemCard {
     private String name;
     private String image;
@@ -23,5 +25,3 @@ public class ItemCard {
         this.image = image;
     }
 }
-
-

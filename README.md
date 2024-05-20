@@ -17,13 +17,13 @@ Setelah menginstall maven, kompilasi program dapat dilakukan dengan mengikuti la
 2. Build project dengan command berikut
 
     ```bash
-    mvn package
+    mvn clean install
     ```
 
 3. Jalankan program dengan command berikut
 
     ```bash
-    java -cp target/Tubes02_OOP-1.0-SNAPSHOT.jar com.if2210.app.App
+    mvn javafx:run
     ```
 
 4. Program sudah dapat digunakan
