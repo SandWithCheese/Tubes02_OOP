@@ -6,6 +6,13 @@ public class PlayerModel {
     private DeckModel deck;
     private int money;
 
+    public PlayerModel(FieldModel field, ActiveDeckModel activeDeck, DeckModel deck, int money) {
+        this.field = field;
+        this.activeDeck = activeDeck;
+        this.deck = deck;
+        this.money = money;
+    }
+
     public FieldModel getField() {
         return field;
     }
