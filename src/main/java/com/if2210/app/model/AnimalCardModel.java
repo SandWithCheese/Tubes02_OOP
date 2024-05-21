@@ -1,6 +1,6 @@
 package com.if2210.app.model;
 
-public class AnimalCard extends Card {
+public class AnimalCardModel extends CardModel {
     public enum AnimalType {
         HERBIVORE,
         CARNIVORE,
@@ -10,7 +10,7 @@ public class AnimalCard extends Card {
     private int weight;
     private AnimalType type;
 
-    public AnimalCard(String color, String name, String image, int weight, AnimalType type) {
+    public AnimalCardModel(String color, String name, String image, int weight, AnimalType type) {
         super(color, name, image);
         this.weight = weight;
         this.type = type;

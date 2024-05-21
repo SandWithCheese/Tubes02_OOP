@@ -1,11 +1,11 @@
 package com.if2210.app.model;
 
-public class Card {
+public class CardModel {
     private String color;
     private String name;
     private  String image;  // Path to source image
 
-    public Card(String color, String name, String image) {
+    public CardModel(String color, String name, String image) {
         this.color = color;
         this.name = name;
         this.image = image;
