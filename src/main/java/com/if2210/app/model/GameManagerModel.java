@@ -11,7 +11,7 @@ import com.if2210.app.datastore.DataManager;
 public class GameManagerModel {
     private DataManager dataManager;
     private int currentTurn;
-    // private Shop shop;
+    private ShopModel shop;
     private PlayerModel player1;
     private PlayerModel player2;
 
@@ -28,5 +28,6 @@ public class GameManagerModel {
         this.currentTurn = this.dataManager.getCurrentTurn();
         this.player1 = this.dataManager.getPlayer1();
         this.player2 = this.dataManager.getPlayer2();
+        this.shop.setProductList(this.dataManager.getProductList());
     }
 }
