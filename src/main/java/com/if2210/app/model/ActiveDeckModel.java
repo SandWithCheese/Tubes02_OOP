@@ -3,17 +3,17 @@ package com.if2210.app.model;
 import java.util.ArrayList;
 
 public class ActiveDeckModel {
-    private ArrayList<Card> cards;
+    private ArrayList<CardModel> cards;
 
     public ActiveDeckModel() {
-        this.cards = new ArrayList<Card>();
+        this.cards = new ArrayList<CardModel>();
     }
 
-    public ArrayList<Card> getCards() {
+    public ArrayList<CardModel> getCards() {
         return cards;
     }
 
-    public void setCards(ArrayList<Card> cards) {
+    public void setCards(ArrayList<CardModel> cards) {
         this.cards = cards;
     }
 }
