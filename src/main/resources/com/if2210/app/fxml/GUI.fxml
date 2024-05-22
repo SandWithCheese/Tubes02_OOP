@@ -44,29 +44,306 @@
                      </children>
                   </AnchorPane>
                </children></AnchorPane>
-            <AnchorPane layoutX="116.0" layoutY="28.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;" />
-            <AnchorPane layoutX="211.0" layoutY="28.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;" />
-            <AnchorPane layoutX="307.0" layoutY="28.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;" />
-            <AnchorPane layoutX="401.0" layoutY="28.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;" />
-            <AnchorPane layoutX="497.0" layoutY="28.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;" />
-            <AnchorPane layoutX="20.0" layoutY="148.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;" />
-            <AnchorPane layoutX="116.0" layoutY="148.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;" />
-            <AnchorPane layoutX="211.0" layoutY="148.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;" />
-            <AnchorPane layoutX="307.0" layoutY="148.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;" />
-            <AnchorPane layoutX="401.0" layoutY="148.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;" />
-            <AnchorPane layoutX="497.0" layoutY="148.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;" />
-            <AnchorPane layoutX="20.0" layoutY="268.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;" />
-            <AnchorPane layoutX="116.0" layoutY="268.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;" />
-            <AnchorPane layoutX="211.0" layoutY="268.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;" />
-            <AnchorPane layoutX="307.0" layoutY="268.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;" />
-            <AnchorPane layoutX="401.0" layoutY="268.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;" />
-            <AnchorPane layoutX="497.0" layoutY="268.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;" />
-            <AnchorPane layoutX="20.0" layoutY="387.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;" />
-            <AnchorPane layoutX="116.0" layoutY="387.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;" />
-            <AnchorPane layoutX="211.0" layoutY="387.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;" />
-            <AnchorPane layoutX="307.0" layoutY="387.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;" />
-            <AnchorPane layoutX="401.0" layoutY="387.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;" />
-            <AnchorPane layoutX="497.0" layoutY="387.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;" />
+            <AnchorPane layoutX="116.0" layoutY="28.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+               <children>
+                  <AnchorPane id="Card" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                     <children>
+                        <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow" textFill="#010913">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children></AnchorPane>
+            <AnchorPane layoutX="211.0" layoutY="28.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+               <children>
+                  <AnchorPane id="Card" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                     <children>
+                        <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow" textFill="#010913">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children></AnchorPane>
+            <AnchorPane layoutX="307.0" layoutY="28.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+               <children>
+                  <AnchorPane id="Card" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                     <children>
+                        <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow" textFill="#010913">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children></AnchorPane>
+            <AnchorPane layoutX="401.0" layoutY="28.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+               <children>
+                  <AnchorPane id="Card" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                     <children>
+                        <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow" textFill="#010913">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children></AnchorPane>
+            <AnchorPane layoutX="497.0" layoutY="28.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+               <children>
+                  <AnchorPane id="Card" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                     <children>
+                        <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow" textFill="#010913">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children></AnchorPane>
+            <AnchorPane layoutX="20.0" layoutY="148.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+               <children>
+                  <AnchorPane id="Card" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                     <children>
+                        <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow" textFill="#010913">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children></AnchorPane>
+            <AnchorPane layoutX="116.0" layoutY="148.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+               <children>
+                  <AnchorPane id="Card" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                     <children>
+                        <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow" textFill="#010913">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children></AnchorPane>
+            <AnchorPane layoutX="211.0" layoutY="148.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+               <children>
+                  <AnchorPane id="Card" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                     <children>
+                        <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow" textFill="#010913">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children></AnchorPane>
+            <AnchorPane layoutX="307.0" layoutY="148.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+               <children>
+                  <AnchorPane id="Card" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                     <children>
+                        <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow" textFill="#010913">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children></AnchorPane>
+            <AnchorPane layoutX="401.0" layoutY="148.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+               <children>
+                  <AnchorPane id="Card" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                     <children>
+                        <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow" textFill="#010913">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children></AnchorPane>
+            <AnchorPane layoutX="497.0" layoutY="148.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+               <children>
+                  <AnchorPane id="Card" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                     <children>
+                        <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow" textFill="#010913">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children></AnchorPane>
+            <AnchorPane layoutX="20.0" layoutY="268.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+               <children>
+                  <AnchorPane id="Card" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                     <children>
+                        <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow" textFill="#010913">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children></AnchorPane>
+            <AnchorPane layoutX="116.0" layoutY="268.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+               <children>
+                  <AnchorPane id="Card" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                     <children>
+                        <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow" textFill="#010913">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children></AnchorPane>
+            <AnchorPane layoutX="211.0" layoutY="268.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+               <children>
+                  <AnchorPane id="Card" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                     <children>
+                        <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow" textFill="#010913">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children></AnchorPane>
+            <AnchorPane layoutX="307.0" layoutY="268.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+               <children>
+                  <AnchorPane id="Card" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                     <children>
+                        <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow" textFill="#010913">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children></AnchorPane>
+            <AnchorPane layoutX="401.0" layoutY="268.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+               <children>
+                  <AnchorPane id="Card" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                     <children>
+                        <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow" textFill="#010913">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children></AnchorPane>
+            <AnchorPane layoutX="497.0" layoutY="268.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+               <children>
+                  <AnchorPane id="Card" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                     <children>
+                        <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow" textFill="#010913">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children></AnchorPane>
+            <AnchorPane layoutX="20.0" layoutY="387.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+               <children>
+                  <AnchorPane id="Card" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                     <children>
+                        <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow" textFill="#010913">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children></AnchorPane>
+            <AnchorPane layoutX="116.0" layoutY="387.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+               <children>
+                  <AnchorPane id="Card" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                     <children>
+                        <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow" textFill="#010913">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children></AnchorPane>
+            <AnchorPane layoutX="211.0" layoutY="387.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+               <children>
+                  <AnchorPane id="Card" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                     <children>
+                        <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow" textFill="#010913">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children></AnchorPane>
+            <AnchorPane layoutX="307.0" layoutY="387.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+               <children>
+                  <AnchorPane id="Card" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                     <children>
+                        <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow" textFill="#010913">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children></AnchorPane>
+            <AnchorPane layoutX="497.0" layoutY="387.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+               <children>
+                  <AnchorPane id="Card" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                     <children>
+                        <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow" textFill="#010913">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children></AnchorPane>
+            <AnchorPane layoutX="401.0" layoutY="387.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+               <children>
+                  <AnchorPane id="Card" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                     <children>
+                        <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow" textFill="#010913">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
       <Group layoutX="145.0" layoutY="664.0">
@@ -75,7 +352,7 @@
                <children>
                   <AnchorPane layoutY="33.0" prefHeight="42.0" prefWidth="171.0" style="-fx-background-color: #D4E3FC; -fx-background-radius: 10px;">
                      <children>
-                        <Label layoutX="20.0" layoutY="20.0" prefHeight="21.0" prefWidth="130.0" style="-fx-font-weight: 700;" text="Drag here to sell " textFill="#021a38">
+                        <Label layoutX="20.0" layoutY="17.0" prefHeight="21.0" prefWidth="130.0" style="-fx-font-weight: 700;" text="Drag here to sell " textFill="#021a38">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -141,6 +418,80 @@
                   <Font size="16.0" />
                </font>
             </Label>
+            <AnchorPane layoutX="96.0" layoutY="25.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+               <children>
+                  <AnchorPane id="Card" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                     <children>
+                        <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow" textFill="#010913">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children></AnchorPane>
+            <AnchorPane layoutY="145.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+               <children>
+                  <AnchorPane id="Card" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                     <children>
+                        <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow" textFill="#010913">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children></AnchorPane>
+            <AnchorPane layoutX="96.0" layoutY="145.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+               <children>
+                  <AnchorPane id="Card" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                     <children>
+                        <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow" textFill="#010913">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children></AnchorPane>
+            <AnchorPane layoutX="191.0" layoutY="145.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+               <children>
+                  <AnchorPane id="Card" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                     <children>
+                        <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow" textFill="#010913">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children></AnchorPane>
+            <AnchorPane layoutX="22.0" layoutY="269.0" prefHeight="52.0" prefWidth="228.0" style="-fx-background-color: #D4E3FC; -fx-background-radius: 10px;">
+               <children>
+                  <Label fx:id="deckCount" layoutX="42.0" layoutY="12.0" style="-fx-font-weight: 700;" text="My Deck 33/40" textFill="#021a38">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="191.0" layoutY="25.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+               <children>
+                  <AnchorPane id="Card" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                     <children>
+                        <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow" textFill="#010913">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children></AnchorPane>
             <AnchorPane layoutY="25.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                <children>
                   <AnchorPane id="Card" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
@@ -157,19 +508,6 @@
                         </Label>
                      </children>
                   </AnchorPane>
-               </children></AnchorPane>
-            <AnchorPane layoutX="96.0" layoutY="25.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;" />
-            <AnchorPane layoutX="191.0" layoutY="25.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;" />
-            <AnchorPane layoutY="145.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;" />
-            <AnchorPane layoutX="96.0" layoutY="145.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;" />
-            <AnchorPane layoutX="191.0" layoutY="145.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;" />
-            <AnchorPane layoutX="22.0" layoutY="269.0" prefHeight="52.0" prefWidth="228.0" style="-fx-background-color: #D4E3FC; -fx-background-radius: 10px;">
-               <children>
-                  <Label fx:id="deckCount" layoutX="42.0" layoutY="12.0" style="-fx-font-weight: 700;" text="My Deck 33/40" textFill="#021a38">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
                </children>
             </AnchorPane>
          </children>
