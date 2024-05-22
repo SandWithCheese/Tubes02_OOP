@@ -27,7 +27,23 @@
                   <Insets />
                </opaqueInsets>
             </Label>
-            <AnchorPane layoutX="20.0" layoutY="28.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;" />
+            <AnchorPane layoutX="20.0" layoutY="28.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+               <children>
+                  <AnchorPane id="Card" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                     <children>
+                        <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@cow.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow" textFill="#010913">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children></AnchorPane>
             <AnchorPane layoutX="116.0" layoutY="28.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;" />
             <AnchorPane layoutX="211.0" layoutY="28.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;" />
             <AnchorPane layoutX="307.0" layoutY="28.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;" />
