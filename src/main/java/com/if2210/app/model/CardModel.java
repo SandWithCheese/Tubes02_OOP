@@ -3,7 +3,7 @@ package com.if2210.app.model;
 public class CardModel {
     private String color;
     private String name;
-    private  String image;  // Path to source image
+    private String image; // Path to source image
 
     public CardModel(String color, String name, String image) {
         this.color = color;
