@@ -7,6 +7,43 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="605.0" prefWidth="973.0" style="-fx-background-color: #021A38; -fx-border-color: #799FF6; -fx-border-width: 3px;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label alignment="CENTER" layoutX="284.0" layoutY="22.0" prefWidth="405.0" style="-fx-font-weight: 700;" text="Load State" textAlignment="CENTER" textFill="#d4e3fc">
+         <font>
+            <Font size="42.0" />
+         </font>
+      </Label>
+      <Label layoutX="211.0" layoutY="191.0" prefHeight="25.0" prefWidth="147.0" style="-fx-font-weight: 700;" text="Format file" textAlignment="CENTER" textFill="#d4e3fc">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="210.0" layoutY="269.0" prefHeight="25.0" prefWidth="147.0" style="-fx-font-weight: 700;" text="Folder Name" textAlignment="CENTER" textFill="#d4e3fc">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="myCb" layoutX="358.0" layoutY="177.0" prefHeight="52.0" prefWidth="362.0" style="-fx-background-color: #D4E3FC;" />
+      <TextField fx:id="folderNameField" layoutX="358.0" layoutY="257.0" prefHeight="52.0" prefWidth="362.0"  promptText="Your Folder Name" style="-fx-background-color: #D4E3FC; -fx-font-weight: 200; -fx-font-size:20px;">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </TextField>
+      <Button alignment="CENTER" layoutX="401.0" layoutY="371.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="171.0" style="-fx-background-color: #799FF6; -fx-font-weight: 700; -fx-background-radius: 10px;" text="Load" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Label layoutX="216.0" layoutY="475.0" style="-fx-font-weight: 700;" text="error message if the input is wrong or success message" textFill="#d4e3fc">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>
+=======
 <Pane fx:controller="com.if2210.app.view.LoadView" maxHeight="-Infinity" maxWidth="-Infinity"
     minHeight="-Infinity" minWidth="-Infinity" prefHeight="605.0" prefWidth="973.0"
     style="-fx-background-color: #021A38; -fx-border-color: #799FF6; -fx-border-image-width: 3px;"
@@ -59,3 +96,4 @@
         </Label>
     </children>
 </Pane>
+

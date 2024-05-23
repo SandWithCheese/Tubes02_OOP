@@ -330,6 +330,13 @@
                         </Label>
                      </children>
                   </AnchorPane>
+
+                  <Button onAction="#handleOpenShop" alignment="CENTER" mnemonicParsing="false" prefHeight="52.0" prefWidth="171.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;" text="Shop" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+
                </children>
             </Group>
             <Button alignment="CENTER" mnemonicParsing="false" prefHeight="52.0" prefWidth="171.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;" text="My Field" textAlignment="CENTER" textFill="WHITE">
