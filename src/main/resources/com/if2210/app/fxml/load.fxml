@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:controller="com.if2210.app.view.LoadView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="605.0" prefWidth="973.0" style="-fx-background-color: #021A38; -fx-border-color: #799FF6; -fx-border-image-width: 3px;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="605.0" prefWidth="973.0" style="-fx-background-color: #021A38; -fx-border-color: #799FF6; -fx-border-width: 3px;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label alignment="CENTER" layoutX="284.0" layoutY="22.0" prefWidth="405.0" style="-fx-font-weight: 700;" text="Load State" textAlignment="CENTER" textFill="#d4e3fc">
          <font>
@@ -24,18 +24,18 @@
             <Font size="21.0" />
          </font>
       </Label>
-      <ComboBox fx:id="myCb" layoutX="358.0" layoutY="177.0" prefHeight="52.0" prefWidth="362.0" style="-fx-background-color: #D4E3FC;" />
-      <TextField fx:id="filenameField" layoutX="358.0" layoutY="257.0" prefHeight="52.0" prefWidth="362.0"  promptText="Your Filename" style="-fx-background-color: #D4E3FC; -fx-font-weight: 200; -fx-font-size:20px;">
+      <ChoiceBox layoutX="358.0" layoutY="177.0" prefHeight="52.0" prefWidth="362.0" style="-fx-background-color: #D4E3FC;" />
+      <TextField layoutX="358.0" layoutY="257.0" prefHeight="52.0" prefWidth="362.0" promptText="Your Filename" style="-fx-background-color: #D4E3FC; -fx-font-weight: 700;">
          <font>
             <Font size="20.0" />
          </font>
       </TextField>
-      <Button alignment="CENTER" layoutX="401.0" layoutY="371.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="171.0" style="-fx-background-color: #799FF6; -fx-font-weight: 700; -fx-background-radius: 10px;" text="Load" textAlignment="CENTER" textFill="WHITE" onAction="#handleLoadButtonAction">
+      <Button alignment="CENTER" layoutX="401.0" layoutY="371.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="171.0" style="-fx-background-color: #799FF6; -fx-font-weight: 700; -fx-background-radius: 10px;" text="Load" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Label fx:id="messageLabel" alignment="CENTER" layoutX="216.0" layoutY="475.0" style="-fx-font-weight: 700;"  text="error message if the input is wrong or success message" textFill="#d4e3fc">
+      <Label layoutX="216.0" layoutY="475.0" style="-fx-font-weight: 700;" text="error message if the input is wrong or success message" textFill="#d4e3fc">
          <font>
             <Font size="21.0" />
          </font>
