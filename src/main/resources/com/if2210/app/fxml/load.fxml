@@ -14,18 +14,18 @@
             <Font size="42.0" />
          </font>
       </Label>
-      <Label layoutX="211.0" layoutY="191.0" prefHeight="25.0" prefWidth="147.0" style="-fx-font-weight: 700;" text="FormatFile" textAlignment="CENTER" textFill="#d4e3fc">
+      <Label layoutX="211.0" layoutY="191.0" prefHeight="25.0" prefWidth="147.0" style="-fx-font-weight: 700;" text="Format file" textAlignment="CENTER" textFill="#d4e3fc">
          <font>
             <Font size="21.0" />
          </font>
       </Label>
-      <Label layoutX="210.0" layoutY="269.0" prefHeight="25.0" prefWidth="147.0" style="-fx-font-weight: 700;" text="FolderName" textAlignment="CENTER" textFill="#d4e3fc">
+      <Label layoutX="210.0" layoutY="269.0" prefHeight="25.0" prefWidth="147.0" style="-fx-font-weight: 700;" text="Folder Name" textAlignment="CENTER" textFill="#d4e3fc">
          <font>
             <Font size="21.0" />
          </font>
       </Label>
       <ComboBox fx:id="myCb" layoutX="358.0" layoutY="177.0" prefHeight="52.0" prefWidth="362.0" style="-fx-background-color: #D4E3FC;" />
-      <TextField fx:id="filenameField" layoutX="358.0" layoutY="257.0" prefHeight="52.0" prefWidth="362.0"  promptText="Your Filename" style="-fx-background-color: #D4E3FC; -fx-font-weight: 200; -fx-font-size:20px;">
+      <TextField fx:id="folderNameField" layoutX="358.0" layoutY="257.0" prefHeight="52.0" prefWidth="362.0"  promptText="Your Folder Name" style="-fx-background-color: #D4E3FC; -fx-font-weight: 200; -fx-font-size:20px;">
          <font>
             <Font size="20.0" />
          </font>

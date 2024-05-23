@@ -3,14 +3,24 @@ package com.if2210.app.controller;
 import java.util.List;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import javafx.scene.Group;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+
 import com.if2210.app.model.CardModel;
+import com.if2210.app.view.LoadView;
+import com.if2210.app.view.SaveView;
 
 
 
@@ -32,6 +42,76 @@ public class GUIController {
         initializeDecks(fieldCardGroup, fieldCards, 20);
 
         setupDragAndDrop();
+    }
+
+    // open popup
+    public void handleOpenLoad(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/if2210/app/fxml/Load.fxml"));
+            Parent root = loader.load();
+
+            Stage childStage = new Stage();
+            childStage.setTitle("Load");
+            childStage.initModality(Modality.APPLICATION_MODAL);
+            childStage.initOwner(null);  // Replace 'null' with reference to the primary stage if needed
+            childStage.setScene(new Scene(root));
+            childStage.showAndWait();
+            System.out.println(LoadView.getFolderName());
+            System.out.println(LoadView.getExt());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void handleOpenShop(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/if2210/app/fxml/Shop.fxml"));
+            Parent root = loader.load();
+
+            Stage childStage = new Stage();
+            childStage.setTitle("Shop");
+            childStage.initModality(Modality.APPLICATION_MODAL);
+            childStage.initOwner(null);  // Replace 'null' with reference to the primary stage if needed
+            childStage.setScene(new Scene(root));
+            childStage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void handleOpenLoadPlugin(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/if2210/app/fxml/LoadPlugin.fxml"));
+            Parent root = loader.load();
+
+            Stage childStage = new Stage();
+            childStage.setTitle("Load Plugin");
+            childStage.initModality(Modality.APPLICATION_MODAL);
+            childStage.initOwner(null);  // Replace 'null' with reference to the primary stage if needed
+            childStage.setScene(new Scene(root));
+            childStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void handleOpenSave(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/if2210/app/fxml/Save.fxml"));
+            Parent root = loader.load();
+
+            Stage childStage = new Stage();
+            childStage.setTitle("Save");
+            childStage.initModality(Modality.APPLICATION_MODAL);
+            childStage.initOwner(null);  // Replace 'null' with reference to the primary stage if needed
+            childStage.setScene(new Scene(root));
+            childStage.showAndWait();
+            System.out.println(SaveView.getFolderName());
+            System.out.println(SaveView.getExt());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void initializeDecks(Group deckGroup, List<AnchorPane> decks, int count) {

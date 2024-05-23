@@ -9,7 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 
-public class LoadView {
+public class SaveView{
     private static String folderName;
     private static String ext;
 
@@ -25,16 +25,16 @@ public class LoadView {
     @FXML
     private Button loadButton;
     
-    private String[] typeFiles={"txt", "xml", "json"};
-    public LoadView() {
+    private String[] typeFile={"txt", "xml", "json"};
+    public SaveView() {
         folderName = null;
         ext = null;
     }
 
     @FXML
     public void initialize(){
-        System.out.println("Load initialized");
-        myCb.getItems().addAll(typeFiles);
+        System.out.println("Save initialized");
+        myCb.getItems().addAll(typeFile);
 
         myCb.setValue("txt");
 
@@ -79,19 +79,19 @@ public class LoadView {
     }
 
     @FXML
-    private void handleLoadButtonAction() {
+    private void handleSaveButtonAction() {
         String selectedFormat = myCb.getValue();
-        String filename = folderNameField.getText();
+        String folderName = folderNameField.getText();
 
-        LoadView.folderName = filename;
-        LoadView.ext = selectedFormat;
+        SaveView.folderName = folderName;
+        SaveView.ext = selectedFormat;
 
-        if (filename.isEmpty()) {
-            messageLabel.setText("Filename cannot be empty.");
+        if (folderName.isEmpty()) {
+            messageLabel.setText("Folder Name cannot be empty.");
             messageLabel.setTextFill(javafx.scene.paint.Color.RED);
         } else {
             // Handle the loading process (this is just a placeholder)
-            messageLabel.setText("Berhasil membaca dari folder " + filename + " dengan file berekstensi "+ selectedFormat);
+            messageLabel.setText("Berhasil menyimpan di folder " + folderName + " dengan file berekstensi "+ selectedFormat);
             messageLabel.setTextFill(javafx.scene.paint.Color.GREEN);
         }
     }

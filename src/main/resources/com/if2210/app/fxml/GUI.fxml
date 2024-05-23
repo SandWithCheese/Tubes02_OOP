@@ -324,7 +324,7 @@
                         </Label>
                      </children>
                   </AnchorPane>
-                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="52.0" prefWidth="171.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;" text="Shop" textAlignment="CENTER" textFill="WHITE">
+                  <Button onAction="#handleOpenShop" alignment="CENTER" mnemonicParsing="false" prefHeight="52.0" prefWidth="171.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;" text="Shop" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -341,7 +341,7 @@
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button alignment="CENTER" layoutX="573.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="171.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;" text="Save State" textAlignment="CENTER" textFill="WHITE">
+            <Button onAction="#handleOpenSave" alignment="CENTER" layoutX="573.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="171.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;" text="Save State" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
@@ -358,7 +358,7 @@
       </Group>
       <Group layoutX="808.0" layoutY="496.0">
          <children>
-            <Button alignment="CENTER" layoutY="73.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="276.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;" text="Load Plugin" textAlignment="CENTER" textFill="WHITE">
+            <Button onAction="#handleOpenLoadPlugin" alignment="CENTER" layoutY="73.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="276.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;" text="Load Plugin" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>

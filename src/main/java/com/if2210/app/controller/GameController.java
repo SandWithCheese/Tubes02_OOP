@@ -32,24 +32,6 @@ public class GameController {
         this.gameManagerModel = new GameManagerModel();
     }
 
-    public void handleOpenLoad(){
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/if2210/app/fxml/load.fxml"));
-            Parent root = loader.load();
-
-            Stage childStage = new Stage();
-            childStage.setTitle("Load");
-            childStage.initModality(Modality.APPLICATION_MODAL);
-            childStage.initOwner(null);  // Replace 'null' with reference to the primary stage if needed
-            childStage.setScene(new Scene(root));
-            childStage.showAndWait();
-            System.out.println(LoadView.getFilename());
-            System.out.println(LoadView.getExt());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     @FXML
     public void initialize() {
         System.out.println("GameController initialized");
