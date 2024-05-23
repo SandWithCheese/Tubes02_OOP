@@ -19,13 +19,16 @@ import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
+import com.if2210.app.model.AnimalCardModel;
 import com.if2210.app.model.CardModel;
 
 import com.if2210.app.view.CardInfoView;
 
 import com.if2210.app.model.GameManagerModel;
+import com.if2210.app.model.ItemCardModel;
+import com.if2210.app.model.PlantCardModel;
 import com.if2210.app.model.PlayerModel;
-
+import com.if2210.app.model.ProductCardModel;
 import com.if2210.app.view.LoadView;
 import com.if2210.app.view.SaveView;
 
@@ -188,33 +191,72 @@ public class GUIController {
             Dragboard dragboard = event.getDragboard();
             boolean success = false;
             String sourceCardId = dragboard.getString();
-            if (targetCard.getId().equals("shopDrop")) {
-                if (sourceCardId.startsWith("ActiveDeck")) {
-                    System.out.println("SHOPEE COD");
-                }
-            } else {
-                if (dragboard.hasString()) {
-                    AnchorPane sourceCard = findDeckById(sourceCardId);
-                    if (sourceCard != null) {
-                        CardModel sourceCardData = (CardModel) sourceCard.getUserData();
-                        CardModel targetCardData = (CardModel) targetCard.getUserData();
-                        if (!sourceCardData.getImage().equals(BLANK_IMAGE) && !(sourceCardId.startsWith("ActiveDeck")
-                                && !targetCardData.getImage().equals(BLANK_IMAGE))) {
+            if (dragboard.hasString()) {
+                AnchorPane sourceCard = findDeckById(sourceCardId);
+                if (sourceCard != null) {
+                    CardModel sourceCardData = (CardModel) sourceCard.getUserData();
+                    CardModel targetCardData = (CardModel) targetCard.getUserData();
+    
+                    if (!sourceCardData.getImage().equals(BLANK_IMAGE)) {
+                        // Source is an Animal or Plant card
+                        if ((sourceCardData instanceof AnimalCardModel || sourceCardData instanceof PlantCardModel) &&
+                            targetCardData.getImage().equals(BLANK_IMAGE)) {
                             updateCard(sourceCard, targetCardData, true);
                             updateCard(targetCard, sourceCardData, true);
                             success = true;
-                        } else {
-                            System.err.println("Illegal Move");
+                        }
+                        // Source is an Item card
+                        else if (sourceCardData instanceof ItemCardModel && (
+                                 (targetCardData instanceof AnimalCardModel || targetCardData instanceof PlantCardModel))) {
+                            // 1 Accelerate
+                            if (sourceCardData.getName().equals("Accelerate")) {
+                                // Implement your logic here if needed
+                                System.out.println("ACCELERATE");
+                            }
+                            // 2 Delay
+                            else if (sourceCardData.getName().equals("Delay")) {
+                                // Implement your logic here if needed
+                                System.out.println("DELAY");
+                            }
+                            // 3 Instant Harvest
+                            else if (sourceCardData.getName().equals("Instant Harvest")) {
+                                // Implement your logic here if needed
+                                System.out.println("INSTANT HARVEST");
+                            }
+                            // 4 Destroy
+                            else if (sourceCardData.getName().equals("Destroy")) {
+                                // Implement your logic here if needed
+                                System.out.println("DESTROY");
+                            }
+                            // 5 Protect
+                            else if (sourceCardData.getName().equals("Protect")) {
+                                // Implement your logic here if needed
+                                System.out.println("PROTECT");
+                            }
+                            // 6 Trap
+                            else if (sourceCardData.getName().equals("Trap")) {
+                                // Implement your logic here if needed
+                                System.out.println("TRAP");
+                            }
+                            // Assuming item cards have a special handling logic with animal or plant cards
+                            success = true; // Implement your logic here if needed
+                        }
+                        // Source is a Product card and target is the shop
+                        else if (sourceCardData instanceof ProductCardModel && targetCard.getId().equals("shopDrop")) {
+                            System.out.println("SHOPEE COD");
+                            success = true; // Implement your logic here if needed
                         }
                     } else {
-                        System.err.println("Source ActiveDeck not found");
+                        System.err.println("Illegal move: Source card is empty");
                     }
+                } else {
+                    System.err.println("Source ActiveDeck not found");
                 }
             }
             event.setDropCompleted(success);
             event.consume();
         });
-    }
+    }    
 
     public AnchorPane findDeckById(String id) {
         for (AnchorPane deck : activeDecks) {
