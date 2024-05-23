@@ -2,6 +2,7 @@ package com.if2210.app.controller;
 
 import java.util.List;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -59,6 +60,9 @@ public class GUIController {
 
     @FXML
     private AnchorPane shopDrop;
+
+    @FXML
+    private Label messageLabel;
 
     public List<AnchorPane> activeDecks = new ArrayList<>();
     public List<AnchorPane> fieldCards = new ArrayList<>();
@@ -425,7 +429,6 @@ public class GUIController {
     }
 
     public void handleNextTurn() {
-        System.out.println("Next Turn");
         gameManagerModel.setWhoseTurn(gameManagerModel.getWhoseTurn() == 0 ? 1 : 0);
         if (gameManagerModel.getWhoseTurn() == 0) {
             gameManagerModel.setCurrentTurn(gameManagerModel.getCurrentTurn() + 1);
@@ -433,6 +436,76 @@ public class GUIController {
         gameTurn.setText(String.format("%02d", gameManagerModel.getCurrentTurn()));
         loadActiveDeck(gameManagerModel.getActivePlayer());
         loadField(gameManagerModel.getActivePlayer());
+        bearAttack();
+    }
+
+    private void bearAttack() {
+        int chance = (int) (Math.random() * 100);
+        if (chance > 30) {
+            return;
+        }
+
+        // Get 2 random coordinate in the field, loop until the area <= 6
+        int x1 = (int) (Math.random() * 4);
+        int y1 = (int) (Math.random() * 5);
+        int x2 = (int) (Math.random() * 4);
+        int y2 = (int) (Math.random() * 5);
+
+        while (Math.abs((x1 - x2) * (y1 - y2)) > 6) {
+            x1 = (int) (Math.random() * 4);
+            y1 = (int) (Math.random() * 5);
+            x2 = (int) (Math.random() * 4);
+            y2 = (int) (Math.random() * 5);
+        }
+
+        final int x1Final = x1;
+        final int y1Final = y1;
+        final int x2Final = x2;
+        final int y2Final = y2;
+
+        // Make all cards in the area color red
+        for (int i = Math.min(x1, x2); i <= Math.max(x1, x2); i++) {
+            for (int j = Math.min(y1, y2); j <= Math.max(y1, y2); j++) {
+                AnchorPane card = fieldCards.get(i * 5 + j);
+                CardModel cardData = (CardModel) card.getUserData();
+                cardData.setColor("red");
+                updateCard(card, cardData, true);
+            }
+        }
+
+        // Using threading, update the message label every 0.1 second for 30-60 seconds
+        Runnable task = new Runnable() {
+            @Override
+            public void run() {
+                int duration = (int) (Math.random() * 300) + 300;
+                for (int i = 0; i < duration; i++) {
+                    final int countdown = duration - i;
+                    Platform.runLater(() -> {
+                        messageLabel.setText(
+                                "Watch out for bears! Remaining time to move your cards : " + (float) countdown / 10
+                                        + " seconds.");
+                    });
+
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                Platform.runLater(() -> {
+                    messageLabel.setText("Bear attack! All cards in the field are destroyed.");
+                    // Clear all cards inside the area
+                    for (int i = Math.min(x1Final, x2Final); i <= Math.max(x1Final, x2Final); i++) {
+                        for (int j = Math.min(y1Final, y2Final); j <= Math.max(y1Final, y2Final); j++) {
+                            AnchorPane card = fieldCards.get(i * 5 + j);
+                            clearCard(card);
+                        }
+                    }
+                });
+            }
+        };
+        Thread thread = new Thread(task);
+        thread.start();
     }
 
     private void setupClickCard() {

@@ -16,7 +16,7 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label layoutX="19.0" layoutY="490.0" prefHeight="52.0" prefWidth="463.0" style="-fx-font-weight: 700;" text="This is a place to show any message like error message, bear attack, etc" textFill="WHITE" wrapText="true">
+            <Label layoutX="19.0" layoutY="490.0" prefHeight="52.0" prefWidth="463.0" style="-fx-font-weight: 700;" text="This is a place to show any message like error message, bear attack, etc" textFill="WHITE" wrapText="true" fx:id="messageLabel">
                <font>
                   <Font size="16.0" />
                </font>
