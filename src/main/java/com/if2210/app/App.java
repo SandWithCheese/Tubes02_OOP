@@ -7,6 +7,7 @@ import java.util.List;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
+
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -48,6 +49,7 @@ public class App extends Application {
         //     currentSongIndex = (currentSongIndex + 1) % songs.size();
         // });
         // mediaPlayer.play();
+
 
         stage.setTitle("MoliNana");
         stage.setScene(scene);

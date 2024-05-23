@@ -1,5 +1,6 @@
 package com.if2210.app.controller;
 
+
 import com.if2210.app.model.GameManagerModel;
 
 import javafx.fxml.FXML;
