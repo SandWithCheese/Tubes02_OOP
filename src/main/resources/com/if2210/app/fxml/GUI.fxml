@@ -31,7 +31,7 @@
                         <AnchorPane id="FieldCard1" fx:id="FieldCard" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                            <children>
                               <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
-                        </ImageView>
+                              </ImageView>
                               <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="" textFill="#010913">
                                  <font>
                                     <Font size="11.0" />
@@ -315,20 +315,28 @@
          <children>
             <Group layoutX="382.0">
                <children>
-                  <AnchorPane fx:id="shopDrop" id="shopDrop" layoutY="33.0" prefHeight="42.0" prefWidth="171.0" style="-fx-background-color: #D4E3FC; -fx-background-radius: 10px;">
+                  <AnchorPane id="shopDrop" fx:id="shopDrop" prefHeight="96.0" prefWidth="171.0" style="-fx-background-color: #D4E3FC; -fx-background-radius: 10px;">
                      <children>
-                        <Label layoutX="20.0" layoutY="17.0" prefHeight="21.0" prefWidth="130.0" style="-fx-font-weight: 700;" text="Drag here to sell " textFill="#021a38">
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleOpenShop" prefHeight="52.0" prefWidth="171.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;" text="Shop" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Button>
+                        <AnchorPane prefHeight="96.0" prefWidth="171.0" />
+                        <Label layoutX="20.0" layoutY="56.0" prefHeight="21.0" prefWidth="130.0" style="-fx-font-weight: 700;" text="Drag here to sell " textFill="#021a38">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
                      </children>
                   </AnchorPane>
+
                   <Button onAction="#handleOpenShop" alignment="CENTER" mnemonicParsing="false" prefHeight="52.0" prefWidth="171.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;" text="Shop" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Button>
+
                </children>
             </Group>
             <Button alignment="CENTER" mnemonicParsing="false" prefHeight="52.0" prefWidth="171.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;" text="My Field" textAlignment="CENTER" textFill="WHITE">
@@ -341,14 +349,12 @@
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button onAction="#handleOpenSave" alignment="CENTER" layoutX="573.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="171.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;" text="Save State" textAlignment="CENTER" textFill="WHITE">
+            <Button alignment="CENTER" layoutX="573.0" mnemonicParsing="false" onAction="#handleOpenSave" prefHeight="52.0" prefWidth="171.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;" text="Save State" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button layoutX="764.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="171.0"
-               style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;"
-               text="Load State" textAlignment="CENTER" textFill="WHITE" onAction="#handleOpenLoad">
+            <Button layoutX="764.0" mnemonicParsing="false" onAction="#handleOpenLoad" prefHeight="52.0" prefWidth="171.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;" text="Load State" textAlignment="CENTER" textFill="WHITE">
 
                <font>
                   <Font size="20.0" />
@@ -358,7 +364,7 @@
       </Group>
       <Group layoutX="808.0" layoutY="496.0">
          <children>
-            <Button onAction="#handleOpenLoadPlugin" alignment="CENTER" layoutY="73.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="276.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;" text="Load Plugin" textAlignment="CENTER" textFill="WHITE">
+            <Button alignment="CENTER" layoutY="73.0" mnemonicParsing="false" onAction="#handleOpenLoadPlugin" prefHeight="52.0" prefWidth="276.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;" text="Load Plugin" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
@@ -554,12 +560,12 @@
             </Label>
          </children>
       </AnchorPane>
-      <ImageView fitHeight="359.0" fitWidth="282.0" layoutX="571.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+      <ImageView fitHeight="159.0" fitWidth="276.0" layoutX="592.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
          <image>
             <Image url="@../assets/Kaguya.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="254.0" fitWidth="323.0" layoutX="593.0" layoutY="380.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+      <ImageView fitHeight="157.0" fitWidth="242.0" layoutX="614.0" layoutY="437.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
          <image>
             <Image url="@../assets/Anya.png" />
          </image>

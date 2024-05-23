@@ -5,6 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
+
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="605.0" prefWidth="973.0" style="-fx-border-color: #799FF6; -fx-background-color: #021A38; -fx-border-width: 3px;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label text="Card Info" alignment="CENTER" layoutX="284.0" layoutY="22.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="405.0" style="-fx-font-weight: 700;" textAlignment="CENTER" textFill="#d4e3fc">
@@ -16,43 +17,57 @@
             <Font size="21.0" />
          </font></Label>
       <Label fx:id="harvestWeight" layoutX="161.0" layoutY="183.0" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="477.0" style="-fx-font-weight: 700;" textFill="#d4e3fc">
+
          <font>
             <Font size="21.0" />
          </font>
       </Label>
-      <Label layoutX="161.0" layoutY="231.0" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="477.0" style="-fx-font-weight: 700;" text="Active Items :" textFill="#d4e3fc">
+      <Label layoutX="161.0" layoutY="231.0" maxWidth="-Infinity" minWidth="-Infinity"
+         prefWidth="477.0" style="-fx-font-weight: 700;" text="Active Items :" textFill="#d4e3fc">
          <font>
             <Font size="21.0" />
          </font>
       </Label>
+
       <Label fx:id="items" layoutX="161.0" layoutY="262.0" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="477.0" style="-fx-font-weight: 700;" textFill="#d4e3fc" wrapText="true">
+
          <font>
             <Font size="21.0" />
          </font>
       </Label>
+
       <Button onAction="#harvestHandler" alignment="CENTER" layoutX="401.0" layoutY="371.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="52.0" prefWidth="171.0" style="-fx-background-color: #799FF6; -fx-font-weight: 700; -fx-background-radius: 10px;" text="Harvest" textAlignment="CENTER" textFill="WHITE">
+
          <font>
             <Font size="20.0" />
          </font>
       </Button>
+
       <Label fx:id="harvestResponse" alignment="CENTER" layoutX="335.0" layoutY="430.0" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="310.0" style="-fx-font-weight: 300;" wrapText="true">
          <font>
             <Font size="12.0" />
          </font>
       </Label>
       <AnchorPane layoutX="670.0" layoutY="140.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="206.4" prefWidth="161.73" style="-fx-background-color: #D4E3FC; -fx-background-radius: 15.4px;">
+
          <children>
-            <AnchorPane id="CardFrame" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="206.4" prefWidth="161.73" style="-fx-background-color: #D4E3FC; -fx-background-radius: 15.4px;">
+            <AnchorPane id="CardFrame" maxHeight="-Infinity" maxWidth="-Infinity"
+               minHeight="-Infinity" minWidth="-Infinity" prefHeight="206.4" prefWidth="161.73"
+               style="-fx-background-color: #D4E3FC; -fx-background-radius: 15.4px;">
                <children>
+
                   <ImageView fx:id="image" fitHeight="149.0" fitWidth="162.0" pickOnBounds="true" preserveRatio="true" />
                   <Label fx:id="name" alignment="CENTER" text="asu" layoutX="3.0" layoutY="149.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="52.0" prefWidth="155.0" style="-fx-font-weight: 700;" textFill="#010913">
+
                      <font>
                         <Font size="21.0" />
                      </font>
                   </Label>
+
                </children></AnchorPane>
          </children></AnchorPane>
       <Label fx:id="info" alignment="CENTER" layoutX="87.0" layoutY="477.0" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="800.0" style="-fx-font-weight: 700;"  wrapText="true">
+
          <font>
             <Font size="21.0" />
          </font>
