@@ -20,12 +20,12 @@ public class GameManagerModel {
     public GameManagerModel() {
         try {
             this.dataManager = new DataManager(
-                    Paths.get(getClass().getResource("/com/if2210/app/gamestates/state1").toURI()));
+                    Paths.get(getClass().getResource("/com/if2210/app/gamestates/state0").toURI()));
         } catch (URISyntaxException e) {
             e.printStackTrace();
             return;
         }
-        this.dataManager.load();
+        this.dataManager.load("state2");
 
         this.shop = ShopModel.getInstance();
 
