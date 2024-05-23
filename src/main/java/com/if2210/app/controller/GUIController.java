@@ -212,11 +212,46 @@ public class GUIController {
                             if (sourceCardData.getName().equals("Accelerate")) {
                                 // Implement your logic here if needed
                                 System.out.println("ACCELERATE");
+                                if (targetCardData instanceof AnimalCardModel){
+                                    // +8 weight
+                                    AnimalCardModel temp = (AnimalCardModel) targetCardData;
+                                    temp.setCurrentWeight(temp.getCurrentWeight() + 8);
+                                    ArrayList<ItemCardModel> activeItems = temp.getActiveItems();
+                                    activeItems.add((ItemCardModel) sourceCardData); // Add sourceCardData to activeItems
+                                    temp.setActiveItems(activeItems); // Update activeItems in temp
+                                    updateCard(targetCard, temp, true);
+                                }
+                                else{
+                                    PlantCardModel temp = (PlantCardModel) targetCardData;
+                                    temp.setCurrentAge(temp.getCurrentAge() + 2);
+                                    ArrayList<ItemCardModel> activeItems = temp.getActiveItems();
+                                    activeItems.add((ItemCardModel) sourceCardData); // Add sourceCardData to activeItems
+                                    temp.setActiveItems(activeItems); // Update activeItems in temp
+                                    updateCard(targetCard, temp, true);
+                                }
                             }
                             // 2 Delay
                             else if (sourceCardData.getName().equals("Delay")) {
                                 // Implement your logic here if needed
                                 System.out.println("DELAY");
+                                if (targetCardData instanceof AnimalCardModel){
+                                    // +8 weight
+                                    AnimalCardModel temp = (AnimalCardModel) targetCardData;
+                                    // -5 weight, but not below 0
+                                    temp.setCurrentWeight(temp.getCurrentWeight() - 5 < 0 ? 0 : temp.getCurrentWeight() - 5);
+                                    ArrayList<ItemCardModel> activeItems = temp.getActiveItems();
+                                    activeItems.add((ItemCardModel) sourceCardData); // Add sourceCardData to activeItems
+                                    temp.setActiveItems(activeItems); // Update activeItems in temp
+                                    updateCard(targetCard, temp, true);
+                                }
+                                else{
+                                    PlantCardModel temp = (PlantCardModel) targetCardData;
+                                    temp.setCurrentAge(temp.getCurrentAge() - 2 < 0 ? 0 : temp.getCurrentAge() - 2);
+                                    ArrayList<ItemCardModel> activeItems = temp.getActiveItems();
+                                    activeItems.add((ItemCardModel) sourceCardData); // Add sourceCardData to activeItems
+                                    temp.setActiveItems(activeItems); // Update activeItems in temp
+                                    updateCard(targetCard, temp, true);
+                                }
                             }
                             // 3 Instant Harvest
                             else if (sourceCardData.getName().equals("Instant Harvest")) {
@@ -227,16 +262,47 @@ public class GUIController {
                             else if (sourceCardData.getName().equals("Destroy")) {
                                 // Implement your logic here if needed
                                 System.out.println("DESTROY");
+                                updateCard(targetCard, new CardModel("", "", BLANK_IMAGE), success);
                             }
                             // 5 Protect
                             else if (sourceCardData.getName().equals("Protect")) {
                                 // Implement your logic here if needed
                                 System.out.println("PROTECT");
+                                if (targetCardData instanceof AnimalCardModel){
+                                    // +8 weight
+                                    AnimalCardModel temp = (AnimalCardModel) targetCardData;
+                                    ArrayList<ItemCardModel> activeItems = temp.getActiveItems();
+                                    activeItems.add((ItemCardModel) sourceCardData); // Add sourceCardData to activeItems
+                                    temp.setActiveItems(activeItems); // Update activeItems in temp
+                                    updateCard(targetCard, temp, true);
+                                }
+                                else{
+                                    PlantCardModel temp = (PlantCardModel) targetCardData;
+                                    ArrayList<ItemCardModel> activeItems = temp.getActiveItems();
+                                    activeItems.add((ItemCardModel) sourceCardData); // Add sourceCardData to activeItems
+                                    temp.setActiveItems(activeItems); // Update activeItems in temp
+                                    updateCard(targetCard, temp, true);
+                                }
                             }
                             // 6 Trap
                             else if (sourceCardData.getName().equals("Trap")) {
                                 // Implement your logic here if needed
                                 System.out.println("TRAP");
+                                if (targetCardData instanceof AnimalCardModel){
+                                    // +8 weight
+                                    AnimalCardModel temp = (AnimalCardModel) targetCardData;
+                                    ArrayList<ItemCardModel> activeItems = temp.getActiveItems();
+                                    activeItems.add((ItemCardModel) sourceCardData); // Add sourceCardData to activeItems
+                                    temp.setActiveItems(activeItems); // Update activeItems in temp
+                                    updateCard(targetCard, temp, true);
+                                }
+                                else{
+                                    PlantCardModel temp = (PlantCardModel) targetCardData;
+                                    ArrayList<ItemCardModel> activeItems = temp.getActiveItems();
+                                    activeItems.add((ItemCardModel) sourceCardData); // Add sourceCardData to activeItems
+                                    temp.setActiveItems(activeItems); // Update activeItems in temp
+                                    updateCard(targetCard, temp, true);
+                                }
                             }
                             // Assuming item cards have a special handling logic with animal or plant cards
                             success = true; // Implement your logic here if needed
@@ -487,21 +553,21 @@ public class GUIController {
         }
     }
 
-    public void updateCard(AnchorPane card, CardModel cardData) {
-        card.setUserData(cardData);
+    // public void updateCard(AnchorPane card, CardModel cardData) {
+    //     card.setUserData(cardData);
 
-        ImageView imageView = (ImageView) card.getChildren().get(0);
-        Image image = new Image(getClass().getResourceAsStream(cardData.getImage()));
-        imageView.setImage(image != null ? image : new Image(BLANK_IMAGE)); // Use blank image if resource not found
-        Label label = (Label) card.getChildren().get(1);
-        label.setText(cardData.getName());
+    //     ImageView imageView = (ImageView) card.getChildren().get(0);
+    //     Image image = new Image(getClass().getResourceAsStream(cardData.getImage()));
+    //     imageView.setImage(image != null ? image : new Image(BLANK_IMAGE)); // Use blank image if resource not found
+    //     Label label = (Label) card.getChildren().get(1);
+    //     label.setText(cardData.getName());
 
-        card.setStyle(null);
-        // Update AnchorPane background color based on the color attribute of the card
-        // model
-        String color = cardData.getColor();
-        if (color != null && !color.isEmpty()) {
-            card.setStyle("-fx-background-color: " + color + "; -fx-background-radius: 7.7px;");
-        }
-    }
+    //     card.setStyle(null);
+    //     // Update AnchorPane background color based on the color attribute of the card
+    //     // model
+    //     String color = cardData.getColor();
+    //     if (color != null && !color.isEmpty()) {
+    //         card.setStyle("-fx-background-color: " + color + "; -fx-background-radius: 7.7px;");
+    //     }
+    // }
 }
