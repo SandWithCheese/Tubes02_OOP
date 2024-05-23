@@ -9,22 +9,22 @@ public class ItemCardFactory {
         switch (name) {
             case "Accelerate":
                 return new ItemCardModel("normal", "Accelerate",
-                        "src/main/resources/com/if2210/app/assets/accelerate.png");
+                        "/com/if2210/app/assets/accelerate.png");
             case "Delay":
                 return new ItemCardModel("normal", "Delay",
-                        "src/main/resources/com/if2210/app/assets/delay.png");
+                        "/com/if2210/app/assets/delay.png");
             case "Instant Harvest":
                 return new ItemCardModel("normal", "Instant Harvest",
-                        "src/main/resources/com/if2210/app/assets/instant-harvest.png");
+                        "/com/if2210/app/assets/instant-harvest.png");
             case "Destroy":
                 return new ItemCardModel("normal", "Destroy",
-                        "src/main/resources/com/if2210/app/assets/destroy.png");
+                        "/com/if2210/app/assets/destroy.png");
             case "Protect":
                 return new ItemCardModel("normal", "Protect",
-                        "src/main/resources/com/if2210/app/assets/protect.png");
+                        "/com/if2210/app/assets/protect.png");
             case "Trap":
                 return new ItemCardModel("normal", "Trap",
-                        "src/main/resources/com/if2210/app/assets/bear-trap.png");
+                        "/com/if2210/app/assets/bear-trap.png");
             default:
                 return null;
         }

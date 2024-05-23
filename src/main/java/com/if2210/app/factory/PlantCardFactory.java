@@ -9,13 +9,13 @@ public class PlantCardFactory {
         switch (name) {
             case "Biji Jagung":
                 return new PlantCardModel("normal", "Biji Jagung",
-                        "src/main/resources/com/if2210/app/assets/corn-seeds.png", 0, 3, null);
+                        "/com/if2210/app/assets/corn-seeds.png", 0, 3, null);
             case "Biji Labu":
                 return new PlantCardModel("normal", "Biji Labu",
-                        "src/main/resources/com/if2210/app/assets/pumpkin-seeds.png", 0, 5, null);
+                        "/com/if2210/app/assets/pumpkin-seeds.png", 0, 5, null);
             case "Biji Stroberi":
                 return new PlantCardModel("normal", "Biji Stroberi",
-                        "src/main/resources/com/if2210/app/assets/strawberry-seeds.png", 0, 4, null);
+                        "/com/if2210/app/assets/strawberry-seeds.png", 0, 4, null);
             default:
                 return null;
         }

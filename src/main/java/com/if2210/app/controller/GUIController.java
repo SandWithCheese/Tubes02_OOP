@@ -18,7 +18,12 @@ import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
+import com.if2210.app.factory.ProductCardFactory;
+import com.if2210.app.model.AnimalCardModel;
 import com.if2210.app.model.CardModel;
+import com.if2210.app.model.PlantCardModel;
+import com.if2210.app.model.ProductCardModel;
+import com.if2210.app.view.CardInfoView;
 import com.if2210.app.view.LoadView;
 import com.if2210.app.view.SaveView;
 
@@ -42,6 +47,7 @@ public class GUIController {
         initializeDecks(fieldCardGroup, fieldCards, 20);
 
         setupDragAndDrop();
+        setupClickCard();
     }
 
     // open popup
@@ -114,6 +120,32 @@ public class GUIController {
         }
     }
 
+    public void handleOpenCardInfo(AnchorPane deck){
+        CardModel sourceCardData = (CardModel) deck.getUserData();
+
+        if(!sourceCardData.getImage().equals(BLANK_IMAGE)){
+            System.out.println("ini ada gambar");
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/if2210/app/fxml/CardInfo.fxml"));
+                CardInfoView cardView = new CardInfoView(deck);
+                loader.setController(cardView);
+                Parent root = loader.load();
+    
+                Stage childStage = new Stage();
+                childStage.setTitle("Card Info");
+                childStage.initModality(Modality.APPLICATION_MODAL);
+                childStage.initOwner(null);  // Replace 'null' with reference to the primary stage if needed
+                childStage.setScene(new Scene(root));
+                childStage.showAndWait();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else{
+            System.out.println("ini tidak ada gambar");
+
+        }
+    } 
+
     private void initializeDecks(Group deckGroup, List<AnchorPane> decks, int count) {
         for (int i = 0; i < count; i++) {
             try {
@@ -139,6 +171,12 @@ public class GUIController {
             setDragDetected(activeCardField);
             setDragOver(activeCardField);
             setDragDropped(activeCardField);
+        }
+    }
+
+    private void setupClickCard(){
+        for(AnchorPane activeDeck: activeDecks){
+            activeDeck.setOnMouseClicked(event -> handleOpenCardInfo(activeDeck));
         }
     }
 
@@ -208,11 +246,15 @@ public class GUIController {
     }
 
     public void updateCard(AnchorPane card, CardModel cardData) {
-        card.setUserData(new CardModel(cardData.getColor(), cardData.getName(), cardData.getImage()));
+        card.setUserData(cardData);
 
+        System.out.println("a");
         ImageView imageView = (ImageView) card.getChildren().get(0);
+        System.out.println("b");
         Image image = new Image(getClass().getResourceAsStream(cardData.getImage()));
+        System.out.println("c");
         imageView.setImage(image != null ? image : new Image(BLANK_IMAGE)); // Use blank image if resource not found
+        System.out.println("d");
         Label label = (Label) card.getChildren().get(1);
         label.setText(cardData.getName());
 

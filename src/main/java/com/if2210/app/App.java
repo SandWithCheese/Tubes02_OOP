@@ -2,6 +2,8 @@ package com.if2210.app;
 
 import com.if2210.app.controller.GUIController;
 import com.if2210.app.factory.AnimalCardFactory;
+import com.if2210.app.factory.PlantCardFactory;
+import com.if2210.app.factory.ProductCardFactory;
 import com.if2210.app.model.CardModel;
 
 import javafx.application.Application;
@@ -24,9 +26,17 @@ public class App extends Application {
 
         GUIController controller = loader.getController();
         int random = (int) (Math.random() * 6);
-        controller.updateCard(controller.findDeckById("ActiveDeck3"), AnimalCardFactory.createAnimalCard(AnimalCardFactory.animalNames[random]));
+        controller.updateCard(controller.findDeckById("ActiveDeck3"), AnimalCardFactory.createAnimalCard(AnimalCardFactory.animalNames[random%AnimalCardFactory.animalNames.length]));
         random = (int) (Math.random() * 6);
-        controller.updateCard(controller.findDeckById("ActiveDeck1"), AnimalCardFactory.createAnimalCard(AnimalCardFactory.animalNames[random]));
+        controller.updateCard(controller.findDeckById("ActiveDeck1"), AnimalCardFactory.createAnimalCard(AnimalCardFactory.animalNames[random%AnimalCardFactory.animalNames.length]));
+        random = (int) (Math.random() * 6);
+        controller.updateCard(controller.findDeckById("ActiveDeck2"), PlantCardFactory.createPlantCard(PlantCardFactory.plantNames[random%PlantCardFactory.plantNames.length]));
+        random = (int) (Math.random() * 6);
+        controller.updateCard(controller.findDeckById("ActiveDeck5"), PlantCardFactory.createPlantCard(PlantCardFactory.plantNames[random%PlantCardFactory.plantNames.length]));
+        random = (int) (Math.random() * 6);
+        controller.updateCard(controller.findDeckById("ActiveDeck4"), ProductCardFactory.createProductCard(ProductCardFactory.productNames[random%ProductCardFactory.productNames.length]));
+        random = (int) (Math.random() * 6);
+        controller.updateCard(controller.findDeckById("ActiveDeck6"), ProductCardFactory.createProductCard(ProductCardFactory.productNames[random%ProductCardFactory.productNames.length]));
 
         stage.setTitle("MoliNana");
         stage.setScene(scene);
