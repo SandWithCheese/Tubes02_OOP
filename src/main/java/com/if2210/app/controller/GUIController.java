@@ -75,7 +75,6 @@ public class GUIController {
 
         setupClickCard();
 
-
         gulden1.setText(Integer.toString(gameManagerModel.getPlayer1().getMoney()));
         gulden2.setText(Integer.toString(gameManagerModel.getPlayer2().getMoney()));
         deckCount.setText("My Deck " + Integer.toString(gameManagerModel.getPlayer1().getDeck().getDeckSize()) + "/40");
@@ -220,7 +219,7 @@ public class GUIController {
     }
 
     public void updateCard(AnchorPane card, CardModel cardData, boolean updateField) {
-        card.setUserData(new CardModel(cardData.getColor(), cardData.getName(), cardData.getImage()));
+        card.setUserData(cardData);
 
         if (updateField) {
             // Update Player Field
@@ -381,43 +380,41 @@ public class GUIController {
         }
     }
 
-    public void handleOpenCardInfo(AnchorPane deck){
+    public void handleOpenCardInfo(AnchorPane deck) {
         CardModel sourceCardData = (CardModel) deck.getUserData();
 
-        if(!sourceCardData.getImage().equals(BLANK_IMAGE)){
+        if (!sourceCardData.getImage().equals(BLANK_IMAGE)) {
             System.out.println("ini ada gambar");
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/if2210/app/fxml/CardInfo.fxml"));
                 CardInfoView cardView = new CardInfoView(deck);
                 loader.setController(cardView);
                 Parent root = loader.load();
-    
+
                 Stage childStage = new Stage();
                 childStage.setTitle("Card Info");
                 childStage.initModality(Modality.APPLICATION_MODAL);
-                childStage.initOwner(null);  // Replace 'null' with reference to the primary stage if needed
+                childStage.initOwner(null); // Replace 'null' with reference to the primary stage if needed
                 childStage.setScene(new Scene(root));
                 childStage.showAndWait();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }else{
+        } else {
             System.out.println("ini tidak ada gambar");
 
         }
-    } 
-
-    
-
-    
-
-    private void setupClickCard(){
-        for(AnchorPane activeDeck: activeDecks){
-            activeDeck.setOnMouseClicked(event -> handleOpenCardInfo(activeDeck));
-        }
     }
 
+    private void setupClickCard() {
+        for (AnchorPane activeDeck : activeDecks) {
+            activeDeck.setOnMouseClicked(event -> handleOpenCardInfo(activeDeck));
+        }
 
+        for (AnchorPane fieldCard : fieldCards) {
+            fieldCard.setOnMouseClicked(event -> handleOpenCardInfo(fieldCard));
+        }
+    }
 
     public void updateCard(AnchorPane card, CardModel cardData) {
         card.setUserData(cardData);

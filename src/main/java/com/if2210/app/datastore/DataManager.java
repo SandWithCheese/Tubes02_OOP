@@ -370,6 +370,7 @@ public class DataManager {
                     CardModel card = player.getField().getCard(i, j);
                     if (card != null) {
                         if (card instanceof AnimalCardModel) {
+                            System.out.println(card.getName());
                             AnimalCardModel animalCard = (AnimalCardModel) card;
                             String activeItem = "";
                             for (int k = 0; k < animalCard.getActiveItems().size(); k++) {
@@ -394,6 +395,7 @@ public class DataManager {
                                     name += "_";
                                 }
                             }
+                            System.out.println(i + " " + j);
                             lines.add(fieldIndexToCode(new int[] { i, j }) + " " + name + " "
                                     + animalCard.getCurrentWeight() +
                                     " " + animalCard.getActiveItems().size() + " " + activeItem);
