@@ -34,20 +34,20 @@ public class App extends Application {
         stage.getIcons().add(new javafx.scene.image.Image(iconPath));
 
         // Add song to the scene
-        String songPath1 = "/com/if2210/app/music/daddy-daddy-do.mp3";
-        String songPath2 = "/com/if2210/app/music/comedy.mp3";
+        // String songPath1 = "/com/if2210/app/music/daddy-daddy-do.mp3";
+        // String songPath2 = "/com/if2210/app/music/comedy.mp3";
 
-        songs.add(new Media(new File(getClass().getResource(songPath1).toURI()).toURI().toString()));
-        songs.add(new Media(new File(getClass().getResource(songPath2).toURI()).toURI().toString()));
+        // songs.add(new Media(new File(getClass().getResource(songPath1).toURI()).toURI().toString()));
+        // songs.add(new Media(new File(getClass().getResource(songPath2).toURI()).toURI().toString()));
 
-        mediaPlayer = new MediaPlayer(songs.get(currentSongIndex));
-        mediaPlayer.setOnEndOfMedia(() -> {
-            mediaPlayer.stop();
-            mediaPlayer = new MediaPlayer(songs.get((currentSongIndex + 1) % songs.size()));
-            mediaPlayer.play();
-            currentSongIndex = (currentSongIndex + 1) % songs.size();
-        });
-        mediaPlayer.play();
+        // mediaPlayer = new MediaPlayer(songs.get(currentSongIndex));
+        // mediaPlayer.setOnEndOfMedia(() -> {
+        //     mediaPlayer.stop();
+        //     mediaPlayer = new MediaPlayer(songs.get((currentSongIndex + 1) % songs.size()));
+        //     mediaPlayer.play();
+        //     currentSongIndex = (currentSongIndex + 1) % songs.size();
+        // });
+        // mediaPlayer.play();
 
         stage.setTitle("MoliNana");
         stage.setScene(scene);

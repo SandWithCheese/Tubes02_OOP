@@ -52,8 +52,13 @@ public class GameManagerModel {
         this.currentTurn = currentTurn;
     }
 
-    public int getWhoseTurn() {
-        return whoseTurn;
+    public PlayerModel getWhoseTurn() {
+        if (this.whoseTurn == 0){
+            return this.player1;
+        }
+        else {
+            return this.player2;
+        }
     }
 
     public void setWhoseTurn(int whoseTurn) {
@@ -82,5 +87,14 @@ public class GameManagerModel {
 
     public void setPlayer2(PlayerModel player2) {
         this.player2 = player2;
+    }
+
+    public PlayerModel getEnemy(){
+        if (this.whoseTurn == 0){
+            return this.player2;
+        }
+        else {
+            return this.player1;
+        }
     }
 }
