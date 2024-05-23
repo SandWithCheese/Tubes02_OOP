@@ -19,13 +19,25 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 import com.if2210.app.model.CardModel;
+import com.if2210.app.model.GameManagerModel;
 import com.if2210.app.view.LoadView;
 import com.if2210.app.view.SaveView;
 
-
-
 public class GUIController {
     public static final String BLANK_IMAGE = "/com/if2210/app/assets/blank.png";
+    private GameManagerModel gameManagerModel;
+
+    @FXML
+    private Label gulden1;
+
+    @FXML
+    private Label gulden2;
+
+    @FXML
+    private Label deckCount;
+
+    @FXML
+    private Label gameTurn;
 
     @FXML
     private Group activeDeckGroup;
@@ -39,16 +51,24 @@ public class GUIController {
     public List<AnchorPane> activeDecks = new ArrayList<>();
     public List<AnchorPane> fieldCards = new ArrayList<>();
 
+    public GUIController() {
+        this.gameManagerModel = new GameManagerModel();
+    }
+
     @FXML
     public void initialize() {
         initializeDecks(activeDeckGroup, activeDecks, 6);
         initializeDecks(fieldCardGroup, fieldCards, 20);
-
         setupDragAndDrop();
+
+        gulden1.setText(Integer.toString(gameManagerModel.getPlayer1().getMoney()));
+        gulden2.setText(Integer.toString(gameManagerModel.getPlayer2().getMoney()));
+        deckCount.setText("My Deck " + Integer.toString(gameManagerModel.getPlayer1().getDeck().getDeckSize()) + "/40");
+        gameTurn.setText(String.format("%02d", gameManagerModel.getCurrentTurn()));
     }
 
     // open popup
-    public void handleOpenLoad(){
+    public void handleOpenLoad() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/if2210/app/fxml/Load.fxml"));
             Parent root = loader.load();
@@ -56,7 +76,7 @@ public class GUIController {
             Stage childStage = new Stage();
             childStage.setTitle("Load");
             childStage.initModality(Modality.APPLICATION_MODAL);
-            childStage.initOwner(null);  // Replace 'null' with reference to the primary stage if needed
+            childStage.initOwner(null); // Replace 'null' with reference to the primary stage if needed
             childStage.setScene(new Scene(root));
             childStage.showAndWait();
             System.out.println(LoadView.getFolderName());
@@ -66,7 +86,7 @@ public class GUIController {
         }
     }
 
-    public void handleOpenShop(){
+    public void handleOpenShop() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/if2210/app/fxml/Shop.fxml"));
             Parent root = loader.load();
@@ -74,7 +94,7 @@ public class GUIController {
             Stage childStage = new Stage();
             childStage.setTitle("Shop");
             childStage.initModality(Modality.APPLICATION_MODAL);
-            childStage.initOwner(null);  // Replace 'null' with reference to the primary stage if needed
+            childStage.initOwner(null); // Replace 'null' with reference to the primary stage if needed
             childStage.setScene(new Scene(root));
             childStage.showAndWait();
 
@@ -83,7 +103,7 @@ public class GUIController {
         }
     }
 
-    public void handleOpenLoadPlugin(){
+    public void handleOpenLoadPlugin() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/if2210/app/fxml/LoadPlugin.fxml"));
             Parent root = loader.load();
@@ -91,7 +111,7 @@ public class GUIController {
             Stage childStage = new Stage();
             childStage.setTitle("Load Plugin");
             childStage.initModality(Modality.APPLICATION_MODAL);
-            childStage.initOwner(null);  // Replace 'null' with reference to the primary stage if needed
+            childStage.initOwner(null); // Replace 'null' with reference to the primary stage if needed
             childStage.setScene(new Scene(root));
             childStage.showAndWait();
         } catch (IOException e) {
@@ -99,7 +119,7 @@ public class GUIController {
         }
     }
 
-    public void handleOpenSave(){
+    public void handleOpenSave() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/if2210/app/fxml/Save.fxml"));
             Parent root = loader.load();
@@ -107,7 +127,7 @@ public class GUIController {
             Stage childStage = new Stage();
             childStage.setTitle("Save");
             childStage.initModality(Modality.APPLICATION_MODAL);
-            childStage.initOwner(null);  // Replace 'null' with reference to the primary stage if needed
+            childStage.initOwner(null); // Replace 'null' with reference to the primary stage if needed
             childStage.setScene(new Scene(root));
             childStage.showAndWait();
             System.out.println(SaveView.getFolderName());
@@ -173,31 +193,28 @@ public class GUIController {
             Dragboard dragboard = event.getDragboard();
             boolean success = false;
             String sourceCardId = dragboard.getString();
-            if (targetCard.getId().equals("shopDrop")){
-                if (sourceCardId.startsWith("ActiveDeck")){
+            if (targetCard.getId().equals("shopDrop")) {
+                if (sourceCardId.startsWith("ActiveDeck")) {
                     System.out.println("SHOPEE COD");
-                }
-                else{
+                } else {
                     System.err.println("Illegal Move");
                 }
-            }
-            else{
+            } else {
                 if (dragboard.hasString()) {
                     System.out.println("Dropped from " + sourceCardId + " to " + targetCard.getId());
                     AnchorPane sourceCard = findDeckById(sourceCardId);
                     if (sourceCard != null) {
                         CardModel sourceCardData = (CardModel) sourceCard.getUserData();
                         CardModel targetCardData = (CardModel) targetCard.getUserData();
-                        if (!sourceCardData.getImage().equals(BLANK_IMAGE) && !(sourceCardId.startsWith("ActiveDeck") && !targetCardData.getImage().equals(BLANK_IMAGE))){
+                        if (!sourceCardData.getImage().equals(BLANK_IMAGE) && !(sourceCardId.startsWith("ActiveDeck")
+                                && !targetCardData.getImage().equals(BLANK_IMAGE))) {
                             updateCard(sourceCard, targetCardData);
                             updateCard(targetCard, sourceCardData);
                             success = true;
-                        }
-                        else {
+                        } else {
                             System.err.println("Illegal Move");
                         }
-                    }
-                    else {
+                    } else {
                         System.err.println("Source ActiveDeck not found");
                     }
                 }
@@ -231,7 +248,8 @@ public class GUIController {
         label.setText(cardData.getName());
 
         card.setStyle(null);
-        // Update AnchorPane background color based on the color attribute of the card model
+        // Update AnchorPane background color based on the color attribute of the card
+        // model
         String color = cardData.getColor();
         if (color != null && !color.isEmpty()) {
             card.setStyle("-fx-background-color: " + color + "; -fx-background-radius: 7.7px;");

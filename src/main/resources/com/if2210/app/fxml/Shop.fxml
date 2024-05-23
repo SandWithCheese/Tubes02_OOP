@@ -9,28 +9,39 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:controller="com.if2210.app.view.ShopView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="605.0" prefWidth="973.0" style="-fx-background-color: #021A38; -fx-border-color: #799FF6; -fx-border-width: 3px;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:controller="com.if2210.app.view.ShopView" maxHeight="-Infinity" maxWidth="-Infinity"
+   minHeight="-Infinity" minWidth="-Infinity" prefHeight="605.0" prefWidth="973.0"
+   style="-fx-background-color: #021A38; -fx-border-color: #799FF6; -fx-border-width: 3px;"
+   xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label alignment="CENTER" layoutX="284.0" prefHeight="94.0" prefWidth="405.0" style="-fx-font-weight: 700;" text="Shop" textAlignment="CENTER" textFill="#d4e3fc">
+      <Label alignment="CENTER" layoutX="284.0" prefHeight="94.0" prefWidth="405.0"
+         style="-fx-font-weight: 700;" text="Shop" textAlignment="CENTER" textFill="#d4e3fc">
          <font>
             <Font size="42.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="194.0" layoutY="47.0" prefHeight="94.0" prefWidth="616.0" style="-fx-font-weight: 700;" text="Show error message if the input is wrong" textAlignment="CENTER" textFill="#d4e3fc">
+      <Label alignment="CENTER" layoutX="194.0" layoutY="47.0" prefHeight="94.0" prefWidth="616.0"
+         style="-fx-font-weight: 700;" text="Show error message if the input is wrong"
+         textAlignment="CENTER" textFill="#d4e3fc">
          <font>
             <Font size="21.0" />
          </font>
       </Label>
-      <AnchorPane layoutX="194.0" layoutY="115.0" prefHeight="133.0" prefWidth="168.0" style="-fx-background-color: #3D16A1;">
+      <AnchorPane layoutX="194.0" layoutY="115.0" prefHeight="133.0" prefWidth="168.0"
+         style="-fx-background-color: #3D16A1;">
          <children>
-            <AnchorPane id="Card" layoutX="15.0" layoutY="15.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+            <AnchorPane id="Card" layoutX="15.0" layoutY="15.0" prefHeight="103.2" prefWidth="80.87"
+               style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                <children>
-                  <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0"
+                     pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Tubes02_OOP/src/main/resources/com/if2210/app/fxml/cow.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow" textFill="#010913">
+                  <Label layoutX="26.0" layoutY="70.0"
+                     style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow"
+                     textFill="#010913">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -51,8 +62,11 @@
             </Group>
             <Group accessibleRole="BUTTON" layoutX="106.0" layoutY="88.0">
                <children>
-                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="47.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px;" />
-                  <ImageView accessibleRole="BUTTON" fitHeight="20.0" fitWidth="29.0" layoutX="13.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="30.0"
+                     prefWidth="47.0"
+                     style="-fx-background-color: #799FF6; -fx-background-radius: 10px;" />
+                  <ImageView accessibleRole="BUTTON" fitHeight="20.0" fitWidth="29.0" layoutX="13.0"
+                     layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Tubes02_OOP/src/main/resources/com/if2210/app/assets/cart.png" />
                      </image>
@@ -61,16 +75,21 @@
             </Group>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="402.0" layoutY="115.0" prefHeight="133.0" prefWidth="168.0" style="-fx-background-color: #3D16A1;">
+      <AnchorPane layoutX="402.0" layoutY="115.0" prefHeight="133.0" prefWidth="168.0"
+         style="-fx-background-color: #3D16A1;">
          <children>
-            <AnchorPane id="Card" layoutX="15.0" layoutY="15.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+            <AnchorPane id="Card" layoutX="15.0" layoutY="15.0" prefHeight="103.2" prefWidth="80.87"
+               style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                <children>
-                  <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0"
+                     pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Tubes02_OOP/src/main/resources/com/if2210/app/fxml/cow.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow" textFill="#010913">
+                  <Label layoutX="26.0" layoutY="70.0"
+                     style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow"
+                     textFill="#010913">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -91,8 +110,11 @@
             </Group>
             <Group accessibleRole="BUTTON" layoutX="106.0" layoutY="88.0">
                <children>
-                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="47.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px;" />
-                  <ImageView accessibleRole="BUTTON" fitHeight="20.0" fitWidth="29.0" layoutX="13.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="30.0"
+                     prefWidth="47.0"
+                     style="-fx-background-color: #799FF6; -fx-background-radius: 10px;" />
+                  <ImageView accessibleRole="BUTTON" fitHeight="20.0" fitWidth="29.0" layoutX="13.0"
+                     layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Tubes02_OOP/src/main/resources/com/if2210/app/assets/cart.png" />
                      </image>
@@ -101,16 +123,21 @@
             </Group>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="610.0" layoutY="115.0" prefHeight="133.0" prefWidth="168.0" style="-fx-background-color: #3D16A1;">
+      <AnchorPane layoutX="610.0" layoutY="115.0" prefHeight="133.0" prefWidth="168.0"
+         style="-fx-background-color: #3D16A1;">
          <children>
-            <AnchorPane id="Card" layoutX="15.0" layoutY="15.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+            <AnchorPane id="Card" layoutX="15.0" layoutY="15.0" prefHeight="103.2" prefWidth="80.87"
+               style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                <children>
-                  <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0"
+                     pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Tubes02_OOP/src/main/resources/com/if2210/app/fxml/cow.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow" textFill="#010913">
+                  <Label layoutX="26.0" layoutY="70.0"
+                     style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow"
+                     textFill="#010913">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -131,8 +158,11 @@
             </Group>
             <Group accessibleRole="BUTTON" layoutX="106.0" layoutY="88.0">
                <children>
-                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="47.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px;" />
-                  <ImageView accessibleRole="BUTTON" fitHeight="20.0" fitWidth="29.0" layoutX="13.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="30.0"
+                     prefWidth="47.0"
+                     style="-fx-background-color: #799FF6; -fx-background-radius: 10px;" />
+                  <ImageView accessibleRole="BUTTON" fitHeight="20.0" fitWidth="29.0" layoutX="13.0"
+                     layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Tubes02_OOP/src/main/resources/com/if2210/app/assets/cart.png" />
                      </image>
@@ -141,16 +171,21 @@
             </Group>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="194.0" layoutY="268.0" prefHeight="133.0" prefWidth="168.0" style="-fx-background-color: #3D16A1;">
+      <AnchorPane layoutX="194.0" layoutY="268.0" prefHeight="133.0" prefWidth="168.0"
+         style="-fx-background-color: #3D16A1;">
          <children>
-            <AnchorPane id="Card" layoutX="15.0" layoutY="15.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+            <AnchorPane id="Card" layoutX="15.0" layoutY="15.0" prefHeight="103.2" prefWidth="80.87"
+               style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                <children>
-                  <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0"
+                     pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Tubes02_OOP/src/main/resources/com/if2210/app/fxml/cow.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow" textFill="#010913">
+                  <Label layoutX="26.0" layoutY="70.0"
+                     style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow"
+                     textFill="#010913">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -171,8 +206,11 @@
             </Group>
             <Group accessibleRole="BUTTON" layoutX="106.0" layoutY="88.0">
                <children>
-                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="47.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px;" />
-                  <ImageView accessibleRole="BUTTON" fitHeight="20.0" fitWidth="29.0" layoutX="13.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="30.0"
+                     prefWidth="47.0"
+                     style="-fx-background-color: #799FF6; -fx-background-radius: 10px;" />
+                  <ImageView accessibleRole="BUTTON" fitHeight="20.0" fitWidth="29.0" layoutX="13.0"
+                     layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Tubes02_OOP/src/main/resources/com/if2210/app/assets/cart.png" />
                      </image>
@@ -181,16 +219,21 @@
             </Group>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="403.0" layoutY="268.0" prefHeight="133.0" prefWidth="168.0" style="-fx-background-color: #3D16A1;">
+      <AnchorPane layoutX="403.0" layoutY="268.0" prefHeight="133.0" prefWidth="168.0"
+         style="-fx-background-color: #3D16A1;">
          <children>
-            <AnchorPane id="Card" layoutX="15.0" layoutY="15.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+            <AnchorPane id="Card" layoutX="15.0" layoutY="15.0" prefHeight="103.2" prefWidth="80.87"
+               style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                <children>
-                  <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0"
+                     pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Tubes02_OOP/src/main/resources/com/if2210/app/fxml/cow.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow" textFill="#010913">
+                  <Label layoutX="26.0" layoutY="70.0"
+                     style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow"
+                     textFill="#010913">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -211,8 +254,11 @@
             </Group>
             <Group accessibleRole="BUTTON" layoutX="106.0" layoutY="88.0">
                <children>
-                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="47.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px;" />
-                  <ImageView accessibleRole="BUTTON" fitHeight="20.0" fitWidth="29.0" layoutX="13.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="30.0"
+                     prefWidth="47.0"
+                     style="-fx-background-color: #799FF6; -fx-background-radius: 10px;" />
+                  <ImageView accessibleRole="BUTTON" fitHeight="20.0" fitWidth="29.0" layoutX="13.0"
+                     layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Tubes02_OOP/src/main/resources/com/if2210/app/assets/cart.png" />
                      </image>
@@ -221,16 +267,21 @@
             </Group>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="610.0" layoutY="268.0" prefHeight="133.0" prefWidth="168.0" style="-fx-background-color: #3D16A1;">
+      <AnchorPane layoutX="610.0" layoutY="268.0" prefHeight="133.0" prefWidth="168.0"
+         style="-fx-background-color: #3D16A1;">
          <children>
-            <AnchorPane id="Card" layoutX="15.0" layoutY="15.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+            <AnchorPane id="Card" layoutX="15.0" layoutY="15.0" prefHeight="103.2" prefWidth="80.87"
+               style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                <children>
-                  <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0"
+                     pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Tubes02_OOP/src/main/resources/com/if2210/app/fxml/cow.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow" textFill="#010913">
+                  <Label layoutX="26.0" layoutY="70.0"
+                     style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow"
+                     textFill="#010913">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -251,8 +302,11 @@
             </Group>
             <Group accessibleRole="BUTTON" layoutX="106.0" layoutY="88.0">
                <children>
-                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="47.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px;" />
-                  <ImageView accessibleRole="BUTTON" fitHeight="20.0" fitWidth="29.0" layoutX="13.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="30.0"
+                     prefWidth="47.0"
+                     style="-fx-background-color: #799FF6; -fx-background-radius: 10px;" />
+                  <ImageView accessibleRole="BUTTON" fitHeight="20.0" fitWidth="29.0" layoutX="13.0"
+                     layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Tubes02_OOP/src/main/resources/com/if2210/app/assets/cart.png" />
                      </image>
@@ -261,16 +315,21 @@
             </Group>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="194.0" layoutY="421.0" prefHeight="133.0" prefWidth="168.0" style="-fx-background-color: #3D16A1;">
+      <AnchorPane layoutX="194.0" layoutY="421.0" prefHeight="133.0" prefWidth="168.0"
+         style="-fx-background-color: #3D16A1;">
          <children>
-            <AnchorPane id="Card" layoutX="15.0" layoutY="15.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+            <AnchorPane id="Card" layoutX="15.0" layoutY="15.0" prefHeight="103.2" prefWidth="80.87"
+               style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                <children>
-                  <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0"
+                     pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Tubes02_OOP/src/main/resources/com/if2210/app/fxml/cow.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow" textFill="#010913">
+                  <Label layoutX="26.0" layoutY="70.0"
+                     style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow"
+                     textFill="#010913">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -291,8 +350,11 @@
             </Group>
             <Group accessibleRole="BUTTON" layoutX="106.0" layoutY="88.0">
                <children>
-                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="47.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px;" />
-                  <ImageView accessibleRole="BUTTON" fitHeight="20.0" fitWidth="29.0" layoutX="13.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="30.0"
+                     prefWidth="47.0"
+                     style="-fx-background-color: #799FF6; -fx-background-radius: 10px;" />
+                  <ImageView accessibleRole="BUTTON" fitHeight="20.0" fitWidth="29.0" layoutX="13.0"
+                     layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Tubes02_OOP/src/main/resources/com/if2210/app/assets/cart.png" />
                      </image>
@@ -301,16 +363,21 @@
             </Group>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="403.0" layoutY="421.0" prefHeight="133.0" prefWidth="168.0" style="-fx-background-color: #3D16A1;">
+      <AnchorPane layoutX="403.0" layoutY="421.0" prefHeight="133.0" prefWidth="168.0"
+         style="-fx-background-color: #3D16A1;">
          <children>
-            <AnchorPane id="Card" layoutX="15.0" layoutY="15.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+            <AnchorPane id="Card" layoutX="15.0" layoutY="15.0" prefHeight="103.2" prefWidth="80.87"
+               style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                <children>
-                  <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0"
+                     pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Tubes02_OOP/src/main/resources/com/if2210/app/fxml/cow.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow" textFill="#010913">
+                  <Label layoutX="26.0" layoutY="70.0"
+                     style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow"
+                     textFill="#010913">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -331,8 +398,11 @@
             </Group>
             <Group accessibleRole="BUTTON" layoutX="106.0" layoutY="88.0">
                <children>
-                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="47.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px;" />
-                  <ImageView accessibleRole="BUTTON" fitHeight="20.0" fitWidth="29.0" layoutX="13.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="30.0"
+                     prefWidth="47.0"
+                     style="-fx-background-color: #799FF6; -fx-background-radius: 10px;" />
+                  <ImageView accessibleRole="BUTTON" fitHeight="20.0" fitWidth="29.0" layoutX="13.0"
+                     layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Tubes02_OOP/src/main/resources/com/if2210/app/assets/cart.png" />
                      </image>
@@ -341,16 +411,21 @@
             </Group>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="610.0" layoutY="421.0" prefHeight="133.0" prefWidth="168.0" style="-fx-background-color: #3D16A1;">
+      <AnchorPane layoutX="610.0" layoutY="421.0" prefHeight="133.0" prefWidth="168.0"
+         style="-fx-background-color: #3D16A1;">
          <children>
-            <AnchorPane id="Card" layoutX="15.0" layoutY="15.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+            <AnchorPane id="Card" layoutX="15.0" layoutY="15.0" prefHeight="103.2" prefWidth="80.87"
+               style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                <children>
-                  <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0"
+                     pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Tubes02_OOP/src/main/resources/com/if2210/app/fxml/cow.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow" textFill="#010913">
+                  <Label layoutX="26.0" layoutY="70.0"
+                     style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow"
+                     textFill="#010913">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -371,8 +446,11 @@
             </Group>
             <Group accessibleRole="BUTTON" layoutX="106.0" layoutY="88.0">
                <children>
-                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="47.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px;" />
-                  <ImageView accessibleRole="BUTTON" fitHeight="20.0" fitWidth="29.0" layoutX="13.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="30.0"
+                     prefWidth="47.0"
+                     style="-fx-background-color: #799FF6; -fx-background-radius: 10px;" />
+                  <ImageView accessibleRole="BUTTON" fitHeight="20.0" fitWidth="29.0" layoutX="13.0"
+                     layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Tubes02_OOP/src/main/resources/com/if2210/app/assets/cart.png" />
                      </image>
