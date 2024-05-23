@@ -130,7 +130,7 @@
             </Button>
             <Button layoutX="764.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="171.0"
                style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;"
-               text="Load State" textAlignment="CENTER" textFill="WHITE">
+               text="Load State" textAlignment="CENTER" textFill="WHITE" onAction="#handleOpenLoad">
                <font>
                   <Font size="20.0" />
                </font>

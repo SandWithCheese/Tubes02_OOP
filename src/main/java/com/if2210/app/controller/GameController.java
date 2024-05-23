@@ -1,9 +1,16 @@
 package com.if2210.app.controller;
 
+import java.io.IOException;
+
 import com.if2210.app.model.GameManagerModel;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class GameController {
     private GameManagerModel gameManagerModel;
@@ -22,6 +29,22 @@ public class GameController {
 
     public GameController() {
         this.gameManagerModel = new GameManagerModel();
+    }
+
+    public void handleOpenLoad(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/if2210/app/fxml/load.fxml"));
+            Parent root = loader.load();
+
+            Stage childStage = new Stage();
+            childStage.setTitle("Load");
+            childStage.initModality(Modality.APPLICATION_MODAL);
+            childStage.initOwner(null);  // Replace 'null' with reference to the primary stage if needed
+            childStage.setScene(new Scene(root));
+            childStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
