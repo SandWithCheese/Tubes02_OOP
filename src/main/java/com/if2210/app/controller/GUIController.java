@@ -89,13 +89,13 @@ public class GUIController {
     private void handleMyFieldButtonClick(MouseEvent event) {
         System.out.println("My Field Button Clicked!");
         loadField(gameManagerModel.getActivePlayer());
-        // Add your logic for handling the click event here
+        toggleDragDetectionOnFieldCards(true); // Enable drag detection
     }
 
     private void handleEnemyFieldButtonClick(MouseEvent event) {
         System.out.println("Enemy Field Button Clicked!");
         loadField(gameManagerModel.getEnemy());
-        // Add your logic for handling the click event here
+        toggleDragDetectionOnFieldCards(false); // Disable drag detection
     }
 
     private void loadActiveDeck(PlayerModel player) {
@@ -116,6 +116,17 @@ public class GUIController {
                 if (cardData != null) {
                     updateCard(fieldCards.get(i * 5 + j), cardData, false);
                 }
+            }
+        }
+    }
+
+    // Method to toggle drag detection on field cards
+    private void toggleDragDetectionOnFieldCards(boolean enable) {
+        for (AnchorPane fieldCard : fieldCards) {
+            if (enable) {
+                setDragDetected(fieldCard);
+            } else {
+                fieldCard.setOnDragDetected(null);
             }
         }
     }
@@ -282,7 +293,6 @@ public class GUIController {
                 // Handle exception
             }
         }
-
     }
 
     // open popup
