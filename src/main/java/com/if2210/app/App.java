@@ -28,6 +28,10 @@ public class App extends Application {
         random = (int) (Math.random() * 6);
         controller.updateCard(controller.findDeckById("ActiveDeck1"), AnimalCardFactory.createAnimalCard(AnimalCardFactory.animalNames[random]));
 
+        // Load the logo image for taskbar logo
+        String iconPath = "/com/if2210/app/assets/Anya.png";
+        stage.getIcons().add(new javafx.scene.image.Image(iconPath));
+
         stage.setTitle("MoliNana");
         stage.setScene(scene);
         stage.show();
