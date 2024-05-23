@@ -1,17 +1,27 @@
 package com.if2210.app.view;
 
+import java.util.Map;
+
+import com.if2210.app.datastore.DataManager;
+import com.if2210.app.model.PlayerModel;
+import com.if2210.app.model.ProductCardModel;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 
 public class LoadView {
-    private static String folderName;
-    private static String ext;
+    private static int currentTurn;
+    private static Map<ProductCardModel, Integer> productList;
+    private static PlayerModel player1;
+    private static PlayerModel player2;
+    private DataManager dataManager;
 
     @FXML
     private ComboBox<String> myCb;
@@ -24,15 +34,19 @@ public class LoadView {
 
     @FXML
     private Button loadButton;
-    
-    private String[] typeFiles={"txt", "xml", "json"};
+
+    private String[] typeFiles = { "txt", "xml", "json" };
+
     public LoadView() {
-        folderName = null;
-        ext = null;
+        currentTurn = 0;
+        productList = null;
+        player1 = null;
+        player2 = null;
+        this.dataManager = new DataManager();
     }
 
     @FXML
-    public void initialize(){
+    public void initialize() {
         System.out.println("Load initialized");
         myCb.getItems().addAll(typeFiles);
 
@@ -51,7 +65,6 @@ public class LoadView {
                         super.updateItem(item, empty);
                         if (item != null) {
                             setText(item);
-                            // setPrefWidth(myCb.getPrefWidth());
                         } else {
                             setText(null);
                         }
@@ -68,35 +81,54 @@ public class LoadView {
                 super.updateItem(item, empty);
                 if (item != null) {
                     setText(item);
-                    // setPrefWidth(myCb.getPrefWidth());
                 } else {
                     setText(null);
                 }
             }
         });
-
-        
     }
 
     @FXML
     private void handleLoadButtonAction() {
         String selectedFormat = myCb.getValue();
-        String filename = folderNameField.getText();
+        String foldername = folderNameField.getText();
 
-        LoadView.folderName = filename;
-        LoadView.ext = selectedFormat;
-
-        if (filename.isEmpty()) {
-            messageLabel.setText("Filename cannot be empty.");
+        if (foldername.isEmpty()) {
+            messageLabel.setText("Folder name cannot be empty.");
             messageLabel.setTextFill(javafx.scene.paint.Color.RED);
         } else {
-            // Handle the loading process (this is just a placeholder)
-            messageLabel.setText("Berhasil membaca dari folder " + filename + " dengan file berekstensi "+ selectedFormat);
-            messageLabel.setTextFill(javafx.scene.paint.Color.GREEN);
+            try {
+                dataManager.load(foldername);
+                currentTurn = dataManager.getCurrentTurn();
+                productList = dataManager.getProductList();
+                player1 = dataManager.getPlayer1();
+                player2 = dataManager.getPlayer2();
+                messageLabel.setText(
+                        "Berhasil membaca dari folder " + foldername + " dengan file berekstensi " + selectedFormat);
+                messageLabel.setTextFill(javafx.scene.paint.Color.GREEN);
+
+                Stage stage = (Stage) messageLabel.getScene().getWindow();
+                stage.close();
+            } catch (Exception e) {
+                messageLabel.setText("Folder tidak ditemukan.");
+                messageLabel.setTextFill(javafx.scene.paint.Color.RED);
+            }
         }
     }
 
-    public static String getFolderName(){return folderName;}
-    public static String getExt(){return ext;}
+    public static int getCurrentTurn() {
+        return currentTurn;
+    }
 
+    public static Map<ProductCardModel, Integer> getProductList() {
+        return productList;
+    }
+
+    public static PlayerModel getPlayer1() {
+        return player1;
+    }
+
+    public static PlayerModel getPlayer2() {
+        return player2;
+    }
 }

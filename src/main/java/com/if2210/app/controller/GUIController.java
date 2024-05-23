@@ -20,6 +20,7 @@ import javafx.scene.Scene;
 
 import com.if2210.app.model.CardModel;
 import com.if2210.app.model.GameManagerModel;
+import com.if2210.app.model.PlayerModel;
 import com.if2210.app.view.LoadView;
 import com.if2210.app.view.SaveView;
 
@@ -65,6 +66,29 @@ public class GUIController {
         gulden2.setText(Integer.toString(gameManagerModel.getPlayer2().getMoney()));
         deckCount.setText("My Deck " + Integer.toString(gameManagerModel.getPlayer1().getDeck().getDeckSize()) + "/40");
         gameTurn.setText(String.format("%02d", gameManagerModel.getCurrentTurn()));
+
+        loadActiveDeck(gameManagerModel.getPlayer1());
+        loadField(gameManagerModel.getPlayer1());
+    }
+
+    private void loadActiveDeck(PlayerModel player) {
+        for (int i = 0; i < 6; i++) {
+            CardModel cardData = player.getActiveDeck().getCard(i);
+            if (cardData != null) {
+                updateCard(activeDecks.get(i), cardData);
+            }
+        }
+    }
+
+    private void loadField(PlayerModel player) {
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 5; j++) {
+                CardModel cardData = player.getField().getCard(i, j);
+                if (cardData != null) {
+                    updateCard(fieldCards.get(i * 5 + j), cardData);
+                }
+            }
+        }
     }
 
     // open popup
@@ -84,8 +108,19 @@ public class GUIController {
             childStage.getIcons().add(new javafx.scene.image.Image(iconPath));
 
             childStage.showAndWait();
-            System.out.println(LoadView.getFolderName());
-            System.out.println(LoadView.getExt());
+            if (LoadView.getPlayer1() != null) {
+                this.gameManagerModel.setCurrentTurn(LoadView.getCurrentTurn());
+                this.gameManagerModel.setPlayer1(LoadView.getPlayer1());
+                this.gameManagerModel.setPlayer2(LoadView.getPlayer2());
+                this.gameManagerModel.getShop().setProductList(LoadView.getProductList());
+                gulden1.setText(Integer.toString(gameManagerModel.getPlayer1().getMoney()));
+                gulden2.setText(Integer.toString(gameManagerModel.getPlayer2().getMoney()));
+                deckCount.setText(
+                        "My Deck " + Integer.toString(gameManagerModel.getPlayer1().getDeck().getDeckSize()) + "/40");
+                gameTurn.setText(String.format("%02d", gameManagerModel.getCurrentTurn()));
+                loadActiveDeck(gameManagerModel.getPlayer1());
+                loadField(gameManagerModel.getPlayer1());
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -137,6 +172,10 @@ public class GUIController {
     public void handleOpenSave() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/if2210/app/fxml/Save.fxml"));
+            SaveView saveView = new SaveView(gameManagerModel.getDataManager(), gameManagerModel.getCurrentTurn(),
+                    gameManagerModel.getShop().getProductList(), gameManagerModel.getPlayer1(),
+                    gameManagerModel.getPlayer2());
+            loader.setController(saveView);
             Parent root = loader.load();
 
             Stage childStage = new Stage();
@@ -150,8 +189,6 @@ public class GUIController {
             childStage.getIcons().add(new javafx.scene.image.Image(iconPath));
 
             childStage.showAndWait();
-            System.out.println(SaveView.getFolderName());
-            System.out.println(SaveView.getExt());
         } catch (IOException e) {
             e.printStackTrace();
         }
