@@ -4,6 +4,7 @@ import java.util.List;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -51,6 +52,12 @@ public class GUIController {
     private Group fieldCardGroup;
 
     @FXML
+    private Button myFieldButton;
+
+    @FXML
+    private Button enemyFieldButton;
+
+    @FXML
     private AnchorPane shopDrop;
 
     public List<AnchorPane> activeDecks = new ArrayList<>();
@@ -68,32 +75,203 @@ public class GUIController {
 
         setupClickCard();
 
-
         gulden1.setText(Integer.toString(gameManagerModel.getPlayer1().getMoney()));
         gulden2.setText(Integer.toString(gameManagerModel.getPlayer2().getMoney()));
         deckCount.setText("My Deck " + Integer.toString(gameManagerModel.getPlayer1().getDeck().getDeckSize()) + "/40");
         gameTurn.setText(String.format("%02d", gameManagerModel.getCurrentTurn()));
-
         loadActiveDeck(gameManagerModel.getPlayer1());
         loadField(gameManagerModel.getPlayer1());
+
+        myFieldButton.setOnMouseClicked(this::handleMyFieldButtonClick);
+        enemyFieldButton.setOnMouseClicked(this::handleEnemyFieldButtonClick);
+    }
+
+    private void handleMyFieldButtonClick(MouseEvent event) {
+        System.out.println("My Field Button Clicked!");
+        loadField(gameManagerModel.getWhoseTurn());
+        // Add your logic for handling the click event here
+    }
+
+    private void handleEnemyFieldButtonClick(MouseEvent event) {
+        System.out.println("Enemy Field Button Clicked!");
+        loadField(gameManagerModel.getEnemy());
+        // Add your logic for handling the click event here
     }
 
     private void loadActiveDeck(PlayerModel player) {
         for (int i = 0; i < 6; i++) {
             CardModel cardData = player.getActiveDeck().getCard(i);
             if (cardData != null) {
-                updateCard(activeDecks.get(i), cardData);
+                updateCard(activeDecks.get(i), cardData, false);
             }
         }
     }
 
     private void loadField(PlayerModel player) {
+        clearField(fieldCards, false);
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 5; j++) {
                 CardModel cardData = player.getField().getCard(i, j);
                 if (cardData != null) {
-                    updateCard(fieldCards.get(i * 5 + j), cardData);
+                    updateCard(fieldCards.get(i * 5 + j), cardData, false);
                 }
+            }
+        }
+    }
+
+    // Open popup methods
+
+    private void initializeDecks(Group deckGroup, List<AnchorPane> decks, int count) {
+        for (int i = 0; i < count; i++) {
+            try {
+                AnchorPane anchorPane = (AnchorPane) deckGroup.getChildren().get(i);
+                if (!anchorPane.getChildren().isEmpty()) {
+                    AnchorPane deck = (AnchorPane) anchorPane.getChildren().get(0);
+                    decks.add(deck);
+                    CardModel cardData = new CardModel("", "", BLANK_IMAGE);
+                    updateCard(deck, cardData, false);
+                }
+            } catch (Exception e) {
+                // Handle exception
+            }
+        }
+    }
+
+    private void setupDragAndDrop() {
+        for (AnchorPane activeDeck : activeDecks) {
+            setDragDetected(activeDeck);
+        }
+
+        for (AnchorPane activeCardField : fieldCards) {
+            setDragDetected(activeCardField);
+            setDragOver(activeCardField);
+            setDragDropped(activeCardField);
+        }
+
+        setDragOver(shopDrop);
+        setDragDropped(shopDrop);
+    }
+
+    private void setDragDetected(AnchorPane deck) {
+        deck.setOnDragDetected(event -> {
+            Dragboard dragboard = deck.startDragAndDrop(TransferMode.ANY);
+            ClipboardContent content = new ClipboardContent();
+            content.putString(deck.getId());
+            dragboard.setContent(content);
+            event.consume();
+        });
+    }
+
+    private void setDragOver(AnchorPane deck) {
+        deck.setOnDragOver(event -> {
+            if (event.getGestureSource() != deck && event.getDragboard().hasString()) {
+                event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
+            }
+            event.consume();
+        });
+    }
+
+    private void setDragDropped(AnchorPane targetCard) {
+        targetCard.setOnDragDropped(event -> {
+            Dragboard dragboard = event.getDragboard();
+            boolean success = false;
+            String sourceCardId = dragboard.getString();
+            if (targetCard.getId().equals("shopDrop")) {
+                if (sourceCardId.startsWith("ActiveDeck")) {
+                    System.out.println("SHOPEE COD");
+                }
+            } else {
+                if (dragboard.hasString()) {
+                    AnchorPane sourceCard = findDeckById(sourceCardId);
+                    if (sourceCard != null) {
+                        CardModel sourceCardData = (CardModel) sourceCard.getUserData();
+                        CardModel targetCardData = (CardModel) targetCard.getUserData();
+                        if (!sourceCardData.getImage().equals(BLANK_IMAGE) && !(sourceCardId.startsWith("ActiveDeck")
+                                && !targetCardData.getImage().equals(BLANK_IMAGE))) {
+                            updateCard(sourceCard, targetCardData, true);
+                            updateCard(targetCard, sourceCardData, true);
+                            success = true;
+                        } else {
+                            System.err.println("Illegal Move");
+                        }
+                    } else {
+                        System.err.println("Source ActiveDeck not found");
+                    }
+                }
+            }
+            event.setDropCompleted(success);
+            event.consume();
+        });
+    }
+
+    public AnchorPane findDeckById(String id) {
+        for (AnchorPane deck : activeDecks) {
+            if (deck.getId().equals(id)) {
+                return deck;
+            }
+        }
+        for (AnchorPane deck : fieldCards) {
+            if (deck.getId().equals(id)) {
+                return deck;
+            }
+        }
+        return null;
+    }
+
+    public void updateCard(AnchorPane card, CardModel cardData, boolean updateField) {
+        card.setUserData(cardData);
+
+        if (updateField) {
+            // Update Player Field
+            String cardId = card.getId();
+            if (cardId.startsWith("FieldCard")) {
+                int id = Integer.parseInt(cardId.substring(9)) - 1;
+                int i = id / 5;
+                int j = id % 5;
+
+                if (cardData.getImage().equals(BLANK_IMAGE)) {
+                    gameManagerModel.getWhoseTurn().getField().removeCard(i, j);
+                } else {
+                    gameManagerModel.getWhoseTurn().getField().setCard(cardData, i, j);
+                }
+            }
+        }
+
+        ImageView imageView = (ImageView) card.getChildren().get(0);
+        Label label = (Label) card.getChildren().get(1);
+
+        Image image = new Image(getClass().getResourceAsStream(cardData.getImage()));
+        if (image != null && !cardData.getImage().equals(BLANK_IMAGE)) {
+            imageView.setImage(image);
+            imageView.setVisible(true);
+            label.setText(cardData.getName());
+            label.setVisible(true);
+        } else {
+            imageView.setImage(null);
+            imageView.setVisible(false);
+            label.setText("");
+            label.setVisible(false);
+        }
+
+        card.setStyle(null);
+        String color = cardData.getColor();
+        if (color != null && !color.isEmpty()) {
+            card.setStyle("-fx-background-color: " + color + "; -fx-background-radius: 7.7px;");
+        }
+    }
+
+    public void clearCard(AnchorPane source) {
+        CardModel emptyData = new CardModel("", "", BLANK_IMAGE);
+        source.setUserData(emptyData);
+        updateCard(source, emptyData, true);
+    }
+
+    private void clearField(List<AnchorPane> decks, boolean updateField) {
+        for (int i = 0; i < decks.size(); i++) {
+            try {
+                updateCard(decks.get(i), new CardModel("", "", BLANK_IMAGE), updateField);
+            } catch (Exception e) {
+                // Handle exception
             }
         }
 
@@ -202,137 +380,40 @@ public class GUIController {
         }
     }
 
-    public void handleOpenCardInfo(AnchorPane deck){
+    public void handleOpenCardInfo(AnchorPane deck) {
         CardModel sourceCardData = (CardModel) deck.getUserData();
 
-        if(!sourceCardData.getImage().equals(BLANK_IMAGE)){
+        if (!sourceCardData.getImage().equals(BLANK_IMAGE)) {
             System.out.println("ini ada gambar");
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/if2210/app/fxml/CardInfo.fxml"));
                 CardInfoView cardView = new CardInfoView(deck);
                 loader.setController(cardView);
                 Parent root = loader.load();
-    
+
                 Stage childStage = new Stage();
                 childStage.setTitle("Card Info");
                 childStage.initModality(Modality.APPLICATION_MODAL);
-                childStage.initOwner(null);  // Replace 'null' with reference to the primary stage if needed
+                childStage.initOwner(null); // Replace 'null' with reference to the primary stage if needed
                 childStage.setScene(new Scene(root));
                 childStage.showAndWait();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }else{
+        } else {
             System.out.println("ini tidak ada gambar");
 
         }
-    } 
-
-    private void initializeDecks(Group deckGroup, List<AnchorPane> decks, int count) {
-        for (int i = 0; i < count; i++) {
-            try {
-                AnchorPane anchorPane = (AnchorPane) deckGroup.getChildren().get(i);
-                if (!anchorPane.getChildren().isEmpty()) {
-                    AnchorPane deck = (AnchorPane) anchorPane.getChildren().get(0);
-                    decks.add(deck);
-                    CardModel cardData = new CardModel("", "", BLANK_IMAGE);
-                    updateCard(deck, cardData);
-                }
-            } catch (Exception e) {
-                // Handle exception
-            }
-        }
     }
 
-    private void setupDragAndDrop() {
+    private void setupClickCard() {
         for (AnchorPane activeDeck : activeDecks) {
-            setDragDetected(activeDeck);
-        }
-
-        for (AnchorPane activeCardField : fieldCards) {
-            setDragDetected(activeCardField);
-            setDragOver(activeCardField);
-            setDragDropped(activeCardField);
-        }
-
-        setDragOver(shopDrop);
-        setDragDropped(shopDrop);
-    }
-
-    private void setupClickCard(){
-        for(AnchorPane activeDeck: activeDecks){
             activeDeck.setOnMouseClicked(event -> handleOpenCardInfo(activeDeck));
         }
-    }
 
-    private void setDragDetected(AnchorPane deck) {
-        deck.setOnDragDetected(event -> {
-            System.out.println("Drag Detected");
-            Dragboard dragboard = deck.startDragAndDrop(TransferMode.ANY);
-            ClipboardContent content = new ClipboardContent();
-            content.putString(deck.getId());
-            dragboard.setContent(content);
-            event.consume();
-        });
-    }
-
-    private void setDragOver(AnchorPane deck) {
-        deck.setOnDragOver(event -> {
-            if (event.getGestureSource() != deck && event.getDragboard().hasString()) {
-                event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
-            }
-            event.consume();
-        });
-    }
-
-    private void setDragDropped(AnchorPane targetCard) {
-        targetCard.setOnDragDropped(event -> {
-            Dragboard dragboard = event.getDragboard();
-            boolean success = false;
-            String sourceCardId = dragboard.getString();
-            if (targetCard.getId().equals("shopDrop")) {
-                if (sourceCardId.startsWith("ActiveDeck")) {
-                    System.out.println("SHOPEE COD");
-                } else {
-                    System.err.println("Illegal Move");
-                }
-            } else {
-                if (dragboard.hasString()) {
-                    System.out.println("Dropped from " + sourceCardId + " to " + targetCard.getId());
-                    AnchorPane sourceCard = findDeckById(sourceCardId);
-                    if (sourceCard != null) {
-                        CardModel sourceCardData = (CardModel) sourceCard.getUserData();
-                        CardModel targetCardData = (CardModel) targetCard.getUserData();
-                        if (!sourceCardData.getImage().equals(BLANK_IMAGE) && !(sourceCardId.startsWith("ActiveDeck")
-                                && !targetCardData.getImage().equals(BLANK_IMAGE))) {
-                            updateCard(sourceCard, targetCardData);
-                            updateCard(targetCard, sourceCardData);
-                            success = true;
-                        } else {
-                            System.err.println("Illegal Move");
-                        }
-                    } else {
-                        System.err.println("Source ActiveDeck not found");
-                    }
-                }
-            }
-            event.setDropCompleted(success);
-            event.consume();
-        });
-    }
-
-    public AnchorPane findDeckById(String id) {
-        for (AnchorPane deck : activeDecks) {
-            if (deck.getId().equals(id)) {
-                return deck;
-            }
+        for (AnchorPane fieldCard : fieldCards) {
+            fieldCard.setOnMouseClicked(event -> handleOpenCardInfo(fieldCard));
         }
-        for (AnchorPane deck : fieldCards) {
-            if (deck.getId().equals(id)) {
-                return deck;
-            }
-        }
-        return null;
     }
 
     public void updateCard(AnchorPane card, CardModel cardData) {
@@ -355,11 +436,5 @@ public class GUIController {
         if (color != null && !color.isEmpty()) {
             card.setStyle("-fx-background-color: " + color + "; -fx-background-radius: 7.7px;");
         }
-    }
-
-    public void clearCard(AnchorPane source) {
-        CardModel emptyData = new CardModel("", "", BLANK_IMAGE);
-        source.setUserData(emptyData);
-        updateCard(source, emptyData);
     }
 }

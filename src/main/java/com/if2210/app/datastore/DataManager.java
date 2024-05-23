@@ -282,7 +282,7 @@ public class DataManager {
         try {
             URL url = getClass().getResource("/com/if2210/app/gamestates/" + folderName);
             // If folder doesn't exist, create it and its files
-            if (url == null && Paths.get("src/main/resources/com/if2210/app/gamestates", folderName) == null) {
+            if (url == null || Paths.get("src/main/resources/com/if2210/app/gamestates", folderName) == null) {
                 Files.createDirectory(
                         Paths.get(getClass().getResource("/com/if2210/app/gamestates").toURI()).resolve(folderName));
                 Files.createDirectory(
@@ -370,6 +370,7 @@ public class DataManager {
                     CardModel card = player.getField().getCard(i, j);
                     if (card != null) {
                         if (card instanceof AnimalCardModel) {
+                            System.out.println(card.getName());
                             AnimalCardModel animalCard = (AnimalCardModel) card;
                             String activeItem = "";
                             for (int k = 0; k < animalCard.getActiveItems().size(); k++) {
@@ -394,6 +395,7 @@ public class DataManager {
                                     name += "_";
                                 }
                             }
+                            System.out.println(i + " " + j);
                             lines.add(fieldIndexToCode(new int[] { i, j }) + " " + name + " "
                                     + animalCard.getCurrentWeight() +
                                     " " + animalCard.getActiveItems().size() + " " + activeItem);
