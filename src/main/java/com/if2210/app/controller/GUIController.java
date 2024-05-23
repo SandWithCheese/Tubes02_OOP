@@ -23,6 +23,9 @@ public class GUIController {
     @FXML
     private Group fieldCardGroup;
 
+    @FXML
+    private AnchorPane shopDrop;
+
     public List<AnchorPane> activeDecks = new ArrayList<>();
     public List<AnchorPane> fieldCards = new ArrayList<>();
 
@@ -60,6 +63,9 @@ public class GUIController {
             setDragOver(activeCardField);
             setDragDropped(activeCardField);
         }
+
+        setDragOver(shopDrop);
+        setDragDropped(shopDrop);
     }
 
     private void setDragDetected(AnchorPane deck) {
@@ -86,26 +92,34 @@ public class GUIController {
         targetCard.setOnDragDropped(event -> {
             Dragboard dragboard = event.getDragboard();
             boolean success = false;
-            if (dragboard.hasString()) {
-                String sourceCardId = dragboard.getString();
-                System.out.println("Dropped from " + sourceCardId + " to " + targetCard.getId());
-                AnchorPane sourceCard = findDeckById(sourceCardId);
-                if (sourceCard != null) {
-                    CardModel sourceCardData = (CardModel) sourceCard.getUserData();
-                    if (!sourceCardData.getImage().equals(BLANK_IMAGE)) {
-                        if (targetCard.getUserData() != null) {
-                            CardModel targetCardData = (CardModel) targetCard.getUserData();
+            String sourceCardId = dragboard.getString();
+            if (targetCard.getId().equals("shopDrop")){
+                if (sourceCardId.startsWith("ActiveDeck")){
+                    System.out.println("SHOPEE COD");
+                }
+                else{
+                    System.err.println("Illegal Move");
+                }
+            }
+            else{
+                if (dragboard.hasString()) {
+                    System.out.println("Dropped from " + sourceCardId + " to " + targetCard.getId());
+                    AnchorPane sourceCard = findDeckById(sourceCardId);
+                    if (sourceCard != null) {
+                        CardModel sourceCardData = (CardModel) sourceCard.getUserData();
+                        CardModel targetCardData = (CardModel) targetCard.getUserData();
+                        if (!sourceCardData.getImage().equals(BLANK_IMAGE) && !(sourceCardId.startsWith("ActiveDeck") && !targetCardData.getImage().equals(BLANK_IMAGE))){
                             updateCard(sourceCard, targetCardData);
                             updateCard(targetCard, sourceCardData);
                             success = true;
                         }
+                        else {
+                            System.err.println("Illegal Move");
+                        }
                     }
                     else {
-                        System.err.println("Empty Card");
+                        System.err.println("Source ActiveDeck not found");
                     }
-                }
-                else {
-                    System.err.println("Source ActiveDeck not found");
                 }
             }
             event.setDropCompleted(success);

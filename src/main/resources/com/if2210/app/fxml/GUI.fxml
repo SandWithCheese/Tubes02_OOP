@@ -34,7 +34,7 @@
                         </ImageView>
                               <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="" textFill="#010913">
                                  <font>
-                                    <Font size="12.0" />
+                                    <Font size="11.0" />
                                  </font>
                               </Label>
                            </children>
@@ -48,7 +48,7 @@
                               <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
                               <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="" textFill="#010913">
                                  <font>
-                                    <Font size="12.0" />
+                                    <Font size="11.0" />
                                  </font>
                               </Label>
                            </children>
@@ -62,7 +62,7 @@
                               <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
                               <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="" textFill="#010913">
                                  <font>
-                                    <Font size="12.0" />
+                                    <Font size="11.0" />
                                  </font>
                               </Label>
                            </children>
@@ -74,9 +74,9 @@
                         <AnchorPane id="FieldCard4" fx:id="FieldCard" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                            <children>
                               <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
-                              <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="" textFill="#010913">
+                              <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Hi" textFill="#010913">
                                  <font>
-                                    <Font size="12.0" />
+                                    <Font size="11.0" />
                                  </font>
                               </Label>
                            </children>
@@ -90,7 +90,7 @@
                               <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
                               <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="" textFill="#010913">
                                  <font>
-                                    <Font size="12.0" />
+                                    <Font size="11.0" />
                                  </font>
                               </Label>
                            </children>
@@ -104,7 +104,7 @@
                               <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
                               <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="" textFill="#010913">
                                  <font>
-                                    <Font size="12.0" />
+                                    <Font size="11.0" />
                                  </font>
                               </Label>
                            </children>
@@ -118,7 +118,7 @@
                               <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
                               <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="" textFill="#010913">
                                  <font>
-                                    <Font size="12.0" />
+                                    <Font size="11.0" />
                                  </font>
                               </Label>
                            </children>
@@ -132,7 +132,7 @@
                               <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
                               <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="" textFill="#010913">
                                  <font>
-                                    <Font size="12.0" />
+                                    <Font size="11.0" />
                                  </font>
                               </Label>
                            </children>
@@ -146,7 +146,7 @@
                               <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
                               <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="" textFill="#010913">
                                  <font>
-                                    <Font size="12.0" />
+                                    <Font size="11.0" />
                                  </font>
                               </Label>
                            </children>
@@ -160,7 +160,7 @@
                               <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
                               <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="" textFill="#010913">
                                  <font>
-                                    <Font size="12.0" />
+                                    <Font size="11.0" />
                                  </font>
                               </Label>
                            </children>
@@ -174,7 +174,7 @@
                               <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
                               <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="" textFill="#010913">
                                  <font>
-                                    <Font size="12.0" />
+                                    <Font size="11.0" />
                                  </font>
                               </Label>
                            </children>
@@ -188,7 +188,7 @@
                               <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
                               <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="" textFill="#010913">
                                  <font>
-                                    <Font size="12.0" />
+                                    <Font size="11.0" />
                                  </font>
                               </Label>
                            </children>
@@ -202,7 +202,7 @@
                               <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
                               <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="" textFill="#010913">
                                  <font>
-                                    <Font size="12.0" />
+                                    <Font size="11.0" />
                                  </font>
                               </Label>
                            </children>
@@ -216,7 +216,7 @@
                               <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
                               <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="" textFill="#010913">
                                  <font>
-                                    <Font size="12.0" />
+                                    <Font size="11.0" />
                                  </font>
                               </Label>
                            </children>
@@ -230,7 +230,7 @@
                               <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
                               <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="" textFill="#010913">
                                  <font>
-                                    <Font size="12.0" />
+                                    <Font size="11.0" />
                                  </font>
                               </Label>
                            </children>
@@ -244,7 +244,7 @@
                               <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
                               <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="" textFill="#010913">
                                  <font>
-                                    <Font size="12.0" />
+                                    <Font size="11.0" />
                                  </font>
                               </Label>
                            </children>
@@ -258,7 +258,7 @@
                               <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
                               <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="" textFill="#010913">
                                  <font>
-                                    <Font size="12.0" />
+                                    <Font size="11.0" />
                                  </font>
                               </Label>
                            </children>
@@ -272,7 +272,7 @@
                               <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
                               <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="" textFill="#010913">
                                  <font>
-                                    <Font size="12.0" />
+                                    <Font size="11.0" />
                                  </font>
                               </Label>
                            </children>
@@ -286,7 +286,7 @@
                               <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
                               <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="" textFill="#010913">
                                  <font>
-                                    <Font size="12.0" />
+                                    <Font size="11.0" />
                                  </font>
                               </Label>
                            </children>
@@ -300,7 +300,7 @@
                               <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
                               <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="" textFill="#010913">
                                  <font>
-                                    <Font size="12.0" />
+                                    <Font size="11.0" />
                                  </font>
                               </Label>
                            </children>
@@ -315,7 +315,7 @@
          <children>
             <Group layoutX="382.0">
                <children>
-                  <AnchorPane layoutY="33.0" prefHeight="42.0" prefWidth="171.0" style="-fx-background-color: #D4E3FC; -fx-background-radius: 10px;">
+                  <AnchorPane fx:id="shopDrop" id="shopDrop" layoutY="33.0" prefHeight="42.0" prefWidth="171.0" style="-fx-background-color: #D4E3FC; -fx-background-radius: 10px;">
                      <children>
                         <Label layoutX="20.0" layoutY="17.0" prefHeight="21.0" prefWidth="130.0" style="-fx-font-weight: 700;" text="Drag here to sell " textFill="#021a38">
                            <font>
@@ -324,11 +324,11 @@
                         </Label>
                      </children>
                   </AnchorPane>
-                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="52.0" prefWidth="171.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;" text="Shop" textAlignment="CENTER" textFill="WHITE">
+                  <!-- <Button alignment="CENTER" mnemonicParsing="false" prefHeight="52.0" prefWidth="171.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;" text="Shop" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font size="20.0" />
                      </font>
-                  </Button>
+                  </Button> -->
                </children>
             </Group>
             <Button alignment="CENTER" mnemonicParsing="false" prefHeight="52.0" prefWidth="171.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;" text="My Field" textAlignment="CENTER" textFill="WHITE">
@@ -383,13 +383,13 @@
          <children>
             <AnchorPane layoutX="96.0" layoutY="25.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                <children>
-                  <AnchorPane id="ActiveDeck1" fx:id="ActiveDeck" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                  <AnchorPane id="ActiveDeck2" fx:id="ActiveDeck" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                      <children>
                         <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                         </ImageView>
                         <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Halo" textFill="#010913">
                            <font>
-                              <Font size="12.0" />
+                              <Font size="11.0" />
                            </font>
                         </Label>
                      </children>
@@ -398,12 +398,12 @@
             </AnchorPane>
             <AnchorPane layoutY="145.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                <children>
-                  <AnchorPane id="ActiveDeck2" fx:id="ActiveDeck" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                  <AnchorPane id="ActiveDeck4" fx:id="ActiveDeck" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                      <children>
                         <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
                         <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="" textFill="#010913">
                            <font>
-                              <Font size="12.0" />
+                              <Font size="11.0" />
                            </font>
                         </Label>
                      </children>
@@ -412,12 +412,12 @@
             </AnchorPane>
             <AnchorPane layoutX="96.0" layoutY="145.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                <children>
-                  <AnchorPane id="ActiveDeck3" fx:id="ActiveDeck" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                  <AnchorPane id="ActiveDeck5" fx:id="ActiveDeck" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                      <children>
                         <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
                         <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="" textFill="#010913">
                            <font>
-                              <Font size="12.0" />
+                              <Font size="11.0" />
                            </font>
                         </Label>
                      </children>
@@ -426,12 +426,12 @@
             </AnchorPane>
             <AnchorPane layoutX="191.0" layoutY="145.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                <children>
-                  <AnchorPane id="ActiveDeck4" fx:id="ActiveDeck" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                  <AnchorPane id="ActiveDeck6" fx:id="ActiveDeck" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                      <children>
                         <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
                         <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="" textFill="#010913">
                            <font>
-                              <Font size="12.0" />
+                              <Font size="11.0" />
                            </font>
                         </Label>
                      </children>
@@ -440,12 +440,12 @@
             </AnchorPane>
             <AnchorPane layoutX="191.0" layoutY="25.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                <children>
-                  <AnchorPane id="ActiveDeck5" fx:id="ActiveDeck" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                  <AnchorPane id="ActiveDeck3" fx:id="ActiveDeck" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                      <children>
                         <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
                         <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="" textFill="#010913">
                            <font>
-                              <Font size="12.0" />
+                              <Font size="11.0" />
                            </font>
                         </Label>
                      </children>
@@ -454,13 +454,13 @@
             </AnchorPane>
             <AnchorPane layoutY="25.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                <children>
-                  <AnchorPane id="ActiveDeck6" fx:id="ActiveDeck" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                  <AnchorPane id="ActiveDeck1" fx:id="ActiveDeck" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                      <children>
                         <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                         </ImageView>
                         <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Enam" textFill="#010913">
                            <font>
-                              <Font size="12.0" />
+                              <Font size="11.0" />
                            </font>
                         </Label>
                      </children>
