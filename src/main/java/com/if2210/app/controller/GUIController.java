@@ -88,7 +88,7 @@ public class GUIController {
 
     private void handleMyFieldButtonClick(MouseEvent event) {
         System.out.println("My Field Button Clicked!");
-        loadField(gameManagerModel.getWhoseTurn());
+        loadField(gameManagerModel.getActivePlayer());
         // Add your logic for handling the click event here
     }
 
@@ -230,9 +230,9 @@ public class GUIController {
                 int j = id % 5;
 
                 if (cardData.getImage().equals(BLANK_IMAGE)) {
-                    gameManagerModel.getWhoseTurn().getField().removeCard(i, j);
+                    gameManagerModel.getActivePlayer().getField().removeCard(i, j);
                 } else {
-                    gameManagerModel.getWhoseTurn().getField().setCard(cardData, i, j);
+                    gameManagerModel.getActivePlayer().getField().setCard(cardData, i, j);
                 }
             }
         }
@@ -404,6 +404,17 @@ public class GUIController {
             System.out.println("ini tidak ada gambar");
 
         }
+    }
+
+    public void handleNextTurn() {
+        System.out.println("Next Turn");
+        gameManagerModel.setWhoseTurn(gameManagerModel.getWhoseTurn() == 0 ? 1 : 0);
+        if (gameManagerModel.getWhoseTurn() == 0) {
+            gameManagerModel.setCurrentTurn(gameManagerModel.getCurrentTurn() + 1);
+        }
+        gameTurn.setText(String.format("%02d", gameManagerModel.getCurrentTurn()));
+        loadActiveDeck(gameManagerModel.getActivePlayer());
+        loadField(gameManagerModel.getActivePlayer());
     }
 
     private void setupClickCard() {
