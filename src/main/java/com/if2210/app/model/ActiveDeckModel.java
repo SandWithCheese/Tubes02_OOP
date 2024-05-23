@@ -31,6 +31,10 @@ public class ActiveDeckModel {
         this.cards.set(index, card);
     }
 
+    public void removeCard(int i) {
+        this.cards.set(i, null);
+    }
+
     public int getEffectiveDeckSize() {
         int count = 0;
         for (CardModel card : this.cards) {

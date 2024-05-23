@@ -99,6 +99,7 @@ public class GUIController {
     }
 
     private void loadActiveDeck(PlayerModel player) {
+        clearField(activeDecks, false);
         for (int i = 0; i < 6; i++) {
             CardModel cardData = player.getActiveDeck().getCard(i);
             if (cardData != null) {
@@ -233,6 +234,14 @@ public class GUIController {
                     gameManagerModel.getActivePlayer().getField().removeCard(i, j);
                 } else {
                     gameManagerModel.getActivePlayer().getField().setCard(cardData, i, j);
+                }
+            }
+            else if (cardId.startsWith("ActiveDeck")) {
+                int id = Integer.parseInt(cardId.substring(10)) - 1;
+                if (cardData.getImage().equals(BLANK_IMAGE)) {
+                    gameManagerModel.getWhoseTurn().getActiveDeck().removeCard(id);
+                } else {
+                    gameManagerModel.getWhoseTurn().getActiveDeck().setCard(id, cardData);
                 }
             }
         }
