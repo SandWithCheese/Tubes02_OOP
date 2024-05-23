@@ -7,25 +7,16 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-   prefHeight="768.0" prefWidth="1228.0" style="-fx-background-color: #021A38;"
-   xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
-   fx:controller="com.if2210.app.controller.GUIController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1228.0" style="-fx-background-color: #021A38;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.if2210.app.controller.GUIController">
    <children>
-      <AnchorPane layoutX="145.0" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity"
-         minHeight="-Infinity" minWidth="-Infinity" prefHeight="552.0" prefWidth="503.0"
-         style="-fx-border-color: #D4E3FC;">
+      <AnchorPane layoutX="145.0" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="552.0" prefWidth="503.0" style="-fx-border-color: #D4E3FC;">
          <children>
-            <Label layoutX="20.0" layoutY="2.0" style="-fx-font-weight: 700;" text="Field"
-               textFill="WHITE">
+            <Label layoutX="20.0" layoutY="2.0" style="-fx-font-weight: 700;" text="Field" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label layoutX="19.0" layoutY="490.0" prefHeight="52.0" prefWidth="463.0"
-               style="-fx-font-weight: 700;"
-               text="This is a place to show any message like error message, bear attack, etc"
-               textFill="WHITE" wrapText="true">
+            <Label layoutX="19.0" layoutY="490.0" prefHeight="52.0" prefWidth="463.0" style="-fx-font-weight: 700;" text="This is a place to show any message like error message, bear attack, etc" textFill="WHITE" wrapText="true">
                <font>
                   <Font size="16.0" />
                </font>
@@ -35,19 +26,13 @@
             </Label>
             <Group fx:id="fieldCardGroup" layoutX="20.0" layoutY="28.0">
                <children>
-                  <AnchorPane prefHeight="103.2" prefWidth="80.87"
-                     style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                  <AnchorPane prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                      <children>
-                        <AnchorPane id="FieldCard1" fx:id="FieldCard" prefHeight="103.2"
-                           prefWidth="80.87"
-                           style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                        <AnchorPane id="FieldCard1" fx:id="FieldCard" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                            <children>
-                              <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0"
-                                 layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                               </ImageView>
-                              <Label layoutX="26.0" layoutY="70.0"
-                                 style="-fx-font-weight: 700; -fx-font-family: Inter;" text=""
-                                 textFill="#010913">
+                              <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="" textFill="#010913">
                                  <font>
                                     <Font size="11.0" />
                                  </font>
@@ -56,18 +41,12 @@
                         </AnchorPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane layoutX="96.0" prefHeight="103.2" prefWidth="80.87"
-                     style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                  <AnchorPane layoutX="96.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                      <children>
-                        <AnchorPane id="FieldCard2" fx:id="FieldCard" prefHeight="103.2"
-                           prefWidth="80.87"
-                           style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                        <AnchorPane id="FieldCard2" fx:id="FieldCard" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                            <children>
-                              <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0"
-                                 layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
-                              <Label layoutX="26.0" layoutY="70.0"
-                                 style="-fx-font-weight: 700; -fx-font-family: Inter;" text=""
-                                 textFill="#010913">
+                              <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="" textFill="#010913">
                                  <font>
                                     <Font size="11.0" />
                                  </font>
@@ -76,18 +55,12 @@
                         </AnchorPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane layoutX="191.0" prefHeight="103.2" prefWidth="80.87"
-                     style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                  <AnchorPane layoutX="191.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                      <children>
-                        <AnchorPane id="FieldCard3" fx:id="FieldCard" prefHeight="103.2"
-                           prefWidth="80.87"
-                           style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                        <AnchorPane id="FieldCard3" fx:id="FieldCard" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                            <children>
-                              <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0"
-                                 layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
-                              <Label layoutX="26.0" layoutY="70.0"
-                                 style="-fx-font-weight: 700; -fx-font-family: Inter;" text=""
-                                 textFill="#010913">
+                              <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="" textFill="#010913">
                                  <font>
                                     <Font size="11.0" />
                                  </font>
@@ -96,18 +69,12 @@
                         </AnchorPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane layoutX="287.0" prefHeight="103.2" prefWidth="80.87"
-                     style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                  <AnchorPane layoutX="287.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                      <children>
-                        <AnchorPane id="FieldCard4" fx:id="FieldCard" prefHeight="103.2"
-                           prefWidth="80.87"
-                           style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                        <AnchorPane id="FieldCard4" fx:id="FieldCard" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                            <children>
-                              <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0"
-                                 layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
-                              <Label layoutX="26.0" layoutY="70.0"
-                                 style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Hi"
-                                 textFill="#010913">
+                              <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Hi" textFill="#010913">
                                  <font>
                                     <Font size="11.0" />
                                  </font>
@@ -116,18 +83,12 @@
                         </AnchorPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane layoutX="381.0" prefHeight="103.2" prefWidth="80.87"
-                     style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                  <AnchorPane layoutX="381.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                      <children>
-                        <AnchorPane id="FieldCard5" fx:id="FieldCard" prefHeight="103.2"
-                           prefWidth="80.87"
-                           style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                        <AnchorPane id="FieldCard5" fx:id="FieldCard" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                            <children>
-                              <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0"
-                                 layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
-                              <Label layoutX="26.0" layoutY="70.0"
-                                 style="-fx-font-weight: 700; -fx-font-family: Inter;" text=""
-                                 textFill="#010913">
+                              <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="" textFill="#010913">
                                  <font>
                                     <Font size="11.0" />
                                  </font>
@@ -136,18 +97,12 @@
                         </AnchorPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane layoutY="120.0" prefHeight="103.2" prefWidth="80.87"
-                     style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                  <AnchorPane layoutY="120.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                      <children>
-                        <AnchorPane id="FieldCard6" fx:id="FieldCard" prefHeight="103.2"
-                           prefWidth="80.87"
-                           style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                        <AnchorPane id="FieldCard6" fx:id="FieldCard" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                            <children>
-                              <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0"
-                                 layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
-                              <Label layoutX="26.0" layoutY="70.0"
-                                 style="-fx-font-weight: 700; -fx-font-family: Inter;" text=""
-                                 textFill="#010913">
+                              <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="" textFill="#010913">
                                  <font>
                                     <Font size="11.0" />
                                  </font>
@@ -156,18 +111,12 @@
                         </AnchorPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane layoutX="96.0" layoutY="120.0" prefHeight="103.2" prefWidth="80.87"
-                     style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                  <AnchorPane layoutX="96.0" layoutY="120.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                      <children>
-                        <AnchorPane id="FieldCard7" fx:id="FieldCard" prefHeight="103.2"
-                           prefWidth="80.87"
-                           style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                        <AnchorPane id="FieldCard7" fx:id="FieldCard" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                            <children>
-                              <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0"
-                                 layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
-                              <Label layoutX="26.0" layoutY="70.0"
-                                 style="-fx-font-weight: 700; -fx-font-family: Inter;" text=""
-                                 textFill="#010913">
+                              <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="" textFill="#010913">
                                  <font>
                                     <Font size="11.0" />
                                  </font>
@@ -176,18 +125,12 @@
                         </AnchorPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane layoutX="191.0" layoutY="120.0" prefHeight="103.2" prefWidth="80.87"
-                     style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                  <AnchorPane layoutX="191.0" layoutY="120.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                      <children>
-                        <AnchorPane id="FieldCard8" fx:id="FieldCard" prefHeight="103.2"
-                           prefWidth="80.87"
-                           style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                        <AnchorPane id="FieldCard8" fx:id="FieldCard" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                            <children>
-                              <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0"
-                                 layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
-                              <Label layoutX="26.0" layoutY="70.0"
-                                 style="-fx-font-weight: 700; -fx-font-family: Inter;" text=""
-                                 textFill="#010913">
+                              <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="" textFill="#010913">
                                  <font>
                                     <Font size="11.0" />
                                  </font>
@@ -196,18 +139,12 @@
                         </AnchorPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane layoutX="287.0" layoutY="120.0" prefHeight="103.2" prefWidth="80.87"
-                     style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                  <AnchorPane layoutX="287.0" layoutY="120.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                      <children>
-                        <AnchorPane id="FieldCard9" fx:id="FieldCard" prefHeight="103.2"
-                           prefWidth="80.87"
-                           style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                        <AnchorPane id="FieldCard9" fx:id="FieldCard" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                            <children>
-                              <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0"
-                                 layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
-                              <Label layoutX="26.0" layoutY="70.0"
-                                 style="-fx-font-weight: 700; -fx-font-family: Inter;" text=""
-                                 textFill="#010913">
+                              <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="" textFill="#010913">
                                  <font>
                                     <Font size="11.0" />
                                  </font>
@@ -216,18 +153,12 @@
                         </AnchorPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane layoutX="381.0" layoutY="120.0" prefHeight="103.2" prefWidth="80.87"
-                     style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                  <AnchorPane layoutX="381.0" layoutY="120.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                      <children>
-                        <AnchorPane id="FieldCard10" fx:id="FieldCard" prefHeight="103.2"
-                           prefWidth="80.87"
-                           style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                        <AnchorPane id="FieldCard10" fx:id="FieldCard" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                            <children>
-                              <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0"
-                                 layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
-                              <Label layoutX="26.0" layoutY="70.0"
-                                 style="-fx-font-weight: 700; -fx-font-family: Inter;" text=""
-                                 textFill="#010913">
+                              <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="" textFill="#010913">
                                  <font>
                                     <Font size="11.0" />
                                  </font>
@@ -236,18 +167,12 @@
                         </AnchorPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane layoutY="240.0" prefHeight="103.2" prefWidth="80.87"
-                     style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                  <AnchorPane layoutY="240.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                      <children>
-                        <AnchorPane id="FieldCard11" fx:id="FieldCard" prefHeight="103.2"
-                           prefWidth="80.87"
-                           style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                        <AnchorPane id="FieldCard11" fx:id="FieldCard" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                            <children>
-                              <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0"
-                                 layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
-                              <Label layoutX="26.0" layoutY="70.0"
-                                 style="-fx-font-weight: 700; -fx-font-family: Inter;" text=""
-                                 textFill="#010913">
+                              <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="" textFill="#010913">
                                  <font>
                                     <Font size="11.0" />
                                  </font>
@@ -256,18 +181,12 @@
                         </AnchorPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane layoutX="96.0" layoutY="240.0" prefHeight="103.2" prefWidth="80.87"
-                     style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                  <AnchorPane layoutX="96.0" layoutY="240.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                      <children>
-                        <AnchorPane id="FieldCard12" fx:id="FieldCard" prefHeight="103.2"
-                           prefWidth="80.87"
-                           style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                        <AnchorPane id="FieldCard12" fx:id="FieldCard" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                            <children>
-                              <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0"
-                                 layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
-                              <Label layoutX="26.0" layoutY="70.0"
-                                 style="-fx-font-weight: 700; -fx-font-family: Inter;" text=""
-                                 textFill="#010913">
+                              <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="" textFill="#010913">
                                  <font>
                                     <Font size="11.0" />
                                  </font>
@@ -276,18 +195,12 @@
                         </AnchorPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane layoutX="191.0" layoutY="240.0" prefHeight="103.2" prefWidth="80.87"
-                     style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                  <AnchorPane layoutX="191.0" layoutY="240.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                      <children>
-                        <AnchorPane id="FieldCard13" fx:id="FieldCard" prefHeight="103.2"
-                           prefWidth="80.87"
-                           style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                        <AnchorPane id="FieldCard13" fx:id="FieldCard" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                            <children>
-                              <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0"
-                                 layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
-                              <Label layoutX="26.0" layoutY="70.0"
-                                 style="-fx-font-weight: 700; -fx-font-family: Inter;" text=""
-                                 textFill="#010913">
+                              <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="" textFill="#010913">
                                  <font>
                                     <Font size="11.0" />
                                  </font>
@@ -296,18 +209,12 @@
                         </AnchorPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane layoutX="287.0" layoutY="240.0" prefHeight="103.2" prefWidth="80.87"
-                     style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                  <AnchorPane layoutX="287.0" layoutY="240.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                      <children>
-                        <AnchorPane id="FieldCard14" fx:id="FieldCard" prefHeight="103.2"
-                           prefWidth="80.87"
-                           style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                        <AnchorPane id="FieldCard14" fx:id="FieldCard" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                            <children>
-                              <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0"
-                                 layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
-                              <Label layoutX="26.0" layoutY="70.0"
-                                 style="-fx-font-weight: 700; -fx-font-family: Inter;" text=""
-                                 textFill="#010913">
+                              <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="" textFill="#010913">
                                  <font>
                                     <Font size="11.0" />
                                  </font>
@@ -316,18 +223,12 @@
                         </AnchorPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane layoutX="381.0" layoutY="240.0" prefHeight="103.2" prefWidth="80.87"
-                     style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                  <AnchorPane layoutX="381.0" layoutY="240.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                      <children>
-                        <AnchorPane id="FieldCard15" fx:id="FieldCard" prefHeight="103.2"
-                           prefWidth="80.87"
-                           style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                        <AnchorPane id="FieldCard15" fx:id="FieldCard" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                            <children>
-                              <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0"
-                                 layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
-                              <Label layoutX="26.0" layoutY="70.0"
-                                 style="-fx-font-weight: 700; -fx-font-family: Inter;" text=""
-                                 textFill="#010913">
+                              <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="" textFill="#010913">
                                  <font>
                                     <Font size="11.0" />
                                  </font>
@@ -336,18 +237,12 @@
                         </AnchorPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane layoutY="359.0" prefHeight="103.2" prefWidth="80.87"
-                     style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                  <AnchorPane layoutY="359.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                      <children>
-                        <AnchorPane id="FieldCard16" fx:id="FieldCard" prefHeight="103.2"
-                           prefWidth="80.87"
-                           style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                        <AnchorPane id="FieldCard16" fx:id="FieldCard" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                            <children>
-                              <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0"
-                                 layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
-                              <Label layoutX="26.0" layoutY="70.0"
-                                 style="-fx-font-weight: 700; -fx-font-family: Inter;" text=""
-                                 textFill="#010913">
+                              <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="" textFill="#010913">
                                  <font>
                                     <Font size="11.0" />
                                  </font>
@@ -356,18 +251,12 @@
                         </AnchorPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane layoutX="96.0" layoutY="359.0" prefHeight="103.2" prefWidth="80.87"
-                     style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                  <AnchorPane layoutX="96.0" layoutY="359.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                      <children>
-                        <AnchorPane id="FieldCard17" fx:id="FieldCard" prefHeight="103.2"
-                           prefWidth="80.87"
-                           style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                        <AnchorPane id="FieldCard17" fx:id="FieldCard" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                            <children>
-                              <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0"
-                                 layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
-                              <Label layoutX="26.0" layoutY="70.0"
-                                 style="-fx-font-weight: 700; -fx-font-family: Inter;" text=""
-                                 textFill="#010913">
+                              <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="" textFill="#010913">
                                  <font>
                                     <Font size="11.0" />
                                  </font>
@@ -376,18 +265,12 @@
                         </AnchorPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane layoutX="191.0" layoutY="359.0" prefHeight="103.2" prefWidth="80.87"
-                     style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                  <AnchorPane layoutX="191.0" layoutY="359.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                      <children>
-                        <AnchorPane id="FieldCard18" fx:id="FieldCard" prefHeight="103.2"
-                           prefWidth="80.87"
-                           style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                        <AnchorPane id="FieldCard18" fx:id="FieldCard" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                            <children>
-                              <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0"
-                                 layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
-                              <Label layoutX="26.0" layoutY="70.0"
-                                 style="-fx-font-weight: 700; -fx-font-family: Inter;" text=""
-                                 textFill="#010913">
+                              <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="" textFill="#010913">
                                  <font>
                                     <Font size="11.0" />
                                  </font>
@@ -396,18 +279,12 @@
                         </AnchorPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane layoutX="287.0" layoutY="359.0" prefHeight="103.2" prefWidth="80.87"
-                     style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                  <AnchorPane layoutX="287.0" layoutY="359.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                      <children>
-                        <AnchorPane id="FieldCard19" fx:id="FieldCard" prefHeight="103.2"
-                           prefWidth="80.87"
-                           style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                        <AnchorPane id="FieldCard19" fx:id="FieldCard" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                            <children>
-                              <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0"
-                                 layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
-                              <Label layoutX="26.0" layoutY="70.0"
-                                 style="-fx-font-weight: 700; -fx-font-family: Inter;" text=""
-                                 textFill="#010913">
+                              <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="" textFill="#010913">
                                  <font>
                                     <Font size="11.0" />
                                  </font>
@@ -416,18 +293,12 @@
                         </AnchorPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane layoutX="381.0" layoutY="359.0" prefHeight="103.2" prefWidth="80.87"
-                     style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                  <AnchorPane layoutX="381.0" layoutY="359.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                      <children>
-                        <AnchorPane id="FieldCard20" fx:id="FieldCard" prefHeight="103.2"
-                           prefWidth="80.87"
-                           style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                        <AnchorPane id="FieldCard20" fx:id="FieldCard" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                            <children>
-                              <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0"
-                                 layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
-                              <Label layoutX="26.0" layoutY="70.0"
-                                 style="-fx-font-weight: 700; -fx-font-family: Inter;" text=""
-                                 textFill="#010913">
+                              <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="" textFill="#010913">
                                  <font>
                                     <Font size="11.0" />
                                  </font>
@@ -444,55 +315,39 @@
          <children>
             <Group layoutX="382.0">
                <children>
-                  <AnchorPane fx:id="shopDrop" id="shopDrop" layoutY="33.0" prefHeight="42.0"
-                     prefWidth="171.0"
-                     style="-fx-background-color: #D4E3FC; -fx-background-radius: 10px;">
+                  <AnchorPane id="shopDrop" fx:id="shopDrop" prefHeight="96.0" prefWidth="171.0" style="-fx-background-color: #D4E3FC; -fx-background-radius: 10px;">
                      <children>
-                        <Label layoutX="20.0" layoutY="17.0" prefHeight="21.0" prefWidth="130.0"
-                           style="-fx-font-weight: 700;" text="Drag here to sell "
-                           textFill="#021a38">
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleOpenShop" prefHeight="52.0" prefWidth="171.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;" text="Shop" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Button>
+                        <AnchorPane prefHeight="96.0" prefWidth="171.0" />
+                        <Label layoutX="20.0" layoutY="56.0" prefHeight="21.0" prefWidth="130.0" style="-fx-font-weight: 700;" text="Drag here to sell " textFill="#021a38">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
                      </children>
                   </AnchorPane>
-                  <Button onAction="#handleOpenShop" alignment="CENTER" mnemonicParsing="false"
-                     prefHeight="52.0" prefWidth="171.0"
-                     style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;"
-                     text="Shop" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Button>
                </children>
             </Group>
-            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="52.0" prefWidth="171.0"
-               style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;"
-               text="My Field" textAlignment="CENTER" textFill="WHITE">
+            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="52.0" prefWidth="171.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;" text="My Field" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button alignment="CENTER" layoutX="191.0" mnemonicParsing="false" prefHeight="52.0"
-               prefWidth="171.0"
-               style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;"
-               text="Enemy's Field" textAlignment="CENTER" textFill="WHITE">
+            <Button alignment="CENTER" layoutX="191.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="171.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;" text="Enemy's Field" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button onAction="#handleOpenSave" alignment="CENTER" layoutX="573.0"
-               mnemonicParsing="false" prefHeight="52.0" prefWidth="171.0"
-               style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;"
-               text="Save State" textAlignment="CENTER" textFill="WHITE">
+            <Button alignment="CENTER" layoutX="573.0" mnemonicParsing="false" onAction="#handleOpenSave" prefHeight="52.0" prefWidth="171.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;" text="Save State" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button layoutX="764.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="171.0"
-               style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;"
-               text="Load State" textAlignment="CENTER" textFill="WHITE" onAction="#handleOpenLoad">
+            <Button layoutX="764.0" mnemonicParsing="false" onAction="#handleOpenLoad" prefHeight="52.0" prefWidth="171.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;" text="Load State" textAlignment="CENTER" textFill="WHITE">
 
                <font>
                   <Font size="20.0" />
@@ -502,28 +357,21 @@
       </Group>
       <Group layoutX="808.0" layoutY="496.0">
          <children>
-            <Button onAction="#handleOpenLoadPlugin" alignment="CENTER" layoutY="73.0"
-               mnemonicParsing="false" prefHeight="52.0" prefWidth="276.0"
-               style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;"
-               text="Load Plugin" textAlignment="CENTER" textFill="WHITE">
+            <Button alignment="CENTER" layoutY="73.0" mnemonicParsing="false" onAction="#handleOpenLoadPlugin" prefHeight="52.0" prefWidth="276.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;" text="Load Plugin" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <AnchorPane layoutX="190.0" prefHeight="52.0" prefWidth="86.0"
-               style="-fx-background-color: #D4E3FC; -fx-background-radius: 10px;">
+            <AnchorPane layoutX="190.0" prefHeight="52.0" prefWidth="86.0" style="-fx-background-color: #D4E3FC; -fx-background-radius: 10px;">
                <children>
-                  <Label fx:id="gameTurn" layoutX="43.0" layoutY="10.0"
-                     style="-fx-font-weight: 700;" text="" textFill="#021a38">
+                  <Label fx:id="gameTurn" layoutX="43.0" layoutY="10.0" style="-fx-font-weight: 700;" text="" textFill="#021a38">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
                </children>
             </AnchorPane>
-            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="52.0" prefWidth="210.0"
-               style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;"
-               text="Next Turn" textAlignment="CENTER" textFill="WHITE">
+            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="52.0" prefWidth="210.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;" text="Next Turn" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
@@ -532,19 +380,13 @@
       </Group>
       <Group fx:id="activeDeckGroup" layoutX="810.0" layoutY="133.0">
          <children>
-            <AnchorPane layoutX="96.0" layoutY="25.0" prefHeight="103.2" prefWidth="80.87"
-               style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+            <AnchorPane layoutX="96.0" layoutY="25.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                <children>
-                  <AnchorPane id="ActiveDeck2" fx:id="ActiveDeck" prefHeight="103.2"
-                     prefWidth="80.87"
-                     style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                  <AnchorPane id="ActiveDeck2" fx:id="ActiveDeck" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                      <children>
-                        <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0"
-                           pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                         </ImageView>
-                        <Label layoutX="26.0" layoutY="70.0"
-                           style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Halo"
-                           textFill="#010913">
+                        <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Halo" textFill="#010913">
                            <font>
                               <Font size="11.0" />
                            </font>
@@ -553,18 +395,12 @@
                   </AnchorPane>
                </children>
             </AnchorPane>
-            <AnchorPane layoutY="145.0" prefHeight="103.2" prefWidth="80.87"
-               style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+            <AnchorPane layoutY="145.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                <children>
-                  <AnchorPane id="ActiveDeck4" fx:id="ActiveDeck" prefHeight="103.2"
-                     prefWidth="80.87"
-                     style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                  <AnchorPane id="ActiveDeck4" fx:id="ActiveDeck" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                      <children>
-                        <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0"
-                           pickOnBounds="true" preserveRatio="true" />
-                        <Label layoutX="26.0" layoutY="70.0"
-                           style="-fx-font-weight: 700; -fx-font-family: Inter;" text=""
-                           textFill="#010913">
+                        <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="" textFill="#010913">
                            <font>
                               <Font size="11.0" />
                            </font>
@@ -573,18 +409,12 @@
                   </AnchorPane>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="96.0" layoutY="145.0" prefHeight="103.2" prefWidth="80.87"
-               style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+            <AnchorPane layoutX="96.0" layoutY="145.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                <children>
-                  <AnchorPane id="ActiveDeck5" fx:id="ActiveDeck" prefHeight="103.2"
-                     prefWidth="80.87"
-                     style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                  <AnchorPane id="ActiveDeck5" fx:id="ActiveDeck" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                      <children>
-                        <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0"
-                           pickOnBounds="true" preserveRatio="true" />
-                        <Label layoutX="26.0" layoutY="70.0"
-                           style="-fx-font-weight: 700; -fx-font-family: Inter;" text=""
-                           textFill="#010913">
+                        <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="" textFill="#010913">
                            <font>
                               <Font size="11.0" />
                            </font>
@@ -593,18 +423,12 @@
                   </AnchorPane>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="191.0" layoutY="145.0" prefHeight="103.2" prefWidth="80.87"
-               style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+            <AnchorPane layoutX="191.0" layoutY="145.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                <children>
-                  <AnchorPane id="ActiveDeck6" fx:id="ActiveDeck" prefHeight="103.2"
-                     prefWidth="80.87"
-                     style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                  <AnchorPane id="ActiveDeck6" fx:id="ActiveDeck" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                      <children>
-                        <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0"
-                           pickOnBounds="true" preserveRatio="true" />
-                        <Label layoutX="26.0" layoutY="70.0"
-                           style="-fx-font-weight: 700; -fx-font-family: Inter;" text=""
-                           textFill="#010913">
+                        <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="" textFill="#010913">
                            <font>
                               <Font size="11.0" />
                            </font>
@@ -613,18 +437,12 @@
                   </AnchorPane>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="191.0" layoutY="25.0" prefHeight="103.2" prefWidth="80.87"
-               style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+            <AnchorPane layoutX="191.0" layoutY="25.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                <children>
-                  <AnchorPane id="ActiveDeck3" fx:id="ActiveDeck" prefHeight="103.2"
-                     prefWidth="80.87"
-                     style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                  <AnchorPane id="ActiveDeck3" fx:id="ActiveDeck" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                      <children>
-                        <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0"
-                           pickOnBounds="true" preserveRatio="true" />
-                        <Label layoutX="26.0" layoutY="70.0"
-                           style="-fx-font-weight: 700; -fx-font-family: Inter;" text=""
-                           textFill="#010913">
+                        <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="" textFill="#010913">
                            <font>
                               <Font size="11.0" />
                            </font>
@@ -633,19 +451,13 @@
                   </AnchorPane>
                </children>
             </AnchorPane>
-            <AnchorPane layoutY="25.0" prefHeight="103.2" prefWidth="80.87"
-               style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+            <AnchorPane layoutY="25.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                <children>
-                  <AnchorPane id="ActiveDeck1" fx:id="ActiveDeck" prefHeight="103.2"
-                     prefWidth="80.87"
-                     style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                  <AnchorPane id="ActiveDeck1" fx:id="ActiveDeck" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                      <children>
-                        <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0"
-                           pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                         </ImageView>
-                        <Label layoutX="26.0" layoutY="70.0"
-                           style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Enam"
-                           textFill="#010913">
+                        <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Enam" textFill="#010913">
                            <font>
                               <Font size="11.0" />
                            </font>
@@ -654,17 +466,14 @@
                   </AnchorPane>
                </children>
             </AnchorPane>
-            <Label layoutX="1.0" style="-fx-font-weight: 700;" text="Active Deck:"
-               textAlignment="CENTER" textFill="WHITE">
+            <Label layoutX="1.0" style="-fx-font-weight: 700;" text="Active Deck:" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <AnchorPane layoutX="22.0" layoutY="269.0" prefHeight="52.0" prefWidth="228.0"
-               style="-fx-background-color: #D4E3FC; -fx-background-radius: 10px;">
+            <AnchorPane layoutX="22.0" layoutY="269.0" prefHeight="52.0" prefWidth="228.0" style="-fx-background-color: #D4E3FC; -fx-background-radius: 10px;">
                <children>
-                  <Label fx:id="deckCount" layoutX="42.0" layoutY="12.0"
-                     style="-fx-font-weight: 700;" text="My Deck 33/40" textFill="#021a38">
+                  <Label fx:id="deckCount" layoutX="42.0" layoutY="12.0" style="-fx-font-weight: 700;" text="My Deck 33/40" textFill="#021a38">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -680,26 +489,21 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label layoutY="30.0" style="-fx-font-weight: 700;" text="By MoliNana"
-               textFill="#903bf1">
+            <Label layoutY="30.0" style="-fx-font-weight: 700;" text="By MoliNana" textFill="#903bf1">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
          </children>
       </Group>
-      <Label alignment="TOP_CENTER" contentDisplay="TOP" layoutX="286.0" layoutY="17.0"
-         prefHeight="0.0" prefWidth="194.0" style="-fx-font-weight: 700;" text="IF2210"
-         textFill="#799ff6">
+      <Label alignment="TOP_CENTER" contentDisplay="TOP" layoutX="286.0" layoutY="17.0" prefHeight="0.0" prefWidth="194.0" style="-fx-font-weight: 700;" text="IF2210" textFill="#799ff6">
          <font>
             <Font size="61.0" />
          </font>
       </Label>
-      <AnchorPane layoutX="808.0" layoutY="34.0" prefHeight="81.0" prefWidth="276.0"
-         style="-fx-background-color: #D4E3FC; -fx-background-radius: 10px;">
+      <AnchorPane layoutX="808.0" layoutY="34.0" prefHeight="81.0" prefWidth="276.0" style="-fx-background-color: #D4E3FC; -fx-background-radius: 10px;">
          <children>
-            <Label layoutX="8.0" layoutY="7.0" style="-fx-font-weight: 700;" text="Player 1"
-               textFill="#021a38">
+            <Label layoutX="8.0" layoutY="7.0" style="-fx-font-weight: 700;" text="Player 1" textFill="#021a38">
                <font>
                   <Font size="20.0" />
                </font>
@@ -707,8 +511,7 @@
                   <Insets left="7.0" />
                </padding>
             </Label>
-            <Label layoutX="8.0" layoutY="41.0" style="-fx-font-weight: 700;" text="Player 2"
-               textFill="#021a38">
+            <Label layoutX="8.0" layoutY="41.0" style="-fx-font-weight: 700;" text="Player 2" textFill="#021a38">
                <font>
                   <Font size="20.0" />
                </font>
@@ -716,8 +519,7 @@
                   <Insets left="7.0" />
                </padding>
             </Label>
-            <Label fx:id="gulden1" layoutX="173.0" layoutY="7.0" style="-fx-font-weight: 700;"
-               text="" textFill="#021a38">
+            <Label fx:id="gulden1" layoutX="173.0" layoutY="7.0" style="-fx-font-weight: 700;" text="" textFill="#021a38">
                <font>
                   <Font size="20.0" />
                </font>
@@ -725,8 +527,7 @@
                   <Insets left="7.0" />
                </padding>
             </Label>
-            <Label fx:id="gulden2" layoutX="173.0" layoutY="41.0" style="-fx-font-weight: 700;"
-               text="" textFill="#021a38">
+            <Label fx:id="gulden2" layoutX="173.0" layoutY="41.0" style="-fx-font-weight: 700;" text="" textFill="#021a38">
                <font>
                   <Font size="20.0" />
                </font>
@@ -734,9 +535,7 @@
                   <Insets left="7.0" />
                </padding>
             </Label>
-            <Label layoutX="245.0" layoutY="7.0"
-               style="-fx-font-weight: 700; -fx-background-color: yellow; -fx-background-radius: 11px;"
-               text="\$" textFill="#021a38">
+            <Label layoutX="245.0" layoutY="7.0" style="-fx-font-weight: 700; -fx-background-color: yellow; -fx-background-radius: 11px;" text="\$" textFill="#021a38">
                <font>
                   <Font size="20.0" />
                </font>
@@ -744,9 +543,7 @@
                   <Insets left="5.0" right="5.0" />
                </padding>
             </Label>
-            <Label layoutX="245.0" layoutY="41.0"
-               style="-fx-font-weight: 700; -fx-background-color: yellow; -fx-background-radius: 11px;"
-               text="\$" textFill="#021a38">
+            <Label layoutX="245.0" layoutY="41.0" style="-fx-font-weight: 700; -fx-background-color: yellow; -fx-background-radius: 11px;" text="\$" textFill="#021a38">
                <font>
                   <Font size="20.0" />
                </font>
@@ -756,14 +553,12 @@
             </Label>
          </children>
       </AnchorPane>
-      <ImageView fitHeight="359.0" fitWidth="282.0" layoutX="571.0" layoutY="100.0"
-         pickOnBounds="true" preserveRatio="true" rotate="90.0">
+      <ImageView fitHeight="159.0" fitWidth="276.0" layoutX="592.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
          <image>
             <Image url="@../assets/Kaguya.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="254.0" fitWidth="323.0" layoutX="593.0" layoutY="380.0"
-         pickOnBounds="true" preserveRatio="true" rotate="90.0">
+      <ImageView fitHeight="157.0" fitWidth="242.0" layoutX="614.0" layoutY="437.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
          <image>
             <Image url="@../assets/Anya.png" />
          </image>
