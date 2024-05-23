@@ -52,17 +52,20 @@ public class GameManagerModel {
         this.currentTurn = currentTurn;
     }
 
-    public PlayerModel getWhoseTurn() {
-        if (this.whoseTurn == 0){
-            return this.player1;
-        }
-        else {
-            return this.player2;
-        }
+    public int getWhoseTurn() {
+        return whoseTurn;
     }
 
     public void setWhoseTurn(int whoseTurn) {
         this.whoseTurn = whoseTurn;
+    }
+
+    public PlayerModel getActivePlayer() {
+        if (this.whoseTurn == 0) {
+            return this.player1;
+        } else {
+            return this.player2;
+        }
     }
 
     public ShopModel getShop() {
@@ -89,11 +92,10 @@ public class GameManagerModel {
         this.player2 = player2;
     }
 
-    public PlayerModel getEnemy(){
-        if (this.whoseTurn == 0){
+    public PlayerModel getEnemy() {
+        if (this.whoseTurn == 0) {
             return this.player2;
-        }
-        else {
+        } else {
             return this.player1;
         }
     }

@@ -378,7 +378,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="52.0" prefWidth="210.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;" text="Next Turn" textAlignment="CENTER" textFill="WHITE">
+            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="52.0" prefWidth="210.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;" text="Next Turn" textAlignment="CENTER" textFill="WHITE" onAction="#handleNextTurn">
                <font>
                   <Font size="20.0" />
                </font>
