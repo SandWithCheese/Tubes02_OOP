@@ -14,12 +14,12 @@
             <Font size="42.0" />
          </font>
       </Label>
-      <Label layoutX="211.0" layoutY="191.0" prefHeight="25.0" prefWidth="147.0" style="-fx-font-weight: 700;" text="Format" textAlignment="CENTER" textFill="#d4e3fc">
+      <Label layoutX="211.0" layoutY="191.0" prefHeight="25.0" prefWidth="147.0" style="-fx-font-weight: 700;" text="FormatFile" textAlignment="CENTER" textFill="#d4e3fc">
          <font>
             <Font size="21.0" />
          </font>
       </Label>
-      <Label layoutX="210.0" layoutY="269.0" prefHeight="25.0" prefWidth="147.0" style="-fx-font-weight: 700;" text="Filename" textAlignment="CENTER" textFill="#d4e3fc">
+      <Label layoutX="210.0" layoutY="269.0" prefHeight="25.0" prefWidth="147.0" style="-fx-font-weight: 700;" text="FolderName" textAlignment="CENTER" textFill="#d4e3fc">
          <font>
             <Font size="21.0" />
          </font>

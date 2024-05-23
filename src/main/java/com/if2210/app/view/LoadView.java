@@ -1,7 +1,6 @@
 package com.if2210.app.view;
 
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -11,7 +10,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 
 public class LoadView {
-    private String fileName;
+    private static String fileName;
+    private static String ext;
 
     @FXML
     private ComboBox<String> myCb;
@@ -27,7 +27,8 @@ public class LoadView {
     
     private String[] typeFile={"txt", "xml", "json"};
     public LoadView() {
-        this.fileName = null;
+        fileName = null;
+        ext = null;
     }
 
     @FXML
@@ -82,18 +83,20 @@ public class LoadView {
         String selectedFormat = myCb.getValue();
         String filename = filenameField.getText();
 
-        this.fileName = filename+"."+selectedFormat;
+        LoadView.fileName = filename;
+        LoadView.ext = selectedFormat;
 
         if (filename.isEmpty()) {
             messageLabel.setText("Filename cannot be empty.");
             messageLabel.setTextFill(javafx.scene.paint.Color.RED);
         } else {
             // Handle the loading process (this is just a placeholder)
-            messageLabel.setText("Berhasil membaca dari " + filename + "." + selectedFormat);
+            messageLabel.setText("Berhasil membaca dari folder " + filename + " dengan file berekstensi "+ selectedFormat);
             messageLabel.setTextFill(javafx.scene.paint.Color.GREEN);
         }
     }
 
-    public String getFilename(){return fileName;}
+    public static String getFilename(){return fileName;}
+    public static String getExt(){return ext;}
 
 }

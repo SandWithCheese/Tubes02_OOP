@@ -3,6 +3,7 @@ package com.if2210.app.controller;
 import java.io.IOException;
 
 import com.if2210.app.model.GameManagerModel;
+import com.if2210.app.view.LoadView;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -42,6 +43,8 @@ public class GameController {
             childStage.initOwner(null);  // Replace 'null' with reference to the primary stage if needed
             childStage.setScene(new Scene(root));
             childStage.showAndWait();
+            System.out.println(LoadView.getFilename());
+            System.out.println(LoadView.getExt());
         } catch (IOException e) {
             e.printStackTrace();
         }
