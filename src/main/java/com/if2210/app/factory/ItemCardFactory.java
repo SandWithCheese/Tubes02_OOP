@@ -8,23 +8,23 @@ public class ItemCardFactory {
     public static ItemCardModel createItemCard(String name) {
         switch (name) {
             case "Accelerate":
-                return new ItemCardModel("normal", "Accelerate",
-                        "src/main/resources/com/if2210/app/assets/accelerate.png");
+                return new ItemCardModel("#D4E3FC", "Accelerate",
+                        "/com/if2210/app/assets/accelerate.png");
             case "Delay":
-                return new ItemCardModel("normal", "Delay",
-                        "src/main/resources/com/if2210/app/assets/delay.png");
+                return new ItemCardModel("#D4E3FC", "Delay",
+                        "/com/if2210/app/assets/delay.png");
             case "Instant Harvest":
-                return new ItemCardModel("normal", "Instant Harvest",
-                        "src/main/resources/com/if2210/app/assets/instant-harvest.png");
+                return new ItemCardModel("#D4E3FC", "Instant Harvest",
+                        "/com/if2210/app/assets/instant-harvest.png");
             case "Destroy":
-                return new ItemCardModel("normal", "Destroy",
-                        "src/main/resources/com/if2210/app/assets/destroy.png");
+                return new ItemCardModel("#D4E3FC", "Destroy",
+                        "/com/if2210/app/assets/destroy.png");
             case "Protect":
-                return new ItemCardModel("normal", "Protect",
-                        "src/main/resources/com/if2210/app/assets/protect.png");
+                return new ItemCardModel("#D4E3FC", "Protect",
+                        "/com/if2210/app/assets/protect.png");
             case "Trap":
-                return new ItemCardModel("normal", "Trap",
-                        "src/main/resources/com/if2210/app/assets/bear-trap.png");
+                return new ItemCardModel("#D4E3FC", "Trap",
+                        "/com/if2210/app/assets/bear-trap.png");
             default:
                 return null;
         }

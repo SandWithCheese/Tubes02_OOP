@@ -1,7 +1,11 @@
 package com.if2210.app.datastore;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,15 +15,17 @@ import com.if2210.app.factory.AnimalCardFactory;
 import com.if2210.app.factory.ItemCardFactory;
 import com.if2210.app.factory.ProductCardFactory;
 import com.if2210.app.model.AnimalCardModel;
+import com.if2210.app.model.CardModel;
 import com.if2210.app.model.DeckModel;
+import com.if2210.app.model.PlantCardModel;
 import com.if2210.app.model.PlayerModel;
 import com.if2210.app.model.ProductCardModel;
 
 public class DataManager {
-    private final Path path;
-    private final Path gameStatePath;
-    private final Path player1Path;
-    private final Path player2Path;
+    private Path path;
+    private Path gameStatePath;
+    private Path player1Path;
+    private Path player2Path;
 
     private int currentTurn;
     private Map<ProductCardModel, Integer> productList;
@@ -34,6 +40,14 @@ public class DataManager {
 
         this.currentTurn = 0;
         this.productList = new HashMap<ProductCardModel, Integer>();
+    }
+
+    public Path getPath() {
+        return path;
+    }
+
+    public Path getGameStatePath() {
+        return gameStatePath;
     }
 
     public int getCurrentTurn() {
@@ -186,9 +200,6 @@ public class DataManager {
             case 'E':
                 columnIndex = 4;
                 break;
-            case 'F':
-                columnIndex = 5;
-                break;
             default:
                 throw new IllegalArgumentException("Invalid column: " + column);
         }
@@ -200,24 +211,98 @@ public class DataManager {
         return new int[] { rowIndex, columnIndex };
     }
 
-    public void save() {
-        // Save the path to a file
-    }
-
-    public void load() {
+    public void save(String folderName, int currentTurn, Map<ProductCardModel, Integer> productList,
+            PlayerModel player1, PlayerModel player2) {
         try {
-            List<String> lines = new ArrayList<String>(Files.readAllLines(gameStatePath));
-            this.currentTurn = Integer.parseInt(lines.get(0));
-            int itemCount = Integer.parseInt(lines.get(1));
-            for (int i = 2; i < itemCount + 2; i++) {
-                String[] parts = lines.get(i).split(" ");
-                ProductCardModel product = ProductCardFactory.createProductCard(isProductCard(parts[0]));
-                this.productList.put(product, Integer.parseInt(parts[1]));
+            this.path = Paths.get(getClass().getResource("/com/if2210/app/gamestates/" + folderName).toURI());
+            this.gameStatePath = this.path.resolve("gamestate.txt");
+            this.player1Path = this.path.resolve("player1.txt");
+            this.player2Path = this.path.resolve("player2.txt");
+
+            // Check if the folder exists, if not, create it
+            if (!Files.exists(this.path)) {
+                Files.createDirectories(this.path);
             }
-        } catch (Exception e) {
+        } catch (URISyntaxException | IOException e) {
             e.printStackTrace();
             return;
         }
+
+        saveGameState(currentTurn, productList);
+        savePlayerData(player1, player1Path);
+        savePlayerData(player2, player2Path);
+    }
+
+    private void saveGameState(int currentTurn, Map<ProductCardModel, Integer> productList) {
+        try {
+            List<String> lines = new ArrayList<>();
+            lines.add(Integer.toString(currentTurn));
+            lines.add(Integer.toString(productList.size()));
+            for (Map.Entry<ProductCardModel, Integer> entry : productList.entrySet()) {
+                lines.add(entry.getKey().getName() + " " + entry.getValue());
+            }
+            Files.write(gameStatePath, lines);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void savePlayerData(PlayerModel player, Path playerPath) {
+        try {
+            List<String> lines = new ArrayList<>();
+            lines.add(Integer.toString(player.getMoney()));
+            lines.add(Integer.toString(player.getDeck().getDeckSize()));
+            lines.add(Integer.toString(player.getActiveDeck().getEffectiveDeckSize()));
+            for (int i = 0; i < 6; i++) {
+                if (player.getActiveDeck().getCard(i) != null) {
+                    lines.add("A" + String.format("%02d", i) + " " + player.getActiveDeck().getCard(i).getName());
+                }
+            }
+            lines.add(Integer.toString(player.getField().getEffectiveFieldSize()));
+            for (int i = 0; i < 4; i++) {
+                for (int j = 0; j < 5; j++) {
+                    CardModel card = player.getField().getCard(i, j);
+                    if (card != null) {
+                        if (card instanceof AnimalCardModel) {
+                            AnimalCardModel animalCard = (AnimalCardModel) card;
+                            lines.add(String.format("%c%02d %s %d %d", 'A' + i, j + 1, animalCard.getName(),
+                                    animalCard.getCurrentWeight(), animalCard.getActiveItems().size()));
+                            for (int k = 0; k < animalCard.getActiveItems().size(); k++) {
+                                lines.add(animalCard.getActiveItems().get(k).getName());
+                            }
+                        } else if (card instanceof PlantCardModel) {
+                            PlantCardModel plantCard = (PlantCardModel) card;
+                            lines.add(String.format("%c%02d %s %d %d", 'A' + i, j + 1, plantCard.getName(),
+                                    plantCard.getCurrentAge(), plantCard.getActiveItems().size()));
+                            for (int k = 0; k < plantCard.getActiveItems().size(); k++) {
+                                lines.add(plantCard.getActiveItems().get(k).getName());
+                            }
+                        }
+                    }
+                }
+            }
+            Files.write(playerPath, lines);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void load(String folderName) {
+        try {
+            URL url = getClass().getResource("/com/if2210/app/gamestates/" + folderName);
+            if (url == null) {
+                throw new IllegalArgumentException("Folder doesn't exist");
+            }
+            this.path = Paths.get(url.toURI());
+            this.gameStatePath = this.path.resolve("gamestate.txt");
+            this.player1Path = this.path.resolve("player1.txt");
+            this.player2Path = this.path.resolve("player2.txt");
+        } catch (URISyntaxException e) {
+            System.out.println("Folder doesnt exist");
+            return;
+        }
+
+        loadGameState();
 
         try {
             this.player1 = new PlayerModel();
@@ -276,7 +361,8 @@ public class DataManager {
                     card.setCurrentWeight(Integer.parseInt(parts[2]));
                     int activeItemCount = Integer.parseInt(parts[3]);
                     for (int j = 0; j < activeItemCount; j++) {
-                        card.getActiveItems().add(ItemCardFactory.createItemCard(isItemCard(parts[4 + j])));
+                        card.getActiveItems().add(ItemCardFactory.createItemCard(isItemCard(parts[4 +
+                                j])));
                     }
                     int[] index = codeToFieldIndex(parts[0]);
                     this.player1.getField().setCard(card, index[0], index[1]);
@@ -289,7 +375,8 @@ public class DataManager {
                     card.setCurrentWeight(Integer.parseInt(parts[2]));
                     int activeItemCount = Integer.parseInt(parts[3]);
                     for (int j = 0; j < activeItemCount; j++) {
-                        card.getActiveItems().add(ItemCardFactory.createItemCard(isItemCard(parts[4 + j])));
+                        card.getActiveItems().add(ItemCardFactory.createItemCard(isItemCard(parts[4 +
+                                j])));
                     }
                     int[] index = codeToFieldIndex(parts[0]);
                     this.player1.getField().setCard(card, index[0], index[1]);
@@ -361,7 +448,8 @@ public class DataManager {
                     card.setCurrentWeight(Integer.parseInt(parts[2]));
                     int activeItemCount = Integer.parseInt(parts[3]);
                     for (int j = 0; j < activeItemCount; j++) {
-                        card.getActiveItems().add(ItemCardFactory.createItemCard(isItemCard(parts[4 + j])));
+                        card.getActiveItems().add(ItemCardFactory.createItemCard(isItemCard(parts[4 +
+                                j])));
                     }
                     int[] index = codeToFieldIndex(parts[0]);
                     this.player2.getField().setCard(card, index[0], index[1]);
@@ -374,7 +462,8 @@ public class DataManager {
                     card.setCurrentWeight(Integer.parseInt(parts[2]));
                     int activeItemCount = Integer.parseInt(parts[3]);
                     for (int j = 0; j < activeItemCount; j++) {
-                        card.getActiveItems().add(ItemCardFactory.createItemCard(isItemCard(parts[4 + j])));
+                        card.getActiveItems().add(ItemCardFactory.createItemCard(isItemCard(parts[4 +
+                                j])));
                     }
                     int[] index = codeToFieldIndex(parts[0]);
                     this.player2.getField().setCard(card, index[0], index[1]);
@@ -384,6 +473,22 @@ public class DataManager {
 
             this.player2.setMoney(gulden);
             this.player2.setDeck(deck);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return;
+        }
+    }
+
+    private void loadGameState() {
+        try {
+            List<String> lines = new ArrayList<String>(Files.readAllLines(gameStatePath));
+            this.currentTurn = Integer.parseInt(lines.get(0));
+            int itemCount = Integer.parseInt(lines.get(1));
+            for (int i = 2; i < itemCount + 2; i++) {
+                String[] parts = lines.get(i).split(" ");
+                ProductCardModel product = ProductCardFactory.createProductCard(isProductCard(parts[0]));
+                this.productList.put(product, Integer.parseInt(parts[1]));
+            }
         } catch (Exception e) {
             e.printStackTrace();
             return;
