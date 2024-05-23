@@ -1,8 +1,5 @@
 package com.if2210.app;
 
-// import com.if2210.app.controller.GUIController;
-// import com.if2210.app.factory.AnimalCardFactory;
-
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;

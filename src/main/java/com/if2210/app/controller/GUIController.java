@@ -102,6 +102,11 @@ public class GUIController {
             childStage.initModality(Modality.APPLICATION_MODAL);
             childStage.initOwner(null); // Replace 'null' with reference to the primary stage if needed
             childStage.setScene(new Scene(root));
+
+            // Load the logo image for taskbar logo
+            String iconPath = "/com/if2210/app/assets/Anya.png";
+            childStage.getIcons().add(new javafx.scene.image.Image(iconPath));
+
             childStage.showAndWait();
             if (LoadView.getPlayer1() != null) {
                 this.gameManagerModel.setCurrentTurn(LoadView.getCurrentTurn());
@@ -131,6 +136,11 @@ public class GUIController {
             childStage.initModality(Modality.APPLICATION_MODAL);
             childStage.initOwner(null); // Replace 'null' with reference to the primary stage if needed
             childStage.setScene(new Scene(root));
+
+            // Load the logo image for taskbar logo
+            String iconPath = "/com/if2210/app/assets/Anya.png";
+            childStage.getIcons().add(new javafx.scene.image.Image(iconPath));
+
             childStage.showAndWait();
 
         } catch (IOException e) {
@@ -148,6 +158,11 @@ public class GUIController {
             childStage.initModality(Modality.APPLICATION_MODAL);
             childStage.initOwner(null); // Replace 'null' with reference to the primary stage if needed
             childStage.setScene(new Scene(root));
+
+            // Load the logo image for taskbar logo
+            String iconPath = "/com/if2210/app/assets/Anya.png";
+            childStage.getIcons().add(new javafx.scene.image.Image(iconPath));
+
             childStage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
@@ -168,6 +183,11 @@ public class GUIController {
             childStage.initModality(Modality.APPLICATION_MODAL);
             childStage.initOwner(null); // Replace 'null' with reference to the primary stage if needed
             childStage.setScene(new Scene(root));
+
+            // Load the logo image for taskbar logo
+            String iconPath = "/com/if2210/app/assets/Anya.png";
+            childStage.getIcons().add(new javafx.scene.image.Image(iconPath));
+
             childStage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
