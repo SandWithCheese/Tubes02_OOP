@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane cache="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="605.0" prefWidth="973.0" style="-fx-border-width: 3px; -fx-border-color: #799FF6; -fx-background-color: #021A38;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane layoutX="122.0" layoutY="217.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="52.0" prefWidth="730.0" style="-fx-background-color: #D4E3FC; -fx-background-radius: 10px;">
+         <children>
+            <Label layoutX="241.0" prefHeight="52.0" prefWidth="466.0" style="-fx-font-weight: 700;" text="FIlePluginUploaderJSON.jar" textFill="#021a38">
+               <font>
+                  <Font size="20.0" />
+               </font></Label>
+            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#clickChoosePlugin" prefHeight="52.0" prefWidth="232.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;" text="Choose Plugin File" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+         </children></AnchorPane>
+      <Button layoutX="402.0" layoutY="362.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#clickChoosePlugin" prefHeight="52.0" prefWidth="171.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;" text="Load" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Label layoutX="370.0" layoutY="22.0" style="-fx-font-weight: 700;" text="Load Plugin" textAlignment="CENTER" textFill="#d4e3fc">
+         <font>
+            <Font size="42.0" />
+         </font></Label>
+   </children>
+</Pane>
