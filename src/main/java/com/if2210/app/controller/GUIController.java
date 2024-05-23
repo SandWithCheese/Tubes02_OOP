@@ -18,11 +18,7 @@ import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
-import com.if2210.app.factory.ProductCardFactory;
-import com.if2210.app.model.AnimalCardModel;
 import com.if2210.app.model.CardModel;
-import com.if2210.app.model.PlantCardModel;
-import com.if2210.app.model.ProductCardModel;
 import com.if2210.app.view.CardInfoView;
 import com.if2210.app.view.LoadView;
 import com.if2210.app.view.SaveView;

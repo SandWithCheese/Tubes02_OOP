@@ -2,10 +2,8 @@ package com.if2210.app.view;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import com.if2210.app.factory.AnimalCardFactory;
 import com.if2210.app.factory.ItemCardFactory;
 import com.if2210.app.model.AnimalCardModel;
 import com.if2210.app.model.CardModel;

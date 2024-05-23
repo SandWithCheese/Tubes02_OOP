@@ -4,7 +4,6 @@ import com.if2210.app.controller.GUIController;
 import com.if2210.app.factory.AnimalCardFactory;
 import com.if2210.app.factory.PlantCardFactory;
 import com.if2210.app.factory.ProductCardFactory;
-import com.if2210.app.model.CardModel;
 
 import javafx.application.Application;
 import javafx.scene.Parent;
