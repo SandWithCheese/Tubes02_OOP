@@ -1,8 +1,7 @@
 package com.if2210.app;
 
-import com.if2210.app.controller.GUIController;
-import com.if2210.app.factory.AnimalCardFactory;
-import com.if2210.app.model.CardModel;
+// import com.if2210.app.controller.GUIController;
+// import com.if2210.app.factory.AnimalCardFactory;
 
 import javafx.application.Application;
 import javafx.scene.Parent;
@@ -21,12 +20,6 @@ public class App extends Application {
         Parent root = loader.load();
 
         Scene scene = new Scene(root, 1228, 768);
-
-        GUIController controller = loader.getController();
-        int random = (int) (Math.random() * 6);
-        controller.updateCard(controller.findDeckById("ActiveDeck3"), AnimalCardFactory.createAnimalCard(AnimalCardFactory.animalNames[random]));
-        random = (int) (Math.random() * 6);
-        controller.updateCard(controller.findDeckById("ActiveDeck1"), AnimalCardFactory.createAnimalCard(AnimalCardFactory.animalNames[random]));
 
         stage.setTitle("MoliNana");
         stage.setScene(scene);

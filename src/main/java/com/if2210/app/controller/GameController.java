@@ -1,17 +1,9 @@
 package com.if2210.app.controller;
 
-import java.io.IOException;
-
 import com.if2210.app.model.GameManagerModel;
-import com.if2210.app.view.LoadView;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
 public class GameController {
     private GameManagerModel gameManagerModel;

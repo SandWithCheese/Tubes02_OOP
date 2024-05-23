@@ -27,10 +27,30 @@ public class DataManager {
     private Path player1Path;
     private Path player2Path;
 
+    private Path resourcePath;
+    private Path gameStateResourcePath;
+    private Path player1ResourcePath;
+    private Path player2ResourcePath;
+
     private int currentTurn;
     private Map<ProductCardModel, Integer> productList;
     private PlayerModel player1;
     private PlayerModel player2;
+
+    public DataManager() {
+        try {
+            this.path = Paths.get(getClass().getResource("/com/if2210/app/gamestates/state0").toURI());
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+            return;
+        }
+        this.gameStatePath = this.path.resolve("gamestate.txt");
+        this.player1Path = this.path.resolve("player1.txt");
+        this.player2Path = this.path.resolve("player2.txt");
+
+        this.currentTurn = 0;
+        this.productList = new HashMap<ProductCardModel, Integer>();
+    }
 
     public DataManager(Path path) {
         this.path = path;
@@ -177,6 +197,25 @@ public class DataManager {
         }
     }
 
+    private String activeIndexToCode(int index) {
+        switch (index) {
+            case 0:
+                return "A01";
+            case 1:
+                return "B01";
+            case 2:
+                return "C01";
+            case 3:
+                return "D01";
+            case 4:
+                return "E01";
+            case 5:
+                return "F01";
+            default:
+                return null;
+        }
+    }
+
     private int[] codeToFieldIndex(String code) {
         char column = code.charAt(0);
         int row = Integer.parseInt(code.substring(1));
@@ -211,26 +250,76 @@ public class DataManager {
         return new int[] { rowIndex, columnIndex };
     }
 
+    private String fieldIndexToCode(int[] index) {
+        char column;
+        int row = index[0] + 1; // Adjust row number to start from 1
+
+        switch (index[1]) {
+            case 0:
+                column = 'A';
+                break;
+            case 1:
+                column = 'B';
+                break;
+            case 2:
+                column = 'C';
+                break;
+            case 3:
+                column = 'D';
+                break;
+            case 4:
+                column = 'E';
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid column: " + index[1]);
+        }
+
+        return column + String.format("%02d", row);
+    }
+
     public void save(String folderName, int currentTurn, Map<ProductCardModel, Integer> productList,
             PlayerModel player1, PlayerModel player2) {
         try {
-            this.path = Paths.get(getClass().getResource("/com/if2210/app/gamestates/" + folderName).toURI());
-            this.gameStatePath = this.path.resolve("gamestate.txt");
-            this.player1Path = this.path.resolve("player1.txt");
-            this.player2Path = this.path.resolve("player2.txt");
+            URL url = getClass().getResource("/com/if2210/app/gamestates/" + folderName);
+            // If folder doesn't exist, create it and its files
+            if (url == null && Paths.get("src/main/resources/com/if2210/app/gamestates", folderName) == null) {
+                Files.createDirectory(
+                        Paths.get(getClass().getResource("/com/if2210/app/gamestates").toURI()).resolve(folderName));
+                Files.createDirectory(
+                        Paths.get("src/main/resources/com/if2210/app/gamestates", folderName));
 
-            // Check if the folder exists, if not, create it
-            if (!Files.exists(this.path)) {
-                Files.createDirectories(this.path);
+                Files.createFile(Paths.get(getClass().getResource("/com/if2210/app/gamestates").toURI())
+                        .resolve(folderName).resolve("gamestate.txt"));
+                Files.createFile(
+                        Paths.get("src/main/resources/com/if2210/app/gamestates", folderName).resolve("gamestate.txt"));
+
+                Files.createFile(Paths.get(getClass().getResource("/com/if2210/app/gamestates").toURI())
+                        .resolve(folderName).resolve("player1.txt"));
+                Files.createFile(
+                        Paths.get("src/main/resources/com/if2210/app/gamestates", folderName).resolve("player1.txt"));
+
+                Files.createFile(Paths.get(getClass().getResource("/com/if2210/app/gamestates").toURI())
+                        .resolve(folderName).resolve("player2.txt"));
+                Files.createFile(
+                        Paths.get("src/main/resources/com/if2210/app/gamestates", folderName).resolve("player2.txt"));
+                url = getClass().getResource("/com/if2210/app/gamestates/" + folderName);
             }
+            this.path = Paths.get(url.toURI());
+            this.resourcePath = Paths.get("src/main/resources/com/if2210/app/gamestates", folderName);
+            this.gameStatePath = this.path.resolve("gamestate.txt");
+            this.gameStateResourcePath = this.resourcePath.resolve("gamestate.txt");
+            this.player1Path = this.path.resolve("player1.txt");
+            this.player1ResourcePath = this.resourcePath.resolve("player1.txt");
+            this.player2Path = this.path.resolve("player2.txt");
+            this.player2ResourcePath = this.resourcePath.resolve("player2.txt");
         } catch (URISyntaxException | IOException e) {
             e.printStackTrace();
             return;
         }
 
         saveGameState(currentTurn, productList);
-        savePlayerData(player1, player1Path);
-        savePlayerData(player2, player2Path);
+        savePlayerData(player1, player1Path, player1ResourcePath);
+        savePlayerData(player2, player2Path, player2ResourcePath);
     }
 
     private void saveGameState(int currentTurn, Map<ProductCardModel, Integer> productList) {
@@ -239,15 +328,24 @@ public class DataManager {
             lines.add(Integer.toString(currentTurn));
             lines.add(Integer.toString(productList.size()));
             for (Map.Entry<ProductCardModel, Integer> entry : productList.entrySet()) {
-                lines.add(entry.getKey().getName() + " " + entry.getValue());
+                String name = "";
+                String parts[] = entry.getKey().getName().split(" ");
+                for (int i = 0; i < parts.length; i++) {
+                    name += parts[i].toUpperCase();
+                    if (i < parts.length - 1) {
+                        name += "_";
+                    }
+                }
+                lines.add(name + " " + entry.getValue());
             }
             Files.write(gameStatePath, lines);
+            Files.write(gameStateResourcePath, lines);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void savePlayerData(PlayerModel player, Path playerPath) {
+    private void savePlayerData(PlayerModel player, Path playerPath, Path playerResourcePath) {
         try {
             List<String> lines = new ArrayList<>();
             lines.add(Integer.toString(player.getMoney()));
@@ -255,7 +353,15 @@ public class DataManager {
             lines.add(Integer.toString(player.getActiveDeck().getEffectiveDeckSize()));
             for (int i = 0; i < 6; i++) {
                 if (player.getActiveDeck().getCard(i) != null) {
-                    lines.add("A" + String.format("%02d", i) + " " + player.getActiveDeck().getCard(i).getName());
+                    String name = "";
+                    String parts[] = player.getActiveDeck().getCard(i).getName().split(" ");
+                    for (int j = 0; j < parts.length; j++) {
+                        name += parts[j].toUpperCase();
+                        if (j < parts.length - 1) {
+                            name += "_";
+                        }
+                    }
+                    lines.add(activeIndexToCode(i) + " " + name);
                 }
             }
             lines.add(Integer.toString(player.getField().getEffectiveFieldSize()));
@@ -265,23 +371,67 @@ public class DataManager {
                     if (card != null) {
                         if (card instanceof AnimalCardModel) {
                             AnimalCardModel animalCard = (AnimalCardModel) card;
-                            lines.add(String.format("%c%02d %s %d %d", 'A' + i, j + 1, animalCard.getName(),
-                                    animalCard.getCurrentWeight(), animalCard.getActiveItems().size()));
+                            String activeItem = "";
                             for (int k = 0; k < animalCard.getActiveItems().size(); k++) {
-                                lines.add(animalCard.getActiveItems().get(k).getName());
+                                String itemName = "";
+                                String parts[] = animalCard.getActiveItems().get(k).getName().split(" ");
+                                for (int l = 0; l < parts.length; l++) {
+                                    itemName += parts[l].toUpperCase();
+                                    if (l < parts.length - 1) {
+                                        itemName += "_";
+                                    }
+                                }
+                                activeItem += itemName;
+                                if (k < animalCard.getActiveItems().size() - 1) {
+                                    activeItem += " ";
+                                }
                             }
+                            String name = "";
+                            String parts[] = animalCard.getName().split(" ");
+                            for (int k = 0; k < parts.length; k++) {
+                                name += parts[k].toUpperCase();
+                                if (k < parts.length - 1) {
+                                    name += "_";
+                                }
+                            }
+                            lines.add(fieldIndexToCode(new int[] { i, j }) + " " + name + " "
+                                    + animalCard.getCurrentWeight() +
+                                    " " + animalCard.getActiveItems().size() + " " + activeItem);
+
                         } else if (card instanceof PlantCardModel) {
                             PlantCardModel plantCard = (PlantCardModel) card;
-                            lines.add(String.format("%c%02d %s %d %d", 'A' + i, j + 1, plantCard.getName(),
-                                    plantCard.getCurrentAge(), plantCard.getActiveItems().size()));
+                            String activeItem = "";
                             for (int k = 0; k < plantCard.getActiveItems().size(); k++) {
-                                lines.add(plantCard.getActiveItems().get(k).getName());
+                                String itemName = "";
+                                String parts[] = plantCard.getActiveItems().get(k).getName().split(" ");
+                                for (int l = 0; l < parts.length; l++) {
+                                    itemName += parts[l].toUpperCase();
+                                    if (l < parts.length - 1) {
+                                        itemName += "_";
+                                    }
+                                }
+                                activeItem += itemName;
+                                if (k < plantCard.getActiveItems().size() - 1) {
+                                    activeItem += " ";
+                                }
                             }
+                            String name = "";
+                            String parts[] = plantCard.getName().split(" ");
+                            for (int k = 0; k < parts.length; k++) {
+                                name += parts[k].toUpperCase();
+                                if (k < parts.length - 1) {
+                                    name += "_";
+                                }
+                            }
+                            lines.add(fieldIndexToCode(new int[] { i, j }) + " " + name + " "
+                                    + plantCard.getCurrentAge() +
+                                    " " + plantCard.getActiveItems().size() + " " + activeItem);
                         }
                     }
                 }
             }
             Files.write(playerPath, lines);
+            Files.write(playerResourcePath, lines);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -298,7 +448,7 @@ public class DataManager {
             this.player1Path = this.path.resolve("player1.txt");
             this.player2Path = this.path.resolve("player2.txt");
         } catch (URISyntaxException e) {
-            System.out.println("Folder doesnt exist");
+            e.printStackTrace();
             return;
         }
 
