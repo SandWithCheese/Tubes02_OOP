@@ -14,8 +14,8 @@
          minHeight="-Infinity" minWidth="-Infinity" prefHeight="52.0" prefWidth="730.0"
          style="-fx-background-color: #D4E3FC; -fx-background-radius: 10px;">
          <children>
-            <Label layoutX="241.0" prefHeight="52.0" prefWidth="466.0" style="-fx-font-weight: 700;"
-               text="FIlePluginUploaderJSON.jar" textFill="#021a38">
+            <Label fx:id="fileNameLabel" layoutX="241.0" prefHeight="52.0" prefWidth="466.0" style="-fx-font-weight: 700;"
+               text="No plugin selected" textFill="#021a38">
                <font>
                   <Font size="20.0" />
                </font>
