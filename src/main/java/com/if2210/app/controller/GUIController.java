@@ -209,7 +209,7 @@ public class GUIController {
             System.out.println("ini ada gambar");
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/if2210/app/fxml/CardInfo.fxml"));
-                CardInfoView cardView = new CardInfoView(deck);
+                CardInfoView cardView = new CardInfoView(deck, this);
                 loader.setController(cardView);
                 Parent root = loader.load();
     
@@ -262,6 +262,10 @@ public class GUIController {
     private void setupClickCard(){
         for(AnchorPane activeDeck: activeDecks){
             activeDeck.setOnMouseClicked(event -> handleOpenCardInfo(activeDeck));
+        }
+
+        for (AnchorPane activeCardField : fieldCards) {
+            activeCardField.setOnMouseClicked(event -> handleOpenCardInfo(activeCardField));
         }
     }
 
@@ -338,13 +342,9 @@ public class GUIController {
     public void updateCard(AnchorPane card, CardModel cardData) {
         card.setUserData(cardData);
 
-        System.out.println("a");
         ImageView imageView = (ImageView) card.getChildren().get(0);
-        System.out.println("b");
         Image image = new Image(getClass().getResourceAsStream(cardData.getImage()));
-        System.out.println("c");
         imageView.setImage(image != null ? image : new Image(BLANK_IMAGE)); // Use blank image if resource not found
-        System.out.println("d");
         Label label = (Label) card.getChildren().get(1);
         label.setText(cardData.getName());
 

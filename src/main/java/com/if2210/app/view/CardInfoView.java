@@ -4,21 +4,33 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.if2210.app.controller.GUIController;
 import com.if2210.app.factory.ItemCardFactory;
+import com.if2210.app.factory.ProductCardFactory;
 import com.if2210.app.model.AnimalCardModel;
 import com.if2210.app.model.CardModel;
 import com.if2210.app.model.ItemCardModel;
 import com.if2210.app.model.PlantCardModel;
 import com.if2210.app.model.ProductCardModel;
 
+import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 public class CardInfoView {
     private Object card;
+
+    private AnchorPane cardPane;
+
+    private GUIController controller;
+
+    private Map<String, String> resProd = new HashMap<>();
 
     @FXML
     private Label weight;
@@ -41,8 +53,19 @@ public class CardInfoView {
     @FXML
     private Label harvestResponse;
 
-    public CardInfoView(AnchorPane deck){
+    @FXML
+    private Button harvestButton;
+
+    public CardInfoView(AnchorPane deck, GUIController gui){
         card = deck.getUserData();
+        cardPane = deck;
+        controller = gui;
+        resProd.put("Hiu Darat", "Sirip Hiu");
+        resProd.put("Sapi", "Susu");
+        resProd.put("Domba", "Daging Domba");
+        resProd.put("Kuda", "Daging Kuda");
+        resProd.put("Ayam", "Telur");
+        resProd.put("Beruang", "Daging Beruang");
     }
 
     private ArrayList<String> mapToList(Map<String, Integer> map){
@@ -74,6 +97,7 @@ public class CardInfoView {
         if(((AnimalCardModel)card).getCurrentWeight()>=((AnimalCardModel)card).getHarvestWeight()){
             info.setText("Ready to be harvest");
             info.setTextFill(javafx.scene.paint.Color.GREEN);
+            harvestButton.setVisible(true);
         }else{
             info.setText("Your animal isn't ready to be harvested yet");
             info.setTextFill(javafx.scene.paint.Color.RED);
@@ -144,6 +168,7 @@ public class CardInfoView {
     }
 
     public void initialize(){
+        harvestButton.setVisible(false);
         name.setText(((CardModel)card).getName());
         System.out.println(card.getClass().getName());
         if(card instanceof AnimalCardModel){
@@ -164,6 +189,10 @@ public class CardInfoView {
     
     private void harvestAnimal(){
         System.out.println("Menjalankan proses panen hewan");
+        ProductCardModel produk = ProductCardFactory.createProductCard(resProd.get(((CardModel)card).getName()));
+        controller.updateCard(cardPane, produk);
+        Stage stage = (Stage)info.getScene().getWindow();
+        stage.close();
 
     }
 
