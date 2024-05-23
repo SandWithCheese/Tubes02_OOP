@@ -235,13 +235,12 @@ public class GUIController {
                 } else {
                     gameManagerModel.getActivePlayer().getField().setCard(cardData, i, j);
                 }
-            }
-            else if (cardId.startsWith("ActiveDeck")) {
+            } else if (cardId.startsWith("ActiveDeck")) {
                 int id = Integer.parseInt(cardId.substring(10)) - 1;
                 if (cardData.getImage().equals(BLANK_IMAGE)) {
-                    gameManagerModel.getWhoseTurn().getActiveDeck().removeCard(id);
+                    gameManagerModel.getActivePlayer().getActiveDeck().removeCard(id);
                 } else {
-                    gameManagerModel.getWhoseTurn().getActiveDeck().setCard(id, cardData);
+                    gameManagerModel.getActivePlayer().getActiveDeck().setCard(id, cardData);
                 }
             }
         }
