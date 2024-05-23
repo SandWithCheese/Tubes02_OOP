@@ -10,80 +10,101 @@ import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
 import java.util.ArrayList;
 import javafx.scene.Group;
-
+import com.if2210.app.model.CardModel;
 
 
 
 public class GUIController {
-
-    @FXML
-    private List<AnchorPane> activeDecks = new ArrayList<>();
-
-    @FXML
-    private AnchorPane FieldCard;
+    public static final String BLANK_IMAGE = "/com/if2210/app/assets/blank.png";
 
     @FXML
     private Group activeDeckGroup;
 
     @FXML
+    private Group fieldCardGroup;
+
+    public List<AnchorPane> activeDecks = new ArrayList<>();
+    public List<AnchorPane> fieldCards = new ArrayList<>();
+
+    @FXML
     public void initialize() {
-        System.out.println(FieldCard);
-        for (int i = 0; i < 6; i++) {
-            try{
-                AnchorPane anchorPane = (AnchorPane) activeDeckGroup.getChildren().get(i);
+        initializeDecks(activeDeckGroup, activeDecks, 6);
+        initializeDecks(fieldCardGroup, fieldCards, 20);
+
+        setupDragAndDrop();
+    }
+
+    private void initializeDecks(Group deckGroup, List<AnchorPane> decks, int count) {
+        for (int i = 0; i < count; i++) {
+            try {
+                AnchorPane anchorPane = (AnchorPane) deckGroup.getChildren().get(i);
                 if (!anchorPane.getChildren().isEmpty()) {
-                    AnchorPane activeDeck = (AnchorPane) anchorPane.getChildren().get(0);
-                    activeDecks.add(activeDeck);
+                    AnchorPane deck = (AnchorPane) anchorPane.getChildren().get(0);
+                    decks.add(deck);
+                    CardModel cardData = new CardModel("", "", BLANK_IMAGE);
+                    updateCard(deck, cardData);
                 }
-            }
-            catch(Exception e){
-                // ignore
+            } catch (Exception e) {
+                // Handle exception
             }
         }
+    }
 
-        // Add drag detection for each ActiveDeck
+    private void setupDragAndDrop() {
         for (AnchorPane activeDeck : activeDecks) {
-            activeDeck.setOnDragDetected(event -> {
-                Dragboard dragboard = activeDeck.startDragAndDrop(TransferMode.ANY);
-                ClipboardContent content = new ClipboardContent();
-                content.putString(activeDeck.getId());
-                dragboard.setContent(content);
-                event.consume();
-            });
+            setDragDetected(activeDeck);
         }
 
-        // Add drag over for FieldCard, while hovering not releasing
-        FieldCard.setOnDragOver(event -> {
-            // System.out.println("Drag Over");
-            if (event.getGestureSource() != FieldCard && event.getDragboard().hasString()) {
+        for (AnchorPane activeCardField : fieldCards) {
+            setDragDetected(activeCardField);
+            setDragOver(activeCardField);
+            setDragDropped(activeCardField);
+        }
+    }
+
+    private void setDragDetected(AnchorPane deck) {
+        deck.setOnDragDetected(event -> {
+            System.out.println("Drag Detected");
+            Dragboard dragboard = deck.startDragAndDrop(TransferMode.ANY);
+            ClipboardContent content = new ClipboardContent();
+            content.putString(deck.getId());
+            dragboard.setContent(content);
+            event.consume();
+        });
+    }
+
+    private void setDragOver(AnchorPane deck) {
+        deck.setOnDragOver(event -> {
+            if (event.getGestureSource() != deck && event.getDragboard().hasString()) {
                 event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
             }
             event.consume();
         });
+    }
 
-        // Add drop for FieldCard, when releasing
-        FieldCard.setOnDragDropped(event -> {
+    private void setDragDropped(AnchorPane targetCard) {
+        targetCard.setOnDragDropped(event -> {
             Dragboard dragboard = event.getDragboard();
             boolean success = false;
             if (dragboard.hasString()) {
-                String sourceDeckId = dragboard.getString();
-                System.out.println("Dropped from " + sourceDeckId);
-                AnchorPane sourceDeck = null;
-                for (AnchorPane activeDeck : activeDecks) {
-                    if (activeDeck.getId().equals(sourceDeckId)) {
-                        sourceDeck = activeDeck;
-                        break;
+                String sourceCardId = dragboard.getString();
+                System.out.println("Dropped from " + sourceCardId + " to " + targetCard.getId());
+                AnchorPane sourceCard = findDeckById(sourceCardId);
+                if (sourceCard != null) {
+                    CardModel sourceCardData = (CardModel) sourceCard.getUserData();
+                    if (!sourceCardData.getImage().equals(BLANK_IMAGE)) {
+                        if (targetCard.getUserData() != null) {
+                            CardModel targetCardData = (CardModel) targetCard.getUserData();
+                            updateCard(sourceCard, targetCardData);
+                            updateCard(targetCard, sourceCardData);
+                            success = true;
+                        }
+                    }
+                    else {
+                        System.err.println("Empty Card");
                     }
                 }
-                if (sourceDeck != null) {
-                    ImageView sourceImageView = (ImageView) sourceDeck.getChildren().get(0);
-                    Image image = sourceImageView.getImage();
-                    Label sourceLabel = (Label) sourceDeck.getChildren().get(1);
-                    String labelText = sourceLabel.getText();
-                    updateCard(FieldCard, image, labelText);
-                    clearCard(sourceDeck);
-                    success = true;
-                } else {
+                else {
                     System.err.println("Source ActiveDeck not found");
                 }
             }
@@ -92,28 +113,40 @@ public class GUIController {
         });
     }
 
-    private void updateCard(AnchorPane card, Image image, String labelText) {
-        card.setUserData(new CardData(image, labelText));
-        ImageView imageView = (ImageView) card.getChildren().get(0);
-        imageView.setImage(image);
-        Label label = (Label) card.getChildren().get(1);
-        label.setText(labelText);
-    }
-
-    private void clearCard(AnchorPane deck) {
-        ImageView imageView = (ImageView) deck.getChildren().get(0);
-        imageView.setImage(null);
-        Label label = (Label) deck.getChildren().get(1);
-        label.setText("");
-    }
-
-    private static class CardData {
-        private Image image;
-        private String labelText;
-
-        public CardData(Image image, String labelText) {
-            this.image = image;
-            this.labelText = labelText;
+    public AnchorPane findDeckById(String id) {
+        for (AnchorPane deck : activeDecks) {
+            if (deck.getId().equals(id)) {
+                return deck;
+            }
         }
+        for (AnchorPane deck : fieldCards) {
+            if (deck.getId().equals(id)) {
+                return deck;
+            }
+        }
+        return null;
+    }
+
+    public void updateCard(AnchorPane card, CardModel cardData) {
+        card.setUserData(new CardModel(cardData.getColor(), cardData.getName(), cardData.getImage()));
+
+        ImageView imageView = (ImageView) card.getChildren().get(0);
+        Image image = new Image(getClass().getResourceAsStream(cardData.getImage()));
+        imageView.setImage(image != null ? image : new Image(BLANK_IMAGE)); // Use blank image if resource not found
+        Label label = (Label) card.getChildren().get(1);
+        label.setText(cardData.getName());
+
+        card.setStyle(null);
+        // Update AnchorPane background color based on the color attribute of the card model
+        String color = cardData.getColor();
+        if (color != null && !color.isEmpty()) {
+            card.setStyle("-fx-background-color: " + color + "; -fx-background-radius: 7.7px;");
+        }
+    }
+
+    public void clearCard(AnchorPane source) {
+        CardModel emptyData = new CardModel("", "", BLANK_IMAGE);
+        source.setUserData(emptyData);
+        updateCard(source, emptyData);
     }
 }
