@@ -16,14 +16,14 @@
          <font>
             <Font size="21.0" />
          </font></Label>
-      <Label fx:id="harvestWeight" layoutX="161.0" layoutY="183.0" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="477.0" style="-fx-font-weight: 700;" textFill="#d4e3fc">
+      <Label fx:id="harvestWeight" wrapText="true" layoutX="161.0" layoutY="183.0" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="477.0" style="-fx-font-weight: 700;" textFill="#d4e3fc">
 
          <font>
             <Font size="21.0" />
          </font>
       </Label>
       <Label layoutX="161.0" layoutY="231.0" maxWidth="-Infinity" minWidth="-Infinity"
-         prefWidth="477.0" style="-fx-font-weight: 700;" text="Active Items :" textFill="#d4e3fc">
+         prefWidth="477.0" style="-fx-font-weight: 700;" textFill="#d4e3fc">
          <font>
             <Font size="21.0" />
          </font>

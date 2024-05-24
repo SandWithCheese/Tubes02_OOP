@@ -3,6 +3,7 @@ package com.if2210.app.controller;
 import java.util.List;
 import java.util.Map;
 
+import com.if2210.app.factory.ProductCardFactory;
 import com.if2210.app.model.*;
 import com.if2210.app.model.AnimalCardModel.AnimalType;
 import com.if2210.app.view.*;
@@ -19,14 +20,11 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-
-// import com.if2210.app.factory.AnimalCardFactory;
-// import com.if2210.app.factory.ItemCardFactory;
-// import com.if2210.app.factory.PlantCardFactory;
-// import com.if2210.app.model.*;
 
 public class GUIController {
     public static final String BLANK_IMAGE = "/com/if2210/app/assets/blank.png";
@@ -251,6 +249,7 @@ public class GUIController {
                                 else if (sourceCardData.getName().equals("Instant Harvest")) {
                                     // Implement your logic here if needed
                                     System.out.println("INSTANT HARVEST");
+                                    applyInstantHarvest(targetCardData, targetCard);
                                     deleteCard(sourceCard);
                                     success = true; // Implement your logic here if needed
                                 }
@@ -529,8 +528,9 @@ public class GUIController {
                 childStage.showAndWait();
 
                 ProductCardModel productItem = CardInfoView.getProductItem();
-                if (productItem != null && !gameManagerModel.getActivePlayer().getActiveDeck().isFull()) {
+                if (productItem != null) {
                     for (int i = 0; i < 6; i++) {
+                        // System.out.println(gameManagerModel.getActivePlayer().getActiveDeck().getCard(i).getName());
                         if (gameManagerModel.getActivePlayer().getActiveDeck().getCard(i) == null) {
                             gameManagerModel.getActivePlayer().getActiveDeck().setCard(i, productItem);
                             updateCard(activeDecks.get(i), productItem, true);
@@ -548,6 +548,33 @@ public class GUIController {
         }
     }
 
+    public void handleVictory(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/if2210/app/fxml/Victory.fxml"));
+            String winner;
+            if(gameManagerModel.getPlayer1().getMoney()>gameManagerModel.getPlayer2().getMoney()){
+                winner ="1";
+            }else if(gameManagerModel.getPlayer1().getMoney()<gameManagerModel.getPlayer2().getMoney()){
+                winner ="2";
+            }else{
+                winner ="0";
+            }
+            VictoryView vic = new VictoryView(winner);
+            loader.setController(vic);
+            Parent root = loader.load();
+
+            Stage childStage = new Stage();
+            childStage.setTitle("Card Info");
+            childStage.initModality(Modality.APPLICATION_MODAL);
+            childStage.initOwner(null); // Replace 'null' with reference to the primary stage if needed
+            childStage.setScene(new Scene(root));
+            childStage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void handleNextTurn() {
         System.out.println("Next Turn");
         gameManagerModel.setWhoseTurn(gameManagerModel.getWhoseTurn() == 0 ? 1 : 0);
@@ -562,6 +589,7 @@ public class GUIController {
         FieldController.incrementAllCards(gameManagerModel.getActivePlayer().getField());
         isEnemyField = false;
         toggleDragDetectionOnFieldCards(true); // Enable drag detection
+        FieldController.updatePlantHarvested(fieldCards, gameManagerModel, this);
 
         ActiveDeckModel currentActiveDeck = gameManagerModel.getActivePlayer().getActiveDeck();
         DeckModel currentDeck = gameManagerModel.getActivePlayer().getDeck();
@@ -682,6 +710,34 @@ public class GUIController {
             activeItems.add((ItemCardModel) sourceCardData);
             temp.setActiveItems(activeItems);
             updateCard(targetCard, temp, true);
+        }
+    }
+
+    private void applyInstantHarvest(CardModel sourceCardData, AnchorPane sourceCard){
+        if(!sourceCardData.getImage().equals(BLANK_IMAGE)){
+            if(!gameManagerModel.getActivePlayer().getActiveDeck().isFull()){
+                Map<String, String> resProd = new HashMap<>();
+                resProd.put("Hiu Darat", "Sirip Hiu");
+                resProd.put("Sapi", "Susu");
+                resProd.put("Domba", "Daging Domba");
+                resProd.put("Kuda", "Daging Kuda");
+                resProd.put("Ayam", "Telur");
+                resProd.put("Beruang", "Daging Beruang");
+                resProd.put("Biji Jagung", "Jagung");
+                resProd.put("Biji Labu", "Labu");
+                resProd.put("Biji Stroberi", "Stroberi");
+                
+                ProductCardModel produk = ProductCardFactory.createProductCard(resProd.get(((CardModel) sourceCardData).getName()));
+                for (int i = 0; i < 6; i++) {
+                    if(gameManagerModel.getActivePlayer().getActiveDeck().getCard(i) == null){
+                        gameManagerModel.getActivePlayer().getActiveDeck().setCard(i, produk);
+                        updateCard(activeDecks.get(i), produk, true);
+                        break;
+                    }
+                }
+            }
+            deleteCard(sourceCard);
+
         }
     }
 
