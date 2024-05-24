@@ -366,6 +366,8 @@ public class GUIController {
                     .setMoney(gameManagerModel.getActivePlayer().getMoney() + productCard.getPrice());
             gulden1.setText(Integer.toString(gameManagerModel.getPlayer1().getMoney()));
             gulden2.setText(Integer.toString(gameManagerModel.getPlayer2().getMoney()));
+            
+            boolean found = false;
 
             for (Map.Entry<ProductCardModel, Integer> entry : gameManagerModel.getShop().getProductList().entrySet()) {
                 ProductCardModel product = entry.getKey();
@@ -377,8 +379,15 @@ public class GUIController {
                     } catch (Exception e) {
                         // Exception handling
                     }
+                    found = true;
+                    break;
                 }
             }
+
+            if (!found) {
+                gameManagerModel.getShop().getProductList().put(productCard, 1);
+            }
+            
             deleteCard(card);
         }
     }
