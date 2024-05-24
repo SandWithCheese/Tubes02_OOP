@@ -66,6 +66,21 @@ public class GUIController {
     private Button enemyFieldButton;
 
     @FXML
+    private Button shopButton;
+
+    @FXML
+    private Button saveButton;
+
+    @FXML
+    private Button loadButton;
+
+    @FXML
+    private Button pluginButton;
+
+    @FXML
+    private Button nextTurnButton;
+
+    @FXML
     private AnchorPane shopDrop;
 
     @FXML
@@ -219,49 +234,56 @@ public class GUIController {
                         // target is the shop
                         if (targetCard.getId().equals("shopDrop")) {
                             // Source is a Product card
-                            if (sourceCardData instanceof ProductCardModel){
+                            if (sourceCardData instanceof ProductCardModel) {
                                 System.out.println("SHOPEE COD");
                                 success = true; // Implement your logic here if needed
-                            }
-                            else{
+                            } else {
                                 System.err.println("Illegal move: Source card is not a Product card");
                             }
                         }
                         // Source is an Animal or Plant card
-                        else if (sourceCardData instanceof AnimalCardModel || sourceCardData instanceof PlantCardModel){
+                        else if (sourceCardData instanceof AnimalCardModel
+                                || sourceCardData instanceof PlantCardModel) {
                             if (targetCardData.getImage().equals(BLANK_IMAGE) && !isEnemyField) {
+                                // Switch color
+                                String tempColor = sourceCardData.getColor();
+                                sourceCardData.setColor(targetCardData.getColor());
+                                targetCardData.setColor(tempColor);
                                 updateCard(sourceCard, targetCardData, true);
                                 updateCard(targetCard, sourceCardData, true);
                                 success = true;
-                            }
-                            else if (!sourceCardId.startsWith("ActiveDeck")){
+                            } else if (!sourceCardId.startsWith("ActiveDeck")) {
+                                String tempColor = sourceCardData.getColor();
+                                sourceCardData.setColor(targetCardData.getColor());
+                                targetCardData.setColor(tempColor);
                                 updateCard(sourceCard, targetCardData, true);
                                 updateCard(targetCard, sourceCardData, true);
                                 success = true;
                             }
                         }
                         // Source is an Item card
-                        else if (sourceCardData instanceof ItemCardModel && (
-                                 (targetCardData instanceof AnimalCardModel || targetCardData instanceof PlantCardModel))) {
+                        else if (sourceCardData instanceof ItemCardModel && ((targetCardData instanceof AnimalCardModel
+                                || targetCardData instanceof PlantCardModel))) {
                             // 1 Accelerate
                             if (sourceCardData.getName().equals("Accelerate")) {
                                 // Implement your logic here if needed
                                 System.out.println("ACCELERATE");
-                                if (targetCardData instanceof AnimalCardModel){
+                                if (targetCardData instanceof AnimalCardModel) {
                                     // +8 weight
                                     AnimalCardModel temp = (AnimalCardModel) targetCardData;
                                     temp.setCurrentWeight(temp.getCurrentWeight() + 8);
                                     ArrayList<ItemCardModel> activeItems = temp.getActiveItems();
-                                    activeItems.add((ItemCardModel) sourceCardData); // Add sourceCardData to activeItems
+                                    activeItems.add((ItemCardModel) sourceCardData); // Add sourceCardData to
+                                                                                     // activeItems
                                     temp.setActiveItems(activeItems); // Update activeItems in temp
                                     updateCard(targetCard, temp, true);
                                     updateCard(sourceCard, new CardModel("", "", BLANK_IMAGE), true);
-                                }
-                                else{
+                                } else {
                                     PlantCardModel temp = (PlantCardModel) targetCardData;
                                     temp.setCurrentAge(temp.getCurrentAge() + 2);
                                     ArrayList<ItemCardModel> activeItems = temp.getActiveItems();
-                                    activeItems.add((ItemCardModel) sourceCardData); // Add sourceCardData to activeItems
+                                    activeItems.add((ItemCardModel) sourceCardData); // Add sourceCardData to
+                                                                                     // activeItems
                                     temp.setActiveItems(activeItems); // Update activeItems in temp
                                     updateCard(targetCard, temp, true);
                                     updateCard(sourceCard, new CardModel("", "", BLANK_IMAGE), true);
@@ -271,22 +293,24 @@ public class GUIController {
                             else if (sourceCardData.getName().equals("Delay")) {
                                 // Implement your logic here if needed
                                 System.out.println("DELAY");
-                                if (targetCardData instanceof AnimalCardModel){
+                                if (targetCardData instanceof AnimalCardModel) {
                                     // -5 weight, but not below 0
                                     AnimalCardModel temp = (AnimalCardModel) targetCardData;
-                                    temp.setCurrentWeight(temp.getCurrentWeight() - 5 < 0 ? 0 : temp.getCurrentWeight() - 5);
+                                    temp.setCurrentWeight(
+                                            temp.getCurrentWeight() - 5 < 0 ? 0 : temp.getCurrentWeight() - 5);
                                     ArrayList<ItemCardModel> activeItems = temp.getActiveItems();
-                                    activeItems.add((ItemCardModel) sourceCardData); // Add sourceCardData to activeItems
+                                    activeItems.add((ItemCardModel) sourceCardData); // Add sourceCardData to
+                                                                                     // activeItems
                                     temp.setActiveItems(activeItems); // Update activeItems in temp
                                     updateCard(targetCard, temp, true);
                                     updateCard(sourceCard, new CardModel("", "", BLANK_IMAGE), true);
-                                }
-                                else{
+                                } else {
                                     // -2 age, but not below 0
                                     PlantCardModel temp = (PlantCardModel) targetCardData;
                                     temp.setCurrentAge(temp.getCurrentAge() - 2 < 0 ? 0 : temp.getCurrentAge() - 2);
                                     ArrayList<ItemCardModel> activeItems = temp.getActiveItems();
-                                    activeItems.add((ItemCardModel) sourceCardData); // Add sourceCardData to activeItems
+                                    activeItems.add((ItemCardModel) sourceCardData); // Add sourceCardData to
+                                                                                     // activeItems
                                     temp.setActiveItems(activeItems); // Update activeItems in temp
                                     updateCard(targetCard, temp, true);
                                     updateCard(sourceCard, new CardModel("", "", BLANK_IMAGE), true);
@@ -301,37 +325,35 @@ public class GUIController {
                             else if (sourceCardData.getName().equals("Destroy")) {
                                 if (targetCardData.getImage().equals(BLANK_IMAGE)) {
                                     System.err.println("Illegal move: Target must not be empty to destroy");
-                                }
-                                else {
+                                } else {
                                     System.out.println("DESTROY");
-                                    if (targetCardData instanceof AnimalCardModel){
+                                    if (targetCardData instanceof AnimalCardModel) {
                                         // +8 weight
                                         AnimalCardModel temp = (AnimalCardModel) targetCardData;
                                         ArrayList<ItemCardModel> activeItems = temp.getActiveItems();
                                         boolean foundProtect = false;
-                                        for (ItemCardModel item : activeItems){
-                                            if (item.getName().equals("Protect")){
+                                        for (ItemCardModel item : activeItems) {
+                                            if (item.getName().equals("Protect")) {
                                                 foundProtect = true;
                                                 break;
                                             }
                                         }
 
-                                        if (!foundProtect){
+                                        if (!foundProtect) {
                                             updateCard(targetCard, new CardModel("", "", BLANK_IMAGE), true);
                                         }
-                                    }
-                                    else{
+                                    } else {
                                         PlantCardModel temp = (PlantCardModel) targetCardData;
                                         ArrayList<ItemCardModel> activeItems = temp.getActiveItems();
                                         boolean foundProtect = false;
-                                        for (ItemCardModel item : activeItems){
-                                            if (item.getName().equals("Protect")){
+                                        for (ItemCardModel item : activeItems) {
+                                            if (item.getName().equals("Protect")) {
                                                 foundProtect = true;
                                                 break;
                                             }
                                         }
 
-                                        if (!foundProtect){
+                                        if (!foundProtect) {
                                             updateCard(targetCard, new CardModel("", "", BLANK_IMAGE), true);
                                         }
                                     }
@@ -344,19 +366,20 @@ public class GUIController {
                             else if (sourceCardData.getName().equals("Protect")) {
                                 // Implement your logic here if needed
                                 System.out.println("PROTECT");
-                                if (targetCardData instanceof AnimalCardModel){
+                                if (targetCardData instanceof AnimalCardModel) {
                                     // +8 weight
                                     AnimalCardModel temp = (AnimalCardModel) targetCardData;
                                     ArrayList<ItemCardModel> activeItems = temp.getActiveItems();
-                                    activeItems.add((ItemCardModel) sourceCardData); // Add sourceCardData to activeItems
+                                    activeItems.add((ItemCardModel) sourceCardData); // Add sourceCardData to
+                                                                                     // activeItems
                                     temp.setActiveItems(activeItems); // Update activeItems in temp
                                     updateCard(targetCard, temp, true);
                                     updateCard(sourceCard, new CardModel("", "", BLANK_IMAGE), success);
-                                }
-                                else{
+                                } else {
                                     PlantCardModel temp = (PlantCardModel) targetCardData;
                                     ArrayList<ItemCardModel> activeItems = temp.getActiveItems();
-                                    activeItems.add((ItemCardModel) sourceCardData); // Add sourceCardData to activeItems
+                                    activeItems.add((ItemCardModel) sourceCardData); // Add sourceCardData to
+                                                                                     // activeItems
                                     temp.setActiveItems(activeItems); // Update activeItems in temp
                                     updateCard(targetCard, temp, true);
                                     updateCard(sourceCard, new CardModel("", "", BLANK_IMAGE), success);
@@ -366,18 +389,19 @@ public class GUIController {
                             else if (sourceCardData.getName().equals("Trap")) {
                                 // Implement your logic here if needed
                                 System.out.println("TRAP");
-                                if (targetCardData instanceof AnimalCardModel){
+                                if (targetCardData instanceof AnimalCardModel) {
                                     // +8 weight
                                     AnimalCardModel temp = (AnimalCardModel) targetCardData;
                                     ArrayList<ItemCardModel> activeItems = temp.getActiveItems();
-                                    activeItems.add((ItemCardModel) sourceCardData); // Add sourceCardData to activeItems
+                                    activeItems.add((ItemCardModel) sourceCardData); // Add sourceCardData to
+                                                                                     // activeItems
                                     temp.setActiveItems(activeItems); // Update activeItems in temp
                                     updateCard(targetCard, temp, true);
-                                }
-                                else{
+                                } else {
                                     PlantCardModel temp = (PlantCardModel) targetCardData;
                                     ArrayList<ItemCardModel> activeItems = temp.getActiveItems();
-                                    activeItems.add((ItemCardModel) sourceCardData); // Add sourceCardData to activeItems
+                                    activeItems.add((ItemCardModel) sourceCardData); // Add sourceCardData to
+                                                                                     // activeItems
                                     temp.setActiveItems(activeItems); // Update activeItems in temp
                                     updateCard(targetCard, temp, true);
                                 }
@@ -385,8 +409,7 @@ public class GUIController {
                             // Assuming item cards have a special handling logic with animal or plant cards
                             success = true; // Implement your logic here if needed
                         }
-                    }
-                    else {
+                    } else {
                         System.err.println("Illegal move: Source card is empty");
                     }
                 } else {
@@ -396,7 +419,7 @@ public class GUIController {
             event.setDropCompleted(success);
             event.consume();
         });
-    }    
+    }
 
     public AnchorPane findDeckById(String id) {
         for (AnchorPane deck : activeDecks) {
@@ -629,7 +652,7 @@ public class GUIController {
         int x2 = (int) (Math.random() * 4);
         int y2 = (int) (Math.random() * 5);
 
-        while (Math.abs((x1 - x2) * (y1 - y2)) > 6) {
+        while (((Math.abs(x1 - x2) + 1) * (Math.abs(y1 - y2) + 1)) > 6) {
             x1 = (int) (Math.random() * 4);
             y1 = (int) (Math.random() * 5);
             x2 = (int) (Math.random() * 4);
@@ -649,6 +672,18 @@ public class GUIController {
                 cardData.setColor("red");
                 updateCard(card, cardData, true);
             }
+        }
+
+        // Make all button disabled
+        myFieldButton.setDisable(true);
+        enemyFieldButton.setDisable(true);
+        shopButton.setDisable(true);
+        saveButton.setDisable(true);
+        loadButton.setDisable(true);
+        pluginButton.setDisable(true);
+        nextTurnButton.setDisable(true);
+        for (AnchorPane activeDeck : activeDecks) {
+            activeDeck.setDisable(true);
         }
 
         // Using threading, update the message label every 0.1 second for 30-60 seconds
@@ -672,12 +707,78 @@ public class GUIController {
                 }
                 Platform.runLater(() -> {
                     messageLabel.setText("Bear attack! All cards in the field are destroyed.");
-                    // Clear all cards inside the area
+                    // Check if a card inside the area have a trap item
+                    boolean foundProtect = false;
                     for (int i = Math.min(x1Final, x2Final); i <= Math.max(x1Final, x2Final); i++) {
                         for (int j = Math.min(y1Final, y2Final); j <= Math.max(y1Final, y2Final); j++) {
                             AnchorPane card = fieldCards.get(i * 5 + j);
-                            clearCard(card);
+                            CardModel cardData = (CardModel) card.getUserData();
+                            if (cardData instanceof AnimalCardModel) {
+                                AnimalCardModel temp = (AnimalCardModel) cardData;
+                                ArrayList<ItemCardModel> activeItems = temp.getActiveItems();
+                                for (ItemCardModel item : activeItems) {
+                                    if (item.getName().equals("Trap")) {
+                                        foundProtect = true;
+                                        break;
+                                    }
+                                }
+                            } else if (cardData instanceof PlantCardModel) {
+                                PlantCardModel temp = (PlantCardModel) cardData;
+                                ArrayList<ItemCardModel> activeItems = temp.getActiveItems();
+                                for (ItemCardModel item : activeItems) {
+                                    if (item.getName().equals("Trap")) {
+                                        foundProtect = true;
+                                        break;
+                                    }
+                                }
+                            }
                         }
+                    }
+
+                    // Clear all cards inside the area if there are no card with protect item
+                    if (!foundProtect) {
+                        for (int i = Math.min(x1Final, x2Final); i <= Math.max(x1Final, x2Final); i++) {
+                            for (int j = Math.min(y1Final, y2Final); j <= Math.max(y1Final, y2Final); j++) {
+                                AnchorPane card = fieldCards.get(i * 5 + j);
+                                clearCard(card);
+                            }
+                        }
+                    } else {
+                        messageLabel.setText("Bear attack! But your cards are safe because of the trap item.");
+
+                        // If current player active deck is not full, add bear card to the active deck
+                        if (!gameManagerModel.getActivePlayer().getActiveDeck().isFull()) {
+                            CardModel bear = AnimalCardFactory.createAnimalCard("Beruang");
+                            for (int i = 0; i < 6; i++) {
+                                if (gameManagerModel.getActivePlayer().getActiveDeck().getCard(i) == null) {
+                                    gameManagerModel.getActivePlayer().getActiveDeck().setCard(i, bear);
+                                    updateCard(activeDecks.get(i), bear, true);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    // Set all cards color back to normal
+                    for (int i = Math.min(x1Final, x2Final); i <= Math.max(x1Final, x2Final); i++) {
+                        for (int j = Math.min(y1Final, y2Final); j <= Math.max(y1Final, y2Final); j++) {
+                            AnchorPane card = fieldCards.get(i * 5 + j);
+                            CardModel cardData = (CardModel) card.getUserData();
+                            cardData.setColor("#D4E3FC");
+                            updateCard(card, cardData, true);
+                        }
+                    }
+
+                    // Set all button enabled
+                    myFieldButton.setDisable(false);
+                    enemyFieldButton.setDisable(false);
+                    shopButton.setDisable(false);
+                    saveButton.setDisable(false);
+                    loadButton.setDisable(false);
+                    pluginButton.setDisable(false);
+                    nextTurnButton.setDisable(false);
+                    for (AnchorPane activeDeck : activeDecks) {
+                        activeDeck.setDisable(false);
                     }
                 });
             }
@@ -697,20 +798,23 @@ public class GUIController {
     }
 
     // public void updateCard(AnchorPane card, CardModel cardData) {
-    //     card.setUserData(cardData);
+    // card.setUserData(cardData);
 
-    //     ImageView imageView = (ImageView) card.getChildren().get(0);
-    //     Image image = new Image(getClass().getResourceAsStream(cardData.getImage()));
-    //     imageView.setImage(image != null ? image : new Image(BLANK_IMAGE)); // Use blank image if resource not found
-    //     Label label = (Label) card.getChildren().get(1);
-    //     label.setText(cardData.getName());
+    // ImageView imageView = (ImageView) card.getChildren().get(0);
+    // Image image = new Image(getClass().getResourceAsStream(cardData.getImage()));
+    // imageView.setImage(image != null ? image : new Image(BLANK_IMAGE)); // Use
+    // blank image if resource not found
+    // Label label = (Label) card.getChildren().get(1);
+    // label.setText(cardData.getName());
 
-    //     card.setStyle(null);
-    //     // Update AnchorPane background color based on the color attribute of the card
-    //     // model
-    //     String color = cardData.getColor();
-    //     if (color != null && !color.isEmpty()) {
-    //         card.setStyle("-fx-background-color: " + color + "; -fx-background-radius: 7.7px;");
-    //     }
+    // card.setStyle(null);
+    // // Update AnchorPane background color based on the color attribute of the
+    // card
+    // // model
+    // String color = cardData.getColor();
+    // if (color != null && !color.isEmpty()) {
+    // card.setStyle("-fx-background-color: " + color + "; -fx-background-radius:
+    // 7.7px;");
+    // }
     // }
 }
