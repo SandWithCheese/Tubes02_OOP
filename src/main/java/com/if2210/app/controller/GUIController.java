@@ -89,8 +89,6 @@ public class GUIController {
         updateCard(activeDecks.get(2), ItemCardFactory.createItemCard("Accelerate"), true);
         updateCard(activeDecks.get(3), ItemCardFactory.createItemCard("Destroy"), true);
         updateCard(activeDecks.get(4), ItemCardFactory.createItemCard("Protect"), true);
-
-        handleNextTurn();
     }
 
     private void handleMyFieldButtonClick(MouseEvent event) {
