@@ -282,7 +282,7 @@ public class DataManager {
         try {
             URL url = getClass().getResource("/com/if2210/app/gamestates/" + folderName);
             // If folder doesn't exist, create it and its files
-            if (url == null && Paths.get("src/main/resources/com/if2210/app/gamestates", folderName) == null) {
+            if (url == null || Paths.get("src/main/resources/com/if2210/app/gamestates", folderName) == null) {
                 Files.createDirectory(
                         Paths.get(getClass().getResource("/com/if2210/app/gamestates").toURI()).resolve(folderName));
                 Files.createDirectory(

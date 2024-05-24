@@ -6,6 +6,7 @@ import com.if2210.app.datastore.DataManager;
 import com.if2210.app.model.PlayerModel;
 import com.if2210.app.model.ProductCardModel;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -103,12 +104,34 @@ public class LoadView {
                 productList = dataManager.getProductList();
                 player1 = dataManager.getPlayer1();
                 player2 = dataManager.getPlayer2();
-                messageLabel.setText(
-                        "Berhasil membaca dari folder " + foldername + " dengan file berekstensi " + selectedFormat);
-                messageLabel.setTextFill(javafx.scene.paint.Color.GREEN);
 
-                Stage stage = (Stage) messageLabel.getScene().getWindow();
-                stage.close();
+                // Using threading, update the message label every 1 second for 5 seconds and
+                // then close the window
+                Runnable task = new Runnable() {
+                    @Override
+                    public void run() {
+                        for (int i = 0; i < 5; i++) {
+                            final int countdown = 5 - i;
+                            Platform.runLater(() -> {
+                                messageLabel.setText("Berhasil membaca dari folder " + foldername
+                                        + " dengan file berekstensi " + selectedFormat + ".\nWindow akan ditutup dalam "
+                                        + countdown + " detik.");
+                            });
+
+                            try {
+                                Thread.sleep(1000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        Platform.runLater(() -> {
+                            Stage stage = (Stage) messageLabel.getScene().getWindow();
+                            stage.close();
+                        });
+                    }
+                };
+                Thread thread = new Thread(task);
+                thread.start();
             } catch (Exception e) {
                 messageLabel.setText("Folder tidak ditemukan.");
                 messageLabel.setTextFill(javafx.scene.paint.Color.RED);

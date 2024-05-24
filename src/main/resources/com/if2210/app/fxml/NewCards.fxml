@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="605.0" prefWidth="973.0" style="-fx-border-color: #799FF6; -fx-background-color: #021A38; -fx-border-width: 3px;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label alignment="CENTER" layoutX="131.0" layoutY="22.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="62.0" prefWidth="712.0" style="-fx-font-weight: 700;" text="New Random Card From Your Deck" textAlignment="CENTER" textFill="#d4e3fc">
+         <font>
+            <Font size="42.0" />
+         </font></Label>
+
+      <Button alignment="CENTER" layoutX="507.0" layoutY="397.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#harvestHandler" prefHeight="52.0" prefWidth="171.0" style="-fx-background-color: #799FF6; -fx-font-weight: 700; -fx-background-radius: 10px;" text="Done" textAlignment="CENTER" textFill="WHITE">
+
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button alignment="CENTER" layoutX="296.0" layoutY="397.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#harvestHandler" prefHeight="52.0" prefWidth="171.0" style="-fx-background-color: #799FF6; -fx-font-weight: 700; -fx-background-radius: 10px;" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="48.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/Dice.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Label alignment="CENTER" layoutX="131.0" layoutY="468.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="62.0" prefWidth="712.0" style="-fx-font-weight: 700;" text="You can random the card as much as you want" textAlignment="CENTER" textFill="#d4e3fc">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="97.0" layoutY="129.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="206.4" prefWidth="161.73" style="-fx-background-color: #D4E3FC; -fx-background-radius: 15.4px;">
+
+         <children>
+            <AnchorPane id="CardFrame" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="206.4" prefWidth="161.73" style="-fx-background-color: #D4E3FC; -fx-background-radius: 15.4px;">
+               <children>
+
+                  <ImageView fx:id="image" fitHeight="149.0" fitWidth="162.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="name" alignment="CENTER" layoutX="3.0" layoutY="149.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="52.0" prefWidth="155.0" style="-fx-font-weight: 700;" text="satu" textFill="#010913">
+
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+
+               </children></AnchorPane>
+         </children></AnchorPane>
+      <AnchorPane layoutX="301.0" layoutY="129.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="206.4" prefWidth="161.73" style="-fx-background-color: #D4E3FC; -fx-background-radius: 15.4px;">
+         <children>
+            <AnchorPane id="CardFrame" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="206.4" prefWidth="161.73" style="-fx-background-color: #D4E3FC; -fx-background-radius: 15.4px;">
+               <children>
+                  <ImageView fx:id="image1" fitHeight="149.0" fitWidth="162.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="name1" alignment="CENTER" layoutX="3.0" layoutY="149.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="52.0" prefWidth="155.0" style="-fx-font-weight: 700;" text="dua" textFill="#010913">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="487.0" layoutY="129.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="206.4" prefWidth="161.73" style="-fx-background-color: #D4E3FC; -fx-background-radius: 15.4px;">
+         <children>
+            <AnchorPane id="CardFrame" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="206.4" prefWidth="161.73" style="-fx-background-color: #D4E3FC; -fx-background-radius: 15.4px;">
+               <children>
+                  <ImageView fx:id="image11" fitHeight="149.0" fitWidth="162.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="name11" alignment="CENTER" layoutX="3.0" layoutY="149.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="52.0" prefWidth="155.0" style="-fx-font-weight: 700;" text="tiga" textFill="#010913">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="678.0" layoutY="129.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="206.4" prefWidth="161.73" style="-fx-background-color: #D4E3FC; -fx-background-radius: 15.4px;">
+         <children>
+            <AnchorPane id="CardFrame" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="206.4" prefWidth="161.73" style="-fx-background-color: #D4E3FC; -fx-background-radius: 15.4px;">
+               <children>
+                  <ImageView fx:id="image111" fitHeight="149.0" fitWidth="162.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="name111" alignment="CENTER" layoutX="3.0" layoutY="149.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="52.0" prefWidth="155.0" style="-fx-font-weight: 700;" text="empat" textFill="#010913">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</Pane>
