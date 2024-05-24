@@ -95,6 +95,8 @@ public class ShopView {
                                     break;
                                 }
                             }
+
+                            messagelabel.setText("Berhasil membeli " + productname + " seharga " + priceLabel.getText() + " Gulden");
                         }
                     }
                 }
