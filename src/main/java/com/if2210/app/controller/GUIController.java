@@ -236,148 +236,22 @@ public class GUIController {
                             }
                         }
                         // Source is an Item card
-                        else if (sourceCardData instanceof ItemCardModel && (
-                                 (targetCardData instanceof AnimalCardModel || targetCardData instanceof PlantCardModel))) {
-                            // 1 Accelerate
-                            if (sourceCardData.getName().equals("Accelerate")) {
-                                // Implement your logic here if needed
-                                System.out.println("ACCELERATE");
-                                if (targetCardData instanceof AnimalCardModel){
-                                    // +8 weight
-                                    AnimalCardModel temp = (AnimalCardModel) targetCardData;
-                                    temp.setCurrentWeight(temp.getCurrentWeight() + 8);
-                                    ArrayList<ItemCardModel> activeItems = temp.getActiveItems();
-                                    activeItems.add((ItemCardModel) sourceCardData); // Add sourceCardData to activeItems
-                                    temp.setActiveItems(activeItems); // Update activeItems in temp
-                                    updateCard(targetCard, temp, true);
-                                    deleteCard(sourceCard);
-                                }
-                                else{
-                                    PlantCardModel temp = (PlantCardModel) targetCardData;
-                                    temp.setCurrentAge(temp.getCurrentAge() + 2);
-                                    ArrayList<ItemCardModel> activeItems = temp.getActiveItems();
-                                    activeItems.add((ItemCardModel) sourceCardData); // Add sourceCardData to activeItems
-                                    temp.setActiveItems(activeItems); // Update activeItems in temp
-                                    updateCard(targetCard, temp, true);
-                                    deleteCard(sourceCard);
-                                }
-                            }
-                            // 2 Delay
-                            else if (sourceCardData.getName().equals("Delay")) {
-                                // Implement your logic here if needed
-                                System.out.println("DELAY");
-                                if (targetCardData instanceof AnimalCardModel){
-                                    // -5 weight, but not below 0
-                                    AnimalCardModel temp = (AnimalCardModel) targetCardData;
-                                    temp.setCurrentWeight(temp.getCurrentWeight() - 5 < 0 ? 0 : temp.getCurrentWeight() - 5);
-                                    ArrayList<ItemCardModel> activeItems = temp.getActiveItems();
-                                    activeItems.add((ItemCardModel) sourceCardData); // Add sourceCardData to activeItems
-                                    temp.setActiveItems(activeItems); // Update activeItems in temp
-                                    updateCard(targetCard, temp, true);
-                                    deleteCard(sourceCard);
-                                }
-                                else{
-                                    // -2 age, but not below 0
-                                    PlantCardModel temp = (PlantCardModel) targetCardData;
-                                    temp.setCurrentAge(temp.getCurrentAge() - 2 < 0 ? 0 : temp.getCurrentAge() - 2);
-                                    ArrayList<ItemCardModel> activeItems = temp.getActiveItems();
-                                    activeItems.add((ItemCardModel) sourceCardData); // Add sourceCardData to activeItems
-                                    temp.setActiveItems(activeItems); // Update activeItems in temp
-                                    updateCard(targetCard, temp, true);
-                                    deleteCard(sourceCard);
-                                }
-                            }
-                            // 3 Instant Harvest
-                            else if (sourceCardData.getName().equals("Instant Harvest")) {
+                        else if (sourceCardData instanceof ItemCardModel &&
+                                (targetCardData instanceof AnimalCardModel || targetCardData instanceof PlantCardModel)) {
+                            if (sourceCardData.getName().equals("Accelerate") ||
+                                sourceCardData.getName().equals("Delay") ||
+                                sourceCardData.getName().equals("Protect")) {
+                                applyItemEffect(sourceCardData, targetCardData, targetCard);
+                            } else if (sourceCardData.getName().equals("Instant Harvest")) {
                                 // Implement your logic here if needed
                                 System.out.println("INSTANT HARVEST");
-                            }
-                            // 4 Destroy
-                            else if (sourceCardData.getName().equals("Destroy")) {
-                                if (targetCardData.getImage().equals(BLANK_IMAGE)) {
-                                    System.err.println("Illegal move: Target must not be empty to destroy");
-                                }
-                                else {
-                                    System.out.println("DESTROY");
-                                    if (targetCardData instanceof AnimalCardModel){
-                                        // +8 weight
-                                        AnimalCardModel temp = (AnimalCardModel) targetCardData;
-                                        ArrayList<ItemCardModel> activeItems = temp.getActiveItems();
-                                        boolean foundProtect = false;
-                                        for (ItemCardModel item : activeItems){
-                                            if (item.getName().equals("Protect")){
-                                                foundProtect = true;
-                                                break;
-                                            }
-                                        }
-
-                                        if (!foundProtect){
-                                            deleteCard(targetCard);
-                                        }
-                                    }
-                                    else{
-                                        PlantCardModel temp = (PlantCardModel) targetCardData;
-                                        ArrayList<ItemCardModel> activeItems = temp.getActiveItems();
-                                        boolean foundProtect = false;
-                                        for (ItemCardModel item : activeItems){
-                                            if (item.getName().equals("Protect")){
-                                                foundProtect = true;
-                                                break;
-                                            }
-                                        }
-
-                                        if (!foundProtect){
-                                            deleteCard(targetCard);
-                                        }
-                                    }
-                                    deleteCard(sourceCard);
-                                    success = true;
-                                }
-                                // Implement your logic here if needed
-                            }
-                            // 5 Protect
-                            else if (sourceCardData.getName().equals("Protect")) {
-                                // Implement your logic here if needed
-                                System.out.println("PROTECT");
-                                if (targetCardData instanceof AnimalCardModel){
-                                    // +8 weight
-                                    AnimalCardModel temp = (AnimalCardModel) targetCardData;
-                                    ArrayList<ItemCardModel> activeItems = temp.getActiveItems();
-                                    activeItems.add((ItemCardModel) sourceCardData); // Add sourceCardData to activeItems
-                                    temp.setActiveItems(activeItems); // Update activeItems in temp
-                                    updateCard(targetCard, temp, true);
-                                    deleteCard(sourceCard);
-                                }
-                                else{
-                                    PlantCardModel temp = (PlantCardModel) targetCardData;
-                                    ArrayList<ItemCardModel> activeItems = temp.getActiveItems();
-                                    activeItems.add((ItemCardModel) sourceCardData); // Add sourceCardData to activeItems
-                                    temp.setActiveItems(activeItems); // Update activeItems in temp
-                                    updateCard(targetCard, temp, true);
-                                    deleteCard(sourceCard);
-                                }
-                            }
-                            // 6 Trap
-                            else if (sourceCardData.getName().equals("Trap")) {
-                                // Implement your logic here if needed
+                            } else if (sourceCardData.getName().equals("Destroy")) {
+                                applyDestroyEffect(sourceCardData, targetCardData, targetCard);
+                            } else if (sourceCardData.getName().equals("Trap")) {
                                 System.out.println("TRAP");
-                                if (targetCardData instanceof AnimalCardModel){
-                                    // +8 weight
-                                    AnimalCardModel temp = (AnimalCardModel) targetCardData;
-                                    ArrayList<ItemCardModel> activeItems = temp.getActiveItems();
-                                    activeItems.add((ItemCardModel) sourceCardData); // Add sourceCardData to activeItems
-                                    temp.setActiveItems(activeItems); // Update activeItems in temp
-                                    updateCard(targetCard, temp, true);
-                                }
-                                else{
-                                    PlantCardModel temp = (PlantCardModel) targetCardData;
-                                    ArrayList<ItemCardModel> activeItems = temp.getActiveItems();
-                                    activeItems.add((ItemCardModel) sourceCardData); // Add sourceCardData to activeItems
-                                    temp.setActiveItems(activeItems); // Update activeItems in temp
-                                    updateCard(targetCard, temp, true);
-                                }
+                                applyItemEffect(sourceCardData, targetCardData, targetCard);
                             }
-                            // Assuming item cards have a special handling logic with animal or plant cards
+                            deleteCard(sourceCard);
                             success = true; // Implement your logic here if needed
                         }
                     }
@@ -647,6 +521,8 @@ public class GUIController {
         gameTurn.setText(String.format("%02d", gameManagerModel.getCurrentTurn()));
         loadActiveDeck(gameManagerModel.getActivePlayer());
         loadField(gameManagerModel.getActivePlayer());
+        isEnemyField = false;
+        toggleDragDetectionOnFieldCards(true); // Enable drag detection
     }
 
     private void setupClickCard() {
@@ -676,4 +552,39 @@ public class GUIController {
     //         card.setStyle("-fx-background-color: " + color + "; -fx-background-radius: 7.7px;");
     //     }
     // }
+    private void applyItemEffect(CardModel sourceCardData, CardModel targetCardData, AnchorPane targetCard) {
+        if (targetCardData instanceof AnimalCardModel) {
+            AnimalCardModel temp = (AnimalCardModel) targetCardData;
+            ArrayList<ItemCardModel> activeItems = temp.getActiveItems();
+            activeItems.add((ItemCardModel) sourceCardData);
+            temp.setActiveItems(activeItems);
+            updateCard(targetCard, temp, true);
+        }
+        else {
+            PlantCardModel temp = (PlantCardModel) targetCardData;
+            ArrayList<ItemCardModel> activeItems = temp.getActiveItems();
+            activeItems.add((ItemCardModel) sourceCardData);
+            temp.setActiveItems(activeItems);
+            updateCard(targetCard, temp, true);
+        }
+    }
+    
+    private void applyDestroyEffect(CardModel sourceCardData, CardModel targetCardData, AnchorPane targetCard) {
+        if (!targetCardData.getImage().equals(BLANK_IMAGE)) {
+            if (targetCardData instanceof AnimalCardModel || targetCardData instanceof PlantCardModel) {
+                ArrayList<ItemCardModel> activeItems = ((AnimalCardModel) targetCardData).getActiveItems();
+                boolean foundProtect = false;
+                for (ItemCardModel item : activeItems) {
+                    if (item.getName().equals("Protect")) {
+                        foundProtect = true;
+                        break;
+                    }
+                }
+    
+                if (!foundProtect) {
+                    deleteCard(targetCard);
+                }
+            }
+        }
+    }
 }
