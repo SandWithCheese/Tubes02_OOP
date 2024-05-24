@@ -14,7 +14,7 @@
    <children>
       <AnchorPane layoutX="145.0" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="552.0" prefWidth="503.0" style="-fx-border-color: #D4E3FC;">
          <children>
-            <Label layoutX="20.0" layoutY="2.0" style="-fx-font-weight: 700;" text="Field" textFill="WHITE">
+            <Label fx:id="fieldLabel" layoutX="20.0" layoutY="2.0" style="-fx-font-weight: 700;" text="Field" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>

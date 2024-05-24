@@ -46,6 +46,9 @@ public class GUIController {
     private Label gameTurn;
 
     @FXML
+    private Label fieldLabel;
+
+    @FXML
     private Group activeDeckGroup;
 
     @FXML
@@ -99,6 +102,7 @@ public class GUIController {
         gulden2.setText(Integer.toString(gameManagerModel.getPlayer2().getMoney()));
         deckCount.setText("My Deck " + Integer.toString(gameManagerModel.getPlayer1().getDeck().getDeckSize()) + "/40");
         gameTurn.setText(String.format("%02d", gameManagerModel.getCurrentTurn()));
+        fieldLabel.setText("Player 1 Field");
         loadActiveDeck(gameManagerModel.getPlayer1());
         loadField(gameManagerModel.getPlayer1());
 
@@ -112,12 +116,14 @@ public class GUIController {
         isEnemyField = false;
         loadField(gameManagerModel.getActivePlayer());
         toggleDragDetectionOnFieldCards(true); // Enable drag detection
+        fieldLabel.setText("Player " + (gameManagerModel.getWhoseTurn() + 1) + " Field");
     }
 
     private void handleEnemyFieldButtonClick(MouseEvent event) {
         isEnemyField = true;
         loadField(gameManagerModel.getEnemy());
         toggleDragDetectionOnFieldCards(false); // Disable drag detection
+        fieldLabel.setText("Player " + (gameManagerModel.getWhoseTurn() == 0 ? 2 : 1) + " Field");
     }
 
     private void loadActiveDeck(PlayerModel player) {
@@ -223,8 +229,8 @@ public class GUIController {
                             if (sourceCardData instanceof ProductCardModel) {
                                 sellCard(sourceCard);
                                 success = true; // Implement your logic here if needed
-                            }
-                            else {
+                                messageLabel.setText("Product card has been sold");
+                            } else {
                                 System.out.println("Illegal move: Source card is not a Product card");
                             }
                         }
@@ -240,8 +246,8 @@ public class GUIController {
                                 updateCard(sourceCard, targetCardData, true);
                                 updateCard(targetCard, sourceCardData, true);
                                 success = true;
-                            }
-                            else if (!sourceCardId.startsWith("ActiveDeck")) {
+                                messageLabel.setText("Animal/Plant card has been moved to field");
+                            } else if (!sourceCardId.startsWith("ActiveDeck")) {
                                 String tempColor = sourceCardData.getColor();
                                 sourceCardData.setColor(targetCardData.getColor());
                                 targetCardData.setColor(tempColor);
@@ -249,56 +255,58 @@ public class GUIController {
                                 updateCard(sourceCard, targetCardData, true);
                                 updateCard(targetCard, sourceCardData, true);
                                 success = true;
+                                messageLabel.setText("Animal/Plant card has been swapped");
                             }
                         }
                         // Source is an Item card
                         else if (sourceCardData instanceof ItemCardModel &&
                                 (targetCardData instanceof AnimalCardModel
                                         || targetCardData instanceof PlantCardModel)) {
-                            if (isEnemyField){
+                            if (isEnemyField) {
                                 // Kalo di lapangan lawan
-                                if (sourceCardData.getName().equals("Delay")){
+                                if (sourceCardData.getName().equals("Delay")) {
                                     applyItemEffect(sourceCardData, targetCardData, targetCard);
                                     deleteCard(sourceCard);
                                     success = true; // Implement your logic here if needed
-                                }
-                                else if (sourceCardData.getName().equals("Destroy") && isEnemyField) {
+                                    messageLabel.setText("Delay card has been used");
+                                } else if (sourceCardData.getName().equals("Destroy")) {
                                     applyDestroyEffect(sourceCardData, targetCardData, targetCard);
                                     deleteCard(sourceCard);
                                     success = true; // Implement your logic here if needed
                                 }
-                            }
-                            else{
-                                if (sourceCardData.getName().equals("Accelerate") || sourceCardData.getName().equals("Protect")) {
+                            } else {
+                                if (sourceCardData.getName().equals("Accelerate")
+                                        || sourceCardData.getName().equals("Protect")) {
                                     applyItemEffect(sourceCardData, targetCardData, targetCard);
                                     deleteCard(sourceCard);
                                     success = true; // Implement your logic here if needed
-                                }
-                                else if (sourceCardData.getName().equals("Instant Harvest")) {
+                                    messageLabel.setText(sourceCardData.getName() + " has been used");
+                                } else if (sourceCardData.getName().equals("Instant Harvest")) {
                                     // Implement your logic here if needed
                                     System.out.println("INSTANT HARVEST");
                                     deleteCard(sourceCard);
                                     success = true; // Implement your logic here if needed
-                                }
-                                else if (sourceCardData.getName().equals("Trap")) {
+                                    messageLabel.setText("Instant Harvest card has been used");
+                                } else if (sourceCardData.getName().equals("Trap")) {
                                     System.out.println("TRAP");
                                     applyItemEffect(sourceCardData, targetCardData, targetCard);
                                     deleteCard(sourceCard);
                                     success = true; // Implement your logic here if needed
+                                    messageLabel.setText("Trap card has been used");
                                 }
                             }
                         }
                         // Source is product
-                        else if (sourceCardData instanceof ProductCardModel && targetCardData instanceof AnimalCardModel && !isEnemyField){
+                        else if (sourceCardData instanceof ProductCardModel && targetCardData instanceof AnimalCardModel
+                                && !isEnemyField) {
                             appplyFeedEffect(sourceCardData, targetCardData, targetCard, sourceCard);
                             success = true;
+                            messageLabel.setText("Product card has been used to feed the animal");
                         }
-                    }
-                    else {
+                    } else {
                         System.out.println("Illegal move: Source card is empty");
                     }
-                }
-                else {
+                } else {
                     System.out.println("Source ActiveDeck not found");
                 }
             }
@@ -573,8 +581,78 @@ public class GUIController {
             gameManagerModel.setCurrentTurn(0);
         }
         gameTurn.setText(String.format("%02d", gameManagerModel.getCurrentTurn()));
+        fieldLabel.setText("Player " + (gameManagerModel.getWhoseTurn() + 1) + " Field");
         loadActiveDeck(gameManagerModel.getActivePlayer());
         loadField(gameManagerModel.getActivePlayer());
+
+        FieldController.incrementAllCards(gameManagerModel.getActivePlayer().getField());
+        isEnemyField = false;
+        toggleDragDetectionOnFieldCards(true); // Enable drag detection
+
+        ActiveDeckModel currentActiveDeck = gameManagerModel.getActivePlayer().getActiveDeck();
+        DeckModel currentDeck = gameManagerModel.getActivePlayer().getDeck();
+        int currTurn = gameManagerModel.getWhoseTurn(); // 0 atau 1
+
+        // Calculate how many empty slot exist
+        int emptySlot = 6 - this.gameManagerModel.getActivePlayer().getActiveDeck().getEffectiveDeckSize();
+
+        // Implement shuffle new card if currentActiveDeck is not full and currentDeck
+        // not empty
+        if (!currentActiveDeck.isFull() && !currentDeck.isEmpty()) {
+            try {
+                // Load pop up window
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/if2210/app/fxml/NewCards.fxml"));
+
+                // Setting controller for fxml
+                NewCardsView newCards = new NewCardsView(currTurn, currentDeck, emptySlot,
+                        new ActiveDeckModel(currentActiveDeck));
+                loader.setController(newCards);
+
+                Parent root = loader.load();
+
+                Stage childStage = new Stage();
+                childStage.setTitle("New Random Card From Your Deck");
+                childStage.initModality(Modality.APPLICATION_MODAL);
+                childStage.initOwner(null); // Replace 'null' with reference to the primary stage if needed
+                childStage.setScene(new Scene(root));
+
+                // Load the logo image for taskbar logo
+                String iconPath = "/com/if2210/app/assets/Anya.png";
+                childStage.getIcons().add(new javafx.scene.image.Image(iconPath));
+
+                childStage.showAndWait();
+
+                // Remove choosen card from Deck
+                for (CardModel card : newCards.getNewCards()) {
+                    this.gameManagerModel.getActivePlayer().getDeck().removeCard(card);
+                }
+
+                // Set active deck in main page to be same as currentActiveDeck attribute in
+                // NewCards
+                for (int i = 0; i < 6; i++) {
+                    if (this.gameManagerModel.getActivePlayer().getActiveDeck().getCards().get(i) == null) {
+                        updateCard(this.activeDecks.get(i), newCards.getNewCards().get(0), true);
+                        newCards.getNewCards().remove(0);
+                    }
+                    if (newCards.getNewCards().size() == 0) {
+                        break;
+                    }
+                }
+
+                deckCount.setText("My Deck " + Integer.toString(gameManagerModel.getPlayer1().getDeck().getDeckSize())
+                        + "/40");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            if (currentActiveDeck.isFull()) {
+                System.out.println("Can't shuffle new cards: Active Deck is Full");
+            }
+            if (currentDeck.isEmpty()) {
+                System.out.println("Can't shuffle new cards: Deck is Empty");
+            }
+        }
+
         bearAttack();
     }
 
@@ -723,70 +801,6 @@ public class GUIController {
         };
         Thread thread = new Thread(task);
         thread.start();
-        FieldController.incrementAllCards(gameManagerModel.getActivePlayer().getField());
-        isEnemyField = false;
-        toggleDragDetectionOnFieldCards(true); // Enable drag detection
-
-        ActiveDeckModel currentActiveDeck = gameManagerModel.getActivePlayer().getActiveDeck();
-        DeckModel currentDeck = gameManagerModel.getActivePlayer().getDeck();
-        int currTurn = gameManagerModel.getWhoseTurn(); // 0 atau 1
-
-        // Calculate how many empty slot exist
-        int emptySlot = 6 - this.gameManagerModel.getActivePlayer().getActiveDeck().getEffectiveDeckSize();
-
-        // Implement shuffle new card if currentActiveDeck is not full and currentDeck
-        // not empty
-        if (!currentActiveDeck.isFull() && !currentDeck.isEmpty()) {
-            try {
-                // Load pop up window
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/if2210/app/fxml/NewCards.fxml"));
-
-                // Setting controller for fxml
-                NewCardsView newCards = new NewCardsView(currTurn, currentDeck, emptySlot,
-                        new ActiveDeckModel(currentActiveDeck));
-                loader.setController(newCards);
-
-                Parent root = loader.load();
-
-                Stage childStage = new Stage();
-                childStage.setTitle("New Random Card From Your Deck");
-                childStage.initModality(Modality.APPLICATION_MODAL);
-                childStage.initOwner(null); // Replace 'null' with reference to the primary stage if needed
-                childStage.setScene(new Scene(root));
-
-                // Load the logo image for taskbar logo
-                String iconPath = "/com/if2210/app/assets/Anya.png";
-                childStage.getIcons().add(new javafx.scene.image.Image(iconPath));
-
-                childStage.showAndWait();
-
-                // Remove choosen card from Deck
-                for (CardModel card : newCards.getNewCards()) {
-                    this.gameManagerModel.getActivePlayer().getDeck().removeCard(card);
-                }
-
-                // Set active deck in main page to be same as currentActiveDeck attribute in
-                // NewCards
-                for (int i = 0; i < 6; i++) {
-                    if (this.gameManagerModel.getActivePlayer().getActiveDeck().getCards().get(i) == null) {
-                        updateCard(this.activeDecks.get(i), newCards.getNewCards().get(0), true);
-                        newCards.getNewCards().remove(0);
-                    }
-                    if (newCards.getNewCards().size() == 0) {
-                        break;
-                    }
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
-            if (currentActiveDeck.isFull()) {
-                System.out.println("Can't shuffle new cards: Active Deck is Full");
-            }
-            if (currentDeck.isEmpty()) {
-                System.out.println("Can't shuffle new cards: Deck is Empty");
-            }
-        }
     }
 
     private void setupClickCard() {
@@ -857,15 +871,16 @@ public class GUIController {
                 for (ItemCardModel item : activeItems) {
                     if (item.getName().equals("Protect")) {
                         foundProtect = true;
+                        messageLabel.setText("Destroy card failed, target card is protected");
                         break;
                     }
                 }
 
                 if (!foundProtect) {
                     deleteCard(targetCard);
+                    messageLabel.setText("Destroy card success");
                 }
-            }
-            else{
+            } else {
                 ArrayList<ItemCardModel> activeItems = ((PlantCardModel) targetCardData).getActiveItems();
                 boolean foundProtect = false;
                 for (ItemCardModel item : activeItems) {
@@ -882,7 +897,8 @@ public class GUIController {
         }
     }
 
-    private void appplyFeedEffect(CardModel sourceCardData, CardModel targetCardData, AnchorPane targetCard, AnchorPane sourceCard) {
+    private void appplyFeedEffect(CardModel sourceCardData, CardModel targetCardData, AnchorPane targetCard,
+            AnchorPane sourceCard) {
         AnimalCardModel temp = (AnimalCardModel) targetCardData;
 
         AnimalType tipe = temp.getType();
@@ -894,14 +910,17 @@ public class GUIController {
                 deleteCard(sourceCard);
                 break;
             case HERBIVORE:
-                if (food.getName().equals("Jagung") || food.getName().equals("Labu") || food.getName().equals("Stroberi")) {
+                if (food.getName().equals("Jagung") || food.getName().equals("Labu")
+                        || food.getName().equals("Stroberi")) {
                     temp.setCurrentWeight(temp.getCurrentWeight() + food.getAddedWeight());
                     updateCard(targetCard, temp, true);
                     deleteCard(sourceCard);
                 }
                 break;
             case CARNIVORE:
-                if (food.getName().equals("Daging Domba") || food.getName().equals("Daging Kuda") || food.getName().equals("Daging Beruang") || food.getName().equals("Sirip Hiu") || food.getName().equals("Telur") || food.getName().equals("Susu")){
+                if (food.getName().equals("Daging Domba") || food.getName().equals("Daging Kuda")
+                        || food.getName().equals("Daging Beruang") || food.getName().equals("Sirip Hiu")
+                        || food.getName().equals("Telur") || food.getName().equals("Susu")) {
                     temp.setCurrentWeight(temp.getCurrentWeight() + food.getAddedWeight());
                     updateCard(targetCard, temp, true);
                     deleteCard(sourceCard);
