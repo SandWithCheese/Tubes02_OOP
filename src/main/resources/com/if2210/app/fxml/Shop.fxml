@@ -272,20 +272,16 @@
                               <Image url="@../assets/horse-meat.png" />
                            </image>
                         </ImageView>
-                        <Group layoutY="70.0">
-                           <children>
-                              <Label alignment="TOP_CENTER" prefWidth="80.87" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Daging" textFill="#010913" textOverrun="CLIP" wrapText="true">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="TOP_CENTER" layoutY="15.0" prefWidth="80.87" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Kuda" textFill="#010913" textOverrun="CLIP" wrapText="true">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </Group>
+                        <Label alignment="TOP_CENTER" layoutY="70.0" prefWidth="80.87" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Daging" textFill="#010913" textOverrun="CLIP" wrapText="true">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="TOP_CENTER" layoutY="85.0" prefWidth="80.87" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Kuda" textFill="#010913" textOverrun="CLIP" wrapText="true">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
                   <Group id="price" layoutX="106.0" layoutY="13.0">
@@ -321,20 +317,16 @@
                               <Image url="@../assets/mutton.png" />
                            </image>
                         </ImageView>
-                        <Group layoutY="70.0">
-                           <children>
-                              <Label alignment="TOP_CENTER" prefWidth="80.87" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Daging" textFill="#010913" textOverrun="CLIP" wrapText="true">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="TOP_CENTER" layoutY="15.0" prefWidth="80.87" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Domba" textFill="#010913" textOverrun="CLIP" wrapText="true">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </Group>
+                        <Label alignment="TOP_CENTER" layoutY="70.0" prefWidth="80.87" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Daging" textFill="#010913" textOverrun="CLIP" wrapText="true">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="TOP_CENTER" layoutY="85.0" prefWidth="80.87" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Domba" textFill="#010913" textOverrun="CLIP" wrapText="true">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
                   <Group id="price" layoutX="106.0" layoutY="13.0">
@@ -370,20 +362,16 @@
                               <Image url="@../assets/bear-meat.png" />
                            </image>
                         </ImageView>
-                        <Group layoutY="70.0">
-                           <children>
-                              <Label alignment="TOP_CENTER" prefWidth="80.87" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Daging" textFill="#010913" textOverrun="CLIP" wrapText="true">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="TOP_CENTER" layoutY="15.0" prefWidth="80.87" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Beruang" textFill="#010913" textOverrun="CLIP" wrapText="true">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </Group>
+                        <Label alignment="TOP_CENTER" layoutY="70.0" prefWidth="80.87" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Daging" textFill="#010913" textOverrun="CLIP" wrapText="true">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="TOP_CENTER" layoutY="85.0" prefWidth="80.87" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Beruang" textFill="#010913" textOverrun="CLIP" wrapText="true">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
                   <Group id="price" layoutX="106.0" layoutY="13.0">

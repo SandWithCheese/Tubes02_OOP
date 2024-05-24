@@ -82,7 +82,7 @@ public class ShopView {
                                     try {
                                         shop.decreaseProduct(product);
                                     } catch(Exception e) {
-                                       // Exception handling
+                                        System.out.println("mASUK");
                                     }
                                 }
                             }
