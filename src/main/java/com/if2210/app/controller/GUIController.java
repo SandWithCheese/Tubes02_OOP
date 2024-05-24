@@ -3,6 +3,7 @@ package com.if2210.app.controller;
 import java.util.List;
 import java.util.Map;
 
+import com.if2210.app.factory.ProductCardFactory;
 import com.if2210.app.model.*;
 import com.if2210.app.view.*;
 import javafx.fxml.FXML;
@@ -18,24 +19,11 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-
-import com.if2210.app.model.AnimalCardModel;
-import com.if2210.app.model.CardModel;
-
-import com.if2210.app.view.CardInfoView;
-
-import com.if2210.app.model.GameManagerModel;
-import com.if2210.app.model.ItemCardModel;
-import com.if2210.app.model.PlantCardModel;
-import com.if2210.app.model.PlayerModel;
-import com.if2210.app.model.ProductCardModel;
-import com.if2210.app.view.LoadView;
-import com.if2210.app.view.SaveView;
-import com.if2210.app.view.ShopView;
-import com.if2210.app.view.VictoryView;
 
 public class GUIController {
     public static final String BLANK_IMAGE = "/com/if2210/app/assets/blank.png";
@@ -241,6 +229,7 @@ public class GUIController {
                             } else if (sourceCardData.getName().equals("Instant Harvest")) {
                                 // Implement your logic here if needed
                                 System.out.println("INSTANT HARVEST");
+                                applyInstantHarvest(targetCardData, targetCard);
                             } else if (sourceCardData.getName().equals("Destroy")) {
                                 applyDestroyEffect(sourceCardData, targetCardData, targetCard);
                             } else if (sourceCardData.getName().equals("Trap")) {
@@ -501,9 +490,9 @@ public class GUIController {
                 childStage.showAndWait();
 
                 ProductCardModel productItem = CardInfoView.getProductItem();
-                if (productItem != null && !gameManagerModel.getActivePlayer().getActiveDeck().isFull()) {
+                if (productItem != null) {
                     for (int i = 0; i < 6; i++) {
-                        System.out.println(gameManagerModel.getActivePlayer().getActiveDeck().getCard(i).getName());
+                        // System.out.println(gameManagerModel.getActivePlayer().getActiveDeck().getCard(i).getName());
                         if (gameManagerModel.getActivePlayer().getActiveDeck().getCard(i) == null) {
                             gameManagerModel.getActivePlayer().getActiveDeck().setCard(i, productItem);
                             updateCard(activeDecks.get(i), productItem, true);
@@ -553,11 +542,8 @@ public class GUIController {
         gameManagerModel.setWhoseTurn(gameManagerModel.getWhoseTurn() == 0 ? 1 : 0);
         if (gameManagerModel.getWhoseTurn() == 0) {
             gameManagerModel.setCurrentTurn(gameManagerModel.getCurrentTurn() + 1);
-            System.out.println(gameManagerModel.getCurrentTurn());
-            
-            if(gameManagerModel.getCurrentTurn() == 4){
-                handleVictory();
-            }
+        } else if (gameManagerModel.getWhoseTurn() == -1) {
+            gameManagerModel.setCurrentTurn(0);
         }
         gameTurn.setText(String.format("%02d", gameManagerModel.getCurrentTurn()));
         loadActiveDeck(gameManagerModel.getActivePlayer());
@@ -568,6 +554,7 @@ public class GUIController {
 
         ActiveDeckModel currentActiveDeck = gameManagerModel.getActivePlayer().getActiveDeck();
         DeckModel currentDeck = gameManagerModel.getActivePlayer().getDeck();
+        int currTurn = gameManagerModel.getWhoseTurn(); // 0 atau 1
 
         // Calculate how many empty slot exist
         int emptySlot = 6 - this.gameManagerModel.getActivePlayer().getActiveDeck().getEffectiveDeckSize();
@@ -580,7 +567,7 @@ public class GUIController {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/if2210/app/fxml/NewCards.fxml"));
 
                 // Setting controller for fxml
-                NewCardsView newCards = new NewCardsView(currentDeck, emptySlot,
+                NewCardsView newCards = new NewCardsView(currTurn, currentDeck, emptySlot,
                         new ActiveDeckModel(currentActiveDeck));
                 loader.setController(newCards);
 
@@ -687,11 +674,33 @@ public class GUIController {
         }
     }
 
-    // private void applyInstantHarvest(CardModel sourceCardData, CardModel targetCardData, AnchorPane targetCard, AnchorPane destSlot){
-    //     if(!targetCardData.getImage().equals(BLANK_IMAGE)){
-    //         if(activeDecks.size())
-    //     }
-    // }
+    private void applyInstantHarvest(CardModel sourceCardData, AnchorPane sourceCard){
+        if(!sourceCardData.getImage().equals(BLANK_IMAGE)){
+            if(!gameManagerModel.getActivePlayer().getActiveDeck().isFull()){
+                Map<String, String> resProd = new HashMap<>();
+                resProd.put("Hiu Darat", "Sirip Hiu");
+                resProd.put("Sapi", "Susu");
+                resProd.put("Domba", "Daging Domba");
+                resProd.put("Kuda", "Daging Kuda");
+                resProd.put("Ayam", "Telur");
+                resProd.put("Beruang", "Daging Beruang");
+                resProd.put("Biji Jagung", "Jagung");
+                resProd.put("Biji Labu", "Labu");
+                resProd.put("Biji Stroberi", "Stroberi");
+                
+                ProductCardModel produk = ProductCardFactory.createProductCard(resProd.get(((CardModel) sourceCardData).getName()));
+                for (int i = 0; i < 6; i++) {
+                    if(gameManagerModel.getActivePlayer().getActiveDeck().getCard(i) == null){
+                        gameManagerModel.getActivePlayer().getActiveDeck().setCard(i, produk);
+                        updateCard(activeDecks.get(i), produk, true);
+                        break;
+                    }
+                }
+            }
+            deleteCard(sourceCard);
+
+        }
+    }
 
     private void applyDestroyEffect(CardModel sourceCardData, CardModel targetCardData, AnchorPane targetCard) {
         if (!targetCardData.getImage().equals(BLANK_IMAGE)) {

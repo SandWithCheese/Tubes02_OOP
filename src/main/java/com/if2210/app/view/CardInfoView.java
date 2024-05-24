@@ -67,6 +67,9 @@ public class CardInfoView {
         resProd.put("Kuda", "Daging Kuda");
         resProd.put("Ayam", "Telur");
         resProd.put("Beruang", "Daging Beruang");
+        resProd.put("Biji Jagung", "Jagung");
+        resProd.put("Biji Labu", "Labu");
+        resProd.put("Biji Stroberi", "Stroberi");
     }
 
     private ArrayList<String> mapToList(Map<String, Integer> map) {
