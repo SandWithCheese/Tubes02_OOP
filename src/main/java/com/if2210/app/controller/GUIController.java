@@ -214,22 +214,21 @@ public class GUIController {
                         // target is the shop
                         if (targetCard.getId().equals("shopDrop")) {
                             // Source is a Product card
-                            if (sourceCardData instanceof ProductCardModel){
+                            if (sourceCardData instanceof ProductCardModel) {
                                 sellCard(sourceCard);
                                 success = true; // Implement your logic here if needed
-                            }
-                            else{
+                            } else {
                                 System.err.println("Illegal move: Source card is not a Product card");
                             }
                         }
                         // Source is an Animal or Plant card
-                        else if (sourceCardData instanceof AnimalCardModel || sourceCardData instanceof PlantCardModel){
+                        else if (sourceCardData instanceof AnimalCardModel
+                                || sourceCardData instanceof PlantCardModel) {
                             if (targetCardData.getImage().equals(BLANK_IMAGE) && !isEnemyField) {
                                 updateCard(sourceCard, targetCardData, true);
                                 updateCard(targetCard, sourceCardData, true);
                                 success = true;
-                            }
-                            else if (!sourceCardId.startsWith("ActiveDeck")){
+                            } else if (!sourceCardId.startsWith("ActiveDeck")) {
                                 updateCard(sourceCard, targetCardData, true);
                                 updateCard(targetCard, sourceCardData, true);
                                 success = true;
@@ -237,10 +236,11 @@ public class GUIController {
                         }
                         // Source is an Item card
                         else if (sourceCardData instanceof ItemCardModel &&
-                                (targetCardData instanceof AnimalCardModel || targetCardData instanceof PlantCardModel)) {
+                                (targetCardData instanceof AnimalCardModel
+                                        || targetCardData instanceof PlantCardModel)) {
                             if (sourceCardData.getName().equals("Accelerate") ||
-                                sourceCardData.getName().equals("Delay") ||
-                                sourceCardData.getName().equals("Protect")) {
+                                    sourceCardData.getName().equals("Delay") ||
+                                    sourceCardData.getName().equals("Protect")) {
                                 applyItemEffect(sourceCardData, targetCardData, targetCard);
                             } else if (sourceCardData.getName().equals("Instant Harvest")) {
                                 // Implement your logic here if needed
@@ -254,8 +254,7 @@ public class GUIController {
                             deleteCard(sourceCard);
                             success = true; // Implement your logic here if needed
                         }
-                    }
-                    else {
+                    } else {
                         System.err.println("Illegal move: Source card is empty");
                     }
                 } else {
@@ -265,7 +264,7 @@ public class GUIController {
             event.setDropCompleted(success);
             event.consume();
         });
-    }    
+    }
 
     public AnchorPane findDeckById(String id) {
         for (AnchorPane deck : activeDecks) {
@@ -346,10 +345,11 @@ public class GUIController {
         }
     }
 
-    private void sellCard(AnchorPane card){
-        if (card.getUserData() instanceof ProductCardModel){
+    private void sellCard(AnchorPane card) {
+        if (card.getUserData() instanceof ProductCardModel) {
             ProductCardModel productCard = (ProductCardModel) card.getUserData();
-            gameManagerModel.getActivePlayer().setMoney(gameManagerModel.getActivePlayer().getMoney() + productCard.getPrice());
+            gameManagerModel.getActivePlayer()
+                    .setMoney(gameManagerModel.getActivePlayer().getMoney() + productCard.getPrice());
             gulden1.setText(Integer.toString(gameManagerModel.getPlayer1().getMoney()));
             gulden2.setText(Integer.toString(gameManagerModel.getPlayer2().getMoney()));
 
@@ -360,7 +360,7 @@ public class GUIController {
                 if (productName.equals(productCard.getName())) {
                     try {
                         gameManagerModel.getShop().addProduct(product);
-                    } catch(Exception e) {
+                    } catch (Exception e) {
                         // Exception handling
                     }
                 }
@@ -493,7 +493,7 @@ public class GUIController {
             System.out.println("ini ada gambar");
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/if2210/app/fxml/CardInfo.fxml"));
-                CardInfoView cardView = new CardInfoView(deck);
+                CardInfoView cardView = new CardInfoView(deck, this);
                 loader.setController(cardView);
                 Parent root = loader.load();
 
@@ -503,6 +503,18 @@ public class GUIController {
                 childStage.initOwner(null); // Replace 'null' with reference to the primary stage if needed
                 childStage.setScene(new Scene(root));
                 childStage.showAndWait();
+
+                ProductCardModel productItem = CardInfoView.getProductItem();
+                if (productItem != null && !gameManagerModel.getActivePlayer().getActiveDeck().isFull()) {
+                    for (int i = 0; i < 6; i++) {
+                        if (gameManagerModel.getActivePlayer().getActiveDeck().getCard(i) == null) {
+                            gameManagerModel.getActivePlayer().getActiveDeck().setCard(i, productItem);
+                            updateCard(activeDecks.get(i), productItem, true);
+                            break;
+                        }
+                    }
+                    deleteCard(deck);
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -533,24 +545,41 @@ public class GUIController {
         for (AnchorPane fieldCard : fieldCards) {
             fieldCard.setOnMouseClicked(event -> handleOpenCardInfo(fieldCard));
         }
+
+        for (AnchorPane activeCardField : fieldCards) {
+            setDragDetected(activeCardField);
+            setDragOver(activeCardField);
+            setDragDropped(activeCardField);
+        }
+
+        for (AnchorPane fieldCard : fieldCards) {
+            fieldCard.setOnMouseClicked(event -> handleOpenCardInfo(fieldCard));
+        }
+
+        for (AnchorPane activeCardField : fieldCards) {
+            activeCardField.setOnMouseClicked(event -> handleOpenCardInfo(activeCardField));
+        }
     }
 
     // public void updateCard(AnchorPane card, CardModel cardData) {
-    //     card.setUserData(cardData);
+    // card.setUserData(cardData);
 
-    //     ImageView imageView = (ImageView) card.getChildren().get(0);
-    //     Image image = new Image(getClass().getResourceAsStream(cardData.getImage()));
-    //     imageView.setImage(image != null ? image : new Image(BLANK_IMAGE)); // Use blank image if resource not found
-    //     Label label = (Label) card.getChildren().get(1);
-    //     label.setText(cardData.getName());
+    // ImageView imageView = (ImageView) card.getChildren().get(0);
+    // Image image = new Image(getClass().getResourceAsStream(cardData.getImage()));
+    // imageView.setImage(image != null ? image : new Image(BLANK_IMAGE)); // Use
+    // blank image if resource not found
+    // Label label = (Label) card.getChildren().get(1);
+    // label.setText(cardData.getName());
 
-    //     card.setStyle(null);
-    //     // Update AnchorPane background color based on the color attribute of the card
-    //     // model
-    //     String color = cardData.getColor();
-    //     if (color != null && !color.isEmpty()) {
-    //         card.setStyle("-fx-background-color: " + color + "; -fx-background-radius: 7.7px;");
-    //     }
+    // card.setStyle(null);
+    // // Update AnchorPane background color based on the color attribute of the
+    // card
+    // // model
+    // String color = cardData.getColor();
+    // if (color != null && !color.isEmpty()) {
+    // card.setStyle("-fx-background-color: " + color + "; -fx-background-radius:
+    // 7.7px;");
+    // }
     // }
     private void applyItemEffect(CardModel sourceCardData, CardModel targetCardData, AnchorPane targetCard) {
         if (targetCardData instanceof AnimalCardModel) {
@@ -559,8 +588,7 @@ public class GUIController {
             activeItems.add((ItemCardModel) sourceCardData);
             temp.setActiveItems(activeItems);
             updateCard(targetCard, temp, true);
-        }
-        else {
+        } else {
             PlantCardModel temp = (PlantCardModel) targetCardData;
             ArrayList<ItemCardModel> activeItems = temp.getActiveItems();
             activeItems.add((ItemCardModel) sourceCardData);
@@ -568,7 +596,7 @@ public class GUIController {
             updateCard(targetCard, temp, true);
         }
     }
-    
+
     private void applyDestroyEffect(CardModel sourceCardData, CardModel targetCardData, AnchorPane targetCard) {
         if (!targetCardData.getImage().equals(BLANK_IMAGE)) {
             if (targetCardData instanceof AnimalCardModel || targetCardData instanceof PlantCardModel) {
@@ -580,7 +608,7 @@ public class GUIController {
                         break;
                     }
                 }
-    
+
                 if (!foundProtect) {
                     deleteCard(targetCard);
                 }

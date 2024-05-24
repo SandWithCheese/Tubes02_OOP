@@ -36,7 +36,7 @@
          </font>
       </Label>
 
-      <Button onAction="#harvestHandler" alignment="CENTER" layoutX="401.0" layoutY="371.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="52.0" prefWidth="171.0" style="-fx-background-color: #799FF6; -fx-font-weight: 700; -fx-background-radius: 10px;" text="Harvest" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="harvestButton" onAction="#harvestHandler" alignment="CENTER" layoutX="401.0" layoutY="371.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="52.0" prefWidth="171.0" style="-fx-background-color: #799FF6; -fx-font-weight: 700; -fx-background-radius: 10px;" text="Harvest" textAlignment="CENTER" textFill="WHITE">
 
          <font>
             <Font size="20.0" />
