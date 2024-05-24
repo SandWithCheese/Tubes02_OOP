@@ -30,7 +30,7 @@ public class GameManagerModel {
         this.shop = ShopModel.getInstance();
 
         this.currentTurn = this.dataManager.getCurrentTurn();
-        this.whoseTurn = 0;
+        this.whoseTurn = -1;
         this.player1 = this.dataManager.getPlayer1();
         this.player2 = this.dataManager.getPlayer2();
         this.shop.setProductList(this.dataManager.getProductList());

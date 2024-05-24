@@ -544,6 +544,8 @@ public class GUIController {
         gameManagerModel.setWhoseTurn(gameManagerModel.getWhoseTurn() == 0 ? 1 : 0);
         if (gameManagerModel.getWhoseTurn() == 0) {
             gameManagerModel.setCurrentTurn(gameManagerModel.getCurrentTurn() + 1);
+        } else if (gameManagerModel.getWhoseTurn() == -1) {
+            gameManagerModel.setCurrentTurn(0);
         }
         gameTurn.setText(String.format("%02d", gameManagerModel.getCurrentTurn()));
         loadActiveDeck(gameManagerModel.getActivePlayer());
@@ -554,6 +556,7 @@ public class GUIController {
 
         ActiveDeckModel currentActiveDeck = gameManagerModel.getActivePlayer().getActiveDeck();
         DeckModel currentDeck = gameManagerModel.getActivePlayer().getDeck();
+        int currTurn = gameManagerModel.getWhoseTurn(); // 0 atau 1
 
         // Calculate how many empty slot exist
         int emptySlot = 6 - this.gameManagerModel.getActivePlayer().getActiveDeck().getEffectiveDeckSize();
@@ -566,7 +569,7 @@ public class GUIController {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/if2210/app/fxml/NewCards.fxml"));
 
                 // Setting controller for fxml
-                NewCardsView newCards = new NewCardsView(currentDeck, emptySlot,
+                NewCardsView newCards = new NewCardsView(currTurn, currentDeck, emptySlot,
                         new ActiveDeckModel(currentActiveDeck));
                 loader.setController(newCards);
 
