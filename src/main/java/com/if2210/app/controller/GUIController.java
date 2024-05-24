@@ -503,6 +503,7 @@ public class GUIController {
                 ProductCardModel productItem = CardInfoView.getProductItem();
                 if (productItem != null && !gameManagerModel.getActivePlayer().getActiveDeck().isFull()) {
                     for (int i = 0; i < 6; i++) {
+                        System.out.println(gameManagerModel.getActivePlayer().getActiveDeck().getCard(i).getName());
                         if (gameManagerModel.getActivePlayer().getActiveDeck().getCard(i) == null) {
                             gameManagerModel.getActivePlayer().getActiveDeck().setCard(i, productItem);
                             updateCard(activeDecks.get(i), productItem, true);
@@ -685,6 +686,12 @@ public class GUIController {
             updateCard(targetCard, temp, true);
         }
     }
+
+    // private void applyInstantHarvest(CardModel sourceCardData, CardModel targetCardData, AnchorPane targetCard, AnchorPane destSlot){
+    //     if(!targetCardData.getImage().equals(BLANK_IMAGE)){
+    //         if(activeDecks.size())
+    //     }
+    // }
 
     private void applyDestroyEffect(CardModel sourceCardData, CardModel targetCardData, AnchorPane targetCard) {
         if (!targetCardData.getImage().equals(BLANK_IMAGE)) {
