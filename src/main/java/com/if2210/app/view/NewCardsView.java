@@ -3,6 +3,7 @@ package com.if2210.app.view;
 import com.if2210.app.model.ActiveDeckModel;
 import com.if2210.app.model.CardModel;
 import com.if2210.app.model.DeckModel;
+import com.if2210.app.model.PlayerModel;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -12,11 +13,14 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 
 public class NewCardsView {
+    private int currTurn;
     private DeckModel currentDeck;
     private int emptySlot;  // emptySlot of activeDeck
     private ActiveDeckModel currentActiveDeck;
     private ArrayList<CardModel> newCards;
 
+    @FXML
+    private Label labelPlayer;
     @FXML
     private ImageView imageSatu;
     @FXML
@@ -36,8 +40,8 @@ public class NewCardsView {
 
     @FXML
     public void initialize() {
+        labelPlayer.setText(Integer.toString(currTurn));
         // Langsung nampilin kartu pas pertama kali di inisialisasi
-
         this.clickDice();
     }
 
@@ -112,7 +116,8 @@ public class NewCardsView {
         stage.close();
     }
 
-    public NewCardsView(DeckModel currentDeck, int emptySlot, ActiveDeckModel currentActiveDeck) {
+    public NewCardsView(int currTurn, DeckModel currentDeck, int emptySlot, ActiveDeckModel currentActiveDeck) {
+        this.currTurn = currTurn;
         this.currentDeck = currentDeck;
         this.emptySlot = emptySlot;
         this.currentActiveDeck = currentActiveDeck;
