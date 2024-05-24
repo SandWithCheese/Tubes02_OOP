@@ -9,455 +9,408 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:controller="com.if2210.app.view.ShopView" maxHeight="-Infinity" maxWidth="-Infinity"
-   minHeight="-Infinity" minWidth="-Infinity" prefHeight="605.0" prefWidth="973.0"
-   style="-fx-background-color: #021A38; -fx-border-color: #799FF6; -fx-border-width: 3px;"
-   xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="shopPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="605.0" prefWidth="973.0" style="-fx-background-color: #021A38; -fx-border-color: #799FF6; -fx-border-width: 3px;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label alignment="CENTER" layoutX="284.0" prefHeight="94.0" prefWidth="405.0"
-         style="-fx-font-weight: 700;" text="Shop" textAlignment="CENTER" textFill="#d4e3fc">
+      <Label alignment="CENTER" layoutX="284.0" prefHeight="94.0" prefWidth="405.0" style="-fx-font-weight: 700;" text="Shop" textAlignment="CENTER" textFill="#d4e3fc">
          <font>
             <Font size="42.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="194.0" layoutY="47.0" prefHeight="94.0" prefWidth="616.0"
-         style="-fx-font-weight: 700;" text="Show error message if the input is wrong"
-         textAlignment="CENTER" textFill="#d4e3fc">
+      <Label fx:id="messagelabel" alignment="CENTER" layoutX="194.0" layoutY="47.0" prefHeight="94.0" prefWidth="616.0" style="-fx-font-weight: 700;" text="Show error message if the input is wrong" textAlignment="CENTER" textFill="#d4e3fc">
          <font>
             <Font size="21.0" />
          </font>
       </Label>
-      <AnchorPane layoutX="194.0" layoutY="115.0" prefHeight="133.0" prefWidth="168.0"
-         style="-fx-background-color: #3D16A1;">
+      <Group fx:id="productGroup" layoutX="194.0" layoutY="115.0">
          <children>
-            <AnchorPane id="Card" layoutX="15.0" layoutY="15.0" prefHeight="103.2" prefWidth="80.87"
-               style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+            <AnchorPane fx:id="labu" prefHeight="133.0" prefWidth="168.0" style="-fx-background-color: #3D16A1;">
                <children>
-                  <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0"
-                     pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Tubes02_OOP/src/main/resources/com/if2210/app/fxml/cow.png" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="26.0" layoutY="70.0"
-                     style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow"
-                     textFill="#010913">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
+                  <AnchorPane id="Card" layoutX="15.0" layoutY="15.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                     <children>
+                        <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/pumpkin.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="TOP_CENTER" layoutY="70.0" prefHeight="33.2" prefWidth="80.87" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Labu" textFill="#010913">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <Group id="price" layoutX="106.0" layoutY="13.0">
+                     <children>
+                        <Label style="-fx-font-weight: 700;" text="Price" textFill="#d4e3fc" />
+                        <Label fx:id="pricelabu" layoutY="18.0" style="-fx-font-weight: 700;" text="500" textFill="#d4e3fc" />
+                     </children>
+                  </Group>
+                  <Group id="amount" layoutX="106.0" layoutY="50.0">
+                     <children>
+                        <Label style="-fx-font-weight: 700;" text="Amount" textFill="#d4e3fc" />
+                        <Label fx:id="amountlabu" layoutY="18.0" style="-fx-font-weight: 700;" text="0" textFill="#d4e3fc" />
+                     </children>
+                  </Group>
+                  <Group accessibleRole="BUTTON" layoutX="106.0" layoutY="88.0">
+                     <children>
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="30.0" prefWidth="47.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px;" />
+                        <ImageView accessibleRole="BUTTON" disable="true" fitHeight="20.0" fitWidth="29.0" layoutX="13.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/cart.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Group>
                </children>
             </AnchorPane>
-            <Group id="price" layoutX="106.0" layoutY="13.0">
+            <AnchorPane fx:id="jagung" layoutX="208.0" prefHeight="133.0" prefWidth="168.0" style="-fx-background-color: #3D16A1;">
                <children>
-                  <Label style="-fx-font-weight: 700;" text="Price" textFill="#d4e3fc" />
-                  <Label layoutY="18.0" style="-fx-font-weight: 700;" text="999" textFill="#d4e3fc" />
-               </children>
-            </Group>
-            <Group id="amount" layoutX="106.0" layoutY="50.0">
-               <children>
-                  <Label style="-fx-font-weight: 700;" text="Amount" textFill="#d4e3fc" />
-                  <Label layoutY="18.0" style="-fx-font-weight: 700;" text="99" textFill="#d4e3fc" />
-               </children>
-            </Group>
-            <Group accessibleRole="BUTTON" layoutX="106.0" layoutY="88.0">
-               <children>
-                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="30.0"
-                     prefWidth="47.0"
-                     style="-fx-background-color: #799FF6; -fx-background-radius: 10px;" />
-                  <ImageView accessibleRole="BUTTON" fitHeight="20.0" fitWidth="29.0" layoutX="13.0"
-                     layoutY="5.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Tubes02_OOP/src/main/resources/com/if2210/app/assets/cart.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Group>
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="402.0" layoutY="115.0" prefHeight="133.0" prefWidth="168.0"
-         style="-fx-background-color: #3D16A1;">
-         <children>
-            <AnchorPane id="Card" layoutX="15.0" layoutY="15.0" prefHeight="103.2" prefWidth="80.87"
-               style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
-               <children>
-                  <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0"
-                     pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Tubes02_OOP/src/main/resources/com/if2210/app/fxml/cow.png" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="26.0" layoutY="70.0"
-                     style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow"
-                     textFill="#010913">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
+                  <AnchorPane id="Card" layoutX="15.0" layoutY="15.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                     <children>
+                        <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/corn.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="TOP_CENTER" layoutY="70.0" prefHeight="33.2" prefWidth="80.87" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Jagung" textFill="#010913">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <Group id="price" layoutX="106.0" layoutY="13.0">
+                     <children>
+                        <Label style="-fx-font-weight: 700;" text="Price" textFill="#d4e3fc" />
+                        <Label fx:id="pricejagung" layoutY="18.0" style="-fx-font-weight: 700;" text="150" textFill="#d4e3fc" />
+                     </children>
+                  </Group>
+                  <Group id="amount" layoutX="106.0" layoutY="50.0">
+                     <children>
+                        <Label style="-fx-font-weight: 700;" text="Amount" textFill="#d4e3fc" />
+                        <Label fx:id="amountjagung" layoutY="18.0" style="-fx-font-weight: 700;" text="0" textFill="#d4e3fc" />
+                     </children>
+                  </Group>
+                  <Group accessibleRole="BUTTON" layoutX="106.0" layoutY="88.0">
+                     <children>
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="30.0" prefWidth="47.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px;" />
+                        <ImageView accessibleRole="BUTTON" disable="true" fitHeight="20.0" fitWidth="29.0" layoutX="13.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/cart.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Group>
                </children>
             </AnchorPane>
-            <Group id="price" layoutX="106.0" layoutY="13.0">
+            <AnchorPane fx:id="stroberi" layoutX="416.0" prefHeight="133.0" prefWidth="168.0" style="-fx-background-color: #3D16A1;">
                <children>
-                  <Label style="-fx-font-weight: 700;" text="Price" textFill="#d4e3fc" />
-                  <Label layoutY="18.0" style="-fx-font-weight: 700;" text="999" textFill="#d4e3fc" />
-               </children>
-            </Group>
-            <Group id="amount" layoutX="106.0" layoutY="50.0">
-               <children>
-                  <Label style="-fx-font-weight: 700;" text="Amount" textFill="#d4e3fc" />
-                  <Label layoutY="18.0" style="-fx-font-weight: 700;" text="99" textFill="#d4e3fc" />
-               </children>
-            </Group>
-            <Group accessibleRole="BUTTON" layoutX="106.0" layoutY="88.0">
-               <children>
-                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="30.0"
-                     prefWidth="47.0"
-                     style="-fx-background-color: #799FF6; -fx-background-radius: 10px;" />
-                  <ImageView accessibleRole="BUTTON" fitHeight="20.0" fitWidth="29.0" layoutX="13.0"
-                     layoutY="5.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Tubes02_OOP/src/main/resources/com/if2210/app/assets/cart.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Group>
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="610.0" layoutY="115.0" prefHeight="133.0" prefWidth="168.0"
-         style="-fx-background-color: #3D16A1;">
-         <children>
-            <AnchorPane id="Card" layoutX="15.0" layoutY="15.0" prefHeight="103.2" prefWidth="80.87"
-               style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
-               <children>
-                  <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0"
-                     pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Tubes02_OOP/src/main/resources/com/if2210/app/fxml/cow.png" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="26.0" layoutY="70.0"
-                     style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow"
-                     textFill="#010913">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
+                  <AnchorPane id="Card" layoutX="15.0" layoutY="15.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                     <children>
+                        <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/strawberry.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="TOP_CENTER" layoutY="70.0" prefHeight="33.2" prefWidth="80.87" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Stroberi" textFill="#010913">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <Group id="price" layoutX="106.0" layoutY="13.0">
+                     <children>
+                        <Label style="-fx-font-weight: 700;" text="Price" textFill="#d4e3fc" />
+                        <Label fx:id="pricestroberi" layoutY="18.0" style="-fx-font-weight: 700;" text="350" textFill="#d4e3fc" />
+                     </children>
+                  </Group>
+                  <Group id="amount" layoutX="106.0" layoutY="50.0">
+                     <children>
+                        <Label style="-fx-font-weight: 700;" text="Amount" textFill="#d4e3fc" />
+                        <Label fx:id="amountstroberi" layoutY="18.0" style="-fx-font-weight: 700;" text="0" textFill="#d4e3fc" />
+                     </children>
+                  </Group>
+                  <Group accessibleRole="BUTTON" layoutX="106.0" layoutY="88.0">
+                     <children>
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="30.0" prefWidth="47.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px;" />
+                        <ImageView accessibleRole="BUTTON" disable="true" fitHeight="20.0" fitWidth="29.0" layoutX="13.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/cart.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Group>
                </children>
             </AnchorPane>
-            <Group id="price" layoutX="106.0" layoutY="13.0">
+            <AnchorPane fx:id="susu" layoutY="153.0" prefHeight="133.0" prefWidth="168.0" style="-fx-background-color: #3D16A1;">
                <children>
-                  <Label style="-fx-font-weight: 700;" text="Price" textFill="#d4e3fc" />
-                  <Label layoutY="18.0" style="-fx-font-weight: 700;" text="999" textFill="#d4e3fc" />
-               </children>
-            </Group>
-            <Group id="amount" layoutX="106.0" layoutY="50.0">
-               <children>
-                  <Label style="-fx-font-weight: 700;" text="Amount" textFill="#d4e3fc" />
-                  <Label layoutY="18.0" style="-fx-font-weight: 700;" text="99" textFill="#d4e3fc" />
-               </children>
-            </Group>
-            <Group accessibleRole="BUTTON" layoutX="106.0" layoutY="88.0">
-               <children>
-                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="30.0"
-                     prefWidth="47.0"
-                     style="-fx-background-color: #799FF6; -fx-background-radius: 10px;" />
-                  <ImageView accessibleRole="BUTTON" fitHeight="20.0" fitWidth="29.0" layoutX="13.0"
-                     layoutY="5.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Tubes02_OOP/src/main/resources/com/if2210/app/assets/cart.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Group>
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="194.0" layoutY="268.0" prefHeight="133.0" prefWidth="168.0"
-         style="-fx-background-color: #3D16A1;">
-         <children>
-            <AnchorPane id="Card" layoutX="15.0" layoutY="15.0" prefHeight="103.2" prefWidth="80.87"
-               style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
-               <children>
-                  <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0"
-                     pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Tubes02_OOP/src/main/resources/com/if2210/app/fxml/cow.png" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="26.0" layoutY="70.0"
-                     style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow"
-                     textFill="#010913">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
+                  <AnchorPane id="Card" layoutX="15.0" layoutY="15.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                     <children>
+                        <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/susu.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="TOP_CENTER" layoutY="70.0" prefHeight="33.2" prefWidth="80.87" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Susu" textFill="#010913">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <Group id="price" layoutX="106.0" layoutY="13.0">
+                     <children>
+                        <Label style="-fx-font-weight: 700;" text="Price" textFill="#d4e3fc" />
+                        <Label fx:id="pricesusu" layoutY="18.0" style="-fx-font-weight: 700;" text="100" textFill="#d4e3fc" />
+                     </children>
+                  </Group>
+                  <Group id="amount" layoutX="106.0" layoutY="50.0">
+                     <children>
+                        <Label style="-fx-font-weight: 700;" text="Amount" textFill="#d4e3fc" />
+                        <Label fx:id="amountsusu" layoutY="18.0" style="-fx-font-weight: 700;" text="0" textFill="#d4e3fc" />
+                     </children>
+                  </Group>
+                  <Group accessibleRole="BUTTON" layoutX="106.0" layoutY="88.0">
+                     <children>
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="30.0" prefWidth="47.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px;" />
+                        <ImageView accessibleRole="BUTTON" disable="true" fitHeight="20.0" fitWidth="29.0" layoutX="13.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/cart.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Group>
                </children>
             </AnchorPane>
-            <Group id="price" layoutX="106.0" layoutY="13.0">
+            <AnchorPane fx:id="telur" layoutX="209.0" layoutY="153.0" prefHeight="133.0" prefWidth="168.0" style="-fx-background-color: #3D16A1;">
                <children>
-                  <Label style="-fx-font-weight: 700;" text="Price" textFill="#d4e3fc" />
-                  <Label layoutY="18.0" style="-fx-font-weight: 700;" text="999" textFill="#d4e3fc" />
-               </children>
-            </Group>
-            <Group id="amount" layoutX="106.0" layoutY="50.0">
-               <children>
-                  <Label style="-fx-font-weight: 700;" text="Amount" textFill="#d4e3fc" />
-                  <Label layoutY="18.0" style="-fx-font-weight: 700;" text="99" textFill="#d4e3fc" />
-               </children>
-            </Group>
-            <Group accessibleRole="BUTTON" layoutX="106.0" layoutY="88.0">
-               <children>
-                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="30.0"
-                     prefWidth="47.0"
-                     style="-fx-background-color: #799FF6; -fx-background-radius: 10px;" />
-                  <ImageView accessibleRole="BUTTON" fitHeight="20.0" fitWidth="29.0" layoutX="13.0"
-                     layoutY="5.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Tubes02_OOP/src/main/resources/com/if2210/app/assets/cart.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Group>
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="403.0" layoutY="268.0" prefHeight="133.0" prefWidth="168.0"
-         style="-fx-background-color: #3D16A1;">
-         <children>
-            <AnchorPane id="Card" layoutX="15.0" layoutY="15.0" prefHeight="103.2" prefWidth="80.87"
-               style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
-               <children>
-                  <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0"
-                     pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Tubes02_OOP/src/main/resources/com/if2210/app/fxml/cow.png" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="26.0" layoutY="70.0"
-                     style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow"
-                     textFill="#010913">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
+                  <AnchorPane id="Card" layoutX="15.0" layoutY="15.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                     <children>
+                        <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/telur.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="TOP_CENTER" layoutY="70.0" prefHeight="33.2" prefWidth="80.87" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Telur" textFill="#010913">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <Group id="price" layoutX="106.0" layoutY="13.0">
+                     <children>
+                        <Label style="-fx-font-weight: 700;" text="Price" textFill="#d4e3fc" />
+                        <Label fx:id="pricetelur" layoutY="18.0" style="-fx-font-weight: 700;" text="50" textFill="#d4e3fc" />
+                     </children>
+                  </Group>
+                  <Group id="amount" layoutX="106.0" layoutY="50.0">
+                     <children>
+                        <Label style="-fx-font-weight: 700;" text="Amount" textFill="#d4e3fc" />
+                        <Label fx:id="amounttelur" layoutY="18.0" style="-fx-font-weight: 700;" text="0" textFill="#d4e3fc" />
+                     </children>
+                  </Group>
+                  <Group accessibleRole="BUTTON" layoutX="106.0" layoutY="88.0">
+                     <children>
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="30.0" prefWidth="47.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px;" />
+                        <ImageView accessibleRole="BUTTON" disable="true" fitHeight="20.0" fitWidth="29.0" layoutX="13.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/cart.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Group>
                </children>
             </AnchorPane>
-            <Group id="price" layoutX="106.0" layoutY="13.0">
+            <AnchorPane fx:id="siriphiu" layoutX="416.0" layoutY="153.0" prefHeight="133.0" prefWidth="168.0" style="-fx-background-color: #3D16A1;">
                <children>
-                  <Label style="-fx-font-weight: 700;" text="Price" textFill="#d4e3fc" />
-                  <Label layoutY="18.0" style="-fx-font-weight: 700;" text="999" textFill="#d4e3fc" />
-               </children>
-            </Group>
-            <Group id="amount" layoutX="106.0" layoutY="50.0">
-               <children>
-                  <Label style="-fx-font-weight: 700;" text="Amount" textFill="#d4e3fc" />
-                  <Label layoutY="18.0" style="-fx-font-weight: 700;" text="99" textFill="#d4e3fc" />
-               </children>
-            </Group>
-            <Group accessibleRole="BUTTON" layoutX="106.0" layoutY="88.0">
-               <children>
-                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="30.0"
-                     prefWidth="47.0"
-                     style="-fx-background-color: #799FF6; -fx-background-radius: 10px;" />
-                  <ImageView accessibleRole="BUTTON" fitHeight="20.0" fitWidth="29.0" layoutX="13.0"
-                     layoutY="5.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Tubes02_OOP/src/main/resources/com/if2210/app/assets/cart.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Group>
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="610.0" layoutY="268.0" prefHeight="133.0" prefWidth="168.0"
-         style="-fx-background-color: #3D16A1;">
-         <children>
-            <AnchorPane id="Card" layoutX="15.0" layoutY="15.0" prefHeight="103.2" prefWidth="80.87"
-               style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
-               <children>
-                  <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0"
-                     pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Tubes02_OOP/src/main/resources/com/if2210/app/fxml/cow.png" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="26.0" layoutY="70.0"
-                     style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow"
-                     textFill="#010913">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
+                  <AnchorPane id="Card" layoutX="15.0" layoutY="15.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                     <children>
+                        <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/shark-fin.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="TOP_CENTER" layoutY="70.0" prefHeight="33.2" prefWidth="80.87" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Sirip Hiu" textFill="#010913">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <Group id="price" layoutX="106.0" layoutY="13.0">
+                     <children>
+                        <Label style="-fx-font-weight: 700;" text="Price" textFill="#d4e3fc" />
+                        <Label fx:id="pricesiriphiu" layoutY="18.0" style="-fx-font-weight: 700;" text="500" textFill="#d4e3fc" />
+                     </children>
+                  </Group>
+                  <Group id="amount" layoutX="106.0" layoutY="50.0">
+                     <children>
+                        <Label style="-fx-font-weight: 700;" text="Amount" textFill="#d4e3fc" />
+                        <Label fx:id="amountsiriphiu" layoutY="18.0" style="-fx-font-weight: 700;" text="0" textFill="#d4e3fc" />
+                     </children>
+                  </Group>
+                  <Group accessibleRole="BUTTON" layoutX="106.0" layoutY="88.0">
+                     <children>
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="30.0" prefWidth="47.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px;" />
+                        <ImageView accessibleRole="BUTTON" disable="true" fitHeight="20.0" fitWidth="29.0" layoutX="13.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/cart.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Group>
                </children>
             </AnchorPane>
-            <Group id="price" layoutX="106.0" layoutY="13.0">
+            <AnchorPane fx:id="dagingkuda" layoutY="306.0" prefHeight="133.0" prefWidth="168.0" style="-fx-background-color: #3D16A1;">
                <children>
-                  <Label style="-fx-font-weight: 700;" text="Price" textFill="#d4e3fc" />
-                  <Label layoutY="18.0" style="-fx-font-weight: 700;" text="999" textFill="#d4e3fc" />
-               </children>
-            </Group>
-            <Group id="amount" layoutX="106.0" layoutY="50.0">
-               <children>
-                  <Label style="-fx-font-weight: 700;" text="Amount" textFill="#d4e3fc" />
-                  <Label layoutY="18.0" style="-fx-font-weight: 700;" text="99" textFill="#d4e3fc" />
-               </children>
-            </Group>
-            <Group accessibleRole="BUTTON" layoutX="106.0" layoutY="88.0">
-               <children>
-                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="30.0"
-                     prefWidth="47.0"
-                     style="-fx-background-color: #799FF6; -fx-background-radius: 10px;" />
-                  <ImageView accessibleRole="BUTTON" fitHeight="20.0" fitWidth="29.0" layoutX="13.0"
-                     layoutY="5.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Tubes02_OOP/src/main/resources/com/if2210/app/assets/cart.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Group>
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="194.0" layoutY="421.0" prefHeight="133.0" prefWidth="168.0"
-         style="-fx-background-color: #3D16A1;">
-         <children>
-            <AnchorPane id="Card" layoutX="15.0" layoutY="15.0" prefHeight="103.2" prefWidth="80.87"
-               style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
-               <children>
-                  <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0"
-                     pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Tubes02_OOP/src/main/resources/com/if2210/app/fxml/cow.png" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="26.0" layoutY="70.0"
-                     style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow"
-                     textFill="#010913">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-               </children>
-            </AnchorPane>
-            <Group id="price" layoutX="106.0" layoutY="13.0">
-               <children>
-                  <Label style="-fx-font-weight: 700;" text="Price" textFill="#d4e3fc" />
-                  <Label layoutY="18.0" style="-fx-font-weight: 700;" text="999" textFill="#d4e3fc" />
-               </children>
-            </Group>
-            <Group id="amount" layoutX="106.0" layoutY="50.0">
-               <children>
-                  <Label style="-fx-font-weight: 700;" text="Amount" textFill="#d4e3fc" />
-                  <Label layoutY="18.0" style="-fx-font-weight: 700;" text="99" textFill="#d4e3fc" />
-               </children>
-            </Group>
-            <Group accessibleRole="BUTTON" layoutX="106.0" layoutY="88.0">
-               <children>
-                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="30.0"
-                     prefWidth="47.0"
-                     style="-fx-background-color: #799FF6; -fx-background-radius: 10px;" />
-                  <ImageView accessibleRole="BUTTON" fitHeight="20.0" fitWidth="29.0" layoutX="13.0"
-                     layoutY="5.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Tubes02_OOP/src/main/resources/com/if2210/app/assets/cart.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Group>
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="403.0" layoutY="421.0" prefHeight="133.0" prefWidth="168.0"
-         style="-fx-background-color: #3D16A1;">
-         <children>
-            <AnchorPane id="Card" layoutX="15.0" layoutY="15.0" prefHeight="103.2" prefWidth="80.87"
-               style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
-               <children>
-                  <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0"
-                     pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Tubes02_OOP/src/main/resources/com/if2210/app/fxml/cow.png" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="26.0" layoutY="70.0"
-                     style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow"
-                     textFill="#010913">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
+                  <AnchorPane id="Card" layoutX="15.0" layoutY="15.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                     <children>
+                        <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/horse-meat.png" />
+                           </image>
+                        </ImageView>
+                        <Group layoutY="70.0">
+                           <children>
+                              <Label alignment="TOP_CENTER" prefWidth="80.87" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Daging" textFill="#010913" textOverrun="CLIP" wrapText="true">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="TOP_CENTER" layoutY="15.0" prefWidth="80.87" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Kuda" textFill="#010913" textOverrun="CLIP" wrapText="true">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Group>
+                     </children>
+                  </AnchorPane>
+                  <Group id="price" layoutX="106.0" layoutY="13.0">
+                     <children>
+                        <Label style="-fx-font-weight: 700;" text="Price" textFill="#d4e3fc" />
+                        <Label fx:id="pricedagingkuda" layoutY="18.0" style="-fx-font-weight: 700;" text="150" textFill="#d4e3fc" />
+                     </children>
+                  </Group>
+                  <Group id="amount" layoutX="106.0" layoutY="50.0">
+                     <children>
+                        <Label style="-fx-font-weight: 700;" text="Amount" textFill="#d4e3fc" />
+                        <Label fx:id="amountdagingkuda" layoutY="18.0" style="-fx-font-weight: 700;" text="0" textFill="#d4e3fc" />
+                     </children>
+                  </Group>
+                  <Group accessibleRole="BUTTON" layoutX="106.0" layoutY="88.0">
+                     <children>
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="30.0" prefWidth="47.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px;" />
+                        <ImageView accessibleRole="BUTTON" disable="true" fitHeight="20.0" fitWidth="29.0" layoutX="13.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/cart.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Group>
                </children>
             </AnchorPane>
-            <Group id="price" layoutX="106.0" layoutY="13.0">
+            <AnchorPane fx:id="dagingdomba" layoutX="209.0" layoutY="306.0" prefHeight="133.0" prefWidth="168.0" style="-fx-background-color: #3D16A1;">
                <children>
-                  <Label style="-fx-font-weight: 700;" text="Price" textFill="#d4e3fc" />
-                  <Label layoutY="18.0" style="-fx-font-weight: 700;" text="999" textFill="#d4e3fc" />
-               </children>
-            </Group>
-            <Group id="amount" layoutX="106.0" layoutY="50.0">
-               <children>
-                  <Label style="-fx-font-weight: 700;" text="Amount" textFill="#d4e3fc" />
-                  <Label layoutY="18.0" style="-fx-font-weight: 700;" text="99" textFill="#d4e3fc" />
-               </children>
-            </Group>
-            <Group accessibleRole="BUTTON" layoutX="106.0" layoutY="88.0">
-               <children>
-                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="30.0"
-                     prefWidth="47.0"
-                     style="-fx-background-color: #799FF6; -fx-background-radius: 10px;" />
-                  <ImageView accessibleRole="BUTTON" fitHeight="20.0" fitWidth="29.0" layoutX="13.0"
-                     layoutY="5.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Tubes02_OOP/src/main/resources/com/if2210/app/assets/cart.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Group>
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="610.0" layoutY="421.0" prefHeight="133.0" prefWidth="168.0"
-         style="-fx-background-color: #3D16A1;">
-         <children>
-            <AnchorPane id="Card" layoutX="15.0" layoutY="15.0" prefHeight="103.2" prefWidth="80.87"
-               style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
-               <children>
-                  <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0"
-                     pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Tubes02_OOP/src/main/resources/com/if2210/app/fxml/cow.png" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="26.0" layoutY="70.0"
-                     style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Cow"
-                     textFill="#010913">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
+                  <AnchorPane id="Card" layoutX="15.0" layoutY="15.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                     <children>
+                        <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/mutton.png" />
+                           </image>
+                        </ImageView>
+                        <Group layoutY="70.0">
+                           <children>
+                              <Label alignment="TOP_CENTER" prefWidth="80.87" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Daging" textFill="#010913" textOverrun="CLIP" wrapText="true">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="TOP_CENTER" layoutY="15.0" prefWidth="80.87" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Domba" textFill="#010913" textOverrun="CLIP" wrapText="true">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Group>
+                     </children>
+                  </AnchorPane>
+                  <Group id="price" layoutX="106.0" layoutY="13.0">
+                     <children>
+                        <Label style="-fx-font-weight: 700;" text="Price" textFill="#d4e3fc" />
+                        <Label fx:id="pricedagingdomba" layoutY="18.0" style="-fx-font-weight: 700;" text="120" textFill="#d4e3fc" />
+                     </children>
+                  </Group>
+                  <Group id="amount" layoutX="106.0" layoutY="50.0">
+                     <children>
+                        <Label style="-fx-font-weight: 700;" text="Amount" textFill="#d4e3fc" />
+                        <Label fx:id="amountdagingdomba" layoutY="18.0" style="-fx-font-weight: 700;" text="0" textFill="#d4e3fc" />
+                     </children>
+                  </Group>
+                  <Group accessibleRole="BUTTON" layoutX="106.0" layoutY="88.0">
+                     <children>
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="30.0" prefWidth="47.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px;" />
+                        <ImageView accessibleRole="BUTTON" disable="true" fitHeight="20.0" fitWidth="29.0" layoutX="13.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/cart.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Group>
                </children>
             </AnchorPane>
-            <Group id="price" layoutX="106.0" layoutY="13.0">
+            <AnchorPane fx:id="dagingberuang" layoutX="416.0" layoutY="306.0" prefHeight="133.0" prefWidth="168.0" style="-fx-background-color: #3D16A1;">
                <children>
-                  <Label style="-fx-font-weight: 700;" text="Price" textFill="#d4e3fc" />
-                  <Label layoutY="18.0" style="-fx-font-weight: 700;" text="999" textFill="#d4e3fc" />
+                  <AnchorPane id="Card" layoutX="15.0" layoutY="15.0" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
+                     <children>
+                        <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/bear-meat.png" />
+                           </image>
+                        </ImageView>
+                        <Group layoutY="70.0">
+                           <children>
+                              <Label alignment="TOP_CENTER" prefWidth="80.87" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Daging" textFill="#010913" textOverrun="CLIP" wrapText="true">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="TOP_CENTER" layoutY="15.0" prefWidth="80.87" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Beruang" textFill="#010913" textOverrun="CLIP" wrapText="true">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Group>
+                     </children>
+                  </AnchorPane>
+                  <Group id="price" layoutX="106.0" layoutY="13.0">
+                     <children>
+                        <Label style="-fx-font-weight: 700;" text="Price" textFill="#d4e3fc" />
+                        <Label fx:id="pricedagingberuang" layoutY="18.0" style="-fx-font-weight: 700;" text="500" textFill="#d4e3fc" />
+                     </children>
+                  </Group>
+                  <Group id="amount" layoutX="106.0" layoutY="50.0">
+                     <children>
+                        <Label style="-fx-font-weight: 700;" text="Amount" textFill="#d4e3fc" />
+                        <Label fx:id="amountdagingberuang" layoutY="18.0" style="-fx-font-weight: 700;" text="0" textFill="#d4e3fc" />
+                     </children>
+                  </Group>
+                  <Group accessibleRole="BUTTON" layoutX="106.0" layoutY="88.0">
+                     <children>
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="30.0" prefWidth="47.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px;" />
+                        <ImageView accessibleRole="BUTTON" disable="true" fitHeight="20.0" fitWidth="29.0" layoutX="13.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/cart.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Group>
                </children>
-            </Group>
-            <Group id="amount" layoutX="106.0" layoutY="50.0">
-               <children>
-                  <Label style="-fx-font-weight: 700;" text="Amount" textFill="#d4e3fc" />
-                  <Label layoutY="18.0" style="-fx-font-weight: 700;" text="99" textFill="#d4e3fc" />
-               </children>
-            </Group>
-            <Group accessibleRole="BUTTON" layoutX="106.0" layoutY="88.0">
-               <children>
-                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="30.0"
-                     prefWidth="47.0"
-                     style="-fx-background-color: #799FF6; -fx-background-radius: 10px;" />
-                  <ImageView accessibleRole="BUTTON" fitHeight="20.0" fitWidth="29.0" layoutX="13.0"
-                     layoutY="5.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Tubes02_OOP/src/main/resources/com/if2210/app/assets/cart.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Group>
+            </AnchorPane>
          </children>
-      </AnchorPane>
+      </Group>
    </children>
 </Pane>

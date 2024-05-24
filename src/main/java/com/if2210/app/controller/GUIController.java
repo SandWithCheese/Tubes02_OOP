@@ -1,6 +1,7 @@
 package com.if2210.app.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,7 +23,6 @@ import javafx.scene.Scene;
 import com.if2210.app.factory.AnimalCardFactory;
 import com.if2210.app.factory.ItemCardFactory;
 import com.if2210.app.factory.PlantCardFactory;
-import com.if2210.app.factory.ProductCardFactory;
 import com.if2210.app.model.AnimalCardModel;
 import com.if2210.app.model.CardModel;
 
@@ -35,6 +35,7 @@ import com.if2210.app.model.PlayerModel;
 import com.if2210.app.model.ProductCardModel;
 import com.if2210.app.view.LoadView;
 import com.if2210.app.view.SaveView;
+import com.if2210.app.view.ShopView;
 
 public class GUIController {
     public static final String BLANK_IMAGE = "/com/if2210/app/assets/blank.png";
@@ -94,13 +95,11 @@ public class GUIController {
         myFieldButton.setOnMouseClicked(this::handleMyFieldButtonClick);
         enemyFieldButton.setOnMouseClicked(this::handleEnemyFieldButtonClick);
 
-        updateCard(activeDecks.get(0), AnimalCardFactory.createAnimalCard("Sapi"), false);
-        updateCard(activeDecks.get(1), PlantCardFactory.createPlantCard("Biji Jagung"), false);
-        updateCard(activeDecks.get(2), ItemCardFactory.createItemCard("Accelerate"), false);
-        updateCard(activeDecks.get(3), ItemCardFactory.createItemCard("Destroy"), false);
-        updateCard(activeDecks.get(4), ItemCardFactory.createItemCard("Protect"), false);
-        updateCard(activeDecks.get(5), ProductCardFactory.createProductCard("Daging Beruang"), false);
-        // updateCard(activeDecks.get(5), ProductCardFactory.createProductCard("Susu"), false);
+        updateCard(activeDecks.get(0), AnimalCardFactory.createAnimalCard("Sapi"), true);
+        updateCard(activeDecks.get(1), PlantCardFactory.createPlantCard("Biji Jagung"), true);
+        updateCard(activeDecks.get(2), ItemCardFactory.createItemCard("Accelerate"), true);
+        updateCard(activeDecks.get(3), ItemCardFactory.createItemCard("Destroy"), true);
+        updateCard(activeDecks.get(4), ItemCardFactory.createItemCard("Protect"), true);
     }
 
     private void handleMyFieldButtonClick(MouseEvent event) {
@@ -479,6 +478,19 @@ public class GUIController {
             gameManagerModel.getActivePlayer().setMoney(gameManagerModel.getActivePlayer().getMoney() + productCard.getPrice());
             gulden1.setText(Integer.toString(gameManagerModel.getPlayer1().getMoney()));
             gulden2.setText(Integer.toString(gameManagerModel.getPlayer2().getMoney()));
+
+            for (Map.Entry<ProductCardModel, Integer> entry : gameManagerModel.getShop().getProductList().entrySet()) {
+                ProductCardModel product = entry.getKey();
+                String productName = product.getName();
+
+                if (productName.equals(productCard.getName())) {
+                    try {
+                        gameManagerModel.getShop().addProduct(product);
+                    } catch(Exception e) {
+                        // Exception handling
+                    }
+                }
+            }
             deleteCard(card);
         }
     }
@@ -521,6 +533,8 @@ public class GUIController {
     public void handleOpenShop() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/if2210/app/fxml/Shop.fxml"));
+            ShopView shopView = new ShopView(gameManagerModel.getShop(), gameManagerModel.getActivePlayer());
+            loader.setController(shopView);
             Parent root = loader.load();
 
             Stage childStage = new Stage();
@@ -534,7 +548,19 @@ public class GUIController {
             childStage.getIcons().add(new javafx.scene.image.Image(iconPath));
 
             childStage.showAndWait();
-
+            gameManagerModel.setShop(ShopView.getShop());
+            gameManagerModel.getActivePlayer().setMoney(ShopView.getPlayer().getMoney());
+            if (gameManagerModel.getWhoseTurn() == 0) {
+                gulden1.setText(Integer.toString(gameManagerModel.getPlayer1().getMoney()));
+            } else {
+                gulden2.setText(Integer.toString(gameManagerModel.getPlayer2().getMoney()));
+            }
+            for (int i = 0; i < 6; i++) {
+                CardModel cardData = ShopView.getPlayer().getActiveDeck().getCard(i);
+                if (cardData != null) {
+                    updateCard(activeDecks.get(i), cardData, true);
+                }
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
