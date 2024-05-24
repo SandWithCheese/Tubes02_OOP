@@ -23,6 +23,7 @@ import javafx.scene.Scene;
 import com.if2210.app.factory.AnimalCardFactory;
 import com.if2210.app.factory.ItemCardFactory;
 import com.if2210.app.factory.PlantCardFactory;
+import com.if2210.app.factory.ProductCardFactory;
 import com.if2210.app.model.AnimalCardModel;
 import com.if2210.app.model.CardModel;
 
@@ -100,6 +101,7 @@ public class GUIController {
         updateCard(activeDecks.get(2), ItemCardFactory.createItemCard("Accelerate"), true);
         updateCard(activeDecks.get(3), ItemCardFactory.createItemCard("Destroy"), true);
         updateCard(activeDecks.get(4), ItemCardFactory.createItemCard("Protect"), true);
+        updateCard(activeDecks.get(5), ProductCardFactory.createProductCard("Susu"), true);
     }
 
     private void handleMyFieldButtonClick(MouseEvent event) {
@@ -254,10 +256,18 @@ public class GUIController {
                             deleteCard(sourceCard);
                             success = true; // Implement your logic here if needed
                         }
-                    } else {
+                        // Source is product
+                        else if (sourceCardData instanceof ProductCardModel && targetCardData instanceof AnimalCardModel){
+                            appplyFeedEffect(sourceCardData, targetCardData, targetCard);
+                            deleteCard(sourceCard);
+                            success = true;
+                        }
+                    }
+                    else {
                         System.err.println("Illegal move: Source card is empty");
                     }
-                } else {
+                }
+                else {
                     System.err.println("Source ActiveDeck not found");
                 }
             }
@@ -614,5 +624,11 @@ public class GUIController {
                 }
             }
         }
+    }
+
+    private void appplyFeedEffect(CardModel sourceCardData, CardModel targetCardData, AnchorPane targetCard) {
+        AnimalCardModel temp = (AnimalCardModel) targetCardData;
+        temp.setCurrentWeight(temp.getCurrentWeight() + ((ProductCardModel) sourceCardData).getAddedWeight());
+        updateCard(targetCard, temp, true);
     }
 }
