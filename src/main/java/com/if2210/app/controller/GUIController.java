@@ -299,9 +299,8 @@ public class GUIController {
                         // Source is product
                         else if (sourceCardData instanceof ProductCardModel && targetCardData instanceof AnimalCardModel
                                 && !isEnemyField) {
-                            appplyFeedEffect(sourceCardData, targetCardData, targetCard, sourceCard);
+                            applyFeedEffect(sourceCardData, targetCardData, targetCard, sourceCard);
                             success = true;
-                            messageLabel.setText("Product card has been used to feed the animal");
                         }
                     } else {
                         System.out.println("Illegal move: Source card is empty");
@@ -897,7 +896,7 @@ public class GUIController {
         }
     }
 
-    private void appplyFeedEffect(CardModel sourceCardData, CardModel targetCardData, AnchorPane targetCard,
+    private void applyFeedEffect(CardModel sourceCardData, CardModel targetCardData, AnchorPane targetCard,
             AnchorPane sourceCard) {
         AnimalCardModel temp = (AnimalCardModel) targetCardData;
 
@@ -908,6 +907,7 @@ public class GUIController {
                 temp.setCurrentWeight(temp.getCurrentWeight() + food.getAddedWeight());
                 updateCard(targetCard, temp, true);
                 deleteCard(sourceCard);
+                messageLabel.setText("Product card has been used to feed the animal");
                 break;
             case HERBIVORE:
                 if (food.getName().equals("Jagung") || food.getName().equals("Labu")
@@ -915,6 +915,7 @@ public class GUIController {
                     temp.setCurrentWeight(temp.getCurrentWeight() + food.getAddedWeight());
                     updateCard(targetCard, temp, true);
                     deleteCard(sourceCard);
+                    messageLabel.setText("Product card has been used to feed the animal");
                 }
                 break;
             case CARNIVORE:
@@ -924,6 +925,7 @@ public class GUIController {
                     temp.setCurrentWeight(temp.getCurrentWeight() + food.getAddedWeight());
                     updateCard(targetCard, temp, true);
                     deleteCard(sourceCard);
+                    messageLabel.setText("Product card has been used to feed the animal");
                 }
                 break;
             default:
