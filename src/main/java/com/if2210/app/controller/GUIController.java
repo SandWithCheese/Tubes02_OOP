@@ -753,7 +753,7 @@ public class GUIController {
                         for (int i = Math.min(x1Final, x2Final); i <= Math.max(x1Final, x2Final); i++) {
                             for (int j = Math.min(y1Final, y2Final); j <= Math.max(y1Final, y2Final); j++) {
                                 AnchorPane card = fieldCards.get(i * 5 + j);
-                                clearCard(card);
+                                deleteCard(card);
                             }
                         }
                     } else {
