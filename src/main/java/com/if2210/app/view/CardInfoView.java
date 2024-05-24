@@ -130,7 +130,7 @@ public class CardInfoView {
         Map<String, Integer> map = listToMap(nameItems);
         ArrayList<String> result = mapToList(map);
         System.out.println(itemList.size());
-        items.setText(result.toString().substring(1, result.toString().length() - 1));
+        items.setText("Active Items: \n"+result.toString().substring(1, result.toString().length() - 1));
     }
 
     public void initInfoPlant() {
@@ -169,12 +169,28 @@ public class CardInfoView {
         Map<String, Integer> map = listToMap(nameItems);
         ArrayList<String> result = mapToList(map);
         System.out.println(itemList.size());
-        items.setText(result.toString().substring(1, result.toString().length() - 1));
+        items.setText("Active Items: \n"+result.toString().substring(1, result.toString().length() - 1));
     }
 
     public void initInfoProduct() {
         weight.setText("Price : " + ((ProductCardModel) card).getPrice());
         harvestWeight.setText("Additional weight : " + ((ProductCardModel) card).getAddedWeight());
+    }
+
+    public void initInfoItem(){
+        if(((CardModel)card).getName().equals("Accelerate")){
+            harvestWeight.setText("Description:\nMenambah umur tanaman sebanyak 2 turn atau menambah berat kartu hewan sebesar 8.");
+        }else if(((CardModel)card).getName().equals("Delay")){
+            harvestWeight.setText("Description:\nMengurangi umur tanaman sebanyak 2 turn (umur tanaman minimal bernilai 0) atau mengurangi berat kartu hewan sebesar 5 (berat hewan minimal bernilai 0).");
+        }else if(((CardModel)card).getName().equals("Instant Harvest")){
+            harvestWeight.setText("Description:\nMelakukan harvest secara langsung untuk kartu tanaman/hewan yang dipilih.");
+        }else if(((CardModel)card).getName().equals("Destroy")){
+            harvestWeight.setText("Description:\nMenghancurkan kartu tanaman/hewan lawan.");
+        }else if(((CardModel)card).getName().equals("Protect")){
+            harvestWeight.setText("Description:\nMelindungi kartu tanaman/hewan diri sendiri dari item yang ditambahkan oleh lawan ke ladang atau serangan beruang.");
+        }else if(((CardModel)card).getName().equals("Trap")){
+            harvestWeight.setText("Description:\nMengubah beruang menjadi kartu hewan yang dapat diternak apabila menyerang hewan/tanaman yang diberikan item ini.");
+        }
     }
 
     public void initialize() {
@@ -185,8 +201,10 @@ public class CardInfoView {
             initInfoAnimal();
         } else if (card instanceof PlantCardModel) {
             initInfoPlant();
-        } else {
+        } else if(card instanceof ProductCardModel){
             initInfoProduct();
+        }else{
+            initInfoItem();
         }
         Image img = new Image(((CardModel) card).getImage());
         image.setImage(img);

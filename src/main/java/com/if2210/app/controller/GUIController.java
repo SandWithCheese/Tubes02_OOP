@@ -3,6 +3,7 @@ package com.if2210.app.controller;
 import java.util.List;
 import java.util.Map;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -36,6 +37,7 @@ import com.if2210.app.model.ProductCardModel;
 import com.if2210.app.view.LoadView;
 import com.if2210.app.view.SaveView;
 import com.if2210.app.view.ShopView;
+import com.if2210.app.view.VictoryView;
 
 public class GUIController {
     public static final String BLANK_IMAGE = "/com/if2210/app/assets/blank.png";
@@ -524,11 +526,43 @@ public class GUIController {
         }
     }
 
+    public void handleVictory(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/if2210/app/fxml/Victory.fxml"));
+            String winner;
+            if(gameManagerModel.getPlayer1().getMoney()>gameManagerModel.getPlayer2().getMoney()){
+                winner ="1";
+            }else if(gameManagerModel.getPlayer1().getMoney()<gameManagerModel.getPlayer2().getMoney()){
+                winner ="2";
+            }else{
+                winner ="0";
+            }
+            VictoryView vic = new VictoryView(winner);
+            loader.setController(vic);
+            Parent root = loader.load();
+
+            Stage childStage = new Stage();
+            childStage.setTitle("Card Info");
+            childStage.initModality(Modality.APPLICATION_MODAL);
+            childStage.initOwner(null); // Replace 'null' with reference to the primary stage if needed
+            childStage.setScene(new Scene(root));
+            childStage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void handleNextTurn() {
         System.out.println("Next Turn");
         gameManagerModel.setWhoseTurn(gameManagerModel.getWhoseTurn() == 0 ? 1 : 0);
         if (gameManagerModel.getWhoseTurn() == 0) {
             gameManagerModel.setCurrentTurn(gameManagerModel.getCurrentTurn() + 1);
+            System.out.println(gameManagerModel.getCurrentTurn());
+            
+            if(gameManagerModel.getCurrentTurn() == 4){
+                handleVictory();
+            }
         }
         gameTurn.setText(String.format("%02d", gameManagerModel.getCurrentTurn()));
         loadActiveDeck(gameManagerModel.getActivePlayer());

@@ -396,7 +396,7 @@
                      <children>
                         <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                         </ImageView>
-                        <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Enam" textFill="#010913">
+                        <Label alignment="CENTER" layoutX="0" layoutY="70.0" prefWidth="90" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="Enam" textFill="#010913">
                            <font>
                               <Font size="11.0" />
                            </font>
@@ -425,7 +425,7 @@
                   <AnchorPane id="ActiveDeck3" fx:id="ActiveDeck" prefHeight="103.2" prefWidth="80.87" style="-fx-background-color: #D4E3FC; -fx-background-radius: 7.7px;">
                      <children>
                         <ImageView fitHeight="67.0" fitWidth="73.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
-                        <Label layoutX="26.0" layoutY="70.0" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="" textFill="#010913">
+                        <Label alignment="CENTER" layoutX="0" layoutY="70.0" prefWidth="90" style="-fx-font-weight: 700; -fx-font-family: Inter;" text="" textFill="#010913">
                            <font>
                               <Font size="11.0" />
                            </font>

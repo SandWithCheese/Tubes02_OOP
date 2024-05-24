@@ -4,17 +4,22 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane cache="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="605.0" prefWidth="973.0" style="-fx-border-width: 3px; -fx-border-color: #799FF6; -fx-background-color: #021A38;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.if2210.app.view.LoadPluginView">
+<Pane cache="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="605.0" prefWidth="973.0" style="-fx-border-width: 3px; -fx-border-color: #799FF6; -fx-background-color: #021A38;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button layoutX="344.0" layoutY="368.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#clickChoosePlugin" prefHeight="52.0" prefWidth="285.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;" text="Close The Game" textAlignment="CENTER" textFill="WHITE">
+      <Label alignment="CENTER" layoutX="0" layoutY="100.0" prefWidth="1000" text="Thank's For Playing" style="-fx-font-weight: 700;" textFill="#d4e3fc">
          <font>
-            <Font size="20.0" />
+            <Font size="70.0" />
          </font>
-      </Button>
-      <Label layoutX="195.0" layoutY="123.0" style="-fx-font-weight: 700;" text="Congratulations to Player 1/2" textAlignment="CENTER" textFill="#d4e3fc">
+      </Label>
+      <Label fx:id="win" alignment="CENTER" layoutX="0" layoutY="250.0" prefWidth="1000" style="-fx-font-weight: 700;" textFill="#d4e3fc">
          <font>
             <Font size="42.0" />
          </font>
       </Label>
+      <Button onAction="#handleClose" alignment="CENTER" layoutX="400" layoutY="400.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="52.0" prefWidth="200.0" style="-fx-background-color: #799FF6; -fx-font-weight: 700; -fx-background-radius: 10px;" text="CLOSE" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
    </children>
 </Pane>
