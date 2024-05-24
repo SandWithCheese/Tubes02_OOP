@@ -149,7 +149,7 @@ public class CardInfoView {
             this.weightAfterActiveItem = 0;
         }
 
-        String ageText = "Weight : " + plantCard.getCurrentAge() + " (" + this.weightAfterActiveItem + ")";
+        String ageText = "Age : " + plantCard.getCurrentAge() + " (" + this.weightAfterActiveItem + ")";
         weight.setText(ageText);
 
         harvestWeight.setText("Harvest age : " + plantCard.getHarvestAge());

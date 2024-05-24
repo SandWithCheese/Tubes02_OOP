@@ -518,6 +518,7 @@ public class GUIController {
         gameTurn.setText(String.format("%02d", gameManagerModel.getCurrentTurn()));
         loadActiveDeck(gameManagerModel.getActivePlayer());
         loadField(gameManagerModel.getActivePlayer());
+        FieldController.incrementAllCards(gameManagerModel.getActivePlayer().getField());
         isEnemyField = false;
         toggleDragDetectionOnFieldCards(true); // Enable drag detection
 
@@ -527,14 +528,16 @@ public class GUIController {
         // Calculate how many empty slot exist
         int emptySlot = 6 - this.gameManagerModel.getActivePlayer().getActiveDeck().getEffectiveDeckSize();
 
-        // Implement shuffle new card if currentActiveDeck is not full and currentDeck not empty
+        // Implement shuffle new card if currentActiveDeck is not full and currentDeck
+        // not empty
         if (!currentActiveDeck.isFull() && !currentDeck.isEmpty()) {
             try {
                 // Load pop up window
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/if2210/app/fxml/NewCards.fxml"));
 
                 // Setting controller for fxml
-                NewCardsView newCards = new NewCardsView(currentDeck, emptySlot, new ActiveDeckModel(currentActiveDeck));
+                NewCardsView newCards = new NewCardsView(currentDeck, emptySlot,
+                        new ActiveDeckModel(currentActiveDeck));
                 loader.setController(newCards);
 
                 Parent root = loader.load();
@@ -556,7 +559,8 @@ public class GUIController {
                     this.gameManagerModel.getActivePlayer().getDeck().removeCard(card);
                 }
 
-                // Set active deck in main page to be same as currentActiveDeck attribute in NewCards
+                // Set active deck in main page to be same as currentActiveDeck attribute in
+                // NewCards
                 for (int i = 0; i < 6; i++) {
                     if (this.gameManagerModel.getActivePlayer().getActiveDeck().getCards().get(i) == null) {
                         updateCard(this.activeDecks.get(i), newCards.getNewCards().get(0), true);
@@ -566,12 +570,10 @@ public class GUIController {
                         break;
                     }
                 }
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
-        else {
+        } else {
             if (currentActiveDeck.isFull()) {
                 System.out.println("Can't shuffle new cards: Active Deck is Full");
             }
