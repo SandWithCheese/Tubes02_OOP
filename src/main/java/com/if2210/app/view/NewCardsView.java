@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class NewCardsView {
     private int currTurn;
     private DeckModel currentDeck;
-    private int emptySlot;  // emptySlot of activeDeck
+    private int emptySlot; // emptySlot of activeDeck
     private ActiveDeckModel currentActiveDeck;
     private ArrayList<CardModel> newCards;
 
@@ -40,7 +40,7 @@ public class NewCardsView {
 
     @FXML
     public void initialize() {
-        labelPlayer.setText(Integer.toString(currTurn));
+        labelPlayer.setText("Player " + Integer.toString(currTurn + 1));
         // Langsung nampilin kartu pas pertama kali di inisialisasi
         this.clickDice();
     }
@@ -63,7 +63,7 @@ public class NewCardsView {
         for (int i = 0; i < neededCard; i++) {
             // Get random index
             range = max - min;
-            int randomInt = (int)(Math.random() * range) + min;
+            int randomInt = (int) (Math.random() * range) + min;
 
             if (randomInt > currentDeck.getDeckSize() - 1) {
                 i--;
@@ -71,7 +71,8 @@ public class NewCardsView {
             }
 
             // Kalo card di index randomInt belom ada di newCards, maka akan di add
-            if (currentDeck.getCards().get(randomInt) != null &&  !newCards.contains(currentDeck.getCards().get(randomInt))) {
+            if (currentDeck.getCards().get(randomInt) != null
+                    && !newCards.contains(currentDeck.getCards().get(randomInt))) {
                 // Add card from deck to newCards
                 newCards.add(currentDeck.getCards().get(randomInt));
 
@@ -82,8 +83,8 @@ public class NewCardsView {
         }
 
         // Define arrays for ImageView and Label objects
-        ImageView[] imageViews = {imageSatu, imageDua, imageTiga, imageEmpat};
-        Label[] labels = {labelSatu, labelDua, labelTiga, labelEmpat};
+        ImageView[] imageViews = { imageSatu, imageDua, imageTiga, imageEmpat };
+        Label[] labels = { labelSatu, labelDua, labelTiga, labelEmpat };
 
         // Now set the imageView and Label matched as the newCards attribute
         for (int i = 0; i < 4; i++) {
@@ -94,7 +95,7 @@ public class NewCardsView {
 
             Image img = new Image(newCards.get(i).getImage());
             imageViews[i].setImage(img);
-            String name = new String(newCards.get(i).getName());  // This creates a new copy of the String value
+            String name = new String(newCards.get(i).getName()); // This creates a new copy of the String value
             labels[i].setText(name);
         }
     }
