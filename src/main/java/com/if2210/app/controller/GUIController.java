@@ -99,17 +99,17 @@ public class GUIController {
         updateCard(activeDecks.get(2), ItemCardFactory.createItemCard("Accelerate"), false);
         updateCard(activeDecks.get(3), ItemCardFactory.createItemCard("Destroy"), false);
         updateCard(activeDecks.get(4), ItemCardFactory.createItemCard("Protect"), false);
+        updateCard(activeDecks.get(5), ProductCardFactory.createProductCard("Daging Beruang"), false);
+        // updateCard(activeDecks.get(5), ProductCardFactory.createProductCard("Susu"), false);
     }
 
     private void handleMyFieldButtonClick(MouseEvent event) {
-        System.out.println("My Field Button Clicked!");
         isEnemyField = false;
         loadField(gameManagerModel.getActivePlayer());
         toggleDragDetectionOnFieldCards(true); // Enable drag detection
     }
 
     private void handleEnemyFieldButtonClick(MouseEvent event) {
-        System.out.println("Enemy Field Button Clicked!");
         isEnemyField = true;
         loadField(gameManagerModel.getEnemy());
         toggleDragDetectionOnFieldCards(false); // Disable drag detection
@@ -216,7 +216,7 @@ public class GUIController {
                         if (targetCard.getId().equals("shopDrop")) {
                             // Source is a Product card
                             if (sourceCardData instanceof ProductCardModel){
-                                System.out.println("SHOPEE COD");
+                                sellCard(sourceCard);
                                 success = true; // Implement your logic here if needed
                             }
                             else{
@@ -251,7 +251,7 @@ public class GUIController {
                                     activeItems.add((ItemCardModel) sourceCardData); // Add sourceCardData to activeItems
                                     temp.setActiveItems(activeItems); // Update activeItems in temp
                                     updateCard(targetCard, temp, true);
-                                    updateCard(sourceCard, new CardModel("", "", BLANK_IMAGE), true);
+                                    deleteCard(sourceCard);
                                 }
                                 else{
                                     PlantCardModel temp = (PlantCardModel) targetCardData;
@@ -260,7 +260,7 @@ public class GUIController {
                                     activeItems.add((ItemCardModel) sourceCardData); // Add sourceCardData to activeItems
                                     temp.setActiveItems(activeItems); // Update activeItems in temp
                                     updateCard(targetCard, temp, true);
-                                    updateCard(sourceCard, new CardModel("", "", BLANK_IMAGE), true);
+                                    deleteCard(sourceCard);
                                 }
                             }
                             // 2 Delay
@@ -275,7 +275,7 @@ public class GUIController {
                                     activeItems.add((ItemCardModel) sourceCardData); // Add sourceCardData to activeItems
                                     temp.setActiveItems(activeItems); // Update activeItems in temp
                                     updateCard(targetCard, temp, true);
-                                    updateCard(sourceCard, new CardModel("", "", BLANK_IMAGE), true);
+                                    deleteCard(sourceCard);
                                 }
                                 else{
                                     // -2 age, but not below 0
@@ -285,7 +285,7 @@ public class GUIController {
                                     activeItems.add((ItemCardModel) sourceCardData); // Add sourceCardData to activeItems
                                     temp.setActiveItems(activeItems); // Update activeItems in temp
                                     updateCard(targetCard, temp, true);
-                                    updateCard(sourceCard, new CardModel("", "", BLANK_IMAGE), true);
+                                    deleteCard(sourceCard);
                                 }
                             }
                             // 3 Instant Harvest
@@ -313,7 +313,7 @@ public class GUIController {
                                         }
 
                                         if (!foundProtect){
-                                            updateCard(targetCard, new CardModel("", "", BLANK_IMAGE), true);
+                                            deleteCard(targetCard);
                                         }
                                     }
                                     else{
@@ -328,10 +328,10 @@ public class GUIController {
                                         }
 
                                         if (!foundProtect){
-                                            updateCard(targetCard, new CardModel("", "", BLANK_IMAGE), true);
+                                            deleteCard(targetCard);
                                         }
                                     }
-                                    updateCard(sourceCard, new CardModel("", "", BLANK_IMAGE), true);
+                                    deleteCard(sourceCard);
                                     success = true;
                                 }
                                 // Implement your logic here if needed
@@ -347,7 +347,7 @@ public class GUIController {
                                     activeItems.add((ItemCardModel) sourceCardData); // Add sourceCardData to activeItems
                                     temp.setActiveItems(activeItems); // Update activeItems in temp
                                     updateCard(targetCard, temp, true);
-                                    updateCard(sourceCard, new CardModel("", "", BLANK_IMAGE), success);
+                                    deleteCard(sourceCard);
                                 }
                                 else{
                                     PlantCardModel temp = (PlantCardModel) targetCardData;
@@ -355,7 +355,7 @@ public class GUIController {
                                     activeItems.add((ItemCardModel) sourceCardData); // Add sourceCardData to activeItems
                                     temp.setActiveItems(activeItems); // Update activeItems in temp
                                     updateCard(targetCard, temp, true);
-                                    updateCard(sourceCard, new CardModel("", "", BLANK_IMAGE), success);
+                                    deleteCard(sourceCard);
                                 }
                             }
                             // 6 Trap
@@ -457,7 +457,7 @@ public class GUIController {
         }
     }
 
-    public void clearCard(AnchorPane source) {
+    public void deleteCard(AnchorPane source) {
         CardModel emptyData = new CardModel("", "", BLANK_IMAGE);
         source.setUserData(emptyData);
         updateCard(source, emptyData, true);
@@ -470,6 +470,16 @@ public class GUIController {
             } catch (Exception e) {
                 // Handle exception
             }
+        }
+    }
+
+    private void sellCard(AnchorPane card){
+        if (card.getUserData() instanceof ProductCardModel){
+            ProductCardModel productCard = (ProductCardModel) card.getUserData();
+            gameManagerModel.getActivePlayer().setMoney(gameManagerModel.getActivePlayer().getMoney() + productCard.getPrice());
+            gulden1.setText(Integer.toString(gameManagerModel.getPlayer1().getMoney()));
+            gulden2.setText(Integer.toString(gameManagerModel.getPlayer2().getMoney()));
+            deleteCard(card);
         }
     }
 
