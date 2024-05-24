@@ -102,13 +102,15 @@ public class CardInfoView {
             }
         }
 
-        if (weightFromActiveItem < 0) {
-            weightFromActiveItem = 0;
+        int weightAfterActiveItem = animalCard.getCurrentWeight() + weightFromActiveItem;
+        if (weightAfterActiveItem < 0) {
+            weightAfterActiveItem = 0;
         }
-        String weightText = "Weight : " + animalCard.getCurrentWeight() + " (" + weightFromActiveItem + ")";
+
+        String weightText = "Weight : " + animalCard.getCurrentWeight() + " (" + weightAfterActiveItem + ")";
         weight.setText(weightText);
         harvestWeight.setText("Harvest weight : " + animalCard.getHarvestWeight());
-        if ((animalCard.getCurrentWeight() + weightFromActiveItem) >= animalCard.getHarvestWeight()) {
+        if (weightAfterActiveItem >= animalCard.getHarvestWeight()) {
             info.setText("Ready to be harvest");
             info.setTextFill(javafx.scene.paint.Color.GREEN);
             harvestButton.setVisible(true);
@@ -140,14 +142,16 @@ public class CardInfoView {
             }
         }
 
-        if (ageFromActiveItem < 0) {
-            ageFromActiveItem = 0;
+        int ageAfterActiveItem = plantCard.getCurrentAge() + ageFromActiveItem;
+        if (ageAfterActiveItem < 0) {
+            ageAfterActiveItem = 0;
         }
-        String ageText = "Weight : " + plantCard.getCurrentAge() + " (" + ageFromActiveItem + ")";
+
+        String ageText = "Weight : " + plantCard.getCurrentAge() + " (" + ageAfterActiveItem + ")";
         weight.setText(ageText);
 
         harvestWeight.setText("Harvest age : " + plantCard.getHarvestAge());
-        if ((plantCard.getCurrentAge() + ageFromActiveItem) >= plantCard.getHarvestAge()) {
+        if (ageAfterActiveItem >= plantCard.getHarvestAge()) {
             info.setText("Ready to be harvest");
             info.setTextFill(javafx.scene.paint.Color.GREEN);
         } else {
