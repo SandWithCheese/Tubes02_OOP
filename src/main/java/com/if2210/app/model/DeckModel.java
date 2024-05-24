@@ -24,6 +24,9 @@ public class DeckModel {
         // Generate 12 random animal cards
         for (int i = 0; i < 12; i++) {
             int random = (int) (Math.random() * 6);
+            while (AnimalCardFactory.animalNames[random].equals("Beruang")) {
+                random = (int) (Math.random() * 6);
+            }
             this.cards.add(AnimalCardFactory.createAnimalCard(AnimalCardFactory.animalNames[random]));
         }
 
@@ -63,6 +66,9 @@ public class DeckModel {
         // Generate animal cards
         for (int i = 0; i < animalCount; i++) {
             int random = (int) (Math.random() * 6);
+            while (AnimalCardFactory.animalNames[random].equals("Beruang")) {
+                random = (int) (Math.random() * 6);
+            }
             this.cards.add(AnimalCardFactory.createAnimalCard(AnimalCardFactory.animalNames[random]));
         }
 
