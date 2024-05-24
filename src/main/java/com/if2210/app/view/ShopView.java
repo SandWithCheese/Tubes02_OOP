@@ -70,7 +70,7 @@ public class ShopView {
                         if (currentAmount == 0) {
                             messagelabel.setText("Produk tersebut out of stock");
                         } else {
-                            String productname = findLabelInAnchorPane((AnchorPane) parent.getChildren().getFirst());
+                            String productname = findLabelInAnchorPane((AnchorPane) parent.getChildren().get(0));
 
                             player.setMoney(player.getMoney() - Integer.parseInt(priceLabel.getText()));
 

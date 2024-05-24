@@ -198,7 +198,7 @@ public class CardInfoView {
     private void harvestAnimal() {
         System.out.println("Menjalankan proses panen hewan");
         ProductCardModel produk = ProductCardFactory.createProductCard(resProd.get(((CardModel) card).getName()));
-        controller.updateCard(cardPane, produk);
+        controller.updateCard(cardPane, produk, true);
         Stage stage = (Stage) info.getScene().getWindow();
         stage.close();
     }
