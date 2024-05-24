@@ -13,11 +13,9 @@ import com.if2210.app.model.ItemCardModel;
 import com.if2210.app.model.PlantCardModel;
 import com.if2210.app.model.ProductCardModel;
 
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -31,6 +29,10 @@ public class CardInfoView {
     private GUIController controller;
 
     private Map<String, String> resProd = new HashMap<>();
+
+    private int weightAfterActiveItem = 0;
+
+    private static ProductCardModel productItem;
 
     @FXML
     private Label weight;
@@ -102,12 +104,12 @@ public class CardInfoView {
             }
         }
 
-        int weightAfterActiveItem = animalCard.getCurrentWeight() + weightFromActiveItem;
-        if (weightAfterActiveItem < 0) {
-            weightAfterActiveItem = 0;
+        this.weightAfterActiveItem = animalCard.getCurrentWeight() + weightFromActiveItem;
+        if (this.weightAfterActiveItem < 0) {
+            this.weightAfterActiveItem = 0;
         }
 
-        String weightText = "Weight : " + animalCard.getCurrentWeight() + " (" + weightAfterActiveItem + ")";
+        String weightText = "Weight : " + animalCard.getCurrentWeight() + " (" + this.weightAfterActiveItem + ")";
         weight.setText(weightText);
         harvestWeight.setText("Harvest weight : " + animalCard.getHarvestWeight());
         if (weightAfterActiveItem >= animalCard.getHarvestWeight()) {
@@ -142,16 +144,16 @@ public class CardInfoView {
             }
         }
 
-        int ageAfterActiveItem = plantCard.getCurrentAge() + ageFromActiveItem;
-        if (ageAfterActiveItem < 0) {
-            ageAfterActiveItem = 0;
+        this.weightAfterActiveItem = plantCard.getCurrentAge() + ageFromActiveItem;
+        if (this.weightAfterActiveItem < 0) {
+            this.weightAfterActiveItem = 0;
         }
 
-        String ageText = "Weight : " + plantCard.getCurrentAge() + " (" + ageAfterActiveItem + ")";
+        String ageText = "Weight : " + plantCard.getCurrentAge() + " (" + this.weightAfterActiveItem + ")";
         weight.setText(ageText);
 
         harvestWeight.setText("Harvest age : " + plantCard.getHarvestAge());
-        if (ageAfterActiveItem >= plantCard.getHarvestAge()) {
+        if (this.weightAfterActiveItem >= plantCard.getHarvestAge()) {
             info.setText("Ready to be harvest");
             info.setTextFill(javafx.scene.paint.Color.GREEN);
         } else {
@@ -193,26 +195,32 @@ public class CardInfoView {
 
     private void harvestPlant() {
         System.out.println("Menjalankan proses panen tanaman");
+        ProductCardModel produk = ProductCardFactory.createProductCard(resProd.get(((CardModel) card).getName()));
+        controller.updateCard(cardPane, produk, true);
+        productItem = produk;
+        Stage stage = (Stage) info.getScene().getWindow();
+        stage.close();
     }
 
     private void harvestAnimal() {
         System.out.println("Menjalankan proses panen hewan");
         ProductCardModel produk = ProductCardFactory.createProductCard(resProd.get(((CardModel) card).getName()));
         controller.updateCard(cardPane, produk, true);
+        productItem = produk;
         Stage stage = (Stage) info.getScene().getWindow();
         stage.close();
     }
 
     public void harvestHandler() {
         if (card instanceof AnimalCardModel) {
-            if (((AnimalCardModel) card).getCurrentWeight() >= ((AnimalCardModel) card).getHarvestWeight()) {
+            if (this.weightAfterActiveItem >= ((AnimalCardModel) card).getHarvestWeight()) {
                 harvestAnimal();
             } else {
                 harvestResponse.setText("The animal is not heavy enough to harvest");
                 harvestResponse.setTextFill(javafx.scene.paint.Color.RED);
             }
         } else if (card instanceof PlantCardModel) {
-            if (((PlantCardModel) card).getCurrentAge() >= ((PlantCardModel) card).getHarvestAge()) {
+            if (this.weightAfterActiveItem >= ((PlantCardModel) card).getHarvestAge()) {
                 harvestPlant();
             } else {
                 harvestResponse.setText("The plants are not yet mature enough to harvest");
@@ -222,5 +230,11 @@ public class CardInfoView {
             harvestResponse.setText("Product is not a harvestable entity");
             harvestResponse.setTextFill(javafx.scene.paint.Color.RED);
         }
+    }
+
+    public static ProductCardModel getProductItem() {
+        ProductCardModel temp = productItem;
+        productItem = null;
+        return temp;
     }
 }
