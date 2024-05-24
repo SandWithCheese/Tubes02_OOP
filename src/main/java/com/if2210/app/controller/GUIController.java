@@ -3,6 +3,9 @@ package com.if2210.app.controller;
 import java.util.List;
 import java.util.Map;
 
+import com.if2210.app.model.*;
+import com.if2210.app.model.AnimalCardModel.AnimalType;
+import com.if2210.app.view.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -22,21 +25,8 @@ import javafx.scene.Scene;
 
 import com.if2210.app.factory.AnimalCardFactory;
 import com.if2210.app.factory.ItemCardFactory;
-import com.if2210.app.factory.PlantCardFactory;
-import com.if2210.app.factory.ProductCardFactory;
-import com.if2210.app.model.AnimalCardModel;
-import com.if2210.app.model.CardModel;
-
-import com.if2210.app.view.CardInfoView;
-
-import com.if2210.app.model.GameManagerModel;
-import com.if2210.app.model.ItemCardModel;
-import com.if2210.app.model.PlantCardModel;
-import com.if2210.app.model.PlayerModel;
-import com.if2210.app.model.ProductCardModel;
-import com.if2210.app.view.LoadView;
-import com.if2210.app.view.SaveView;
-import com.if2210.app.view.ShopView;
+// import com.if2210.app.factory.PlantCardFactory;
+// import com.if2210.app.model.*;
 
 public class GUIController {
     public static final String BLANK_IMAGE = "/com/if2210/app/assets/blank.png";
@@ -96,12 +86,7 @@ public class GUIController {
         myFieldButton.setOnMouseClicked(this::handleMyFieldButtonClick);
         enemyFieldButton.setOnMouseClicked(this::handleEnemyFieldButtonClick);
 
-        updateCard(activeDecks.get(0), AnimalCardFactory.createAnimalCard("Sapi"), true);
-        updateCard(activeDecks.get(1), PlantCardFactory.createPlantCard("Biji Jagung"), true);
-        updateCard(activeDecks.get(2), ItemCardFactory.createItemCard("Accelerate"), true);
-        updateCard(activeDecks.get(3), ItemCardFactory.createItemCard("Destroy"), true);
-        updateCard(activeDecks.get(4), ItemCardFactory.createItemCard("Protect"), true);
-        updateCard(activeDecks.get(5), ProductCardFactory.createProductCard("Susu"), true);
+        handleNextTurn();
     }
 
     private void handleMyFieldButtonClick(MouseEvent event) {
@@ -219,18 +204,22 @@ public class GUIController {
                             if (sourceCardData instanceof ProductCardModel) {
                                 sellCard(sourceCard);
                                 success = true; // Implement your logic here if needed
-                            } else {
-                                System.err.println("Illegal move: Source card is not a Product card");
+                            }
+                            else {
+                                System.out.println("Illegal move: Source card is not a Product card");
                             }
                         }
                         // Source is an Animal or Plant card
                         else if (sourceCardData instanceof AnimalCardModel
                                 || sourceCardData instanceof PlantCardModel) {
                             if (targetCardData.getImage().equals(BLANK_IMAGE) && !isEnemyField) {
+                                // Berladang atau Bertanam
                                 updateCard(sourceCard, targetCardData, true);
                                 updateCard(targetCard, sourceCardData, true);
                                 success = true;
-                            } else if (!sourceCardId.startsWith("ActiveDeck")) {
+                            }
+                            else if (!sourceCardId.startsWith("ActiveDeck")) {
+                                // Swapping in the field
                                 updateCard(sourceCard, targetCardData, true);
                                 updateCard(targetCard, sourceCardData, true);
                                 success = true;
@@ -240,35 +229,51 @@ public class GUIController {
                         else if (sourceCardData instanceof ItemCardModel &&
                                 (targetCardData instanceof AnimalCardModel
                                         || targetCardData instanceof PlantCardModel)) {
-                            if (sourceCardData.getName().equals("Accelerate") ||
-                                    sourceCardData.getName().equals("Delay") ||
-                                    sourceCardData.getName().equals("Protect")) {
-                                applyItemEffect(sourceCardData, targetCardData, targetCard);
-                            } else if (sourceCardData.getName().equals("Instant Harvest")) {
-                                // Implement your logic here if needed
-                                System.out.println("INSTANT HARVEST");
-                            } else if (sourceCardData.getName().equals("Destroy")) {
-                                applyDestroyEffect(sourceCardData, targetCardData, targetCard);
-                            } else if (sourceCardData.getName().equals("Trap")) {
-                                System.out.println("TRAP");
-                                applyItemEffect(sourceCardData, targetCardData, targetCard);
+                            if (isEnemyField){
+                                // Kalo di lapangan lawan
+                                if (sourceCardData.getName().equals("Delay")){
+                                    applyItemEffect(sourceCardData, targetCardData, targetCard);
+                                    deleteCard(sourceCard);
+                                    success = true; // Implement your logic here if needed
+                                }
+                                else if (sourceCardData.getName().equals("Destroy") && isEnemyField) {
+                                    applyDestroyEffect(sourceCardData, targetCardData, targetCard);
+                                    deleteCard(sourceCard);
+                                    success = true; // Implement your logic here if needed
+                                }
                             }
-                            deleteCard(sourceCard);
-                            success = true; // Implement your logic here if needed
+                            else{
+                                if (sourceCardData.getName().equals("Accelerate") || sourceCardData.getName().equals("Protect")) {
+                                    applyItemEffect(sourceCardData, targetCardData, targetCard);
+                                    deleteCard(sourceCard);
+                                    success = true; // Implement your logic here if needed
+                                }
+                                else if (sourceCardData.getName().equals("Instant Harvest")) {
+                                    // Implement your logic here if needed
+                                    System.out.println("INSTANT HARVEST");
+                                    deleteCard(sourceCard);
+                                    success = true; // Implement your logic here if needed
+                                }
+                                else if (sourceCardData.getName().equals("Trap")) {
+                                    System.out.println("TRAP");
+                                    applyItemEffect(sourceCardData, targetCardData, targetCard);
+                                    deleteCard(sourceCard);
+                                    success = true; // Implement your logic here if needed
+                                }
+                            }
                         }
                         // Source is product
-                        else if (sourceCardData instanceof ProductCardModel && targetCardData instanceof AnimalCardModel){
-                            appplyFeedEffect(sourceCardData, targetCardData, targetCard);
-                            deleteCard(sourceCard);
+                        else if (sourceCardData instanceof ProductCardModel && targetCardData instanceof AnimalCardModel && !isEnemyField){
+                            appplyFeedEffect(sourceCardData, targetCardData, targetCard, sourceCard);
                             success = true;
                         }
                     }
                     else {
-                        System.err.println("Illegal move: Source card is empty");
+                        System.out.println("Illegal move: Source card is empty");
                     }
                 }
                 else {
-                    System.err.println("Source ActiveDeck not found");
+                    System.out.println("Source ActiveDeck not found");
                 }
             }
             event.setDropCompleted(success);
@@ -543,8 +548,69 @@ public class GUIController {
         gameTurn.setText(String.format("%02d", gameManagerModel.getCurrentTurn()));
         loadActiveDeck(gameManagerModel.getActivePlayer());
         loadField(gameManagerModel.getActivePlayer());
+        FieldController.incrementAllCards(gameManagerModel.getActivePlayer().getField());
         isEnemyField = false;
         toggleDragDetectionOnFieldCards(true); // Enable drag detection
+
+        ActiveDeckModel currentActiveDeck = gameManagerModel.getActivePlayer().getActiveDeck();
+        DeckModel currentDeck = gameManagerModel.getActivePlayer().getDeck();
+
+        // Calculate how many empty slot exist
+        int emptySlot = 6 - this.gameManagerModel.getActivePlayer().getActiveDeck().getEffectiveDeckSize();
+
+        // Implement shuffle new card if currentActiveDeck is not full and currentDeck
+        // not empty
+        if (!currentActiveDeck.isFull() && !currentDeck.isEmpty()) {
+            try {
+                // Load pop up window
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/if2210/app/fxml/NewCards.fxml"));
+
+                // Setting controller for fxml
+                NewCardsView newCards = new NewCardsView(currentDeck, emptySlot,
+                        new ActiveDeckModel(currentActiveDeck));
+                loader.setController(newCards);
+
+                Parent root = loader.load();
+
+                Stage childStage = new Stage();
+                childStage.setTitle("New Random Card From Your Deck");
+                childStage.initModality(Modality.APPLICATION_MODAL);
+                childStage.initOwner(null); // Replace 'null' with reference to the primary stage if needed
+                childStage.setScene(new Scene(root));
+
+                // Load the logo image for taskbar logo
+                String iconPath = "/com/if2210/app/assets/Anya.png";
+                childStage.getIcons().add(new javafx.scene.image.Image(iconPath));
+
+                childStage.showAndWait();
+
+                // Remove choosen card from Deck
+                for (CardModel card : newCards.getNewCards()) {
+                    this.gameManagerModel.getActivePlayer().getDeck().removeCard(card);
+                }
+
+                // Set active deck in main page to be same as currentActiveDeck attribute in
+                // NewCards
+                for (int i = 0; i < 6; i++) {
+                    if (this.gameManagerModel.getActivePlayer().getActiveDeck().getCards().get(i) == null) {
+                        updateCard(this.activeDecks.get(i), newCards.getNewCards().get(0), true);
+                        newCards.getNewCards().remove(0);
+                    }
+                    if (newCards.getNewCards().size() == 0) {
+                        break;
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            if (currentActiveDeck.isFull()) {
+                System.out.println("Can't shuffle new cards: Active Deck is Full");
+            }
+            if (currentDeck.isEmpty()) {
+                System.out.println("Can't shuffle new cards: Deck is Empty");
+            }
+        }
     }
 
     private void setupClickCard() {
@@ -609,8 +675,22 @@ public class GUIController {
 
     private void applyDestroyEffect(CardModel sourceCardData, CardModel targetCardData, AnchorPane targetCard) {
         if (!targetCardData.getImage().equals(BLANK_IMAGE)) {
-            if (targetCardData instanceof AnimalCardModel || targetCardData instanceof PlantCardModel) {
+            if (targetCardData instanceof AnimalCardModel) {
                 ArrayList<ItemCardModel> activeItems = ((AnimalCardModel) targetCardData).getActiveItems();
+                boolean foundProtect = false;
+                for (ItemCardModel item : activeItems) {
+                    if (item.getName().equals("Protect")) {
+                        foundProtect = true;
+                        break;
+                    }
+                }
+
+                if (!foundProtect) {
+                    deleteCard(targetCard);
+                }
+            }
+            else{
+                ArrayList<ItemCardModel> activeItems = ((PlantCardModel) targetCardData).getActiveItems();
                 boolean foundProtect = false;
                 for (ItemCardModel item : activeItems) {
                     if (item.getName().equals("Protect")) {
@@ -626,9 +706,33 @@ public class GUIController {
         }
     }
 
-    private void appplyFeedEffect(CardModel sourceCardData, CardModel targetCardData, AnchorPane targetCard) {
+    private void appplyFeedEffect(CardModel sourceCardData, CardModel targetCardData, AnchorPane targetCard, AnchorPane sourceCard) {
         AnimalCardModel temp = (AnimalCardModel) targetCardData;
-        temp.setCurrentWeight(temp.getCurrentWeight() + ((ProductCardModel) sourceCardData).getAddedWeight());
-        updateCard(targetCard, temp, true);
+
+        AnimalType tipe = temp.getType();
+        ProductCardModel food = (ProductCardModel) sourceCardData;
+        switch (tipe) {
+            case OMNIVORE:
+                temp.setCurrentWeight(temp.getCurrentWeight() + food.getAddedWeight());
+                updateCard(targetCard, temp, true);
+                deleteCard(sourceCard);
+                break;
+            case HERBIVORE:
+                if (food.getName().equals("Jagung") || food.getName().equals("Labu") || food.getName().equals("Stroberi")) {
+                    temp.setCurrentWeight(temp.getCurrentWeight() + food.getAddedWeight());
+                    updateCard(targetCard, temp, true);
+                    deleteCard(sourceCard);
+                }
+                break;
+            case CARNIVORE:
+                if (food.getName().equals("Daging Domba") || food.getName().equals("Daging Kuda") || food.getName().equals("Daging Beruang") || food.getName().equals("Sirip Hiu") || food.getName().equals("Telur") || food.getName().equals("Susu")){
+                    temp.setCurrentWeight(temp.getCurrentWeight() + food.getAddedWeight());
+                    updateCard(targetCard, temp, true);
+                    deleteCard(sourceCard);
+                }
+                break;
+            default:
+                break;
+        }
     }
 }

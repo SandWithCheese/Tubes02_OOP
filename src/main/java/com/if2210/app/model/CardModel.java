@@ -11,6 +11,12 @@ public class CardModel {
         this.image = image;
     }
 
+    public  CardModel(CardModel cardModelCopy) {
+        this.color = new String(cardModelCopy.color);
+        this.name = new String(cardModelCopy.name);
+        this.image = new String(cardModelCopy.image);
+    }
+
     public String getColor() {
         return color;
     }
