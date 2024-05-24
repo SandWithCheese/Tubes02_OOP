@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javafx.application.Platform;
 import com.if2210.app.model.*;
+import com.if2210.app.model.AnimalCardModel.AnimalType;
 import com.if2210.app.view.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,7 +26,8 @@ import javafx.scene.Scene;
 
 import com.if2210.app.factory.AnimalCardFactory;
 import com.if2210.app.factory.ItemCardFactory;
-import com.if2210.app.factory.PlantCardFactory;
+// import com.if2210.app.factory.PlantCardFactory;
+// import com.if2210.app.model.*;
 
 public class GUIController {
     public static final String BLANK_IMAGE = "/com/if2210/app/assets/blank.png";
@@ -221,8 +223,9 @@ public class GUIController {
                             if (sourceCardData instanceof ProductCardModel) {
                                 sellCard(sourceCard);
                                 success = true; // Implement your logic here if needed
-                            } else {
-                                System.err.println("Illegal move: Source card is not a Product card");
+                            }
+                            else {
+                                System.out.println("Illegal move: Source card is not a Product card");
                             }
                         }
                         // Source is an Animal or Plant card
@@ -233,13 +236,16 @@ public class GUIController {
                                 String tempColor = sourceCardData.getColor();
                                 sourceCardData.setColor(targetCardData.getColor());
                                 targetCardData.setColor(tempColor);
+                                // Berladang atau Bertanam
                                 updateCard(sourceCard, targetCardData, true);
                                 updateCard(targetCard, sourceCardData, true);
                                 success = true;
-                            } else if (!sourceCardId.startsWith("ActiveDeck")) {
+                            }
+                            else if (!sourceCardId.startsWith("ActiveDeck")) {
                                 String tempColor = sourceCardData.getColor();
                                 sourceCardData.setColor(targetCardData.getColor());
                                 targetCardData.setColor(tempColor);
+                                // Swapping in the field
                                 updateCard(sourceCard, targetCardData, true);
                                 updateCard(targetCard, sourceCardData, true);
                                 success = true;
@@ -249,27 +255,51 @@ public class GUIController {
                         else if (sourceCardData instanceof ItemCardModel &&
                                 (targetCardData instanceof AnimalCardModel
                                         || targetCardData instanceof PlantCardModel)) {
-                            if (sourceCardData.getName().equals("Accelerate") ||
-                                    sourceCardData.getName().equals("Delay") ||
-                                    sourceCardData.getName().equals("Protect")) {
-                                applyItemEffect(sourceCardData, targetCardData, targetCard);
-                            } else if (sourceCardData.getName().equals("Instant Harvest")) {
-                                // Implement your logic here if needed
-                                System.out.println("INSTANT HARVEST");
-                            } else if (sourceCardData.getName().equals("Destroy")) {
-                                applyDestroyEffect(sourceCardData, targetCardData, targetCard);
-                            } else if (sourceCardData.getName().equals("Trap")) {
-                                System.out.println("TRAP");
-                                applyItemEffect(sourceCardData, targetCardData, targetCard);
+                            if (isEnemyField){
+                                // Kalo di lapangan lawan
+                                if (sourceCardData.getName().equals("Delay")){
+                                    applyItemEffect(sourceCardData, targetCardData, targetCard);
+                                    deleteCard(sourceCard);
+                                    success = true; // Implement your logic here if needed
+                                }
+                                else if (sourceCardData.getName().equals("Destroy") && isEnemyField) {
+                                    applyDestroyEffect(sourceCardData, targetCardData, targetCard);
+                                    deleteCard(sourceCard);
+                                    success = true; // Implement your logic here if needed
+                                }
                             }
-                            deleteCard(sourceCard);
-                            success = true; // Implement your logic here if needed
+                            else{
+                                if (sourceCardData.getName().equals("Accelerate") || sourceCardData.getName().equals("Protect")) {
+                                    applyItemEffect(sourceCardData, targetCardData, targetCard);
+                                    deleteCard(sourceCard);
+                                    success = true; // Implement your logic here if needed
+                                }
+                                else if (sourceCardData.getName().equals("Instant Harvest")) {
+                                    // Implement your logic here if needed
+                                    System.out.println("INSTANT HARVEST");
+                                    deleteCard(sourceCard);
+                                    success = true; // Implement your logic here if needed
+                                }
+                                else if (sourceCardData.getName().equals("Trap")) {
+                                    System.out.println("TRAP");
+                                    applyItemEffect(sourceCardData, targetCardData, targetCard);
+                                    deleteCard(sourceCard);
+                                    success = true; // Implement your logic here if needed
+                                }
+                            }
                         }
-                    } else {
-                        System.err.println("Illegal move: Source card is empty");
+                        // Source is product
+                        else if (sourceCardData instanceof ProductCardModel && targetCardData instanceof AnimalCardModel && !isEnemyField){
+                            appplyFeedEffect(sourceCardData, targetCardData, targetCard, sourceCard);
+                            success = true;
+                        }
                     }
-                } else {
-                    System.err.println("Source ActiveDeck not found");
+                    else {
+                        System.out.println("Illegal move: Source card is empty");
+                    }
+                }
+                else {
+                    System.out.println("Source ActiveDeck not found");
                 }
             }
             event.setDropCompleted(success);
@@ -821,7 +851,7 @@ public class GUIController {
 
     private void applyDestroyEffect(CardModel sourceCardData, CardModel targetCardData, AnchorPane targetCard) {
         if (!targetCardData.getImage().equals(BLANK_IMAGE)) {
-            if (targetCardData instanceof AnimalCardModel || targetCardData instanceof PlantCardModel) {
+            if (targetCardData instanceof AnimalCardModel) {
                 ArrayList<ItemCardModel> activeItems = ((AnimalCardModel) targetCardData).getActiveItems();
                 boolean foundProtect = false;
                 for (ItemCardModel item : activeItems) {
@@ -835,6 +865,50 @@ public class GUIController {
                     deleteCard(targetCard);
                 }
             }
+            else{
+                ArrayList<ItemCardModel> activeItems = ((PlantCardModel) targetCardData).getActiveItems();
+                boolean foundProtect = false;
+                for (ItemCardModel item : activeItems) {
+                    if (item.getName().equals("Protect")) {
+                        foundProtect = true;
+                        break;
+                    }
+                }
+
+                if (!foundProtect) {
+                    deleteCard(targetCard);
+                }
+            }
+        }
+    }
+
+    private void appplyFeedEffect(CardModel sourceCardData, CardModel targetCardData, AnchorPane targetCard, AnchorPane sourceCard) {
+        AnimalCardModel temp = (AnimalCardModel) targetCardData;
+
+        AnimalType tipe = temp.getType();
+        ProductCardModel food = (ProductCardModel) sourceCardData;
+        switch (tipe) {
+            case OMNIVORE:
+                temp.setCurrentWeight(temp.getCurrentWeight() + food.getAddedWeight());
+                updateCard(targetCard, temp, true);
+                deleteCard(sourceCard);
+                break;
+            case HERBIVORE:
+                if (food.getName().equals("Jagung") || food.getName().equals("Labu") || food.getName().equals("Stroberi")) {
+                    temp.setCurrentWeight(temp.getCurrentWeight() + food.getAddedWeight());
+                    updateCard(targetCard, temp, true);
+                    deleteCard(sourceCard);
+                }
+                break;
+            case CARNIVORE:
+                if (food.getName().equals("Daging Domba") || food.getName().equals("Daging Kuda") || food.getName().equals("Daging Beruang") || food.getName().equals("Sirip Hiu") || food.getName().equals("Telur") || food.getName().equals("Susu")){
+                    temp.setCurrentWeight(temp.getCurrentWeight() + food.getAddedWeight());
+                    updateCard(targetCard, temp, true);
+                    deleteCard(sourceCard);
+                }
+                break;
+            default:
+                break;
         }
     }
 }
