@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.if2210.app.controller.GUIController;
-import com.if2210.app.factory.ItemCardFactory;
 import com.if2210.app.factory.ProductCardFactory;
 import com.if2210.app.model.AnimalCardModel;
 import com.if2210.app.model.CardModel;
@@ -149,7 +148,7 @@ public class CardInfoView {
             this.weightAfterActiveItem = 0;
         }
 
-        String ageText = "Weight : " + plantCard.getCurrentAge() + " (" + this.weightAfterActiveItem + ")";
+        String ageText = "Age : " + plantCard.getCurrentAge() + " (" + this.weightAfterActiveItem + ")";
         weight.setText(ageText);
 
         harvestWeight.setText("Harvest age : " + plantCard.getHarvestAge());

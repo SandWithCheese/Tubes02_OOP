@@ -3,7 +3,8 @@ package com.if2210.app.controller;
 import java.util.List;
 import java.util.Map;
 
-import javafx.application.Platform;
+import com.if2210.app.model.*;
+import com.if2210.app.view.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -21,9 +22,6 @@ import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
-import com.if2210.app.factory.AnimalCardFactory;
-import com.if2210.app.factory.ItemCardFactory;
-import com.if2210.app.factory.PlantCardFactory;
 import com.if2210.app.model.AnimalCardModel;
 import com.if2210.app.model.CardModel;
 
@@ -97,11 +95,7 @@ public class GUIController {
         myFieldButton.setOnMouseClicked(this::handleMyFieldButtonClick);
         enemyFieldButton.setOnMouseClicked(this::handleEnemyFieldButtonClick);
 
-        updateCard(activeDecks.get(0), AnimalCardFactory.createAnimalCard("Sapi"), true);
-        updateCard(activeDecks.get(1), PlantCardFactory.createPlantCard("Biji Jagung"), true);
-        updateCard(activeDecks.get(2), ItemCardFactory.createItemCard("Accelerate"), true);
-        updateCard(activeDecks.get(3), ItemCardFactory.createItemCard("Destroy"), true);
-        updateCard(activeDecks.get(4), ItemCardFactory.createItemCard("Protect"), true);
+        handleNextTurn();
     }
 
     private void handleMyFieldButtonClick(MouseEvent event) {
@@ -567,8 +561,69 @@ public class GUIController {
         gameTurn.setText(String.format("%02d", gameManagerModel.getCurrentTurn()));
         loadActiveDeck(gameManagerModel.getActivePlayer());
         loadField(gameManagerModel.getActivePlayer());
+        FieldController.incrementAllCards(gameManagerModel.getActivePlayer().getField());
         isEnemyField = false;
         toggleDragDetectionOnFieldCards(true); // Enable drag detection
+
+        ActiveDeckModel currentActiveDeck = gameManagerModel.getActivePlayer().getActiveDeck();
+        DeckModel currentDeck = gameManagerModel.getActivePlayer().getDeck();
+
+        // Calculate how many empty slot exist
+        int emptySlot = 6 - this.gameManagerModel.getActivePlayer().getActiveDeck().getEffectiveDeckSize();
+
+        // Implement shuffle new card if currentActiveDeck is not full and currentDeck
+        // not empty
+        if (!currentActiveDeck.isFull() && !currentDeck.isEmpty()) {
+            try {
+                // Load pop up window
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/if2210/app/fxml/NewCards.fxml"));
+
+                // Setting controller for fxml
+                NewCardsView newCards = new NewCardsView(currentDeck, emptySlot,
+                        new ActiveDeckModel(currentActiveDeck));
+                loader.setController(newCards);
+
+                Parent root = loader.load();
+
+                Stage childStage = new Stage();
+                childStage.setTitle("New Random Card From Your Deck");
+                childStage.initModality(Modality.APPLICATION_MODAL);
+                childStage.initOwner(null); // Replace 'null' with reference to the primary stage if needed
+                childStage.setScene(new Scene(root));
+
+                // Load the logo image for taskbar logo
+                String iconPath = "/com/if2210/app/assets/Anya.png";
+                childStage.getIcons().add(new javafx.scene.image.Image(iconPath));
+
+                childStage.showAndWait();
+
+                // Remove choosen card from Deck
+                for (CardModel card : newCards.getNewCards()) {
+                    this.gameManagerModel.getActivePlayer().getDeck().removeCard(card);
+                }
+
+                // Set active deck in main page to be same as currentActiveDeck attribute in
+                // NewCards
+                for (int i = 0; i < 6; i++) {
+                    if (this.gameManagerModel.getActivePlayer().getActiveDeck().getCards().get(i) == null) {
+                        updateCard(this.activeDecks.get(i), newCards.getNewCards().get(0), true);
+                        newCards.getNewCards().remove(0);
+                    }
+                    if (newCards.getNewCards().size() == 0) {
+                        break;
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            if (currentActiveDeck.isFull()) {
+                System.out.println("Can't shuffle new cards: Active Deck is Full");
+            }
+            if (currentDeck.isEmpty()) {
+                System.out.println("Can't shuffle new cards: Deck is Empty");
+            }
+        }
     }
 
     private void setupClickCard() {

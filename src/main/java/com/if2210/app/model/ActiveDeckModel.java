@@ -15,6 +15,18 @@ public class ActiveDeckModel {
         }
     }
 
+    public ActiveDeckModel(ActiveDeckModel activeDeckCopy) {
+        this.cards = new ArrayList<CardModel>();
+        for (CardModel card : activeDeckCopy.getCards()) {
+            if (card == null) {
+                cards.add(null);
+            }
+            else {
+                cards.add(new CardModel(card));
+            }
+        }
+    }
+
     public ArrayList<CardModel> getCards() {
         return cards;
     }
