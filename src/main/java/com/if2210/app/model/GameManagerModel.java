@@ -60,6 +60,14 @@ public class GameManagerModel {
         this.whoseTurn = whoseTurn;
     }
 
+    public PlayerModel getActivePlayer() {
+        if (this.whoseTurn == 0) {
+            return this.player1;
+        } else {
+            return this.player2;
+        }
+    }
+
     public ShopModel getShop() {
         return shop;
     }
@@ -82,5 +90,13 @@ public class GameManagerModel {
 
     public void setPlayer2(PlayerModel player2) {
         this.player2 = player2;
+    }
+
+    public PlayerModel getEnemy() {
+        if (this.whoseTurn == 0) {
+            return this.player2;
+        } else {
+            return this.player1;
+        }
     }
 }
