@@ -35,14 +35,14 @@
             <Font size="21.0" />
          </font>
       </Label>
-      <AnchorPane layoutX="97.0" layoutY="129.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="206.4" prefWidth="161.73" style="-fx-background-color: #D4E3FC; -fx-background-radius: 15.4px;">
+      <AnchorPane layoutX="112.0" layoutY="129.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="206.4" prefWidth="161.73" style="-fx-background-color: #D4E3FC; -fx-background-radius: 15.4px;">
 
          <children>
             <AnchorPane id="CardFrame" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="206.4" prefWidth="161.73" style="-fx-background-color: #D4E3FC; -fx-background-radius: 15.4px;">
                <children>
 
                   <ImageView fx:id="imageSatu" fitHeight="149.0" fitWidth="162.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="labelSatu" alignment="CENTER" layoutX="3.0" layoutY="149.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="52.0" prefWidth="155.0" style="-fx-font-weight: 700;" text="satu" textFill="#010913">
+                  <Label fx:id="labelSatu" alignment="CENTER" layoutX="3.0" layoutY="149.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="52.0" prefWidth="155.0" style="-fx-font-weight: 700;" textFill="#010913">
 
                      <font>
                         <Font size="21.0" />
@@ -56,7 +56,7 @@
             <AnchorPane id="CardFrame" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="206.4" prefWidth="161.73" style="-fx-background-color: #D4E3FC; -fx-background-radius: 15.4px;">
                <children>
                   <ImageView fx:id="imageDua" fitHeight="149.0" fitWidth="162.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="labelDua" alignment="CENTER" layoutX="3.0" layoutY="149.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="52.0" prefWidth="155.0" style="-fx-font-weight: 700;" text="dua" textFill="#010913">
+                  <Label fx:id="labelDua" alignment="CENTER" layoutX="3.0" layoutY="149.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="52.0" prefWidth="155.0" style="-fx-font-weight: 700;" textFill="#010913">
                      <font>
                         <Font size="21.0" />
                      </font>
@@ -70,7 +70,7 @@
             <AnchorPane id="CardFrame" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="206.4" prefWidth="161.73" style="-fx-background-color: #D4E3FC; -fx-background-radius: 15.4px;">
                <children>
                   <ImageView fx:id="imageTiga" fitHeight="149.0" fitWidth="162.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="labelTiga" alignment="CENTER" layoutX="3.0" layoutY="149.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="52.0" prefWidth="155.0" style="-fx-font-weight: 700;" text="tiga" textFill="#010913">
+                  <Label fx:id="labelTiga" alignment="CENTER" layoutX="3.0" layoutY="149.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="52.0" prefWidth="155.0" style="-fx-font-weight: 700;" textFill="#010913">
                      <font>
                         <Font size="21.0" />
                      </font>
@@ -84,7 +84,7 @@
             <AnchorPane id="CardFrame" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="206.4" prefWidth="161.73" style="-fx-background-color: #D4E3FC; -fx-background-radius: 15.4px;">
                <children>
                   <ImageView fx:id="imageEmpat" fitHeight="149.0" fitWidth="162.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="labelEmpat" alignment="CENTER" layoutX="3.0" layoutY="149.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="52.0" prefWidth="155.0" style="-fx-font-weight: 700;" text="empat" textFill="#010913">
+                  <Label fx:id="labelEmpat" alignment="CENTER" layoutX="3.0" layoutY="149.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="52.0" prefWidth="155.0" style="-fx-font-weight: 700;" textFill="#010913">
                      <font>
                         <Font size="21.0" />
                      </font>
@@ -93,5 +93,10 @@
             </AnchorPane>
          </children>
       </AnchorPane>
+      <Label fx:id="labelPlayer" alignment="CENTER" layoutX="131.0" layoutY="67.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="62.0" prefWidth="712.0" style="-fx-font-weight: 700;" text="Player" textAlignment="CENTER" textFill="#d4e3fc">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
