@@ -82,7 +82,7 @@ public class GUIController {
     @FXML
     private Label messageLabel;
 
-    private boolean isEnemyField = false;
+    public boolean isEnemyField = false;
 
     public List<AnchorPane> activeDecks = new ArrayList<>();
     public List<AnchorPane> fieldCards = new ArrayList<>();
@@ -799,9 +799,9 @@ public class GUIController {
         loadButton.setDisable(true);
         pluginButton.setDisable(true);
         nextTurnButton.setDisable(true);
-        for (AnchorPane activeDeck : activeDecks) {
-            activeDeck.setDisable(true);
-        }
+        // for (AnchorPane activeDeck : activeDecks) {
+        //     activeDeck.setDisable(true);
+        // }
 
         // Using threading, update the message label every 0.1 second for 30-60 seconds
         Runnable task = new Runnable() {
@@ -894,9 +894,9 @@ public class GUIController {
                     loadButton.setDisable(false);
                     pluginButton.setDisable(false);
                     nextTurnButton.setDisable(false);
-                    for (AnchorPane activeDeck : activeDecks) {
-                        activeDeck.setDisable(false);
-                    }
+                    // for (AnchorPane activeDeck : activeDecks) {
+                    //     activeDeck.setDisable(false);
+                    // }
                 });
             }
         };
