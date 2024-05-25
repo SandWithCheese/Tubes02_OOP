@@ -123,10 +123,11 @@ public class GUIController {
             System.out.println("load dari folder");
 
         } else {
-            gameManagerModel.setCurrentTurn(1);
             handleNextTurn();
             loadActiveDeck(gameManagerModel.getPlayer1());
             loadField(gameManagerModel.getPlayer1());
+            gameManagerModel.setCurrentTurn(1);
+            gameTurn.setText(String.format("%02d", gameManagerModel.getCurrentTurn()));
 
         }
         setupDragAndDrop();
