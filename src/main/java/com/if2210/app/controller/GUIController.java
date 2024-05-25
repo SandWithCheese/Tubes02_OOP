@@ -751,7 +751,7 @@ public class GUIController {
             }
         }
 
-        // bearAttack();
+        bearAttack();
     }
 
     private void bearAttack() {
