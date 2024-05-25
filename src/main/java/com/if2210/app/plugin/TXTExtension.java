@@ -3,6 +3,7 @@ package com.if2210.app.plugin;
 import com.if2210.app.datastore.DataManager;
 import com.if2210.app.factory.AnimalCardFactory;
 import com.if2210.app.factory.ItemCardFactory;
+import com.if2210.app.factory.PlantCardFactory;
 import com.if2210.app.factory.ProductCardFactory;
 import com.if2210.app.model.*;
 
@@ -34,18 +35,18 @@ public class TXTExtension implements Extension {
     private PlayerModel player2;
 
     public TXTExtension() {
-        try {
-            this.path = Paths.get(getClass().getResource("/com/if2210/app/gamestates/state0").toURI());
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-            return;
-        }
-        this.gameStatePath = this.path.resolve("gamestate.txt");
-        this.player1Path = this.path.resolve("player1.txt");
-        this.player2Path = this.path.resolve("player2.txt");
+        // try {
+        //     this.path = Paths.get(getClass().getResource("/com/if2210/app/gamestates/state0").toURI());
+        // } catch (URISyntaxException e) {
+        //     e.printStackTrace();
+        //     return;
+        // }
+        // this.gameStatePath = this.path.resolve("gamestate.txt");
+        // this.player1Path = this.path.resolve("player1.txt");
+        // this.player2Path = this.path.resolve("player2.txt");
 
-        this.currentTurn = 0;
-        this.productList = new HashMap<ProductCardModel, Integer>();
+        // this.currentTurn = 0;
+        // this.productList = new HashMap<ProductCardModel, Integer>();
     }
 
     public TXTExtension(Path path) {
@@ -275,7 +276,7 @@ public class TXTExtension implements Extension {
 
     @Override
     public void save(String folderName, int currentTurn, Map<ProductCardModel, Integer> productList,
-                     PlayerModel player1, PlayerModel player2) {
+            PlayerModel player1, PlayerModel player2) {
         try {
             URL url = getClass().getResource("/com/if2210/app/gamestates/" + folderName);
             // If folder doesn't exist, create it and its files
@@ -475,7 +476,7 @@ public class TXTExtension implements Extension {
 
                 name = isPlantCard(parts[1]);
                 if (name != null) {
-                    AnimalCardModel card = AnimalCardFactory.createAnimalCard(name);
+                    PlantCardModel card = PlantCardFactory.createPlantCard(name);
                     int index = codeToActiveIndex(parts[0]);
                     this.player1.getActiveDeck().setCard(index, card);
                     continue;
@@ -484,14 +485,16 @@ public class TXTExtension implements Extension {
                 name = isProductCard(parts[1]);
                 if (name != null) {
                     ProductCardModel card = ProductCardFactory.createProductCard(name);
-                    this.player1.getDeck().getCards().add(card);
+                    int index = codeToActiveIndex(parts[0]);
+                    this.player1.getActiveDeck().setCard(index, card);
                     continue;
                 }
 
                 name = isItemCard(parts[1]);
                 if (name != null) {
-                    ProductCardModel card = ProductCardFactory.createProductCard(name);
-                    this.player1.getDeck().getCards().add(card);
+                    ItemCardModel card = ItemCardFactory.createItemCard(name);
+                    int index = codeToActiveIndex(parts[0]);
+                    this.player1.getActiveDeck().setCard(index, card);
                     continue;
                 }
             }
@@ -519,8 +522,8 @@ public class TXTExtension implements Extension {
 
                 name = isPlantCard(parts[1]);
                 if (name != null) {
-                    AnimalCardModel card = AnimalCardFactory.createAnimalCard(name);
-                    card.setCurrentWeight(Integer.parseInt(parts[2]));
+                    PlantCardModel card = PlantCardFactory.createPlantCard(name);
+                    card.setCurrentAge(Integer.parseInt(parts[2]));
                     int activeItemCount = Integer.parseInt(parts[3]);
                     for (int j = 0; j < activeItemCount; j++) {
                         card.getActiveItems().add(ItemCardFactory.createItemCard(isItemCard(parts[4 +
@@ -562,7 +565,7 @@ public class TXTExtension implements Extension {
 
                 name = isPlantCard(parts[1]);
                 if (name != null) {
-                    AnimalCardModel card = AnimalCardFactory.createAnimalCard(name);
+                    PlantCardModel card = PlantCardFactory.createPlantCard(name);
                     int index = codeToActiveIndex(parts[0]);
                     this.player2.getActiveDeck().setCard(index, card);
                     continue;
@@ -571,14 +574,16 @@ public class TXTExtension implements Extension {
                 name = isProductCard(parts[1]);
                 if (name != null) {
                     ProductCardModel card = ProductCardFactory.createProductCard(name);
-                    this.player2.getDeck().getCards().add(card);
+                    int index = codeToActiveIndex(parts[0]);
+                    this.player2.getActiveDeck().setCard(index, card);
                     continue;
                 }
 
                 name = isItemCard(parts[1]);
                 if (name != null) {
-                    ProductCardModel card = ProductCardFactory.createProductCard(name);
-                    this.player2.getDeck().getCards().add(card);
+                    ItemCardModel card = ItemCardFactory.createItemCard(name);
+                    int index = codeToActiveIndex(parts[0]);
+                    this.player2.getActiveDeck().setCard(index, card);
                     continue;
                 }
             }
@@ -606,8 +611,8 @@ public class TXTExtension implements Extension {
 
                 name = isPlantCard(parts[1]);
                 if (name != null) {
-                    AnimalCardModel card = AnimalCardFactory.createAnimalCard(name);
-                    card.setCurrentWeight(Integer.parseInt(parts[2]));
+                    PlantCardModel card = PlantCardFactory.createPlantCard(name);
+                    card.setCurrentAge(Integer.parseInt(parts[2]));
                     int activeItemCount = Integer.parseInt(parts[3]);
                     for (int j = 0; j < activeItemCount; j++) {
                         card.getActiveItems().add(ItemCardFactory.createItemCard(isItemCard(parts[4 +
@@ -621,6 +626,7 @@ public class TXTExtension implements Extension {
 
             this.player2.setMoney(gulden);
             this.player2.setDeck(deck);
+            System.out.println("TXTExtension loaded");
         } catch (Exception e) {
             e.printStackTrace();
             return;
