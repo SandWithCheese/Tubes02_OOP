@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.if2210.app.controller.CardController;
 import com.if2210.app.controller.GUIController;
 import com.if2210.app.factory.ProductCardFactory;
 import com.if2210.app.model.AnimalCardModel;
@@ -139,7 +140,7 @@ public class CardInfoView {
         Map<String, Integer> map = listToMap(nameItems);
         ArrayList<String> result = mapToList(map);
         System.out.println(itemList.size());
-        items.setText("Active Items: \n"+result.toString().substring(1, result.toString().length() - 1));
+        items.setText("Active Items: \n" + result.toString().substring(1, result.toString().length() - 1));
     }
 
     public void initInfoPlant() {
@@ -179,7 +180,7 @@ public class CardInfoView {
         Map<String, Integer> map = listToMap(nameItems);
         ArrayList<String> result = mapToList(map);
         System.out.println(itemList.size());
-        items.setText("Active Items: \n"+result.toString().substring(1, result.toString().length() - 1));
+        items.setText("Active Items: \n" + result.toString().substring(1, result.toString().length() - 1));
     }
 
     public void initInfoProduct() {
@@ -187,19 +188,24 @@ public class CardInfoView {
         harvestWeight.setText("Additional weight : " + ((ProductCardModel) card).getAddedWeight());
     }
 
-    public void initInfoItem(){
-        if(((CardModel)card).getName().equals("Accelerate")){
-            harvestWeight.setText("Description:\nMenambah umur tanaman sebanyak 2 turn atau menambah berat kartu hewan sebesar 8.");
-        }else if(((CardModel)card).getName().equals("Delay")){
-            harvestWeight.setText("Description:\nMengurangi umur tanaman sebanyak 2 turn (umur tanaman minimal bernilai 0) atau mengurangi berat kartu hewan sebesar 5 (berat hewan minimal bernilai 0).");
-        }else if(((CardModel)card).getName().equals("Instant Harvest")){
-            harvestWeight.setText("Description:\nMelakukan harvest secara langsung untuk kartu tanaman/hewan yang dipilih.");
-        }else if(((CardModel)card).getName().equals("Destroy")){
+    public void initInfoItem() {
+        if (((CardModel) card).getName().equals("Accelerate")) {
+            harvestWeight.setText(
+                    "Description:\nMenambah umur tanaman sebanyak 2 turn atau menambah berat kartu hewan sebesar 8.");
+        } else if (((CardModel) card).getName().equals("Delay")) {
+            harvestWeight.setText(
+                    "Description:\nMengurangi umur tanaman sebanyak 2 turn (umur tanaman minimal bernilai 0) atau mengurangi berat kartu hewan sebesar 5 (berat hewan minimal bernilai 0).");
+        } else if (((CardModel) card).getName().equals("Instant Harvest")) {
+            harvestWeight
+                    .setText("Description:\nMelakukan harvest secara langsung untuk kartu tanaman/hewan yang dipilih.");
+        } else if (((CardModel) card).getName().equals("Destroy")) {
             harvestWeight.setText("Description:\nMenghancurkan kartu tanaman/hewan lawan.");
-        }else if(((CardModel)card).getName().equals("Protect")){
-            harvestWeight.setText("Description:\nMelindungi kartu tanaman/hewan diri sendiri dari item yang ditambahkan oleh lawan ke ladang atau serangan beruang.");
-        }else if(((CardModel)card).getName().equals("Trap")){
-            harvestWeight.setText("Description:\nMengubah beruang menjadi kartu hewan yang dapat diternak apabila menyerang hewan/tanaman yang diberikan item ini.");
+        } else if (((CardModel) card).getName().equals("Protect")) {
+            harvestWeight.setText(
+                    "Description:\nMelindungi kartu tanaman/hewan diri sendiri dari item yang ditambahkan oleh lawan ke ladang atau serangan beruang.");
+        } else if (((CardModel) card).getName().equals("Trap")) {
+            harvestWeight.setText(
+                    "Description:\nMengubah beruang menjadi kartu hewan yang dapat diternak apabila menyerang hewan/tanaman yang diberikan item ini.");
         }
     }
 
@@ -211,20 +217,19 @@ public class CardInfoView {
             initInfoAnimal();
         } else if (card instanceof PlantCardModel) {
             initInfoPlant();
-        } else if(card instanceof ProductCardModel){
+        } else if (card instanceof ProductCardModel) {
             initInfoProduct();
-        }else{
+        } else {
             initInfoItem();
         }
         Image img = new Image(((CardModel) card).getImage());
         image.setImage(img);
-
     }
 
     private void harvestPlant() {
         System.out.println("Menjalankan proses panen tanaman");
         ProductCardModel produk = ProductCardFactory.createProductCard(resProd.get(((CardModel) card).getName()));
-        controller.updateCard(cardPane, produk, true, false);
+        CardController.updateCard(cardPane, produk, true, false, gm);
         productItem = produk;
         Stage stage = (Stage) info.getScene().getWindow();
         stage.close();
@@ -233,17 +238,17 @@ public class CardInfoView {
     private void harvestAnimal() {
         System.out.println("Menjalankan proses panen hewan");
         ProductCardModel produk = ProductCardFactory.createProductCard(resProd.get(((CardModel) card).getName()));
-        controller.updateCard(cardPane, produk, true, false);
+        CardController.updateCard(cardPane, produk, true, false, gm);
         productItem = produk;
         Stage stage = (Stage) info.getScene().getWindow();
         stage.close();
     }
 
     public void harvestHandler() {
-        if(gm.getActivePlayer().getActiveDeck().isFull()){// kalo deck aktif penuh
+        if (gm.getActivePlayer().getActiveDeck().isFull()) {// kalo deck aktif penuh
             info.setText("Your deck is full bro!!");
             info.setTextFill(javafx.scene.paint.Color.RED);
-        }else{
+        } else {
             if (card instanceof AnimalCardModel) {
                 if (this.weightAfterActiveItem >= ((AnimalCardModel) card).getHarvestWeight()) {
                     harvestAnimal();
@@ -264,7 +269,7 @@ public class CardInfoView {
             }
         }
     }
-    
+
     public static ProductCardModel getProductItem() {
         ProductCardModel temp = productItem;
         productItem = null;
