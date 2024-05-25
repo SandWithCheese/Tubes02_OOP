@@ -441,7 +441,7 @@ public class GUIController {
             System.out.println("ini ada gambar");
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/if2210/app/fxml/CardInfo.fxml"));
-                CardInfoView cardView = new CardInfoView(deck, gameManagerModel);
+                CardInfoView cardView = new CardInfoView(deck, gameManagerModel, isEnemyField);
                 loader.setController(cardView);
                 Parent root = loader.load();
 

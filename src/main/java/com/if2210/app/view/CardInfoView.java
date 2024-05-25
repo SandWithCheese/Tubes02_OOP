@@ -33,6 +33,8 @@ public class CardInfoView {
 
     private static ProductCardModel productItem;
 
+    private boolean isEnemyField;
+
     @FXML
     private Label weight;
 
@@ -57,10 +59,11 @@ public class CardInfoView {
     @FXML
     private Button harvestButton;
 
-    public CardInfoView(AnchorPane deck, GameManagerModel gm) {
+    public CardInfoView(AnchorPane deck, GameManagerModel gm, boolean isEnemyField) {
         card = deck.getUserData();
         this.gm = gm;
         cardPane = deck;
+        this.isEnemyField = isEnemyField;
     }
 
     private ArrayList<String> mapToList(Map<String, Integer> map) {
@@ -106,11 +109,11 @@ public class CardInfoView {
         weight.setText(weightText);
         harvestWeight.setText("Harvest weight : " + animalCard.getHarvestWeight());
         if (weightAfterActiveItem >= animalCard.getHarvestWeight()) {
-            if(!controller.isEnemyField){
+            if (isEnemyField) {
                 info.setText("Ready to be harvest");
                 info.setTextFill(javafx.scene.paint.Color.GREEN);
                 harvestButton.setVisible(true);
-            }else{
+            } else {
                 info.setText("This is not yours");
                 info.setTextFill(javafx.scene.paint.Color.RED);
             }
@@ -152,11 +155,11 @@ public class CardInfoView {
 
         harvestWeight.setText("Harvest age : " + plantCard.getHarvestAge());
         if (this.weightAfterActiveItem >= plantCard.getHarvestAge()) {
-            if(!controller.isEnemyField){
+            if (isEnemyField) {
                 info.setText("Ready to be harvest");
                 info.setTextFill(javafx.scene.paint.Color.GREEN);
                 harvestButton.setVisible(true);
-            }else{
+            } else {
                 info.setText("This is not yours");
                 info.setTextFill(javafx.scene.paint.Color.RED);
             }
