@@ -91,7 +91,7 @@ public class GUIController {
         this.gameManagerModel = new GameManagerModel();
     }
 
-    private boolean startGame(){ // return true if start without load
+    private boolean startGame() { // return true if start without load
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/if2210/app/fxml/Init.fxml"));
         InitView view = new InitView();
         loader.setController(view);
@@ -108,7 +108,7 @@ public class GUIController {
             e.printStackTrace();
         }
         return !view.isLoad;
-        
+
     }
 
     @FXML
@@ -116,13 +116,13 @@ public class GUIController {
         System.out.println("init");
         initializeDecks(activeDeckGroup, activeDecks, 6);
         initializeDecks(fieldCardGroup, fieldCards, 20);
-        if(!startGame()){
+        if (!startGame()) {
             // load
             System.out.println("load dari ...");
             handleOpenLoad();
             System.out.println("load dari folder");
-            
-        }else{
+
+        } else {
             gameManagerModel.setCurrentTurn(1);
             handleNextTurn();
             loadActiveDeck(gameManagerModel.getPlayer1());
@@ -396,7 +396,7 @@ public class GUIController {
         return null;
     }
 
-    public void updateCard(AnchorPane card, CardModel cardData, boolean updateField, boolean isEnemyField){
+    public void updateCard(AnchorPane card, CardModel cardData, boolean updateField, boolean isEnemyField) {
         card.setUserData(cardData);
 
         if (updateField) {
@@ -407,37 +407,32 @@ public class GUIController {
                 int i = id / 5;
                 int j = id % 5;
 
-
                 if (cardData.getImage().equals(BLANK_IMAGE)) {
-                    if (isEnemyField){
+                    if (isEnemyField) {
                         gameManagerModel.getEnemy().getField().removeCard(i, j);
-                    }
-                    else{
+                    } else {
                         gameManagerModel.getActivePlayer().getField().removeCard(i, j);
                     }
                 } else {
-                    if (isEnemyField){
+                    if (isEnemyField) {
                         gameManagerModel.getEnemy().getField().setCard(cardData, i, j);
-                    }
-                    else{
+                    } else {
                         gameManagerModel.getActivePlayer().getField().setCard(cardData, i, j);
-                    
+
                     }
                 }
             } else if (cardId.startsWith("ActiveDeck")) {
                 int id = Integer.parseInt(cardId.substring(10)) - 1;
                 if (cardData.getImage().equals(BLANK_IMAGE)) {
-                    if (isEnemyField){
+                    if (isEnemyField) {
                         gameManagerModel.getEnemy().getActiveDeck().removeCard(id);
-                    }
-                    else{
+                    } else {
                         gameManagerModel.getActivePlayer().getActiveDeck().removeCard(id);
                     }
                 } else {
-                    if (isEnemyField){
+                    if (isEnemyField) {
                         gameManagerModel.getEnemy().getActiveDeck().setCard(id, cardData);
-                    }
-                    else{
+                    } else {
                         gameManagerModel.getActivePlayer().getActiveDeck().setCard(id, cardData);
                     }
                 }
@@ -472,7 +467,6 @@ public class GUIController {
         source.setUserData(emptyData);
         updateCard(source, emptyData, true, isEnemyField);
     }
-
 
     private void clearField(List<AnchorPane> decks, boolean updateField) {
         for (int i = 0; i < decks.size(); i++) {
@@ -522,7 +516,7 @@ public class GUIController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/if2210/app/fxml/Load.fxml"));
             Parent root = loader.load();
-            
+
             Stage childStage = new Stage();
             childStage.setTitle("Load");
             childStage.initModality(Modality.APPLICATION_MODAL);
@@ -712,7 +706,7 @@ public class GUIController {
         } else if (gameManagerModel.getWhoseTurn() == -1) {
             gameManagerModel.setCurrentTurn(0);
         }
-        if(gameManagerModel.getCurrentTurn() ==21){
+        if (gameManagerModel.getCurrentTurn() == 21) {
             handleVictory();
         }
         gameTurn.setText(String.format("%02d", gameManagerModel.getCurrentTurn()));
@@ -835,7 +829,7 @@ public class GUIController {
         pluginButton.setDisable(true);
         nextTurnButton.setDisable(true);
         // for (AnchorPane activeDeck : activeDecks) {
-        //     activeDeck.setDisable(true);
+        // activeDeck.setDisable(true);
         // }
 
         // Using threading, update the message label every 0.1 second for 30-60 seconds
@@ -860,7 +854,7 @@ public class GUIController {
                 Platform.runLater(() -> {
                     messageLabel.setText("Bear attack! All cards in the field are destroyed.");
                     // Check if a card inside the area have a trap item
-                    boolean foundProtect = false;
+                    boolean foundTrap = false;
                     for (int i = Math.min(x1Final, x2Final); i <= Math.max(x1Final, x2Final); i++) {
                         for (int j = Math.min(y1Final, y2Final); j <= Math.max(y1Final, y2Final); j++) {
                             AnchorPane card = fieldCards.get(i * 5 + j);
@@ -870,7 +864,7 @@ public class GUIController {
                                 ArrayList<ItemCardModel> activeItems = temp.getActiveItems();
                                 for (ItemCardModel item : activeItems) {
                                     if (item.getName().equals("Trap")) {
-                                        foundProtect = true;
+                                        foundTrap = true;
                                         break;
                                     }
                                 }
@@ -879,7 +873,7 @@ public class GUIController {
                                 ArrayList<ItemCardModel> activeItems = temp.getActiveItems();
                                 for (ItemCardModel item : activeItems) {
                                     if (item.getName().equals("Trap")) {
-                                        foundProtect = true;
+                                        foundTrap = true;
                                         break;
                                     }
                                 }
@@ -888,11 +882,35 @@ public class GUIController {
                     }
 
                     // Clear all cards inside the area if there are no card with protect item
-                    if (!foundProtect) {
+                    if (!foundTrap) {
                         for (int i = Math.min(x1Final, x2Final); i <= Math.max(x1Final, x2Final); i++) {
                             for (int j = Math.min(y1Final, y2Final); j <= Math.max(y1Final, y2Final); j++) {
                                 AnchorPane card = fieldCards.get(i * 5 + j);
-                                deleteCard(card);
+                                CardModel cardData = (CardModel) card.getUserData();
+                                boolean foundProtect = false;
+                                if (cardData instanceof AnimalCardModel) {
+                                    AnimalCardModel temp = (AnimalCardModel) cardData;
+                                    ArrayList<ItemCardModel> activeItems = temp.getActiveItems();
+                                    for (ItemCardModel item : activeItems) {
+                                        if (item.getName().equals("Protect")) {
+                                            foundProtect = true;
+                                            break;
+                                        }
+                                    }
+                                } else if (cardData instanceof PlantCardModel) {
+                                    PlantCardModel temp = (PlantCardModel) cardData;
+                                    ArrayList<ItemCardModel> activeItems = temp.getActiveItems();
+                                    for (ItemCardModel item : activeItems) {
+                                        if (item.getName().equals("Protect")) {
+                                            foundProtect = true;
+                                            break;
+                                        }
+                                    }
+                                }
+
+                                if (!foundProtect) {
+                                    deleteCard(card);
+                                }
                             }
                         }
                     } else {
@@ -930,7 +948,7 @@ public class GUIController {
                     pluginButton.setDisable(false);
                     nextTurnButton.setDisable(false);
                     // for (AnchorPane activeDeck : activeDecks) {
-                    //     activeDeck.setDisable(false);
+                    // activeDeck.setDisable(false);
                     // }
                 });
             }
