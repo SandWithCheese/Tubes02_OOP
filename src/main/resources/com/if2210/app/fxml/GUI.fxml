@@ -14,12 +14,12 @@
    <children>
       <AnchorPane layoutX="145.0" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="552.0" prefWidth="503.0" style="-fx-border-color: #D4E3FC;">
          <children>
-            <Label layoutX="20.0" layoutY="2.0" style="-fx-font-weight: 700;" text="Field" textFill="WHITE">
+            <Label fx:id="fieldLabel" layoutX="20.0" layoutY="2.0" style="-fx-font-weight: 700;" text="Field" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label layoutX="19.0" layoutY="490.0" prefHeight="52.0" prefWidth="463.0" style="-fx-font-weight: 700;" text="This is a place to show any message like error message, bear attack, etc" textFill="WHITE" wrapText="true">
+            <Label layoutX="19.0" layoutY="490.0" prefHeight="52.0" prefWidth="463.0" style="-fx-font-weight: 700;" text="This is a place to show any message like error message, bear attack, etc" textFill="WHITE" wrapText="true" fx:id="messageLabel">
                <font>
                   <Font size="16.0" />
                </font>
@@ -320,7 +320,7 @@
                <children>
                   <AnchorPane id="shopDrop" fx:id="shopDrop" onMouseClicked="#handleOpenShop" prefHeight="96.0" prefWidth="171.0" style="-fx-background-color: #D4E3FC; -fx-background-radius: 10px;">
                      <children>
-                        <Button alignment="CENTER" mnemonicParsing="false" prefHeight="52.0" prefWidth="171.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;" text="Shop" textAlignment="CENTER" textFill="WHITE">
+                        <Button fx:id="shopButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleOpenShop" prefHeight="52.0" prefWidth="171.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;" text="Shop" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -333,13 +333,6 @@
                         </Label>
                      </children>
                   </AnchorPane>
-
-                  <Button onAction="#handleOpenShop" alignment="CENTER" mnemonicParsing="false" prefHeight="52.0" prefWidth="171.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;" text="Shop" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Button>
-
                </children>
             </Group>
             <Button fx:id="myFieldButton" alignment="CENTER" mnemonicParsing="false" prefHeight="52.0" prefWidth="171.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;" text="My Field" textAlignment="CENTER" textFill="WHITE">
@@ -352,12 +345,12 @@
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button alignment="CENTER" layoutX="573.0" mnemonicParsing="false" onAction="#handleOpenSave" prefHeight="52.0" prefWidth="171.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;" text="Save State" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="saveButton" alignment="CENTER" layoutX="573.0" mnemonicParsing="false" onAction="#handleOpenSave" prefHeight="52.0" prefWidth="171.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;" text="Save State" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button layoutX="764.0" mnemonicParsing="false" onAction="#handleOpenLoad" prefHeight="52.0" prefWidth="171.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;" text="Load State" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="loadButton" layoutX="764.0" mnemonicParsing="false" onAction="#handleOpenLoad" prefHeight="52.0" prefWidth="171.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;" text="Load State" textAlignment="CENTER" textFill="WHITE">
 
                <font>
                   <Font size="20.0" />
@@ -367,7 +360,7 @@
       </Group>
       <Group layoutX="808.0" layoutY="496.0">
          <children>
-            <Button alignment="CENTER" layoutY="73.0" mnemonicParsing="false" onAction="#handleOpenLoadPlugin" prefHeight="52.0" prefWidth="276.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;" text="Load Plugin" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="pluginButton" alignment="CENTER" layoutY="73.0" mnemonicParsing="false" onAction="#handleOpenLoadPlugin" prefHeight="52.0" prefWidth="276.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;" text="Load Plugin" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
@@ -381,7 +374,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="52.0" prefWidth="210.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;" text="Next Turn" textAlignment="CENTER" textFill="WHITE" onAction="#handleNextTurn">
+            <Button fx:id="nextTurnButton" alignment="CENTER" mnemonicParsing="false" prefHeight="52.0" prefWidth="210.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px; -fx-font-weight: 700;" text="Next Turn" textAlignment="CENTER" textFill="WHITE" onAction="#handleNextTurn">
                <font>
                   <Font size="20.0" />
                </font>
