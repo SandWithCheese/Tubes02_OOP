@@ -309,7 +309,9 @@ public class GUIController {
                                     deleteCard(sourceCard);
                                     success = true; // Implement your logic here if needed
                                 }
-                            } else {
+                            }
+                            // In my field
+                            else {
                                 if (sourceCardData.getName().equals("Accelerate")
                                         || sourceCardData.getName().equals("Protect")) {
                                     applyItemEffect(sourceCardData, targetCardData, targetCard);
@@ -318,9 +320,7 @@ public class GUIController {
                                     messageLabel.setText(sourceCardData.getName() + " has been used");
                                 } else if (sourceCardData.getName().equals("Instant Harvest")) {
                                     // Implement your logic here if needed
-                                    System.out.println("INSTANT HARVEST");
-                                    applyInstantHarvest(targetCardData, targetCard);
-                                    deleteCard(sourceCard);
+                                    applyInstantHarvest(targetCardData, targetCard, sourceCard);
                                     success = true; // Implement your logic here if needed
                                     messageLabel.setText("Instant Harvest card has been used");
                                 } else if (sourceCardData.getName().equals("Trap")) {
@@ -938,32 +938,31 @@ public class GUIController {
         }
     }
 
-    private void applyInstantHarvest(CardModel sourceCardData, AnchorPane sourceCard) {
-        if (!sourceCardData.getImage().equals(BLANK_IMAGE)) {
-            if (!gameManagerModel.getActivePlayer().getActiveDeck().isFull()) {
-                Map<String, String> resProd = new HashMap<>();
-                resProd.put("Hiu Darat", "Sirip Hiu");
-                resProd.put("Sapi", "Susu");
-                resProd.put("Domba", "Daging Domba");
-                resProd.put("Kuda", "Daging Kuda");
-                resProd.put("Ayam", "Telur");
-                resProd.put("Beruang", "Daging Beruang");
-                resProd.put("Biji Jagung", "Jagung");
-                resProd.put("Biji Labu", "Labu");
-                resProd.put("Biji Stroberi", "Stroberi");
+    private void applyInstantHarvest(CardModel targetCardData, AnchorPane targetCard, AnchorPane harvestCard) {
+        deleteCard(harvestCard);
+        deleteCard(targetCard);
+        if (!targetCardData.getImage().equals(BLANK_IMAGE)) {
+            Map<String, String> resProd = new HashMap<>();
+            resProd.put("Hiu Darat", "Sirip Hiu");
+            resProd.put("Sapi", "Susu");
+            resProd.put("Domba", "Daging Domba");
+            resProd.put("Kuda", "Daging Kuda");
+            resProd.put("Ayam", "Telur");
+            resProd.put("Beruang", "Daging Beruang");
+            resProd.put("Biji Jagung", "Jagung");
+            resProd.put("Biji Labu", "Labu");
+            resProd.put("Biji Stroberi", "Stroberi");
 
-                ProductCardModel produk = ProductCardFactory
-                        .createProductCard(resProd.get(((CardModel) sourceCardData).getName()));
-                for (int i = 0; i < 6; i++) {
-                    if (gameManagerModel.getActivePlayer().getActiveDeck().getCard(i) == null) {
-                        gameManagerModel.getActivePlayer().getActiveDeck().setCard(i, produk);
-                        updateCard(activeDecks.get(i), produk, true);
-                        break;
-                    }
+            ProductCardModel produk = ProductCardFactory
+                    .createProductCard(resProd.get(((CardModel) targetCardData).getName()));
+            for (int i = 0; i < 6; i++) {
+                if (gameManagerModel.getActivePlayer().getActiveDeck().getCard(i) == null) {
+                    // gameManagerModel.getActivePlayer().getActiveDeck().setCard(i, produk);
+                    updateCard(activeDecks.get(i), produk, true);
+                    loadActiveDeck(gameManagerModel.getActivePlayer());
+                    break;
                 }
             }
-            deleteCard(sourceCard);
-
         }
     }
 
