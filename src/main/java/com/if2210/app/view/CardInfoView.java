@@ -8,6 +8,7 @@ import com.if2210.app.controller.GUIController;
 import com.if2210.app.factory.ProductCardFactory;
 import com.if2210.app.model.AnimalCardModel;
 import com.if2210.app.model.CardModel;
+import com.if2210.app.model.GameManagerModel;
 import com.if2210.app.model.ItemCardModel;
 import com.if2210.app.model.PlantCardModel;
 import com.if2210.app.model.ProductCardModel;
@@ -26,6 +27,8 @@ public class CardInfoView {
     private AnchorPane cardPane;
 
     private GUIController controller;
+
+    private GameManagerModel gm;
 
     private Map<String, String> resProd = new HashMap<>();
 
@@ -57,8 +60,9 @@ public class CardInfoView {
     @FXML
     private Button harvestButton;
 
-    public CardInfoView(AnchorPane deck, GUIController gui) {
+    public CardInfoView(AnchorPane deck, GUIController gui, GameManagerModel gm) {
         card = deck.getUserData();
+        this.gm = gm;
         cardPane = deck;
         controller = gui;
         resProd.put("Hiu Darat", "Sirip Hiu");
@@ -70,6 +74,9 @@ public class CardInfoView {
         resProd.put("Biji Jagung", "Jagung");
         resProd.put("Biji Labu", "Labu");
         resProd.put("Biji Stroberi", "Stroberi");
+        resProd.put("Jagung", "Jagung");
+        resProd.put("Labu", "Labu");
+        resProd.put("Stroberi", "Stroberi");
     }
 
     private ArrayList<String> mapToList(Map<String, Integer> map) {
@@ -158,6 +165,7 @@ public class CardInfoView {
         if (this.weightAfterActiveItem >= plantCard.getHarvestAge()) {
             info.setText("Ready to be harvest");
             info.setTextFill(javafx.scene.paint.Color.GREEN);
+            harvestButton.setVisible(true);
         } else {
             info.setText("Your plant isn't ready to be harvested yet");
             info.setTextFill(javafx.scene.paint.Color.RED);
@@ -232,26 +240,31 @@ public class CardInfoView {
     }
 
     public void harvestHandler() {
-        if (card instanceof AnimalCardModel) {
-            if (this.weightAfterActiveItem >= ((AnimalCardModel) card).getHarvestWeight()) {
-                harvestAnimal();
+        if(gm.getActivePlayer().getActiveDeck().isFull()){// kalo deck aktif penuh
+            info.setText("Your deck is full bro!!");
+            info.setTextFill(javafx.scene.paint.Color.RED);
+        }else{
+            if (card instanceof AnimalCardModel) {
+                if (this.weightAfterActiveItem >= ((AnimalCardModel) card).getHarvestWeight()) {
+                    harvestAnimal();
+                } else {
+                    harvestResponse.setText("The animal is not heavy enough to harvest");
+                    harvestResponse.setTextFill(javafx.scene.paint.Color.RED);
+                }
+            } else if (card instanceof PlantCardModel) {
+                if (this.weightAfterActiveItem >= ((PlantCardModel) card).getHarvestAge()) {
+                    harvestPlant();
+                } else {
+                    harvestResponse.setText("The plants are not yet mature enough to harvest");
+                    harvestResponse.setTextFill(javafx.scene.paint.Color.RED);
+                }
             } else {
-                harvestResponse.setText("The animal is not heavy enough to harvest");
+                harvestResponse.setText("Product is not a harvestable entity");
                 harvestResponse.setTextFill(javafx.scene.paint.Color.RED);
             }
-        } else if (card instanceof PlantCardModel) {
-            if (this.weightAfterActiveItem >= ((PlantCardModel) card).getHarvestAge()) {
-                harvestPlant();
-            } else {
-                harvestResponse.setText("The plants are not yet mature enough to harvest");
-                harvestResponse.setTextFill(javafx.scene.paint.Color.RED);
-            }
-        } else {
-            harvestResponse.setText("Product is not a harvestable entity");
-            harvestResponse.setTextFill(javafx.scene.paint.Color.RED);
         }
     }
-
+    
     public static ProductCardModel getProductItem() {
         ProductCardModel temp = productItem;
         productItem = null;
