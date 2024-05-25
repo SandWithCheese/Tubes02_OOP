@@ -111,6 +111,8 @@ public class GUIController {
         enemyFieldButton.setOnMouseClicked(this::handleEnemyFieldButtonClick);
 
         handleNextTurn();
+        gameManagerModel.setCurrentTurn(1);
+        gameTurn.setText(String.format("%02d", gameManagerModel.getCurrentTurn()));
     }
 
     private void handleMyFieldButtonClick(MouseEvent event) {
@@ -487,12 +489,13 @@ public class GUIController {
                 this.gameManagerModel.getShop().setProductList(LoadView.getProductList());
                 gulden1.setText(Integer.toString(gameManagerModel.getPlayer1().getMoney()));
                 gulden2.setText(Integer.toString(gameManagerModel.getPlayer2().getMoney()));
-                deckCount.setText(
-                        "My Deck " + Integer.toString(gameManagerModel.getPlayer1().getDeck().getDeckSize()) + "/40");
-                gameTurn.setText(String.format("%02d", gameManagerModel.getCurrentTurn()));
                 loadActiveDeck(gameManagerModel.getPlayer1());
                 loadField(gameManagerModel.getPlayer1());
                 handleNextTurn();
+                gameManagerModel.setCurrentTurn(gameManagerModel.getCurrentTurn() - 1);
+                deckCount.setText(
+                        "My Deck " + Integer.toString(gameManagerModel.getPlayer1().getDeck().getDeckSize()) + "/40");
+                gameTurn.setText(String.format("%02d", gameManagerModel.getCurrentTurn()));
             }
         } catch (IOException e) {
             e.printStackTrace();
