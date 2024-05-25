@@ -99,7 +99,7 @@ public class LoadView {
             messageLabel.setTextFill(javafx.scene.paint.Color.RED);
         } else {
             try {
-                dataManager.load(foldername);
+                dataManager.load(foldername+selectedFormat);
                 currentTurn = dataManager.getCurrentTurn();
                 productList = dataManager.getProductList();
                 player1 = dataManager.getPlayer1();
