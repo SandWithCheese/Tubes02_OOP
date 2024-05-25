@@ -86,10 +86,44 @@ public class GUIController {
         this.gameManagerModel = new GameManagerModel();
     }
 
+    private boolean startGame() { // return true if start without load
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/if2210/app/fxml/Init.fxml"));
+        InitView view = new InitView();
+        loader.setController(view);
+        try {
+            Parent root = loader.load();
+
+            Stage childStage = new Stage();
+            childStage.setTitle("Start MoliNana");
+            childStage.initModality(Modality.APPLICATION_MODAL);
+            childStage.initOwner(null); // Replace 'null' with reference to the primary stage if needed
+            childStage.setScene(new Scene(root));
+            childStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return !view.isLoad;
+
+    }
+
     @FXML
     public void initialize() {
+        System.out.println("init");
         AnchorPaneController.initializeDecks(activeDeckGroup, activeDecks, 6, isEnemyField, gameManagerModel);
         AnchorPaneController.initializeDecks(fieldCardGroup, fieldCards, 20, isEnemyField, gameManagerModel);
+        if (!startGame()) {
+            // load
+            System.out.println("load dari ...");
+            handleOpenLoad();
+            System.out.println("load dari folder");
+
+        } else {
+            gameManagerModel.setCurrentTurn(1);
+            handleNextTurn();
+            ActiveDeckController.loadActiveDeck(gameManagerModel.getPlayer1(), activeDecks, gameManagerModel, isEnemyField);
+            FieldController.loadField(gameManagerModel.getPlayer1(), fieldCards, gameManagerModel, isEnemyField);
+
+        }
         setupDragAndDrop();
 
         setupClickCard();
@@ -105,8 +139,6 @@ public class GUIController {
         myFieldButton.setOnMouseClicked(this::handleMyFieldButtonClick);
         enemyFieldButton.setOnMouseClicked(this::handleEnemyFieldButtonClick);
 
-        handleNextTurn();
-        gameManagerModel.setCurrentTurn(1);
         gameTurn.setText(String.format("%02d", gameManagerModel.getCurrentTurn()));
     }
 
@@ -342,10 +374,12 @@ public class GUIController {
                         isEnemyField);
                 FieldController.loadField(gameManagerModel.getPlayer1(), fieldCards, gameManagerModel, isEnemyField);
                 handleNextTurn();
+                System.out.println(gameManagerModel.getCurrentTurn());
                 gameManagerModel.setCurrentTurn(gameManagerModel.getCurrentTurn() - 1);
                 deckCount.setText(
                         "My Deck " + Integer.toString(gameManagerModel.getPlayer1().getDeck().getDeckSize()) + "/40");
                 gameTurn.setText(String.format("%02d", gameManagerModel.getCurrentTurn()));
+
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -508,6 +542,9 @@ public class GUIController {
         } else if (gameManagerModel.getWhoseTurn() == -1) {
             gameManagerModel.setCurrentTurn(0);
         }
+        if (gameManagerModel.getCurrentTurn() == 21) {
+            handleVictory();
+        }
         gameTurn.setText(String.format("%02d", gameManagerModel.getCurrentTurn()));
         fieldLabel.setText("Player " + (gameManagerModel.getWhoseTurn() + 1) + " Field");
         ActiveDeckController.loadActiveDeck(gameManagerModel.getActivePlayer(), activeDecks, gameManagerModel,
@@ -652,7 +689,7 @@ public class GUIController {
                 Platform.runLater(() -> {
                     messageLabel.setText("Bear attack! All cards in the field are destroyed.");
                     // Check if a card inside the area have a trap item
-                    boolean foundProtect = false;
+                    boolean foundTrap = false;
                     for (int i = Math.min(x1Final, x2Final); i <= Math.max(x1Final, x2Final); i++) {
                         for (int j = Math.min(y1Final, y2Final); j <= Math.max(y1Final, y2Final); j++) {
                             AnchorPane card = fieldCards.get(i * 5 + j);
@@ -662,7 +699,7 @@ public class GUIController {
                                 ArrayList<ItemCardModel> activeItems = temp.getActiveItems();
                                 for (ItemCardModel item : activeItems) {
                                     if (item.getName().equals("Trap")) {
-                                        foundProtect = true;
+                                        foundTrap = true;
                                         break;
                                     }
                                 }
@@ -671,7 +708,7 @@ public class GUIController {
                                 ArrayList<ItemCardModel> activeItems = temp.getActiveItems();
                                 for (ItemCardModel item : activeItems) {
                                     if (item.getName().equals("Trap")) {
-                                        foundProtect = true;
+                                        foundTrap = true;
                                         break;
                                     }
                                 }
@@ -680,11 +717,35 @@ public class GUIController {
                     }
 
                     // Clear all cards inside the area if there are no card with protect item
-                    if (!foundProtect) {
+                    if (!foundTrap) {
                         for (int i = Math.min(x1Final, x2Final); i <= Math.max(x1Final, x2Final); i++) {
                             for (int j = Math.min(y1Final, y2Final); j <= Math.max(y1Final, y2Final); j++) {
                                 AnchorPane card = fieldCards.get(i * 5 + j);
-                                CardController.deleteCard(card, isEnemyField, gameManagerModel);
+                                CardModel cardData = (CardModel) card.getUserData();
+                                boolean foundProtect = false;
+                                if (cardData instanceof AnimalCardModel) {
+                                    AnimalCardModel temp = (AnimalCardModel) cardData;
+                                    ArrayList<ItemCardModel> activeItems = temp.getActiveItems();
+                                    for (ItemCardModel item : activeItems) {
+                                        if (item.getName().equals("Protect")) {
+                                            foundProtect = true;
+                                            break;
+                                        }
+                                    }
+                                } else if (cardData instanceof PlantCardModel) {
+                                    PlantCardModel temp = (PlantCardModel) cardData;
+                                    ArrayList<ItemCardModel> activeItems = temp.getActiveItems();
+                                    for (ItemCardModel item : activeItems) {
+                                        if (item.getName().equals("Protect")) {
+                                            foundProtect = true;
+                                            break;
+                                        }
+                                    }
+                                }
+
+                                if (!foundProtect) {
+                                    deleteCard(card);
+                                }
                             }
                         }
                     } else {
