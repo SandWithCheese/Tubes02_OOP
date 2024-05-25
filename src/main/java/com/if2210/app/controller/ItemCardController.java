@@ -1,10 +1,9 @@
 package com.if2210.app.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+import com.if2210.app.constant.Constant;
 import com.if2210.app.factory.ProductCardFactory;
 import com.if2210.app.model.AnimalCardModel;
 import com.if2210.app.model.AnimalCardModel.AnimalType;
@@ -17,8 +16,6 @@ import com.if2210.app.model.ProductCardModel;
 import javafx.scene.layout.AnchorPane;
 
 public class ItemCardController {
-    public static final String BLANK_IMAGE = "/com/if2210/app/assets/blank.png";
-
     public static void applyItemEffect(CardModel sourceCardData, CardModel targetCardData, AnchorPane targetCard,
             boolean isEnemyField, GameManagerModel gameManagerModel) {
         if (targetCardData instanceof AnimalCardModel) {
@@ -40,20 +37,9 @@ public class ItemCardController {
             boolean isEnemyField, GameManagerModel gameManagerModel, List<AnchorPane> activeDecks) {
         CardController.deleteCard(harvestCard, isEnemyField, gameManagerModel);
         CardController.deleteCard(targetCard, isEnemyField, gameManagerModel);
-        if (!targetCardData.getImage().equals(BLANK_IMAGE)) {
-            Map<String, String> resProd = new HashMap<>();
-            resProd.put("Hiu Darat", "Sirip Hiu");
-            resProd.put("Sapi", "Susu");
-            resProd.put("Domba", "Daging Domba");
-            resProd.put("Kuda", "Daging Kuda");
-            resProd.put("Ayam", "Telur");
-            resProd.put("Beruang", "Daging Beruang");
-            resProd.put("Biji Jagung", "Jagung");
-            resProd.put("Biji Labu", "Labu");
-            resProd.put("Biji Stroberi", "Stroberi");
-
+        if (!targetCardData.getImage().equals(Constant.BLANK_IMAGE)) {
             ProductCardModel produk = ProductCardFactory
-                    .createProductCard(resProd.get(((CardModel) targetCardData).getName()));
+                    .createProductCard(Constant.RES_PROD.get(((CardModel) targetCardData).getName()));
             for (int i = 0; i < 6; i++) {
                 if (gameManagerModel.getActivePlayer().getActiveDeck().getCard(i) == null) {
                     // gameManagerModel.getActivePlayer().getActiveDeck().setCard(i, produk);
@@ -69,7 +55,7 @@ public class ItemCardController {
 
     public static String applyDestroyEffect(CardModel sourceCardData, CardModel targetCardData, AnchorPane targetCard,
             boolean isEnemyField, GameManagerModel gameManagerModel) {
-        if (!targetCardData.getImage().equals(BLANK_IMAGE)) {
+        if (!targetCardData.getImage().equals(Constant.BLANK_IMAGE)) {
             if (targetCardData instanceof AnimalCardModel) {
                 ArrayList<ItemCardModel> activeItems = ((AnimalCardModel) targetCardData).getActiveItems();
                 boolean foundProtect = false;

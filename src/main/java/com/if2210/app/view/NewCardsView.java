@@ -3,7 +3,6 @@ package com.if2210.app.view;
 import com.if2210.app.model.ActiveDeckModel;
 import com.if2210.app.model.CardModel;
 import com.if2210.app.model.DeckModel;
-import com.if2210.app.model.PlayerModel;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;

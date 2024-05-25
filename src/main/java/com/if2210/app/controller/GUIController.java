@@ -6,17 +6,14 @@ import java.util.Map;
 import com.if2210.app.factory.PlantCardFactory;
 import javafx.application.Platform;
 
+import com.if2210.app.constant.Constant;
 import com.if2210.app.factory.AnimalCardFactory;
-import com.if2210.app.factory.ProductCardFactory;
 import com.if2210.app.model.*;
-import com.if2210.app.model.AnimalCardModel.AnimalType;
 import com.if2210.app.view.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
@@ -24,14 +21,12 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 public class GUIController {
-    public static final String BLANK_IMAGE = "/com/if2210/app/assets/blank.png";
     private GameManagerModel gameManagerModel;
 
     @FXML
@@ -185,7 +180,7 @@ public class GUIController {
                     CardModel sourceCardData = (CardModel) sourceCard.getUserData();
                     CardModel targetCardData = (CardModel) targetCard.getUserData();
                     // Check if source card is not empty
-                    if (!sourceCardData.getImage().equals(BLANK_IMAGE)) {
+                    if (!sourceCardData.getImage().equals(Constant.BLANK_IMAGE)) {
                         // target is the shop
                         if (targetCard.getId().equals("shopDrop")) {
                             // Source is a Product card
@@ -208,7 +203,7 @@ public class GUIController {
                         // Source is an Animal or Plant card
                         else if (sourceCardData instanceof AnimalCardModel
                                 || sourceCardData instanceof PlantCardModel) {
-                            if (targetCardData.getImage().equals(BLANK_IMAGE) && !isEnemyField) {
+                            if (targetCardData.getImage().equals(Constant.BLANK_IMAGE) && !isEnemyField) {
                                 // Switch color
                                 String tempColor = sourceCardData.getColor();
                                 sourceCardData.setColor(targetCardData.getColor());
@@ -246,24 +241,12 @@ public class GUIController {
                                     success = true; // Implement your logic here if needed
                                     messageLabel.setText("Delay card has been used");
 
-                                    // change to plant auto
-                                    Map<String, String> resProd = new HashMap<>();
-                                    resProd.put("Hiu Darat", "Sirip Hiu");
-                                    resProd.put("Sapi", "Susu");
-                                    resProd.put("Domba", "Daging Domba");
-                                    resProd.put("Kuda", "Daging Kuda");
-                                    resProd.put("Ayam", "Telur");
-                                    resProd.put("Beruang", "Daging Beruang");
-                                    resProd.put("Biji Jagung", "Jagung");
-                                    resProd.put("Biji Labu", "Labu");
-                                    resProd.put("Biji Stroberi", "Stroberi");
+                                    // change to plant automatically
                                     if (targetCardData instanceof PlantCardModel
                                             && (((PlantCardModel) targetCardData).getCurrentAge()
                                                     - 2) < ((PlantCardModel) targetCardData).getHarvestAge()) {
-                                        if (resProd.containsValue(targetCardData.getName())) {
-                                            for (Map.Entry<String, String> entry : resProd.entrySet()) {
-                                                System.out.println(entry.getValue());
-                                                System.out.println(targetCardData.getName());
+                                        if (Constant.RES_PROD.containsValue(targetCardData.getName())) {
+                                            for (Map.Entry<String, String> entry : Constant.RES_PROD.entrySet()) {
                                                 if (targetCardData.getName().equals(entry.getValue())) {
                                                     PlantCardModel plant = PlantCardFactory
                                                             .createPlantCard(entry.getKey());
@@ -454,11 +437,11 @@ public class GUIController {
     public void handleOpenCardInfo(AnchorPane deck) {
         CardModel sourceCardData = (CardModel) deck.getUserData();
 
-        if (!sourceCardData.getImage().equals(BLANK_IMAGE)) {
+        if (!sourceCardData.getImage().equals(Constant.BLANK_IMAGE)) {
             System.out.println("ini ada gambar");
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/if2210/app/fxml/CardInfo.fxml"));
-                CardInfoView cardView = new CardInfoView(deck, this, gameManagerModel);
+                CardInfoView cardView = new CardInfoView(deck, gameManagerModel);
                 loader.setController(cardView);
                 Parent root = loader.load();
 
@@ -601,7 +584,7 @@ public class GUIController {
             }
         }
 
-        // handleBearAttack();
+        handleBearAttack();
     }
 
     private void handleBearAttack() {
@@ -646,9 +629,6 @@ public class GUIController {
         loadButton.setDisable(true);
         pluginButton.setDisable(true);
         nextTurnButton.setDisable(true);
-        for (AnchorPane activeDeck : activeDecks) {
-            activeDeck.setDisable(true);
-        }
 
         // Using threading, update the message label every 0.1 second for 30-60 seconds
         Runnable task = new Runnable() {
@@ -742,9 +722,6 @@ public class GUIController {
                     loadButton.setDisable(false);
                     pluginButton.setDisable(false);
                     nextTurnButton.setDisable(false);
-                    for (AnchorPane activeDeck : activeDecks) {
-                        activeDeck.setDisable(false);
-                    }
                 });
             }
         };

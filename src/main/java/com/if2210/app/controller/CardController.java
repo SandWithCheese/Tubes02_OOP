@@ -2,6 +2,7 @@ package com.if2210.app.controller;
 
 import java.util.Map;
 
+import com.if2210.app.constant.Constant;
 import com.if2210.app.model.CardModel;
 import com.if2210.app.model.GameManagerModel;
 import com.if2210.app.model.ProductCardModel;
@@ -12,8 +13,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 public class CardController {
-    public static final String BLANK_IMAGE = "/com/if2210/app/assets/blank.png";
-
     public static void updateCard(AnchorPane card, CardModel cardData, boolean updateField, boolean isEnemyField,
             GameManagerModel gameManagerModel) {
         card.setUserData(cardData);
@@ -26,7 +25,7 @@ public class CardController {
                 int i = id / 5;
                 int j = id % 5;
 
-                if (cardData.getImage().equals(BLANK_IMAGE)) {
+                if (cardData.getImage().equals(Constant.BLANK_IMAGE)) {
                     if (isEnemyField) {
                         gameManagerModel.getEnemy().getField().removeCard(i, j);
                     } else {
@@ -42,7 +41,7 @@ public class CardController {
                 }
             } else if (cardId.startsWith("ActiveDeck")) {
                 int id = Integer.parseInt(cardId.substring(10)) - 1;
-                if (cardData.getImage().equals(BLANK_IMAGE)) {
+                if (cardData.getImage().equals(Constant.BLANK_IMAGE)) {
                     if (isEnemyField) {
                         gameManagerModel.getEnemy().getActiveDeck().removeCard(id);
                     } else {
@@ -62,7 +61,7 @@ public class CardController {
         Label label = (Label) card.getChildren().get(1);
 
         Image image = new Image(CardController.class.getResourceAsStream(cardData.getImage()));
-        if (image != null && !cardData.getImage().equals(BLANK_IMAGE)) {
+        if (image != null && !cardData.getImage().equals(Constant.BLANK_IMAGE)) {
             imageView.setImage(image);
             imageView.setVisible(true);
             label.setText(cardData.getName());
@@ -82,7 +81,7 @@ public class CardController {
     }
 
     public static void deleteCard(AnchorPane source, boolean isEnemyField, GameManagerModel gameManagerModel) {
-        CardModel emptyData = new CardModel("", "", BLANK_IMAGE);
+        CardModel emptyData = new CardModel("", "", Constant.BLANK_IMAGE);
         source.setUserData(emptyData);
         updateCard(source, emptyData, true, isEnemyField, gameManagerModel);
     }

@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.if2210.app.constant.Constant;
 import com.if2210.app.controller.CardController;
-import com.if2210.app.controller.GUIController;
 import com.if2210.app.factory.ProductCardFactory;
 import com.if2210.app.model.AnimalCardModel;
 import com.if2210.app.model.CardModel;
@@ -27,11 +27,7 @@ public class CardInfoView {
 
     private AnchorPane cardPane;
 
-    private GUIController controller;
-
     private GameManagerModel gm;
-
-    private Map<String, String> resProd = new HashMap<>();
 
     private int weightAfterActiveItem = 0;
 
@@ -61,23 +57,10 @@ public class CardInfoView {
     @FXML
     private Button harvestButton;
 
-    public CardInfoView(AnchorPane deck, GUIController gui, GameManagerModel gm) {
+    public CardInfoView(AnchorPane deck, GameManagerModel gm) {
         card = deck.getUserData();
         this.gm = gm;
         cardPane = deck;
-        controller = gui;
-        resProd.put("Hiu Darat", "Sirip Hiu");
-        resProd.put("Sapi", "Susu");
-        resProd.put("Domba", "Daging Domba");
-        resProd.put("Kuda", "Daging Kuda");
-        resProd.put("Ayam", "Telur");
-        resProd.put("Beruang", "Daging Beruang");
-        resProd.put("Biji Jagung", "Jagung");
-        resProd.put("Biji Labu", "Labu");
-        resProd.put("Biji Stroberi", "Stroberi");
-        resProd.put("Jagung", "Jagung");
-        resProd.put("Labu", "Labu");
-        resProd.put("Stroberi", "Stroberi");
     }
 
     private ArrayList<String> mapToList(Map<String, Integer> map) {
@@ -228,7 +211,8 @@ public class CardInfoView {
 
     private void harvestPlant() {
         System.out.println("Menjalankan proses panen tanaman");
-        ProductCardModel produk = ProductCardFactory.createProductCard(resProd.get(((CardModel) card).getName()));
+        ProductCardModel produk = ProductCardFactory
+                .createProductCard(Constant.RES_PROD.get(((CardModel) card).getName()));
         CardController.updateCard(cardPane, produk, true, false, gm);
         productItem = produk;
         Stage stage = (Stage) info.getScene().getWindow();
@@ -237,7 +221,8 @@ public class CardInfoView {
 
     private void harvestAnimal() {
         System.out.println("Menjalankan proses panen hewan");
-        ProductCardModel produk = ProductCardFactory.createProductCard(resProd.get(((CardModel) card).getName()));
+        ProductCardModel produk = ProductCardFactory
+                .createProductCard(Constant.RES_PROD.get(((CardModel) card).getName()));
         CardController.updateCard(cardPane, produk, true, false, gm);
         productItem = produk;
         Stage stage = (Stage) info.getScene().getWindow();

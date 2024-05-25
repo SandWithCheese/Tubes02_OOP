@@ -1,10 +1,8 @@
 package com.if2210.app.controller;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.List;
 
-import com.if2210.app.factory.PlantCardFactory;
+import com.if2210.app.constant.Constant;
 import com.if2210.app.factory.ProductCardFactory;
 import com.if2210.app.model.CardModel;
 import com.if2210.app.model.FieldModel;
@@ -17,8 +15,6 @@ import com.if2210.app.model.ProductCardModel;
 import javafx.scene.layout.AnchorPane;
 
 public class FieldController {
-    public static final String BLANK_IMAGE = "/com/if2210/app/assets/blank.png";
-
     public static void incrementAllCards(FieldModel field) {
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 5; j++) {
@@ -49,7 +45,8 @@ public class FieldController {
             boolean isEnemyField) {
         for (int i = 0; i < decks.size(); i++) {
             try {
-                CardController.updateCard(decks.get(i), new CardModel("", "", BLANK_IMAGE), updateField, isEnemyField,
+                CardController.updateCard(decks.get(i), new CardModel("", "", Constant.BLANK_IMAGE), updateField,
+                        isEnemyField,
                         gameManagerModel);
             } catch (Exception e) {
                 // Handle exception
@@ -61,7 +58,7 @@ public class FieldController {
             GameManagerModel gameManagerModel, boolean isEnemyField) {
         for (AnchorPane card : fields) {
             CardModel cardData = (CardModel) card.getUserData();
-            if (!cardData.getImage().equals(GUIController.BLANK_IMAGE)) {
+            if (!cardData.getImage().equals(Constant.BLANK_IMAGE)) {
                 if (cardData instanceof PlantCardModel) {
                     int ageFromActiveItem = ((PlantCardModel) cardData).getCurrentAge();
                     for (ItemCardModel item : ((PlantCardModel) cardData).getActiveItems()) {
@@ -71,23 +68,10 @@ public class FieldController {
                             ageFromActiveItem -= 2;
                         }
                     }
-                    Map<String, String> resProd = new HashMap<>();
-                    resProd.put("Hiu Darat", "Sirip Hiu");
-                    resProd.put("Sapi", "Susu");
-                    resProd.put("Domba", "Daging Domba");
-                    resProd.put("Kuda", "Daging Kuda");
-                    resProd.put("Ayam", "Telur");
-                    resProd.put("Beruang", "Daging Beruang");
-                    resProd.put("Biji Jagung", "Jagung");
-                    resProd.put("Biji Labu", "Labu");
-                    resProd.put("Biji Stroberi", "Stroberi");
                     System.out.println(ageFromActiveItem);
                     if (ageFromActiveItem >= ((PlantCardModel) cardData).getHarvestAge()) {
-                        resProd.put("Jagung", "Jagung");
-                        resProd.put("Labu", "Labu");
-                        resProd.put("Stroberi", "Stroberi");
                         ProductCardModel produk = ProductCardFactory
-                                .createProductCard(resProd.get(((CardModel) cardData).getName()));
+                                .createProductCard(Constant.RES_PROD.get(((CardModel) cardData).getName()));
 
                         if (produk != null && !gm.getActivePlayer().getActiveDeck().isFull()) {
                             for (int j = 0; j < 6; j++) {
