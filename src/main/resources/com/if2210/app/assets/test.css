@@ -1,0 +1,30 @@
+
+#shopButton {
+    -fx-background-color:  #799FF6;
+    -fx-font-size: 12px;
+}
+
+#shopButton:hover {
+    -fx-background-color: #5786f4;
+}
+
+/* Button click (pressed) style */
+#shopButton:pressed {
+    -fx-background-color: #346ef1;
+}
+
+/* Default button style */
+#myButton {
+    -fx-background-color:  #799FF6;
+    -fx-font-size: 20px;
+}
+
+/* Button hover style */
+#myButton:hover {
+    -fx-background-color: #5786f4;
+}
+
+/* Button click (pressed) style */
+#myButton:pressed {
+    -fx-background-color: #346ef1;
+}

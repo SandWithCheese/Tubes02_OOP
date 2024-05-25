@@ -53,7 +53,7 @@
                   </Group>
                   <Group accessibleRole="BUTTON" layoutX="106.0" layoutY="88.0">
                      <children>
-                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="30.0" prefWidth="47.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px;" />
+                        <Button id="shopButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="30.0" prefWidth="47.0" style="-fx-background-radius: 10px;" stylesheets="@../assets/test.css" />
                         <ImageView accessibleRole="BUTTON" disable="true" fitHeight="20.0" fitWidth="29.0" layoutX="13.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../assets/cart.png" />
@@ -93,7 +93,7 @@
                   </Group>
                   <Group accessibleRole="BUTTON" layoutX="106.0" layoutY="88.0">
                      <children>
-                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="30.0" prefWidth="47.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px;" />
+                        <Button id="shopButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="30.0" prefWidth="47.0" style="-fx-background-radius: 10px;" stylesheets="@../assets/test.css" />
                         <ImageView accessibleRole="BUTTON" disable="true" fitHeight="20.0" fitWidth="29.0" layoutX="13.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../assets/cart.png" />
@@ -133,7 +133,7 @@
                   </Group>
                   <Group accessibleRole="BUTTON" layoutX="106.0" layoutY="88.0">
                      <children>
-                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="30.0" prefWidth="47.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px;" />
+                        <Button id="shopButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="30.0" prefWidth="47.0" style="-fx-background-radius: 10px;" stylesheets="@../assets/test.css" />
                         <ImageView accessibleRole="BUTTON" disable="true" fitHeight="20.0" fitWidth="29.0" layoutX="13.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../assets/cart.png" />
@@ -173,7 +173,7 @@
                   </Group>
                   <Group accessibleRole="BUTTON" layoutX="106.0" layoutY="88.0">
                      <children>
-                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="30.0" prefWidth="47.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px;" />
+                        <Button id="shopButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="30.0" prefWidth="47.0" style="-fx-background-radius: 10px;" stylesheets="@../assets/test.css" />
                         <ImageView accessibleRole="BUTTON" disable="true" fitHeight="20.0" fitWidth="29.0" layoutX="13.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../assets/cart.png" />
@@ -213,7 +213,7 @@
                   </Group>
                   <Group accessibleRole="BUTTON" layoutX="106.0" layoutY="88.0">
                      <children>
-                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="30.0" prefWidth="47.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px;" />
+                        <Button id="shopButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="30.0" prefWidth="47.0" style="-fx-background-radius: 10px;" stylesheets="@../assets/test.css" />
                         <ImageView accessibleRole="BUTTON" disable="true" fitHeight="20.0" fitWidth="29.0" layoutX="13.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../assets/cart.png" />
@@ -253,7 +253,7 @@
                   </Group>
                   <Group accessibleRole="BUTTON" layoutX="106.0" layoutY="88.0">
                      <children>
-                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="30.0" prefWidth="47.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px;" />
+                        <Button id="shopButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="30.0" prefWidth="47.0" style="-fx-background-radius: 10px;" stylesheets="@../assets/test.css" />
                         <ImageView accessibleRole="BUTTON" disable="true" fitHeight="20.0" fitWidth="29.0" layoutX="13.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../assets/cart.png" />
@@ -298,7 +298,7 @@
                   </Group>
                   <Group accessibleRole="BUTTON" layoutX="106.0" layoutY="88.0">
                      <children>
-                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="30.0" prefWidth="47.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px;" />
+                        <Button id="shopButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="30.0" prefWidth="47.0" style="-fx-background-radius: 10px;" stylesheets="@../assets/test.css" />
                         <ImageView accessibleRole="BUTTON" disable="true" fitHeight="20.0" fitWidth="29.0" layoutX="13.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../assets/cart.png" />
@@ -343,7 +343,7 @@
                   </Group>
                   <Group accessibleRole="BUTTON" layoutX="106.0" layoutY="88.0">
                      <children>
-                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="30.0" prefWidth="47.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px;" />
+                        <Button id="shopButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="30.0" prefWidth="47.0" style="-fx-background-radius: 10px;" stylesheets="@../assets/test.css" />
                         <ImageView accessibleRole="BUTTON" disable="true" fitHeight="20.0" fitWidth="29.0" layoutX="13.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../assets/cart.png" />
@@ -388,7 +388,7 @@
                   </Group>
                   <Group accessibleRole="BUTTON" layoutX="106.0" layoutY="88.0">
                      <children>
-                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="30.0" prefWidth="47.0" style="-fx-background-color: #799FF6; -fx-background-radius: 10px;" />
+                        <Button id="shopButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="30.0" prefWidth="47.0" style="-fx-background-radius: 10px;" stylesheets="@../assets/test.css" />
                         <ImageView accessibleRole="BUTTON" disable="true" fitHeight="20.0" fitWidth="29.0" layoutX="13.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../assets/cart.png" />
