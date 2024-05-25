@@ -401,7 +401,7 @@ public class GUIController {
                     .setMoney(gameManagerModel.getActivePlayer().getMoney() + productCard.getPrice());
             gulden1.setText(Integer.toString(gameManagerModel.getPlayer1().getMoney()));
             gulden2.setText(Integer.toString(gameManagerModel.getPlayer2().getMoney()));
-            
+
             boolean found = false;
 
             for (Map.Entry<ProductCardModel, Integer> entry : gameManagerModel.getShop().getProductList().entrySet()) {
@@ -422,7 +422,7 @@ public class GUIController {
             if (!found) {
                 gameManagerModel.getShop().getProductList().put(productCard, 1);
             }
-            
+
             deleteCard(card);
         }
     }
@@ -583,16 +583,16 @@ public class GUIController {
         }
     }
 
-    public void handleVictory(){
+    public void handleVictory() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/if2210/app/fxml/Victory.fxml"));
             String winner;
-            if(gameManagerModel.getPlayer1().getMoney()>gameManagerModel.getPlayer2().getMoney()){
-                winner ="1";
-            }else if(gameManagerModel.getPlayer1().getMoney()<gameManagerModel.getPlayer2().getMoney()){
-                winner ="2";
-            }else{
-                winner ="0";
+            if (gameManagerModel.getPlayer1().getMoney() > gameManagerModel.getPlayer2().getMoney()) {
+                winner = "1";
+            } else if (gameManagerModel.getPlayer1().getMoney() < gameManagerModel.getPlayer2().getMoney()) {
+                winner = "2";
+            } else {
+                winner = "0";
             }
             VictoryView vic = new VictoryView(winner);
             loader.setController(vic);
@@ -691,7 +691,7 @@ public class GUIController {
             }
         }
 
-        bearAttack();
+        // bearAttack();
     }
 
     private void bearAttack() {
@@ -901,9 +901,9 @@ public class GUIController {
         }
     }
 
-    private void applyInstantHarvest(CardModel sourceCardData, AnchorPane sourceCard){
-        if(!sourceCardData.getImage().equals(BLANK_IMAGE)){
-            if(!gameManagerModel.getActivePlayer().getActiveDeck().isFull()){
+    private void applyInstantHarvest(CardModel sourceCardData, AnchorPane sourceCard) {
+        if (!sourceCardData.getImage().equals(BLANK_IMAGE)) {
+            if (!gameManagerModel.getActivePlayer().getActiveDeck().isFull()) {
                 Map<String, String> resProd = new HashMap<>();
                 resProd.put("Hiu Darat", "Sirip Hiu");
                 resProd.put("Sapi", "Susu");
@@ -914,10 +914,11 @@ public class GUIController {
                 resProd.put("Biji Jagung", "Jagung");
                 resProd.put("Biji Labu", "Labu");
                 resProd.put("Biji Stroberi", "Stroberi");
-                
-                ProductCardModel produk = ProductCardFactory.createProductCard(resProd.get(((CardModel) sourceCardData).getName()));
+
+                ProductCardModel produk = ProductCardFactory
+                        .createProductCard(resProd.get(((CardModel) sourceCardData).getName()));
                 for (int i = 0; i < 6; i++) {
-                    if(gameManagerModel.getActivePlayer().getActiveDeck().getCard(i) == null){
+                    if (gameManagerModel.getActivePlayer().getActiveDeck().getCard(i) == null) {
                         gameManagerModel.getActivePlayer().getActiveDeck().setCard(i, produk);
                         updateCard(activeDecks.get(i), produk, true);
                         break;
