@@ -91,10 +91,44 @@ public class GUIController {
         this.gameManagerModel = new GameManagerModel();
     }
 
+    private boolean startGame(){ // return true if start without load
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/if2210/app/fxml/Init.fxml"));
+        InitView view = new InitView();
+        loader.setController(view);
+        try {
+            Parent root = loader.load();
+
+            Stage childStage = new Stage();
+            childStage.setTitle("Start MoliNana");
+            childStage.initModality(Modality.APPLICATION_MODAL);
+            childStage.initOwner(null); // Replace 'null' with reference to the primary stage if needed
+            childStage.setScene(new Scene(root));
+            childStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return !view.isLoad;
+        
+    }
+
     @FXML
     public void initialize() {
+        System.out.println("init");
         initializeDecks(activeDeckGroup, activeDecks, 6);
         initializeDecks(fieldCardGroup, fieldCards, 20);
+        if(!startGame()){
+            // load
+            System.out.println("load dari ...");
+            handleOpenLoad();
+            System.out.println("load dari folder");
+            
+        }else{
+            gameManagerModel.setCurrentTurn(1);
+            handleNextTurn();
+            loadActiveDeck(gameManagerModel.getPlayer1());
+            loadField(gameManagerModel.getPlayer1());
+
+        }
         setupDragAndDrop();
 
         setupClickCard();
@@ -104,14 +138,10 @@ public class GUIController {
         deckCount.setText("My Deck " + Integer.toString(gameManagerModel.getPlayer1().getDeck().getDeckSize()) + "/40");
         gameTurn.setText(String.format("%02d", gameManagerModel.getCurrentTurn()));
         fieldLabel.setText("Player 1 Field");
-        loadActiveDeck(gameManagerModel.getPlayer1());
-        loadField(gameManagerModel.getPlayer1());
 
         myFieldButton.setOnMouseClicked(this::handleMyFieldButtonClick);
         enemyFieldButton.setOnMouseClicked(this::handleEnemyFieldButtonClick);
 
-        handleNextTurn();
-        gameManagerModel.setCurrentTurn(1);
         gameTurn.setText(String.format("%02d", gameManagerModel.getCurrentTurn()));
     }
 
@@ -492,7 +522,7 @@ public class GUIController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/if2210/app/fxml/Load.fxml"));
             Parent root = loader.load();
-
+            
             Stage childStage = new Stage();
             childStage.setTitle("Load");
             childStage.initModality(Modality.APPLICATION_MODAL);
@@ -515,10 +545,12 @@ public class GUIController {
                 loadActiveDeck(gameManagerModel.getPlayer1());
                 loadField(gameManagerModel.getPlayer1());
                 handleNextTurn();
+                System.out.println(gameManagerModel.getCurrentTurn());
                 gameManagerModel.setCurrentTurn(gameManagerModel.getCurrentTurn() - 1);
                 deckCount.setText(
                         "My Deck " + Integer.toString(gameManagerModel.getPlayer1().getDeck().getDeckSize()) + "/40");
                 gameTurn.setText(String.format("%02d", gameManagerModel.getCurrentTurn()));
+
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -679,6 +711,9 @@ public class GUIController {
             gameManagerModel.setCurrentTurn(gameManagerModel.getCurrentTurn() + 1);
         } else if (gameManagerModel.getWhoseTurn() == -1) {
             gameManagerModel.setCurrentTurn(0);
+        }
+        if(gameManagerModel.getCurrentTurn() ==21){
+            handleVictory();
         }
         gameTurn.setText(String.format("%02d", gameManagerModel.getCurrentTurn()));
         fieldLabel.setText("Player " + (gameManagerModel.getWhoseTurn() + 1) + " Field");
