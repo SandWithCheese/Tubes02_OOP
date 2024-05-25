@@ -48,7 +48,7 @@ public class App extends Application {
 
         mediaPlayer = new MediaPlayer(songs.get(currentSongIndex));
         // Setel agar lagu diputar berulang
-        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        mediaPlayer.setCycleCount(10);
         mediaPlayer.setOnEndOfMedia(() -> {
             mediaPlayer.stop();
             mediaPlayer = new MediaPlayer(songs.get((currentSongIndex + 1) % songs.size()));
