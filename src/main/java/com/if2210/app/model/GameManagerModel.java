@@ -9,7 +9,7 @@ import com.if2210.app.datastore.DataManager;
 
 @Singleton
 public class GameManagerModel {
-    private DataManager dataManager;
+    private DataManager dataManager; 
     private int currentTurn;
     // Penentu giliran pemain, cuma bisa 0 atau 1
     private int whoseTurn;

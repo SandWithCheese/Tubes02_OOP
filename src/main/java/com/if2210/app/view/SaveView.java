@@ -100,7 +100,7 @@ public class SaveView {
             messageLabel.setText("Folder Name cannot be empty.");
             messageLabel.setTextFill(javafx.scene.paint.Color.RED);
         } else {
-            dataManager.save(folderName, currentTurn, productList, player1, player2);
+            dataManager.save(folderName + selectedFormat, currentTurn, productList, player1, player2);
             
             // Using threading, update the message label every 1 second for 5 seconds and
             // then close the window
