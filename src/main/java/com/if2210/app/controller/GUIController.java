@@ -115,11 +115,11 @@ public class GUIController {
             System.out.println("load dari folder");
 
         } else {
-            gameManagerModel.setCurrentTurn(1);
             handleNextTurn();
-            ActiveDeckController.loadActiveDeck(gameManagerModel.getPlayer1(), activeDecks, gameManagerModel,
-                    isEnemyField);
+            ActiveDeckController.loadActiveDeck(gameManagerModel.getPlayer1(), activeDecks, gameManagerModel, isEnemyField);
             FieldController.loadField(gameManagerModel.getPlayer1(), fieldCards, gameManagerModel, isEnemyField);
+            gameManagerModel.setCurrentTurn(1);
+            gameTurn.setText(String.format("%02d", gameManagerModel.getCurrentTurn()));
 
         }
         setupDragAndDrop();
