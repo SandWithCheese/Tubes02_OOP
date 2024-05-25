@@ -1,10 +1,10 @@
 # Remidi Kelola Kerajaan
 
 > 
-> ![program](src\main\resources\com\if2210\app\assets\MoliNana.png)  <br>
+> ![program](src/main/resources/com/if2210/app/assets/MoliNana.png)  <br>
 >
 > 
-> ![program2](src\main\resources\com\if2210\app\assets\MoliNana2.png)
+> ![program2](src/main/resources/com/if2210/app/assets/MoliNana2.png)
 
 ## Deskripsi
 
