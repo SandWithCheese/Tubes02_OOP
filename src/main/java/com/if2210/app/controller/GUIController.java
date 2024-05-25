@@ -680,6 +680,9 @@ public class GUIController {
         } else if (gameManagerModel.getWhoseTurn() == -1) {
             gameManagerModel.setCurrentTurn(0);
         }
+        if(gameManagerModel.getCurrentTurn() ==21){
+            handleVictory();
+        }
         gameTurn.setText(String.format("%02d", gameManagerModel.getCurrentTurn()));
         fieldLabel.setText("Player " + (gameManagerModel.getWhoseTurn() + 1) + " Field");
         loadActiveDeck(gameManagerModel.getActivePlayer());
