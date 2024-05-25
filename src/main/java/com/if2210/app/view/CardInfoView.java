@@ -224,7 +224,7 @@ public class CardInfoView {
     private void harvestPlant() {
         System.out.println("Menjalankan proses panen tanaman");
         ProductCardModel produk = ProductCardFactory.createProductCard(resProd.get(((CardModel) card).getName()));
-        controller.updateCard(cardPane, produk, true);
+        controller.updateCard(cardPane, produk, true, false);
         productItem = produk;
         Stage stage = (Stage) info.getScene().getWindow();
         stage.close();
@@ -233,7 +233,7 @@ public class CardInfoView {
     private void harvestAnimal() {
         System.out.println("Menjalankan proses panen hewan");
         ProductCardModel produk = ProductCardFactory.createProductCard(resProd.get(((CardModel) card).getName()));
-        controller.updateCard(cardPane, produk, true);
+        controller.updateCard(cardPane, produk, true, false);
         productItem = produk;
         Stage stage = (Stage) info.getScene().getWindow();
         stage.close();

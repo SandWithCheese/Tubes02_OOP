@@ -62,7 +62,7 @@ public class FieldController {
                             for (int j = 0; j < 6; j++) {
                                 if(gm.getActivePlayer().getActiveDeck().getCard(j) == null){
                                     gm.getActivePlayer().getActiveDeck().setCard(j, produk);
-                                    gui.updateCard(gui.activeDecks.get(j), produk, true);
+                                    gui.updateCard(gui.activeDecks.get(j), produk, true, false);
                                     break;
                                 }
                             }
@@ -70,7 +70,7 @@ public class FieldController {
                         }else{
                             cardData.setName(produk.getName());
                             cardData.setImage(produk.getImage());
-                            gui.updateCard(card, cardData, true);
+                            gui.updateCard(card, cardData, true, false);
                         }
                     }
                 }
