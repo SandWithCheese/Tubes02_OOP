@@ -20,7 +20,7 @@ public class GameManagerModel {
     public GameManagerModel() {
         try {
             this.dataManager = new DataManager(
-                    Paths.get(getClass().getResource("/com/if2210/app/gamestates/state0").toURI()));
+                    Paths.get(getClass().getResource("/com/if2210/app/gamestates/state0txt").toURI()));
         } catch (URISyntaxException e) {
             e.printStackTrace();
             return;
