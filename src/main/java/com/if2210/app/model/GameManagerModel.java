@@ -25,7 +25,7 @@ public class GameManagerModel {
             e.printStackTrace();
             return;
         }
-        this.dataManager.load("state0");
+        this.dataManager.load("state0txt");
 
         this.shop = ShopModel.getInstance();
 
