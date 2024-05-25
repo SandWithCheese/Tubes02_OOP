@@ -13,10 +13,12 @@ import java.util.Map;
 
 import com.if2210.app.factory.AnimalCardFactory;
 import com.if2210.app.factory.ItemCardFactory;
+import com.if2210.app.factory.PlantCardFactory;
 import com.if2210.app.factory.ProductCardFactory;
 import com.if2210.app.model.AnimalCardModel;
 import com.if2210.app.model.CardModel;
 import com.if2210.app.model.DeckModel;
+import com.if2210.app.model.ItemCardModel;
 import com.if2210.app.model.PlantCardModel;
 import com.if2210.app.model.PlayerModel;
 import com.if2210.app.model.ProductCardModel;
@@ -477,7 +479,7 @@ public class DataManager {
 
                 name = isPlantCard(parts[1]);
                 if (name != null) {
-                    AnimalCardModel card = AnimalCardFactory.createAnimalCard(name);
+                    PlantCardModel card = PlantCardFactory.createPlantCard(name);
                     int index = codeToActiveIndex(parts[0]);
                     this.player1.getActiveDeck().setCard(index, card);
                     continue;
@@ -486,14 +488,16 @@ public class DataManager {
                 name = isProductCard(parts[1]);
                 if (name != null) {
                     ProductCardModel card = ProductCardFactory.createProductCard(name);
-                    this.player1.getDeck().getCards().add(card);
+                    int index = codeToActiveIndex(parts[0]);
+                    this.player1.getActiveDeck().setCard(index, card);
                     continue;
                 }
 
                 name = isItemCard(parts[1]);
                 if (name != null) {
-                    ProductCardModel card = ProductCardFactory.createProductCard(name);
-                    this.player1.getDeck().getCards().add(card);
+                    ItemCardModel card = ItemCardFactory.createItemCard(name);
+                    int index = codeToActiveIndex(parts[0]);
+                    this.player1.getActiveDeck().setCard(index, card);
                     continue;
                 }
             }
@@ -521,8 +525,8 @@ public class DataManager {
 
                 name = isPlantCard(parts[1]);
                 if (name != null) {
-                    AnimalCardModel card = AnimalCardFactory.createAnimalCard(name);
-                    card.setCurrentWeight(Integer.parseInt(parts[2]));
+                    PlantCardModel card = PlantCardFactory.createPlantCard(name);
+                    card.setCurrentAge(Integer.parseInt(parts[2]));
                     int activeItemCount = Integer.parseInt(parts[3]);
                     for (int j = 0; j < activeItemCount; j++) {
                         card.getActiveItems().add(ItemCardFactory.createItemCard(isItemCard(parts[4 +
@@ -564,7 +568,7 @@ public class DataManager {
 
                 name = isPlantCard(parts[1]);
                 if (name != null) {
-                    AnimalCardModel card = AnimalCardFactory.createAnimalCard(name);
+                    PlantCardModel card = PlantCardFactory.createPlantCard(name);
                     int index = codeToActiveIndex(parts[0]);
                     this.player2.getActiveDeck().setCard(index, card);
                     continue;
@@ -573,14 +577,16 @@ public class DataManager {
                 name = isProductCard(parts[1]);
                 if (name != null) {
                     ProductCardModel card = ProductCardFactory.createProductCard(name);
-                    this.player2.getDeck().getCards().add(card);
+                    int index = codeToActiveIndex(parts[0]);
+                    this.player2.getActiveDeck().setCard(index, card);
                     continue;
                 }
 
                 name = isItemCard(parts[1]);
                 if (name != null) {
-                    ProductCardModel card = ProductCardFactory.createProductCard(name);
-                    this.player2.getDeck().getCards().add(card);
+                    ItemCardModel card = ItemCardFactory.createItemCard(name);
+                    int index = codeToActiveIndex(parts[0]);
+                    this.player2.getActiveDeck().setCard(index, card);
                     continue;
                 }
             }
@@ -608,8 +614,8 @@ public class DataManager {
 
                 name = isPlantCard(parts[1]);
                 if (name != null) {
-                    AnimalCardModel card = AnimalCardFactory.createAnimalCard(name);
-                    card.setCurrentWeight(Integer.parseInt(parts[2]));
+                    PlantCardModel card = PlantCardFactory.createPlantCard(name);
+                    card.setCurrentAge(Integer.parseInt(parts[2]));
                     int activeItemCount = Integer.parseInt(parts[3]);
                     for (int j = 0; j < activeItemCount; j++) {
                         card.getActiveItems().add(ItemCardFactory.createItemCard(isItemCard(parts[4 +
