@@ -106,9 +106,14 @@ public class CardInfoView {
         weight.setText(weightText);
         harvestWeight.setText("Harvest weight : " + animalCard.getHarvestWeight());
         if (weightAfterActiveItem >= animalCard.getHarvestWeight()) {
-            info.setText("Ready to be harvest");
-            info.setTextFill(javafx.scene.paint.Color.GREEN);
-            harvestButton.setVisible(true);
+            if(!controller.isEnemyField){
+                info.setText("Ready to be harvest");
+                info.setTextFill(javafx.scene.paint.Color.GREEN);
+                harvestButton.setVisible(true);
+            }else{
+                info.setText("This is not yours");
+                info.setTextFill(javafx.scene.paint.Color.RED);
+            }
         } else {
             info.setText("Your animal isn't ready to be harvested yet");
             info.setTextFill(javafx.scene.paint.Color.RED);
@@ -147,9 +152,14 @@ public class CardInfoView {
 
         harvestWeight.setText("Harvest age : " + plantCard.getHarvestAge());
         if (this.weightAfterActiveItem >= plantCard.getHarvestAge()) {
-            info.setText("Ready to be harvest");
-            info.setTextFill(javafx.scene.paint.Color.GREEN);
-            harvestButton.setVisible(true);
+            if(!controller.isEnemyField){
+                info.setText("Ready to be harvest");
+                info.setTextFill(javafx.scene.paint.Color.GREEN);
+                harvestButton.setVisible(true);
+            }else{
+                info.setText("This is not yours");
+                info.setTextFill(javafx.scene.paint.Color.RED);
+            }
         } else {
             info.setText("Your plant isn't ready to be harvested yet");
             info.setTextFill(javafx.scene.paint.Color.RED);

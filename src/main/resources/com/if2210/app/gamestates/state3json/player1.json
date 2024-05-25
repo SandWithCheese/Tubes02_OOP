@@ -1,0 +1,13 @@
+{
+    "gulden": 0,
+    "cards_in_deck": 36,
+    "cards_exist_in_active_deck": 4,
+    "active_cards": [
+        {"location": "A01", "name": "DELAY"},
+        {"location": "B01", "name": "SAPI"},
+        {"location": "C01", "name": "BIJI_LABU"},
+        {"location": "D01", "name": "TELUR"}
+    ],
+    "cards_exist_in_field": 0,
+    "field_cards": []
+}

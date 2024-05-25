@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<Pane cache="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="605.0" prefWidth="973.0" style="-fx-border-width: 3px; -fx-border-color: #799FF6; -fx-background-color: #021A38;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<Pane cache="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="605.0" prefWidth="973.0" style="-fx-border-width: 3px; -fx-border-color: #799FF6; -fx-background-color: #021A38;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label alignment="CENTER" layoutX="0" layoutY="100.0" prefWidth="1000" text="Thank's For Playing" style="-fx-font-weight: 700;" textFill="#d4e3fc">
+      <Label alignment="CENTER" layoutX="0" layoutY="100.0" prefWidth="1000" style="-fx-font-weight: 700;" text="Thank's For Playing" textFill="#d4e3fc">
          <font>
             <Font size="70.0" />
          </font>
@@ -16,7 +17,7 @@
             <Font size="42.0" />
          </font>
       </Label>
-      <Button onAction="#handleClose" alignment="CENTER" layoutX="400" layoutY="400.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="52.0" prefWidth="200.0" style="-fx-background-color: #799FF6; -fx-font-weight: 700; -fx-background-radius: 10px;" text="CLOSE" textAlignment="CENTER" textFill="WHITE">
+      <Button id="myButton" alignment="CENTER" layoutX="400" layoutY="400.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleClose" prefHeight="52.0" prefWidth="200.0" style="-fx-font-weight: 700; -fx-background-radius: 10px;" stylesheets="@../assets/test.css" text="CLOSE" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>

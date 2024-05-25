@@ -1,0 +1,12 @@
+{
+    "gulden": 500,
+    "cards_in_deck": 39,
+    "cards_exist_in_active_deck": 1,
+    "active_cards": [
+        {"location": "A01", "name": "BERUANG"}
+    ],
+    "cards_exist_in_field": 1,
+    "field_cards": [
+        {"location": "A01", "name": "BERUANG", "age_or_weight": 20, "items_count": 3, "items": ["ACCELERATE", "DELAY", "PROTECT"]}
+    ]
+}

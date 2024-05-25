@@ -77,7 +77,7 @@ public class GUIController {
     @FXML
     private Label messageLabel;
 
-    private boolean isEnemyField = false;
+    public boolean isEnemyField = false;
 
     public List<AnchorPane> activeDecks = new ArrayList<>();
     public List<AnchorPane> fieldCards = new ArrayList<>();
