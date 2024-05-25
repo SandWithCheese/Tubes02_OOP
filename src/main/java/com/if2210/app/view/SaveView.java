@@ -36,7 +36,7 @@ public class SaveView {
     @FXML
     private Button loadButton;
 
-    private String[] typeFile = { "txt", "xml", "json" };
+    private String[] typeFile = { "txt", "yaml", "json" };
 
     public SaveView(DataManager dataManager, int currentTurn, Map<ProductCardModel, Integer> productList,
             PlayerModel player1, PlayerModel player2) {

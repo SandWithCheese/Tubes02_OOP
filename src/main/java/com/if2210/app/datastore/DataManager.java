@@ -11,6 +11,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.yaml.snakeyaml.error.YAMLException;
+
 import com.if2210.app.factory.AnimalCardFactory;
 import com.if2210.app.factory.ItemCardFactory;
 import com.if2210.app.factory.PlantCardFactory;
@@ -24,6 +26,7 @@ import com.if2210.app.model.PlayerModel;
 import com.if2210.app.model.ProductCardModel;
 import com.if2210.app.plugin.JSONExtension;
 import com.if2210.app.plugin.TXTExtension;
+import com.if2210.app.plugin.YAMLExtension;
 
 public class DataManager {
     private Path path;
@@ -43,7 +46,7 @@ public class DataManager {
 
     public DataManager() {
         try {
-            this.path = Paths.get(getClass().getResource("/com/if2210/app/gamestates/state0").toURI());
+            this.path = Paths.get(getClass().getResource("/com/if2210/app/gamestates/state0txt").toURI());
         } catch (URISyntaxException e) {
             e.printStackTrace();
             return;
@@ -117,6 +120,10 @@ public class DataManager {
             JSONExtension dataJSON = new JSONExtension(this.path);
             dataJSON.save(folderName, currentTurn, productList, player1, player2);
         }
+        else if (folderName.substring(folderName.length() - 4).equals("yaml")) {
+            YAMLExtension dataYAML = new YAMLExtension(this.path);
+            dataYAML.save(folderName, currentTurn, productList, player1, player2);
+        }
         else {
             System.out.println("Invalid file format");
         }
@@ -138,6 +145,14 @@ public class DataManager {
             this.productList = dataJSON.getProductList();
             this.player1 = dataJSON.getPlayer1();
             this.player2 = dataJSON.getPlayer2();
+        }
+        else if (folderName.substring(folderName.length() - 4).equals("yaml")) {
+            YAMLExtension dataYAML = new YAMLExtension(this.path);
+            dataYAML.load(folderName);
+            this.currentTurn = dataYAML.getCurrentTurn();
+            this.productList = dataYAML.getProductList();
+            this.player1 = dataYAML.getPlayer1();
+            this.player2 = dataYAML.getPlayer2();
         }
         else {
             System.out.println("Invalid file format");

@@ -1,0 +1,14 @@
+gulden: 0
+cards_in_deck: 36
+cards_exist_in_active_deck: 3
+active_cards:
+- {name: BIJI_LABU, location: A01}
+- {name: LABU, location: B01}
+- {name: BIJI_JAGUNG, location: C01}
+cards_exist_in_field: 1
+field_cards:
+- name: BIJI_STROBERI
+  location: B02
+  age_or_weight: 0
+  items_count: 0
+  items: []
