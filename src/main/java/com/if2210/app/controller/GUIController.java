@@ -3,6 +3,7 @@ package com.if2210.app.controller;
 import java.util.List;
 import java.util.Map;
 
+import com.if2210.app.factory.PlantCardFactory;
 import javafx.application.Platform;
 
 import com.if2210.app.factory.AnimalCardFactory;
@@ -269,8 +270,36 @@ public class GUIController {
                                     deleteCard(sourceCard);
                                     success = true; // Implement your logic here if needed
                                     messageLabel.setText("Delay card has been used");
-                                } else if (sourceCardData.getName().equals("Destroy")) {
-                                    applyDestroyEffect(sourceCardData, targetCardData, targetCard);
+
+                                    // change to plant auto
+                                    Map<String, String> resProd = new HashMap<>();
+                                    resProd.put("Hiu Darat", "Sirip Hiu");
+                                    resProd.put("Sapi", "Susu");
+                                    resProd.put("Domba", "Daging Domba");
+                                    resProd.put("Kuda", "Daging Kuda");
+                                    resProd.put("Ayam", "Telur");
+                                    resProd.put("Beruang", "Daging Beruang");
+                                    resProd.put("Biji Jagung", "Jagung");
+                                    resProd.put("Biji Labu", "Labu");
+                                    resProd.put("Biji Stroberi", "Stroberi");
+                                    if(targetCardData instanceof PlantCardModel && (((PlantCardModel)targetCardData).getCurrentAge()-2)<((PlantCardModel)targetCardData).getHarvestAge()){
+                                        if(resProd.containsValue(targetCardData.getName())){
+                                            for (Map.Entry<String, String> entry : resProd.entrySet()) {
+                                                System.out.println(entry.getValue());
+                                                System.out.println(targetCardData.getName());
+                                                if (targetCardData.getName().equals(entry.getValue())) {
+                                                    PlantCardModel plant = PlantCardFactory.createPlantCard(entry.getKey());
+                                                    plant.setCurrentAge(((PlantCardModel)targetCardData).getCurrentAge());
+                                                    plant.setActiveItems(((PlantCardModel)targetCardData).getActiveItems());
+                                                    updateCard(targetCard, plant, true);
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                }
+                                else if (sourceCardData.getName().equals("Destroy") && isEnemyField) {
+                                    applyDestroyEffect(sourceCardData, targetCardData, targetCard); //source itu item, target itu cardModel
                                     deleteCard(sourceCard);
                                     success = true; // Implement your logic here if needed
                                 }
@@ -551,7 +580,7 @@ public class GUIController {
             System.out.println("ini ada gambar");
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/if2210/app/fxml/CardInfo.fxml"));
-                CardInfoView cardView = new CardInfoView(deck, this);
+                CardInfoView cardView = new CardInfoView(deck, this, gameManagerModel);
                 loader.setController(cardView);
                 Parent root = loader.load();
 
