@@ -109,7 +109,7 @@ public class CardInfoView {
         weight.setText(weightText);
         harvestWeight.setText("Harvest weight : " + animalCard.getHarvestWeight());
         if (weightAfterActiveItem >= animalCard.getHarvestWeight()) {
-            if (isEnemyField) {
+            if (!isEnemyField) {
                 info.setText("Ready to be harvest");
                 info.setTextFill(javafx.scene.paint.Color.GREEN);
                 harvestButton.setVisible(true);
@@ -155,7 +155,7 @@ public class CardInfoView {
 
         harvestWeight.setText("Harvest age : " + plantCard.getHarvestAge());
         if (this.weightAfterActiveItem >= plantCard.getHarvestAge()) {
-            if (isEnemyField) {
+            if (!isEnemyField) {
                 info.setText("Ready to be harvest");
                 info.setTextFill(javafx.scene.paint.Color.GREEN);
                 harvestButton.setVisible(true);
