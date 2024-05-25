@@ -1,0 +1,13 @@
+{
+    "gulden": 300,
+    "cards_in_deck": 38,
+    "cards_exist_in_active_deck": 2,
+    "active_cards": [
+        {"location": "A01", "name": "BERUANG"},
+        {"location": "B01", "name": "BERUANG"}
+    ],
+    "cards_exist_in_field": 1,
+    "field_cards": [
+        {"location": "B02", "name": "AYAM", "age_or_weight": 0, "items_count": 0, "items": []}
+    ]
+}
