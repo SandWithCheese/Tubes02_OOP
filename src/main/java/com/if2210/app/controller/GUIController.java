@@ -268,32 +268,9 @@ public class GUIController {
                             if (isEnemyField) {
                                 // Kalo di lapangan lawan
                                 if (sourceCardData.getName().equals("Delay")) {
-                                    ItemCardController.applyItemEffect(sourceCardData, targetCardData, targetCard,
-                                            isEnemyField, gameManagerModel);
-                                    CardController.deleteCard(sourceCard, isEnemyField, gameManagerModel);
+                                    applyDelayEffect(sourceCardData, targetCardData, targetCard);
+                                    deleteCard(sourceCard);
                                     success = true; // Implement your logic here if needed
-                                    messageLabel.setText("Delay card has been used");
-
-                                    // change to plant automatically
-                                    if (targetCardData instanceof PlantCardModel
-                                            && (((PlantCardModel) targetCardData).getCurrentAge()
-                                                    - 2) < ((PlantCardModel) targetCardData).getHarvestAge()) {
-                                        if (Constant.RES_PROD.containsValue(targetCardData.getName())) {
-                                            for (Map.Entry<String, String> entry : Constant.RES_PROD.entrySet()) {
-                                                if (targetCardData.getName().equals(entry.getValue())) {
-                                                    PlantCardModel plant = PlantCardFactory
-                                                            .createPlantCard(entry.getKey());
-                                                    plant.setCurrentAge(
-                                                            ((PlantCardModel) targetCardData).getCurrentAge());
-                                                    plant.setActiveItems(
-                                                            ((PlantCardModel) targetCardData).getActiveItems());
-                                                    CardController.updateCard(targetCard, plant, true, isEnemyField,
-                                                            gameManagerModel);
-                                                }
-                                            }
-                                        }
-                                    }
-
                                 } else if (sourceCardData.getName().equals("Destroy") && isEnemyField) {
                                     // source itu item, target itu cardModel
                                     messageLabel.setText(ItemCardController.applyDestroyEffect(sourceCardData,
@@ -812,6 +789,207 @@ public class GUIController {
 
         for (AnchorPane activeCardField : fieldCards) {
             activeCardField.setOnMouseClicked(event -> handleOpenCardInfo(activeCardField));
+        }
+    }
+
+    // public void updateCard(AnchorPane card, CardModel cardData), isEnemyField {
+    // card.setUserData(cardData);
+
+    // ImageView imageView = (ImageView) card.getChildren().get(0);
+    // Image image = new Image(getClass().getResourceAsStream(cardData.getImage()));
+    // imageView.setImage(image != null ? image : new Image(BLANK_IMAGE)); // Use
+    // blank image if resource not found
+    // Label label = (Label) card.getChildren().get(1);
+    // label.setText(cardData.getName());
+
+    // card.setStyle(null);
+    // // Update AnchorPane background color based on the color attribute of the
+    // card
+    // // model
+    // String color = cardData.getColor();
+    // if (color != null && !color.isEmpty()) {
+    // card.setStyle("-fx-background-color: " + color + "; -fx-background-radius:
+    // 7.7px;");
+    // }
+    // }
+    private void applyItemEffect(CardModel sourceCardData, CardModel targetCardData, AnchorPane targetCard) {
+        if (targetCardData instanceof AnimalCardModel) {
+            AnimalCardModel temp = (AnimalCardModel) targetCardData;
+            ArrayList<ItemCardModel> activeItems = temp.getActiveItems();
+            activeItems.add((ItemCardModel) sourceCardData);
+            temp.setActiveItems(activeItems);
+            updateCard(targetCard, temp, true, isEnemyField);
+        } else {
+            PlantCardModel temp = (PlantCardModel) targetCardData;
+            ArrayList<ItemCardModel> activeItems = temp.getActiveItems();
+            activeItems.add((ItemCardModel) sourceCardData);
+            temp.setActiveItems(activeItems);
+            updateCard(targetCard, temp, true, isEnemyField);
+        }
+    }
+
+    private void applyInstantHarvest(CardModel targetCardData, AnchorPane targetCard, AnchorPane harvestCard) {
+        deleteCard(harvestCard);
+        deleteCard(targetCard);
+        if (!targetCardData.getImage().equals(BLANK_IMAGE)) {
+            Map<String, String> resProd = new HashMap<>();
+            resProd.put("Hiu Darat", "Sirip Hiu");
+            resProd.put("Sapi", "Susu");
+            resProd.put("Domba", "Daging Domba");
+            resProd.put("Kuda", "Daging Kuda");
+            resProd.put("Ayam", "Telur");
+            resProd.put("Beruang", "Daging Beruang");
+            resProd.put("Biji Jagung", "Jagung");
+            resProd.put("Biji Labu", "Labu");
+            resProd.put("Biji Stroberi", "Stroberi");
+
+            ProductCardModel produk = ProductCardFactory
+                    .createProductCard(resProd.get(((CardModel) targetCardData).getName()));
+            for (int i = 0; i < 6; i++) {
+                if (gameManagerModel.getActivePlayer().getActiveDeck().getCard(i) == null) {
+                    // gameManagerModel.getActivePlayer().getActiveDeck().setCard(i, produk);
+                    updateCard(activeDecks.get(i), produk, true, isEnemyField);
+                    loadActiveDeck(gameManagerModel.getActivePlayer());
+                    break;
+                }
+            }
+        }
+    }
+
+
+    private void applyDelayEffect(CardModel sourceCardData, CardModel targetCardData, AnchorPane targetCard) {
+        if (!targetCardData.getImage().equals(BLANK_IMAGE)) {
+            boolean foundProtect = false;
+
+            if (targetCardData instanceof AnimalCardModel) {
+                ArrayList<ItemCardModel> activeItems = ((AnimalCardModel) targetCardData).getActiveItems();
+                for (ItemCardModel item : activeItems) {
+                    if (item.getName().equals("Protect")) {
+                        foundProtect = true;
+                        messageLabel.setText("Destroy card failed, target card is protected");
+                        break;
+                    }
+                }
+            } else {
+                ArrayList<ItemCardModel> activeItems = ((PlantCardModel) targetCardData).getActiveItems();
+                for (ItemCardModel item : activeItems) {
+                    if (item.getName().equals("Protect")) {
+                        foundProtect = true;
+                        break;
+                    }
+                }
+            }
+            
+            if (!foundProtect){
+                applyItemEffect(sourceCardData, targetCardData, targetCard);
+                messageLabel.setText("Delay card has been used");
+
+                // change to plant auto
+                Map<String, String> resProd = new HashMap<>();
+                resProd.put("Hiu Darat", "Sirip Hiu");
+                resProd.put("Sapi", "Susu");
+                resProd.put("Domba", "Daging Domba");
+                resProd.put("Kuda", "Daging Kuda");
+                resProd.put("Ayam", "Telur");
+                resProd.put("Beruang", "Daging Beruang");
+                resProd.put("Biji Jagung", "Jagung");
+                resProd.put("Biji Labu", "Labu");
+                resProd.put("Biji Stroberi", "Stroberi");
+                if (targetCardData instanceof PlantCardModel
+                        && (((PlantCardModel) targetCardData).getCurrentAge()
+                                - 2) < ((PlantCardModel) targetCardData).getHarvestAge()) {
+                    if (resProd.containsValue(targetCardData.getName())) {
+                        for (Map.Entry<String, String> entry : resProd.entrySet()) {
+                            System.out.println(entry.getValue());
+                            System.out.println(targetCardData.getName());
+                            if (targetCardData.getName().equals(entry.getValue())) {
+                                PlantCardModel plant = PlantCardFactory
+                                        .createPlantCard(entry.getKey());
+                                plant.setCurrentAge(
+                                        ((PlantCardModel) targetCardData).getCurrentAge());
+                                plant.setActiveItems(
+                                        ((PlantCardModel) targetCardData).getActiveItems());
+                                updateCard(targetCard, plant, true, isEnemyField);
+                            }
+                        }
+                    }
+                }
+            }
+            else{
+                messageLabel.setText("Delay card failed, target card is protected");
+            }
+        }
+    }
+
+    private void applyDestroyEffect(CardModel sourceCardData, CardModel targetCardData, AnchorPane targetCard) {
+        if (!targetCardData.getImage().equals(BLANK_IMAGE)) {
+            if (targetCardData instanceof AnimalCardModel) {
+                ArrayList<ItemCardModel> activeItems = ((AnimalCardModel) targetCardData).getActiveItems();
+                boolean foundProtect = false;
+                for (ItemCardModel item : activeItems) {
+                    if (item.getName().equals("Protect")) {
+                        foundProtect = true;
+                        messageLabel.setText("Destroy card failed, target card is protected");
+                        break;
+                    }
+                }
+
+                if (!foundProtect) {
+                    deleteCard(targetCard);
+                    messageLabel.setText("Destroy card success");
+                }
+            } else {
+                ArrayList<ItemCardModel> activeItems = ((PlantCardModel) targetCardData).getActiveItems();
+                boolean foundProtect = false;
+                for (ItemCardModel item : activeItems) {
+                    if (item.getName().equals("Protect")) {
+                        foundProtect = true;
+                        break;
+                    }
+                }
+
+                if (!foundProtect) {
+                    deleteCard(targetCard);
+                }
+            }
+        }
+    }
+
+
+    private void applyFeedEffect(CardModel sourceCardData, CardModel targetCardData, AnchorPane targetCard,
+            AnchorPane sourceCard) {
+        AnimalCardModel temp = (AnimalCardModel) targetCardData;
+
+        AnimalType tipe = temp.getType();
+        ProductCardModel food = (ProductCardModel) sourceCardData;
+        switch (tipe) {
+            case OMNIVORE:
+                temp.setCurrentWeight(temp.getCurrentWeight() + food.getAddedWeight());
+                updateCard(targetCard, temp, true, isEnemyField);
+                deleteCard(sourceCard);
+                messageLabel.setText("Product card has been used to feed the animal");
+                break;
+            case HERBIVORE:
+                if (food.getName().equals("Jagung") || food.getName().equals("Labu")
+                        || food.getName().equals("Stroberi")) {
+                    temp.setCurrentWeight(temp.getCurrentWeight() + food.getAddedWeight());
+                    updateCard(targetCard, temp, true, isEnemyField);
+                    deleteCard(sourceCard);
+                    messageLabel.setText("Product card has been used to feed the animal");
+                }
+                break;
+            case CARNIVORE:
+                if (food.getName().equals("Daging Domba") || food.getName().equals("Daging Kuda")
+                        || food.getName().equals("Daging Beruang") || food.getName().equals("Sirip Hiu")
+                        || food.getName().equals("Telur") || food.getName().equals("Susu")) {
+                    temp.setCurrentWeight(temp.getCurrentWeight() + food.getAddedWeight());
+                    updateCard(targetCard, temp, true, isEnemyField);
+                    deleteCard(sourceCard);
+                    messageLabel.setText("Product card has been used to feed the animal");
+                }
+                break;
+            default:
+                break;
         }
     }
 }
