@@ -282,24 +282,30 @@ public class GUIController {
                                     resProd.put("Biji Jagung", "Jagung");
                                     resProd.put("Biji Labu", "Labu");
                                     resProd.put("Biji Stroberi", "Stroberi");
-                                    if(targetCardData instanceof PlantCardModel && (((PlantCardModel)targetCardData).getCurrentAge()-2)<((PlantCardModel)targetCardData).getHarvestAge()){
-                                        if(resProd.containsValue(targetCardData.getName())){
+                                    if (targetCardData instanceof PlantCardModel
+                                            && (((PlantCardModel) targetCardData).getCurrentAge()
+                                                    - 2) < ((PlantCardModel) targetCardData).getHarvestAge()) {
+                                        if (resProd.containsValue(targetCardData.getName())) {
                                             for (Map.Entry<String, String> entry : resProd.entrySet()) {
                                                 System.out.println(entry.getValue());
                                                 System.out.println(targetCardData.getName());
                                                 if (targetCardData.getName().equals(entry.getValue())) {
-                                                    PlantCardModel plant = PlantCardFactory.createPlantCard(entry.getKey());
-                                                    plant.setCurrentAge(((PlantCardModel)targetCardData).getCurrentAge());
-                                                    plant.setActiveItems(((PlantCardModel)targetCardData).getActiveItems());
+                                                    PlantCardModel plant = PlantCardFactory
+                                                            .createPlantCard(entry.getKey());
+                                                    plant.setCurrentAge(
+                                                            ((PlantCardModel) targetCardData).getCurrentAge());
+                                                    plant.setActiveItems(
+                                                            ((PlantCardModel) targetCardData).getActiveItems());
                                                     updateCard(targetCard, plant, true);
                                                 }
                                             }
                                         }
                                     }
 
-                                }
-                                else if (sourceCardData.getName().equals("Destroy") && isEnemyField) {
-                                    applyDestroyEffect(sourceCardData, targetCardData, targetCard); //source itu item, target itu cardModel
+                                } else if (sourceCardData.getName().equals("Destroy") && isEnemyField) {
+                                    applyDestroyEffect(sourceCardData, targetCardData, targetCard); // source itu item,
+                                                                                                    // target itu
+                                                                                                    // cardModel
                                     deleteCard(sourceCard);
                                     success = true; // Implement your logic here if needed
                                 }
@@ -475,6 +481,7 @@ public class GUIController {
             childStage.showAndWait();
             if (LoadView.getPlayer1() != null) {
                 this.gameManagerModel.setCurrentTurn(LoadView.getCurrentTurn());
+                this.gameManagerModel.setWhoseTurn(-1);
                 this.gameManagerModel.setPlayer1(LoadView.getPlayer1());
                 this.gameManagerModel.setPlayer2(LoadView.getPlayer2());
                 this.gameManagerModel.getShop().setProductList(LoadView.getProductList());
@@ -485,6 +492,7 @@ public class GUIController {
                 gameTurn.setText(String.format("%02d", gameManagerModel.getCurrentTurn()));
                 loadActiveDeck(gameManagerModel.getPlayer1());
                 loadField(gameManagerModel.getPlayer1());
+                handleNextTurn();
             }
         } catch (IOException e) {
             e.printStackTrace();
