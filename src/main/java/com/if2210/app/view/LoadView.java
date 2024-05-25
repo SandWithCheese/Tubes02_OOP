@@ -36,7 +36,7 @@ public class LoadView {
     @FXML
     private Button loadButton;
 
-    private String[] typeFiles = { "txt", "xml", "json" };
+    private String[] typeFiles = { "txt", "yaml", "json" };
 
     public LoadView() {
         currentTurn = 0;
