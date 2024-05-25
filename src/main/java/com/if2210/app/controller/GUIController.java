@@ -120,7 +120,8 @@ public class GUIController {
         } else {
             gameManagerModel.setCurrentTurn(1);
             handleNextTurn();
-            ActiveDeckController.loadActiveDeck(gameManagerModel.getPlayer1(), activeDecks, gameManagerModel, isEnemyField);
+            ActiveDeckController.loadActiveDeck(gameManagerModel.getPlayer1(), activeDecks, gameManagerModel,
+                    isEnemyField);
             FieldController.loadField(gameManagerModel.getPlayer1(), fieldCards, gameManagerModel, isEnemyField);
 
         }
@@ -744,7 +745,7 @@ public class GUIController {
                                 }
 
                                 if (!foundProtect) {
-                                    deleteCard(card);
+                                    CardController.deleteCard(card, isEnemyField, gameManagerModel);
                                 }
                             }
                         }
